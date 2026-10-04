@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<script>try{document.documentElement.className+=' js'}catch(e){}</script>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Такой страницы нет · студия макетов АвтоПаши</title>
+<meta name="theme-color" content="#0f0b08">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/Unbounded-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Onest-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/studio.css">
+</head>
+<body class="is-miss">
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-lock" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="12" height="8.5" rx="2.2"/><path d="M6.8 9V6.6a3.2 3.2 0 0 1 6.4 0V9"/></g>
+  </defs>
+</svg>
+
+<header class="top" data-top>
+  <div class="wrap top__in">
+    <a class="brand" href="/" aria-label="Студия макетов АвтоПаши">авто<em>паша</em><small>студия макетов</small></a>
+    <a class="top__link" href="https://autopasha.ru/kak-eto-rabotaet">как он работает</a>
+    <a class="pill pill--glass" href="https://autopasha.ru/apply" data-magnet>нанять</a>
+  </div>
+</header>
+
+<!-- Свой ход страницы: адрес, от которого отвалился кусок. Кусок падает
+     на пол, Паша смотрит на него; кусок можно взять и приставить обратно,
+     страницы от этого, конечно, не появится. -->
+<main class="miss" data-hero>
+  <canvas class="hero__gl" data-gl aria-hidden="true"></canvas>
+  <div class="hero__vignette" aria-hidden="true"></div>
+
+  <div class="wrap miss__in">
+    <div class="miss__stage" data-stage>
+      <div class="miss__bar" data-bar>
+        <svg viewBox="0 0 20 20" aria-hidden="true"><use href="#i-lock"/></svg>
+        <span class="miss__host">autopasha.github.io</span><span class="miss__slot" data-slot></span>
+      </div>
+      <span class="miss__chunk" data-chunk role="button" tabindex="0" aria-label="Отвалившийся кусок адреса. Можно приставить обратно">/что-то</span>
+      <svg class="pasha" data-pasha viewBox="0 0 100 112" aria-hidden="true">
+        <g class="pasha__ant"><path d="M50 26 C50 18 52 14 54 9" fill="none" stroke="#2a1a14" stroke-width="3" stroke-linecap="round"/><circle cx="54.5" cy="7.5" r="5.5" fill="oklch(0.705 0.195 45)"/></g>
+        <rect x="8" y="24" width="84" height="84" rx="26" fill="#f6c8a4"/>
+        <rect x="8" y="24" width="84" height="84" rx="26" fill="url(#pasha-shade)"/>
+        <ellipse cx="29" cy="40" rx="11" ry="5.5" fill="#fff" opacity=".42" transform="rotate(-24 29 40)"/>
+        <ellipse cx="25" cy="80" rx="8" ry="4.5" fill="#f28f7d" opacity=".5"/>
+        <ellipse cx="75" cy="80" rx="8" ry="4.5" fill="#f28f7d" opacity=".5"/>
+        <g class="pasha__eyes" data-eyes><rect x="33" y="56" width="8" height="17" rx="4" fill="#2a1a14"/><rect x="59" y="56" width="8" height="17" rx="4" fill="#2a1a14"/></g>
+        <defs><linearGradient id="pasha-shade" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#b8653a" stop-opacity=".28"/></linearGradient></defs>
+      </svg>
+      <span class="miss__floor" aria-hidden="true"></span>
+    </div>
+
+    <h1 class="miss__h" data-split>от ссылки отвалился <em>кусок</em></h1>
+    <p class="miss__p" data-rise>такой страницы здесь нет. скорее всего, адрес скопировался не целиком: откройте ссылку из письма ещё раз или попросите прислать её заново.</p>
+    <p class="miss__hint" data-hint data-rise aria-live="polite">кусок можно взять и приставить обратно</p>
+    <div class="miss__cta" data-rise>
+      <a class="pill pill--hot pill--big" href="/" data-magnet>что это за место</a>
+      <a class="pill pill--glass pill--big" href="https://autopasha.ru/" data-magnet>autopasha.ru</a>
+    </div>
+  </div>
+</main>
+
+<script src="/studio.js" defer></script>
+<script src="/miss.js" defer></script>
+</body>
+</html>

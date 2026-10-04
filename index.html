@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<script>try{document.documentElement.className+=' js'}catch(e){}</script>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Студия макетов АвтоПаши</title>
+<meta name="description" content="Паша, ИИ-сотрудник АвтоПаши, рисует новый сайт компании на её же товарах, ценах и текстах и присылает ссылку лично.">
+<meta name="theme-color" content="#0f0b08">
+<meta property="og:title" content="Новый сайт раньше, чем вы его заказали">
+<meta property="og:description" content="Студия макетов АвтоПаши: новый сайт вашей компании на ваших товарах и текстах, по личной ссылке.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://autopasha.github.io/">
+<meta property="og:site_name" content="АвтоПаша">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:image" content="https://autopasha.github.io/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Студия макетов АвтоПаши: окно браузера, в котором собирается сайт пекарни">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://autopasha.github.io/og.jpg">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preload" href="/fonts/Unbounded-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/Onest-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/img/kolos.webp" as="image" type="image/webp">
+<link rel="stylesheet" href="/studio.css">
+</head>
+<body>
+<a class="skip" href="#main">к содержанию</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="i-lock" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="9" width="12" height="8.5" rx="2.2"/><path d="M6.8 9V6.6a3.2 3.2 0 0 1 6.4 0V9"/></g>
+    <g id="i-link" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8.4 11.6a3.4 3.4 0 0 0 4.8 0l2.6-2.6a3.4 3.4 0 0 0-4.8-4.8l-.9.9"/><path d="M11.6 8.4a3.4 3.4 0 0 0-4.8 0L4.2 11a3.4 3.4 0 0 0 4.8 4.8l.9-.9"/></g>
+    <g id="i-tick" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10.4 4 4 8-8.8"/></g>
+    <g id="i-bag" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.4 7h11.2l-1 10H5.4z"/><path d="M7.4 7V5.8a2.6 2.6 0 0 1 5.2 0V7"/></g>
+    <g id="i-search" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="8.8" cy="8.8" r="5.2"/><path d="m12.8 12.8 4 4"/></g>
+    <g id="i-arrow" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h13M11.4 5.2 16.2 10l-4.8 4.8"/></g>
+    <g id="i-drag" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7.4 5.6 3 10l4.4 4.4M12.6 5.6 17 10l-4.4 4.4"/></g>
+  </defs>
+</svg>
+
+<header class="top" data-top>
+  <div class="wrap top__in">
+    <a class="brand" href="/" aria-label="Студия макетов АвтоПаши">авто<em>паша</em><small>студия макетов</small></a>
+    <a class="top__link" href="https://autopasha.ru/kak-eto-rabotaet">как он работает</a>
+    <a class="pill pill--glass" href="https://autopasha.ru/apply" data-magnet>нанять</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ═══ 1. первый экран ══════════════════════════════════════════════
+       Фон — те же линии рельефа, что на главной autopasha.ru. Справа
+       живой экран: в окне браузера сайт собирает сам себя — разметка,
+       заливка, фото, текст, курсор «паша» доводит кнопки. Три выдуманные
+       компании по кругу. -->
+  <section class="hero" data-hero>
+    <canvas class="hero__gl" data-gl aria-hidden="true"></canvas>
+    <div class="hero__vignette" aria-hidden="true"></div>
+    <div class="wrap hero__in">
+      <div class="hero__copy">
+        <p class="hero__kicker" data-rise><span class="dot" aria-hidden="true"></span>студия автопаши</p>
+        <h1 class="hero__h">
+          <span class="hero__l" data-split>новый сайт</span>
+          <span class="hero__l" data-split>раньше, чем вы его</span>
+          <span class="hero__l hero__l--big" data-split><em>заказали</em></span>
+        </h1>
+        <p class="hero__sub" data-rise>паша снимает ваш сайт целиком и рисует новый <b>на ваших же товарах, ценах и текстах</b>. ссылку присылает лично. понравится, нанимаете его на неделю, и макет становится настоящим сайтом.</p>
+        <div class="hero__cta" data-rise data-hero-cta>
+          <a class="pill pill--hot pill--big" href="https://autopasha.ru/apply" data-magnet>нанять пашу на неделю</a>
+          <a class="pill pill--glass pill--big" href="https://autopasha.ru/" data-magnet>что он умеет ещё</a>
+        </div>
+        <p class="hero__note" data-rise><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#i-link"/></svg>
+          <span>вам прислали ссылку на макет? откройте её целиком, вместе с папкой в конце адреса.</span></p>
+      </div>
+
+      <div class="hero__stage" data-rise>
+        <div class="bro is-wire is-fill is-text" data-bro>
+          <div class="bro__bar">
+            <span class="bro__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="bro__url"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#i-lock"/></svg>autopasha.github.io/<b data-slug>kolos/</b><span class="caret" aria-hidden="true"></span></span>
+          </div>
+          <div class="bro__view" aria-label="Пример макета: сайт пекарни «Колос»" role="img">
+            <div class="ms" data-theme="kolos" data-ms aria-hidden="true">
+              <div class="ms__nav">
+                <b class="ms__logo ms__b" style="--i:0"><span class="ms__t" data-f="logo">колос</span></b>
+                <span class="ms__links ms__b" style="--i:1"><i></i><i></i><i></i></span>
+                <span class="ms__btn ms__btn--sm ms__b" style="--i:2"><span class="ms__t" data-f="nav">корзина</span></span>
+              </div>
+              <div class="ms__hero">
+                <div class="ms__copy ms__b" style="--i:3">
+                  <p class="ms__kick ms__t" data-f="kick">пекарня на закваске</p>
+                  <p class="ms__h" data-f="h">хлеб, который пекут при вас</p>
+                  <p class="ms__p ms__t" data-f="p">печём на живой закваске из муки двух мельниц. заказ на сайте, забрать в пекарне.</p>
+                  <span class="ms__btn" data-cta><span class="ms__t" data-f="cta">заказать</span></span>
+                </div>
+                <div class="ms__img ms__b" style="--i:4" data-img></div>
+              </div>
+              <div class="ms__cards">
+                <div class="ms__card ms__b" style="--i:5"><i class="ms__ci"></i><b class="ms__t" data-f="c0">пшеничный на закваске</b><span class="ms__t" data-f="p0">290 ₽</span></div>
+                <div class="ms__card ms__b" style="--i:6" data-hover><i class="ms__ci"></i><b class="ms__t" data-f="c1">бородинский</b><span class="ms__t" data-f="p1">240 ₽</span></div>
+                <div class="ms__card ms__b" style="--i:7"><i class="ms__ci"></i><b class="ms__t" data-f="c2">чиабатта</b><span class="ms__t" data-f="p2">180 ₽</span></div>
+              </div>
+            </div>
+            <div class="cur" data-cur aria-hidden="true">
+              <svg viewBox="0 0 20 20"><path d="M3.4 2.6 16.4 9l-5.6 1.6-2.9 5.2z" fill="oklch(0.705 0.195 45)" stroke="oklch(0.155 0.010 60)" stroke-width="1.2" stroke-linejoin="round"/></svg>
+              <span>паша</span>
+            </div>
+            <div class="toast" aria-hidden="true"><i><svg viewBox="0 0 20 20"><use href="#i-tick"/></svg></i>готово, ссылка ушла лично</div>
+          </div>
+        </div>
+        <p class="bro__caption"><span><b>пример.</b> компании выдуманные, вёрстка настоящая</span><span data-who>пекарня «колос»</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- бегущая строка: одна на страницу -->
+  <div class="tickwrap" aria-hidden="true">
+    <div class="ticker">
+      <div class="ticker__row"><span>весь старый сайт в работу</span><i>✦</i><span>ваши товары и цены</span><i>✦</i><span>новые фото</span><i>✦</i><span>версия для телефона</span><i>✦</i><span>ссылка лично вам</span><i>✦</i></div>
+      <div class="ticker__row"><span>весь старый сайт в работу</span><i>✦</i><span>ваши товары и цены</span><i>✦</i><span>новые фото</span><i>✦</i><span>версия для телефона</span><i>✦</i><span>ссылка лично вам</span><i>✦</i></div>
+    </div>
+  </div>
+
+  <!-- ═══ 2. светлая панель: макет живой ═══════════════════════════════ -->
+  <section class="panel panel--light touch" aria-labelledby="touch-h">
+    <div class="wrap">
+      <h2 class="h2" id="touch-h" data-rise>макет можно <em>потрогать</em></h2>
+      <p class="lede" data-rise>это готовый сайт по ссылке. листаете с телефона и с компьютера, жмёте кнопки, кладёте товар в корзину.</p>
+      <ul class="tiles">
+        <li class="tile" data-rise>
+          <span class="tile__n">01</span>
+          <h3>кнопки нажимаются</h3>
+          <p>каталог, поиск, карточка товара и корзина работают. можно пройти весь путь покупателя.</p>
+          <div class="tile__vis v-cart" data-v="cart" aria-hidden="true">
+            <div class="v-cart__card"><div class="v-cart__img"></div><b>бородинский</b><span class="v-cart__btn" data-v-btn>в корзину</span></div>
+            <span class="v-cart__bag"><svg viewBox="0 0 20 20"><use href="#i-bag"/></svg><b data-v-n>2</b></span>
+          </div>
+        </li>
+        <li class="tile" data-rise>
+          <span class="tile__n">02</span>
+          <h3>ваши товары и цены</h3>
+          <p>паша переносит с вашего сайта всё: названия, фото, описания, цены. выдуманных товаров в макете нет.</p>
+          <div class="tile__vis v-move" data-v="move" aria-hidden="true">
+            <table class="v-move__old"><tr><td>Батон</td><td>90 р.</td></tr><tr><td>Бородинский</td><td>240 р.</td></tr><tr><td>Чиабатта</td><td>180 р.</td></tr><tr><td>Багет</td><td>120 р.</td></tr></table>
+            <svg class="v-move__arr" viewBox="0 0 20 20"><use href="#i-arrow"/></svg>
+            <ul class="v-move__new"><li class="is-in">батон <span>90 ₽</span></li><li class="is-in">бородинский <span>240 ₽</span></li><li class="is-in">чиабатта <span>180 ₽</span></li><li class="is-in">багет <span>120 ₽</span></li></ul>
+          </div>
+        </li>
+        <li class="tile" data-rise>
+          <span class="tile__n">03</span>
+          <h3>с телефона тоже</h3>
+          <p>версия для телефона идёт в том же макете. большинство покупателей откроет его именно с телефона.</p>
+          <div class="tile__vis v-phone" aria-hidden="true">
+            <div class="v-phone__desk"><div><div class="v-strip"><i class="img"></i><i class="h"></i><i></i><i class="btn"></i></div></div></div>
+            <div class="v-phone__hand"><div class="v-phone__scr"><div class="v-strip"><i class="h"></i><i></i><i></i><i class="img"></i><i class="btn"></i><i class="card"></i><i class="card"></i><i class="card"></i><i class="img"></i><i></i></div></div></div>
+          </div>
+        </li>
+        <li class="tile" data-rise>
+          <span class="tile__n">04</span>
+          <h3>ссылка только ваша</h3>
+          <p>макет закрыт от поисковиков, и списка макетов нигде нет. его увидит только тот, кому вы перешлёте ссылку.</p>
+          <div class="tile__vis v-find" data-v="find" aria-hidden="true">
+            <div class="v-find__box"><svg viewBox="0 0 20 20"><use href="#i-search"/></svg><span class="v-find__q" data-v-q>макет сайта пекарни колос</span></div>
+            <p class="v-find__res is-on" data-v-res>по запросу <b>ничего не нашлось</b></p>
+            <span class="v-find__link"><svg viewBox="0 0 20 20"><use href="#i-lock"/></svg>autopasha.github.io/kolos/</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══ 3. было и стало: ручку можно тянуть ═══════════════════════════ -->
+  <section class="ba" aria-labelledby="ba-h">
+    <div class="wrap">
+      <div class="ba__head">
+        <h2 class="h2" id="ba-h" data-rise>было и <em>стало</em></h2>
+        <p class="lede lede--dark" data-rise>тяните ручку. пекарня выдуманная, тексты и цены у обоих сайтов одни и те же. меняется то, как их видит покупатель.</p>
+      </div>
+      <div class="ba__frame" data-ba data-rise>
+        <div class="bro__bar">
+          <span class="bro__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="bro__url"><svg viewBox="0 0 20 20" aria-hidden="true"><use href="#i-lock"/></svg>autopasha.github.io/<b>kolos/</b></span>
+        </div>
+        <div class="ba__view" aria-hidden="true">
+          <div class="ba__old">
+            <div class="old">
+              <div class="old__head"><b>Пекарня «Колос»</b><span>Добро пожаловать на наш сайт!!!</span></div>
+              <div class="old__nav"><a>Главная</a> | <a>О нас</a> | <a>Продукция</a> | <a>Цены</a> | <a>Контакты</a></div>
+              <div class="old__body">
+                <div>
+                  <h4>Наша продукция</h4>
+                  <table>
+                    <tr><td>Хлеб пшеничный на закваске</td><td>290 руб.</td></tr>
+                    <tr><td>Хлеб Бородинский</td><td>240 руб.</td></tr>
+                    <tr><td>Чиабатта</td><td>180 руб.</td></tr>
+                    <tr><td>Багет французский</td><td>120 руб.</td></tr>
+                    <tr><td>Батон нарезной</td><td>90 руб.</td></tr>
+                  </table>
+                  <p style="margin-top:.6em">Для заказа звоните по телефону или пишите на e-mail!</p>
+                </div>
+                <div class="old__side">
+                  <p><b>НОВОСТИ</b></p>
+                  <p>12.03.2014<br>Мы открылись! Ждём Вас!</p>
+                  <p class="old__blink">АКЦИЯ!!! Скидка 5% по средам</p>
+                  <p>Сайт лучше смотреть в разрешении 1024×768</p>
+                </div>
+              </div>
+              <div class="old__foot">© 2014 Пекарня «Колос». Все права защищены. Вы посетитель №<span class="old__cnt">004512</span></div>
+            </div>
+          </div>
+          <div class="ba__new">
+            <div class="new">
+              <div class="new__nav"><span class="new__logo">колос</span><nav><span>хлеб</span><span>выпечка</span><span>доставка</span></nav><span class="new__cart">корзина · 2</span></div>
+              <div class="new__hero">
+                <div class="new__copy">
+                  <span class="new__kick">пекарня на закваске</span>
+                  <p class="new__h">хлеб, который пекут при вас</p>
+                  <p class="new__p">пшеничный, бородинский, чиабатта. заказ на сайте, забрать в пекарне или с доставкой.</p>
+                  <div class="new__btns"><span>заказать</span><span>весь хлеб</span></div>
+                </div>
+                <div class="new__img"></div>
+              </div>
+              <div class="new__cards">
+                <div class="new__card"><i></i><b>пшеничный на закваске</b><span>290 ₽</span></div>
+                <div class="new__card"><i></i><b>бородинский</b><span>240 ₽</span></div>
+                <div class="new__card"><i></i><b>чиабатта</b><span>180 ₽</span></div>
+                <div class="new__card"><i></i><b>багет</b><span>120 ₽</span></div>
+              </div>
+            </div>
+          </div>
+          <span class="ba__tag ba__tag--old">было</span>
+          <span class="ba__tag ba__tag--new">стало</span>
+        </div>
+        <span class="ba__line" aria-hidden="true"></span>
+        <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Сравнить старый и новый сайт: сдвиньте ручку" data-ba-range>
+        <span class="ba__knob" aria-hidden="true"><svg viewBox="0 0 20 20"><use href="#i-drag"/></svg></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 4. оранжевая панель ═══════════════════════════════════════════ -->
+  <section class="final" aria-labelledby="final-h">
+    <div class="final__panel" data-rise>
+      <h2 class="final__t" id="final-h">хотите такой про <em>свою</em> компанию?</h2>
+      <p class="final__p">паша рисует эти макеты сам, без заказа, чтобы показать, что умеет. ждать своей очереди не обязательно: наймите его на неделю, и он сделает вам сайт целиком, от макета до запуска.</p>
+      <div class="final__cta">
+        <a class="pill pill--dark pill--big" href="https://autopasha.ru/apply" data-magnet>нанять на неделю</a>
+        <a class="pill pill--line pill--big" href="https://autopasha.ru/zadacha" data-magnet>оставить задачу</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <div class="foot__me">
+      <a class="brand" href="https://autopasha.ru/" aria-label="АвтоПаша, главная">авто<em>паша</em></a>
+      <p>студия макетов автопаши. паша это ии-сотрудник, который живёт в рабочем чате команды, сам берёт задачи и сдаёт готовое.</p>
+    </div>
+    <nav class="foot__links" aria-label="АвтоПаша">
+      <a href="https://autopasha.ru/">главная автопаши</a>
+      <a href="https://autopasha.ru/kak-eto-rabotaet">как он работает</a>
+      <a href="https://autopasha.ru/keysy">кейсы</a>
+      <a href="https://autopasha.ru/novosti">что нового</a>
+    </nav>
+    <nav class="foot__links" aria-label="Связаться">
+      <a href="https://autopasha.ru/apply">нанять на неделю</a>
+      <a href="https://autopasha.ru/zadacha">оставить задачу</a>
+      <a href="mailto:help@autopasha.ru">help@autopasha.ru</a>
+      <a href="https://t.me/autopasharu">телеграм-канал</a>
+    </nav>
+  </div>
+  <p class="foot__giant" data-giant aria-hidden="true">автопаша</p>
+  <p class="wrap foot__legal">ИП Барышников Павел Александрович · ИНН 503405884484 · autopasha.ru</p>
+</footer>
+
+<div class="dock is-hidden" data-dock>
+  <a class="pill pill--hot" href="https://autopasha.ru/apply">нанять пашу на неделю</a>
+</div>
+
+<script src="/studio.js" defer></script>
+</body>
+</html>
