@@ -68,7 +68,8 @@
 .x:hover{color:var(--white)}
 .home{display:block;margin-top:14px;font-size:12.5px;color:var(--dim);text-decoration:none}
 .home:hover{color:var(--white)}
-@media (max-width:640px){.tab{padding:10px 6px 12px 5px;gap:8px}.tab span{font-size:11px}.tab small{display:none}}
+/* на телефоне по центру язычок закрывает начало строк первого экрана, поэтому он внизу, над пальцем */
+@media (max-width:640px){.tab{padding:10px 6px 12px 5px;gap:8px;top:auto;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-110%,0)}.tab.is-on{transform:none}.tab:hover{transform:translate(3px,0)}.tab span{font-size:11px}.tab small{display:none}}
 @media (prefers-reduced-motion:reduce){.tab,.card{transition:none}}`;
 
   const host = document.createElement('div');
