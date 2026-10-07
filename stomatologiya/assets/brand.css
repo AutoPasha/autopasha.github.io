@@ -1,0 +1,100 @@
+/* ============================================================
+   Кедр: все данные бренда. Меняешь здесь, меняется весь сайт.
+   ============================================================ */
+
+@import url("fonts/lora/fonts.css");
+@import url("fonts/golos-text/fonts.css");
+@import url("fonts/jetbrains-mono/fonts.css");
+
+:root {
+  /* поверхности: светлый нейтральный, тёплое дерево живёт в фото и в акценте */
+  --paper: #eef0ec;          /* фон светлых секций */
+  --paper-2: #e0e3d9;        /* второй фон, вложенные поверхности */
+  --paper-3: #f8f8f4;        /* поля форм */
+  --ink: #1c1a16;            /* чернила, тёмные секции */
+  --ink-2: #26221c;          /* тёмная поверхность */
+
+  /* акценты */
+  --cedar: #8a5a33;          /* единственный акцент */
+  --cedar-deep: #6f4526;
+  --moss: #66755c;           /* вспомогательный, статусы */
+  --moss-soft: #9aa78f;
+  --moss-soft-wash: rgba(102, 117, 92, .16);
+
+  /* свет первого экрана (шейдер): тёплый бежевый и мох */
+  --aurora-1: #efe7d6;
+  --aurora-2: #c3cdb4;
+  --aurora-speed: 0.12;
+
+  /* состояния формы */
+  --danger: #9a4028;
+  --placeholder: #666055;
+
+  /* текст на светлом */
+  --text: #1c1a16;
+  --text-2: #4f4841;
+  --text-3: #666055;
+
+  /* текст на тёмном */
+  --text-inv: #f2ede3;
+  --text-inv-2: rgba(242, 237, 227, .7);
+  --text-inv-3: rgba(242, 237, 227, .56);
+
+  /* линии */
+  --line: rgba(28, 26, 22, .16);
+  --line-2: rgba(28, 26, 22, .3);
+  --line-inv: rgba(242, 237, 227, .18);
+  --line-inv-2: rgba(242, 237, 227, .32);
+
+  /* шрифты */
+  --serif: "Lora", Georgia, "Times New Roman", serif;
+  --sans: "Golos Text", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "Courier New", monospace;
+
+  /* радиусы */
+  --r-s: 8px;
+  --r-m: 14px;
+  --r-l: 20px;
+  --r-pill: 999px;
+
+  /* глубина: смещение есть всегда */
+  --shadow-s: 0 1px 2px rgba(28, 26, 22, .05), 0 6px 18px -10px rgba(28, 26, 22, .22);
+  --shadow-m: 0 2px 6px rgba(28, 26, 22, .05), 0 18px 40px -22px rgba(28, 26, 22, .3);
+  --shadow-l: 0 4px 10px rgba(28, 26, 22, .05), 0 34px 70px -34px rgba(28, 26, 22, .34);
+
+  /* ритм */
+  --wrap: 1280px;
+  --pad: 56px;      /* боковой отступ страницы */
+  --sec: 120px;     /* вертикальный ритм секций */
+  --row: 30px;      /* строки таблиц и списков */
+
+  /* движение */
+  --ease: cubic-bezier(.16, .84, .28, 1);
+
+  /* служебное */
+  --img-bg: var(--paper-2);
+}
+
+@media (max-width: 1180px) {
+  :root { --pad: 44px; --sec: 104px; }
+}
+@media (max-width: 900px) {
+  :root { --pad: 28px; --sec: 84px; --row: 26px; }
+}
+@media (max-width: 560px) {
+  :root { --pad: 20px; --sec: 68px; --row: 22px; }
+}
+
+/* состояния браузера в цветах палитры */
+::selection { background: rgba(138, 90, 51, .26); color: var(--text); }
+.on-dark ::selection, .foot ::selection { background: rgba(242, 237, 227, .2); color: var(--text-inv); }
+
+html { scroll-behavior: smooth; scrollbar-color: rgba(138, 90, 51, .5) rgba(28, 26, 22, .08); }
+html.on-dark { scrollbar-color: rgba(242, 237, 227, .4) rgba(28, 26, 22, .5); }
+
+:focus-visible {
+  outline: 2px solid var(--cedar);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+.on-dark :focus-visible, .foot :focus-visible { outline-color: var(--moss-soft); }
