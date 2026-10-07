@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Лампа: кофейня и пекарня в Казани, Профсоюзная, 23</title>
+<meta name="description" content="Кофейня и пекарня «Лампа» в Казани. Хлеб из печи в 7:30, своя обжарка по вторникам, меню кофе и выпечки, две точки: Профсоюзная, 23 и Островского, 57б.">
+<meta name="theme-color" content="#0C0908">
+<link rel="preload" href="assets/video/hero.mp4" as="video" type="video/mp4">
+<link rel="preload" href="assets/img/hero-poster.jpg" as="image">
+<link rel="preload" href="assets/fonts/playfair-display/normal-400-900-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/brand.css">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<!-- Заставка: нить лампы разгорается и раскрывается кругом -->
+<div class="splash" id="splash" aria-hidden="true">
+  <span class="splash-dot"></span>
+  <p class="splash-cap">Кофейня и пекарня, Казань</p>
+  <p class="splash-num"><b id="splashNum">0</b><i>%</i></p>
+</div>
+
+<header class="top" id="top">
+  <a class="top-logo" href="#hero" aria-label="Лампа, кофейня и пекарня в Казани">
+    <img src="assets/img/logo.svg" alt="Лампа" width="118" height="32">
+  </a>
+  <nav class="top-nav" id="nav" aria-label="Разделы">
+    <a href="#den">День</a>
+    <a href="#menu">Меню</a>
+    <a href="#obzharka">Обжарка</a>
+    <a href="#pekar">Пекарня</a>
+    <a href="#tochki">Точки</a>
+    <a href="#kompaniyam">Компаниям</a>
+    <span class="top-burger-line"></span>
+    <a class="top-call" href="tel:+78432074196">+7 843 207-41-96</a>
+  </nav>
+  <button class="top-burger" id="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="nav">
+    <span></span><span></span>
+  </button>
+</header>
+
+<main>
+
+  <!-- Первый экран: цельное видео во весь экран, две строки заголовка ступенькой -->
+  <section class="hero" id="hero">
+    <div class="hero-film">
+      <video id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg" width="1280" height="720">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-scrim" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+    </div>
+
+    <div class="hero-inner">
+      <p class="hero-kicker">Казань, Профсоюзная, 23 · кофейня и пекарня с 2019 года</p>
+      <p class="hero-live"><span class="hero-live-dot" aria-hidden="true"></span><span id="heroOpen">открыто до 21:00</span></p>
+
+      <h1 class="hero-title">
+        <span class="sr-only">Лампа, кофейня и пекарня в Казани</span>
+        <span class="hero-mask"><span class="hero-word" aria-hidden="true">Лампа</span></span>
+        <span class="hero-mask hero-mask-2"><span class="hero-word hero-word-2" aria-hidden="true"><em>и пекарня</em></span></span>
+      </h1>
+
+      <div class="hero-foot">
+        <p class="hero-statement">Хлеб выходит из печи в 7:30, зерно обжариваем по вторникам в 15:00 и сразу продаём на пачку со стойки.</p>
+        <div class="hero-links">
+          <a class="hero-cta" href="#menu"><span>Смотреть меню</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <p class="hero-sub">Профсоюзная, 23 · Островского, 57б</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- День кофейни: свет едет от утра к вечеру, время перелистывается -->
+  <section class="day" id="den">
+    <div class="day-open" data-paper>
+      <p class="day-open-cap">Будни 7:30 - 21:00, в выходные с 9:00</p>
+      <h2 class="day-open-h">Один день<br>кофейни</h2>
+      <p class="day-open-note">Закваску ставим в 22:00, тесто в печь в 5:40, свет над стойкой горит до последнего гостя. Ниже страница идёт вместе с часами.</p>
+    </div>
+
+    <div class="day-scene">
+      <div class="day-sticky">
+        <div class="day-media" aria-hidden="true">
+          <div class="day-bg" id="dayBg" style="background-image:url(assets/img/hero-counter.jpg)"></div>
+          <div class="day-lamp" id="dayLamp"></div>
+          <div class="day-scrim"></div>
+        </div>
+
+        <div class="day-type">
+          <div class="day-clock" aria-hidden="true">
+            <div class="day-digits" id="dayDigits">
+              <span class="dg" data-dg="h10"><span class="dg-drum"><b>0</b></span></span><span class="dg" data-dg="h1"><span class="dg-drum"><b>7</b></span></span><span class="dg dg-colon">:</span><span class="dg" data-dg="m10"><span class="dg-drum"><b>3</b></span></span><span class="dg" data-dg="m1"><span class="dg-drum"><b>0</b></span></span>
+            </div>
+            <p class="day-clock-cap" id="dayClockCap">Первый хлеб</p>
+          </div>
+
+          <div class="day-notes" id="dayNotes">
+            <p class="day-note">Две закваски на 12 хлебов и шестьдесят круассанов. К восьми в зале очередь из десяти человек.</p>
+            <p class="day-note">Синнабоны, шарлотка и кегсы. Шарлотку печём 18 штук, второй заход в 15:00.</p>
+            <p class="day-note">К вечеру зал едет за сыром, супом и хлебом, поэтому печём с запасом на 60 штук.</p>
+            <p class="day-note">Последние чашки допиваем у окна. Завтра в 15:00 обжарка, в 22:00 закваска.</p>
+          </div>
+        </div>
+
+        <ol class="day-rail" id="dayRail">
+          <li class="is-on"><b>7:30</b><em>хлеб, круассаны</em></li>
+          <li><b>12:00</b><em>синнабоны, шарлотка</em></li>
+          <li><b>17:00</b><em>хлеб на вечер</em></li>
+          <li><b>21:00</b><em>гасим свет</em></li>
+        </ol>
+
+        <p class="day-progress" aria-hidden="true"><i id="dayBar"></i></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Меню: светлая журнальная полоса, четыре главы на одной закреплённой сцене -->
+  <section class="menu" id="menu" data-paper>
+    <div class="menu-open">
+      <p class="menu-cap">Меню · цены в рублях · вода в стакане без счёта</p>
+      <h2 class="menu-h">Меню</h2>
+      <p class="menu-lead">Кофе наливаем 250 мл, альтернативное молоко и сироп бесплатно, двойной шот плюс 40 ₽. Четыре главы листаются на прокрутке.</p>
+      <nav class="menu-chapters" aria-label="Разделы меню">
+        <button class="chap is-on" type="button" data-ch="0"><span>Кофе</span><i>5 позиций</i></button>
+        <button class="chap" type="button" data-ch="1"><span>Чай</span><i>5 позиций</i></button>
+        <button class="chap" type="button" data-ch="2"><span>Выпечка дня</span><i>6 позиций</i></button>
+        <button class="chap" type="button" data-ch="3"><span>Завтраки до 12:00</span><i>5 позиций</i></button>
+      </nav>
+    </div>
+
+    <div class="menu-scene" id="menuScene">
+      <div class="menu-sticky">
+        <article class="chap-page is-on" data-ch="0" aria-label="Кофе">
+          <h3 class="chap-h">Кофе</h3>
+          <figure class="chap-slab"><div class="chap-slab-in" style="background-image:url(assets/img/window-cup.jpg)"></div></figure>
+          <p class="chap-side">Глава первая · зерно недели</p>
+          <div class="chap-list">
+            <p class="chap-cap">Зерно недели с обжарки вторника</p>
+            <ol class="chap-lines">
+              <li class="ln"><span class="ln-name">Эспрессо</span><span class="ln-desc">40 мл, тёмная обжарка недели</span><span class="ln-price">160 ₽</span></li>
+              <li class="ln lead"><span class="ln-name">Капучино, 0,3</span><span class="ln-desc">Плотная пена, какао и щепотка соли. На альтернативном молоке так же</span><span class="ln-price">230 ₽</span></li>
+              <li class="ln"><span class="ln-name">Раф</span><span class="ln-desc">на кокосовом молоке, 200 мл</span><span class="ln-price">290 ₽</span></li>
+              <li class="ln"><span class="ln-name">Фильтр</span><span class="ln-desc">270 мл, зерно недели, V60</span><span class="ln-price">210 ₽</span></li>
+              <li class="ln"><span class="ln-name">Сезонный с облепихой</span><span class="ln-desc">на стекле, пока не разобрали</span><span class="ln-price">320 ₽</span></li>
+            </ol>
+            <p class="chap-note">Сироп, альтернативное молоко и двойной шот: 40 ₽ за шот.</p>
+          </div>
+        </article>
+
+        <article class="chap-page" data-ch="1" aria-label="Чай" aria-hidden="true" inert>
+          <h3 class="chap-h">Чай</h3>
+          <figure class="chap-slab"><div class="chap-slab-in" style="background-image:url(assets/img/shelves.jpg)"></div></figure>
+          <p class="chap-side">Глава вторая · гайван, 400 мл</p>
+          <div class="chap-list">
+            <p class="chap-cap">Завариваем на гайвани, наливаем дважды</p>
+            <ol class="chap-lines">
+              <li class="ln lead"><span class="ln-name">Ассам чёрный</span><span class="ln-desc">С плантации Патрумбай, держим минуту. Чайник можно взять на стол</span><span class="ln-price">210 ₽</span></li>
+              <li class="ln"><span class="ln-name">Улун молочный</span><span class="ln-desc">холодный, 400 мл</span><span class="ln-price">240 ₽</span></li>
+              <li class="ln"><span class="ln-name">Травяной сбор</span><span class="ln-desc">мята, смородина, тимьян</span><span class="ln-price">220 ₽</span></li>
+              <li class="ln"><span class="ln-name">Облепиха с имбирём</span><span class="ln-desc">свежий, с корицей</span><span class="ln-price">260 ₽</span></li>
+              <li class="ln"><span class="ln-name">Какао</span><span class="ln-desc">на альтернативном молоке</span><span class="ln-price">250 ₽</span></li>
+            </ol>
+            <p class="chap-note">Чайник и колпак просим за 150 ₽, если уносите.</p>
+          </div>
+        </article>
+
+        <article class="chap-page" data-ch="2" aria-label="Выпечка дня" aria-hidden="true" inert>
+          <h3 class="chap-h">Выпечка<br>дня</h3>
+          <figure class="chap-slab"><div class="chap-slab-in" style="background-image:url(assets/img/bread-board.jpg)"></div></figure>
+          <p class="chap-side">Глава третья · три партии в день</p>
+          <div class="chap-list">
+            <p class="chap-cap">Партии в 7:30, 12:00 и 17:00</p>
+            <ol class="chap-lines">
+              <li class="ln lead"><span class="ln-name">Хлеб на закваске, 400 г</span><span class="ln-desc">Дикая дрожжа, второй день выдержки. Режем при вас, закваску обновляем с 2019 года</span><span class="ln-price">340 ₽</span></li>
+              <li class="ln"><span class="ln-name">Круассан с миндалём</span><span class="ln-desc">выходит в 7:30, 60 штук</span><span class="ln-price">190 ₽</span></li>
+              <li class="ln"><span class="ln-name">Синнабон</span><span class="ln-desc">корица и кардамон, выходит в 12:00</span><span class="ln-price">260 ₽</span></li>
+              <li class="ln"><span class="ln-name">Шарлотка с яблоками</span><span class="ln-desc">порция, 180 г</span><span class="ln-price">280 ₽</span></li>
+              <li class="ln"><span class="ln-name">Багет с кунжутом</span><span class="ln-desc">к 17:00, пока есть</span><span class="ln-price">220 ₽</span></li>
+              <li class="ln"><span class="ln-name">Кекс на рисовой муке</span><span class="ln-desc">без глютена, без сахара в составе</span><span class="ln-price">200 ₽</span></li>
+            </ol>
+            <p class="chap-note">С 20:00 остатки дня отдаём за половину цены.</p>
+          </div>
+        </article>
+
+        <article class="chap-page" data-ch="3" aria-label="Завтраки" aria-hidden="true" inert>
+          <h3 class="chap-h">Завтраки<br>до 12:00</h3>
+          <figure class="chap-slab"><div class="chap-slab-in" style="background-image:url(assets/img/hero-counter.jpg)"></div></figure>
+          <p class="chap-side">Глава четвёртая · до полудня</p>
+          <div class="chap-list">
+            <p class="chap-cap">Подаём до 12:00, дальше по остаткам</p>
+            <ol class="chap-lines">
+              <li class="ln lead"><span class="ln-name">Шакшука с фетой</span><span class="ln-desc">В сковороде, с томатами и хурмой, хлеб на заказ. Готовим 6 минут</span><span class="ln-price">450 ₽</span></li>
+              <li class="ln"><span class="ln-name">Сырники со сметаной</span><span class="ln-desc">200 г, сметана и варенье</span><span class="ln-price">390 ₽</span></li>
+              <li class="ln"><span class="ln-name">Авокадо с чиабаттой</span><span class="ln-desc">тост, яйцо пашот</span><span class="ln-price">480 ₽</span></li>
+              <li class="ln"><span class="ln-name">Омлет с грибами</span><span class="ln-desc">добавьте томаты и зелень</span><span class="ln-price">340 ₽</span></li>
+              <li class="ln"><span class="ln-name">Гранола с йогуртом</span><span class="ln-desc">своя гранола, фрукты</span><span class="ln-price">360 ₽</span></li>
+            </ol>
+            <p class="chap-note">С 12:00 завтраки остаются по остаткам или уходят в скидку.</p>
+          </div>
+        </article>
+
+        <p class="menu-progress" aria-hidden="true"><i id="menuBar"></i></p>
+      </div>
+    </div>
+
+    <p class="menu-foot">Сезонный напиток меняем по вторникам вместе с обжаркой. Аллергены и состав спрашивайте у бариста, у нас есть тетрадка на стойке.</p>
+  </section>
+
+  <!-- Обжарка: фотография растёт из маленькой карточки на весь экран, поверх ложится типографика -->
+  <section class="roast" id="obzharka">
+    <div class="roast-sticky">
+      <div class="roast-frame" id="roastFrame">
+        <img id="roastImg" src="assets/img/roaster.jpg" alt="Зерно в барабанном ростере" width="1152" height="864">
+      </div>
+      <div class="roast-scrim" id="roastScrim" aria-hidden="true"></div>
+
+      <div class="roast-layer">
+        <p class="roast-cap">По вторникам, 15:00, партия 15 кг</p>
+        <h2 class="roast-h" id="roastH">Обжарка</h2>
+        <p class="roast-lead" id="roastLead">Покупаем зелёное зерно у двух фермеров и печём по 15 килограммов партию. Обжарка идёт 11 минут, зерно попадает в кофейню в тот же день к 15:00.</p>
+
+        <svg class="roast-line" id="roastLine" viewBox="0 0 1000 24" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M0 18 H1000" fill="none" stroke="currentColor" stroke-width="1" vector-effect="non-scaling-stroke"/>
+          <circle cx="250" cy="18" r="4" fill="currentColor"/>
+          <circle cx="520" cy="18" r="4" fill="currentColor"/>
+          <circle cx="790" cy="18" r="4" fill="currentColor"/>
+        </svg>
+
+        <div class="roast-origins" id="roastOrigins">
+          <div class="roast-item">
+            <b>Эфиопия, Иргачеффе</b>
+            <span>Чёрный чай, лимон, жасмин</span>
+            <i class="lvl"><u style="--lvl:.28"></u></i>
+            <em>светлая, под фильтр</em>
+          </div>
+          <div class="roast-item">
+            <b>Колумбия, Уила</b>
+            <span>Карамель, вишня, фундук</span>
+            <i class="lvl"><u style="--lvl:.6"></u></i>
+            <em>средняя, и в молоко</em>
+          </div>
+          <div class="roast-item">
+            <b>Бразилия, Минас-Жерайс</b>
+            <span>Какао, сливочность, без кислоты</span>
+            <i class="lvl"><u style="--lvl:.94"></u></i>
+            <em>тёмная, для молочных</em>
+          </div>
+        </div>
+
+        <div class="roast-buy">
+          <p class="roast-price"><span>Пачка 250 г</span><b>от 790 ₽</b></p>
+          <p class="roast-ship">Забираем в кофейне на Профсоюзной, 23 без заказа. По Казани везём в день обжарки до 18:00, доставка 200 ₽, от десяти пачек бесплатно.</p>
+          <a class="link-arrow" href="https://t.me/lampa_kzn" target="_blank" rel="noopener"><span>Спросить про зерно</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- Пекарня: партии вразнобой, разные высоты и сдвиги -->
+  <section class="bak" id="pekar">
+    <!-- Щель между словами: из неё вырастает кадр выпечки -->
+    <div class="bak-gap">
+      <div class="bak-gap-sticky">
+        <p class="bak-gap-h"><span class="bg-word bg-a">Из печи</span><span class="bg-word bg-b">в 7:30</span></p>
+        <figure class="bg-photo"><img class="bg-photo-in" src="assets/img/croissant.jpg" alt="Круассан с миндалём, только что из печи" width="864" height="1152" loading="lazy"></figure>
+      </div>
+    </div>
+
+    <div class="bak-head">
+      <h2 class="bak-h">Пекарня</h2>
+      <p class="bak-lead">Закваску ставим в 22:00, тесто в печь в 5:40. За день выходит три партии. То, что не разобрали за первый час, с 20:00 отдаём пекарю за половину цены.</p>
+      <p class="bak-typo" id="bakSlide">Что не разобрали за день,<br><em>половина цены</em></p>
+    </div>
+
+    <div class="bak-rail" id="bakRail">
+      <figure class="bcard b1">
+        <div class="bcard-in"><img src="assets/img/croissant.jpg" alt="Круассан с миндалём в разрезе на керамической тарелке" width="864" height="1152" loading="lazy"></div>
+        <figcaption><b>7:30</b><span>Круассан с миндалём, 60 штук в партии</span><i>190 ₽</i></figcaption>
+      </figure>
+      <figure class="bcard b2">
+        <div class="bcard-in"><img src="assets/img/bread-board.jpg" alt="Хлеб на закваске на деревянной доске" width="1248" height="832" loading="lazy"></div>
+        <figcaption><b>7:30</b><span>Хлеб на закваске, 400 г, второй день выдержки</span><i>340 ₽</i></figcaption>
+      </figure>
+      <figure class="bcard b3">
+        <div class="bcard-in"><img src="assets/img/hero-counter.jpg" alt="Деревянная стойка с выпечкой в контровом свете" width="1280" height="720" loading="lazy"></div>
+        <figcaption><b>12:00</b><span>Синнабоны, шарлотка и кегсы, 18 шарлоток</span><i>260 ₽</i></figcaption>
+      </figure>
+      <figure class="bcard b4">
+        <div class="bcard-in"><img src="assets/img/barista.jpg" alt="Руки бариста с питчером и тампером" width="600" height="800" loading="lazy"></div>
+        <figcaption><b>15:00</b><span>Багет с кунжутом, печём с запасом 60 штук</span><i>220 ₽</i></figcaption>
+      </figure>
+      <figure class="bcard b5">
+        <div class="bcard-in"><img src="assets/img/shelves.jpg" alt="Полка у окна с чашками и коробками выпечки" width="1248" height="832" loading="lazy"></div>
+        <figcaption><b>17:00</b><span>Пирог с вишней, 12 штук, до 20:00</span><i>320 ₽</i></figcaption>
+      </figure>
+      <figure class="bcard b6">
+        <div class="bcard-in"><img src="assets/img/hall-night.jpg" alt="Зал вечером, люди у окна при лампах" width="1280" height="720" loading="lazy"></div>
+        <figcaption><b>20:00</b><span>Остатки дня за половину цены, до закрытия</span><i>от 95 ₽</i></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Две точки: крупные адреса типографикой, вторичное свёрнуто в аккордеон -->
+  <section class="spots" id="tochki">
+    <div class="spots-head">
+      <h2 class="spots-h">Две точки<br>в Казани</h2>
+      <p class="spots-lead">На Профсоюзной большой зал с пекарней и розетками, на Островском окно на парк, кофе на вынос и десять мест внутри. В зале тихо после 19:00, днём шумно.</p>
+    </div>
+
+    <article class="spot spot-a">
+      <figure class="spot-photo"><img src="assets/img/shelves.jpg" alt="Полка у окна в 8 утра, всё в контровом свете" width="1248" height="832" loading="lazy"></figure>
+      <details class="spot-acc" open>
+        <summary class="spot-sum">
+          <span class="spot-city">Первая точка, с пекарней</span>
+          <h3 class="spot-addr">Профсоюзная, <b class="addr-num">23</b></h3>
+          <span class="spot-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="spot-fold">
+          <p class="spot-note">18 мест, розетки у левой стены, туалет и место для коляски у входа. Здесь пекарня и своя обжарка, зерно продаём на пачку.</p>
+          <div class="spot-meta">
+            <div class="spot-hours">
+              <div><span>Будни</span><b>7:30 - 21:00</b></div>
+              <div><span>Суббота, воскресенье</span><b>9:00 - 21:00</b></div>
+            </div>
+            <p class="spot-live" data-live="profsoyuz"><span class="spot-live-dot" aria-hidden="true"></span>Открыто до 21:00</p>
+          </div>
+          <p class="spot-maps">
+            <a href="https://yandex.ru/maps/?text=Казань%2C%20ул.%20Профсоюзная%2C%2023" target="_blank" rel="noopener">Яндекс Карты</a>
+            <a href="https://2gis.ru/kazan/search?query=Профсоюзная%2023" target="_blank" rel="noopener">2ГИС</a>
+            <a href="tel:+78432074196">+7 843 207-41-96</a>
+          </p>
+        </div>
+      </details>
+    </article>
+
+    <article class="spot spot-b">
+      <figure class="spot-photo-b"><img src="assets/img/window-cup.jpg" alt="Чашка на подоконнике, за стеклом улица и деревья" width="864" height="1152" loading="lazy"></figure>
+      <span class="spot-addr vert" aria-hidden="true">Островского, <b class="addr-num">57б</b></span>
+      <details class="spot-acc" open>
+        <summary class="spot-sum">
+          <span class="spot-city">Вторая точка, у парка</span>
+          <h3 class="spot-addr">Островского, <b class="addr-num">57б</b></h3>
+          <span class="spot-plus" aria-hidden="true"></span>
+        </summary>
+        <div class="spot-fold">
+          <p class="spot-note">Десять мест у окна на парк, всё на вынос. Печём то же, что и на Профсоюзной, но партию меньше: два выхода, 7:30 и 12:00.</p>
+          <div class="spot-meta">
+            <div class="spot-hours">
+              <div><span>Будни</span><b>7:30 - 21:00</b></div>
+              <div><span>Суббота, воскресенье</span><b>9:00 - 21:00</b></div>
+            </div>
+            <p class="spot-live" data-live="ostrovsk"><span class="spot-live-dot" aria-hidden="true"></span>Открыто до 21:00</p>
+          </div>
+          <p class="spot-maps">
+            <a href="https://yandex.ru/maps/?text=Казань%2C%20ул.%20Островского%2C%2057б" target="_blank" rel="noopener">Яндекс Карты</a>
+            <a href="https://2gis.ru/kazan/search?query=Островского%2057б" target="_blank" rel="noopener">2ГИС</a>
+            <a href="tel:+78432074196">+7 843 207-41-96</a>
+          </p>
+        </div>
+      </details>
+    </article>
+
+    <figure class="spots-band">
+      <img src="assets/img/hall-night.jpg" alt="Зал вечером: люди у окна при лампах" width="1280" height="720" loading="lazy">
+      <figcaption>В 19:00 в зале остаются четыре человека с ноутбуками и одна собака.</figcaption>
+    </figure>
+  </section>
+
+  <!-- Компаниям: ролик, смета крупными числами и один круглый призыв вместо формы -->
+  <section class="firm" id="kompaniyam">
+    <figure class="firm-film">
+      <video id="firmVideo" autoplay muted loop playsinline preload="none" poster="assets/img/hero-counter.jpg" width="1280" height="720" aria-hidden="true" tabindex="-1">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
+      <figcaption>Кофе разливаем в стеклянные графины за 40 минут до прихода гостей, выпечку на заказ собираем ночью</figcaption>
+    </figure>
+
+    <div class="firm-body">
+      <p class="firm-cap">Для офисов, съёмок и свадеб</p>
+      <h2 class="firm-h">Кофе-брейки<br>и выпечка</h2>
+      <p class="firm-lead" data-split>Собираем стол на 12 человек и больше: привозим кофе в стеклянных графинах, стаканы, салфетки и воду. Заявку принимаем за сутки, если день срочный, звоните.</p>
+
+      <div class="firm-price">
+        <p class="fp-cap">Смета на 12 человек, цены от 1 февраля</p>
+        <div class="fp-grid">
+          <article class="fp-item">
+            <h3>Кофе-брейк</h3>
+            <p>эспрессо, фильтр и чай, два вида выпечки на выбор</p>
+            <b class="fp-num"><span class="fp-count" data-count="640">640</span> ₽<i>с человека</i></b>
+          </article>
+          <article class="fp-item">
+            <h3>Выпечка на заказ</h3>
+            <p>сдобу делаем ночью, от 3 кг, нарезка и коробки включены</p>
+            <b class="fp-num"><span class="fp-count" data-count="480">480</span> ₽<i>за кг</i></b>
+          </article>
+          <article class="fp-item">
+            <h3>Торты и пироги</h3>
+            <p>от двух дней, украшение из фруктов и зелени</p>
+            <b class="fp-num"><span class="fp-count" data-count="3400">3400</span> ₽<i>за торт</i></b>
+          </article>
+          <article class="fp-item">
+            <h3>Доставка по Казани</h3>
+            <p>до 20:00 бесплатно, дальше считаем километры</p>
+            <b class="fp-num"><span class="fp-count" data-count="25">25</span> ₽<i>за километр</i></b>
+          </article>
+        </div>
+      </div>
+
+      <ol class="firm-steps">
+        <li><b>Пишете вечером</b><span>Складываете заявку прямо на этой странице</span></li>
+        <li><b>Считаем до утра</b><span>Присылаем смету и список того, что повезём</span></li>
+        <li><b>Готовим ночью</b><span>Сдобу выпекаем в 4:00, кофе варим в 8:00</span></li>
+        <li><b>Приезжаем</b><span>За 40 минут до вашего прихода, ставим и уходим</span></li>
+      </ol>
+
+      <div class="firm-foot">
+        <div class="firm-magnet-wrap">
+          <button class="magnet" type="button" id="magnetBtn" aria-haspopup="dialog">
+            <span class="magnet-label">Собрать<br>заявку</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+          <p class="firm-magnet-note">Нажимаете, пишете имя и телефон, дальше заявка уходит в Telegram или в письмо на zakaz@lampa-kzn.ru</p>
+        </div>
+        <div class="firm-side">
+          <p class="firm-clients">Работали с издательством «Казанский дом», IT-командой из Патрисава и двумя свадьбами. По предоплате 30 процентов бронируем дату.</p>
+          <a class="firm-phone" href="tel:+78432074196">Проще позвонить: <b>+7 843 207-41-96</b></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Заявка живёт в отдельном листе: на странице сухой формы нет -->
+    <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
+      <div class="sheet-scrim" id="sheetScrim"></div>
+      <div class="sheet-paper" id="sheetPaper">
+        <button class="sheet-x" id="sheetX" type="button" aria-label="Закрыть">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+        <p class="sheet-cap">Кофе-брейк или выпечка на заказ</p>
+        <h3 class="sheet-h" id="sheetTitle">Соберём смету<br>до утра</h3>
+        <p class="sheet-note">Заполните три поля, мы пришлём смету и список того, что повезём. Без сервера: заявка уходит в Telegram или на почту.</p>
+
+        <form class="sheet-form" id="firmForm" novalidate>
+          <label class="sf-field" for="f-name"><span>Как обращаться</span><input id="f-name" name="name" type="text" autocomplete="name" placeholder="Имя или компания" required></label>
+          <label class="sf-field" for="f-tel"><span>Телефон</span><input id="f-tel" name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 900 000-00-00" required></label>
+
+          <div class="sf-row">
+            <div class="sf-people">
+              <span class="sf-label">Сколько человек</span>
+              <div class="sf-step" role="group" aria-label="Число человек">
+                <button type="button" data-people="-2" aria-label="Меньше на два">−</button>
+                <output id="bkCount">12</output>
+                <button type="button" data-people="2" aria-label="Больше на два">+</button>
+              </div>
+              <span class="sf-hint" id="bkSum">7 680 ₽ за кофе, выпечка считается отдельно</span>
+            </div>
+            <div class="sf-when">
+              <span class="sf-label">Когда</span>
+              <div class="sf-days" id="bkDays" role="group" aria-label="Дата кофе-брейка"></div>
+            </div>
+          </div>
+
+          <div class="sf-act">
+            <button class="sf-send" type="submit" id="sheetSend"><span>Отправить заявку</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+            <a class="sf-mail" href="mailto:zakaz@lampa-kzn.ru?subject=Кофе-брейк">Отправить письмом</a>
+          </div>
+          <p class="sf-error" id="formError" hidden>Впишите имя и телефон, выберите дату.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Подвал -->
+<footer class="foot">
+  <div class="foot-top">
+    <div class="foot-col foot-col-brand">
+      <p class="foot-about">Кофейня и пекарня в Казани. Обжариваем зерно сами, печём хлеб ночью, открываемся в 7:30.</p>
+      <p class="foot-sched"><span>Пекарня и обжарка</span>Хлеб: 7:30, 12:00, 17:00<br>Обжарка: вторник, 15:00</p>
+    </div>
+    <div class="foot-col">
+      <p class="foot-t">Точки</p>
+      <a href="https://yandex.ru/maps/?text=Казань%2C%20ул.%20Профсоюзная%2C%2023" target="_blank" rel="noopener">Профсоюзная, 23</a>
+      <a href="https://yandex.ru/maps/?text=Казань%2C%20ул.%20Островского%2C%2057б" target="_blank" rel="noopener">Островского, 57б</a>
+      <p class="foot-hours">Пн-Пт 7:30 - 21:00<br>Сб-Вс 9:00 - 21:00</p>
+    </div>
+    <div class="foot-col">
+      <p class="foot-t">Связь</p>
+      <a class="foot-big" href="tel:+78432074196">+7 843 207-41-96</a>
+      <a href="https://t.me/lampa_kzn" target="_blank" rel="noopener">Telegram @lampa_kzn</a>
+      <a href="https://vk.com/lampa.kzn" target="_blank" rel="noopener">ВКонтакте lampa.kzn</a>
+      <a href="mailto:zakaz@lampa-kzn.ru">zakaz@lampa-kzn.ru</a>
+    </div>
+  </div>
+  <p class="foot-legal">ИП Галиева Р. Ф. Казань, Профсоюзная, 23. Цены действуют с 1 февраля 2025</p>
+  <div class="foot-wordline">
+    <p class="foot-word" aria-label="Лампа">Лампа</p>
+  </div>
+</footer>
+
+<script src="assets/js/lib/gsap.min.js"></script>
+<script src="assets/js/lib/ScrollTrigger.min.js"></script>
+<script src="assets/js/lib/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>

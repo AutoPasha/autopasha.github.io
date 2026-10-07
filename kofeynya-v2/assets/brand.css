@@ -1,0 +1,61 @@
+/* Лампа: все данные бренда. Меняется при ребрендинге. */
+
+@import url("fonts/playfair-display/fonts.css");
+@import url("fonts/manrope/fonts.css");
+@import url("fonts/jetbrains-mono/fonts.css");
+
+:root {
+  /* Палитра */
+  --c-ink: #1A1411;
+  --c-nut: #3A2A20;
+  --c-milk: #F2E8DA;
+  --c-amber: #E3A04F;
+  --c-ash: #8C7F73;
+  --c-ash-lite: #C9BCAE;
+  /* плитки фото и знаки на бумаге */
+  --c-must: #C98B2B;
+  --c-clay: #B4553A;
+  --c-clay-deep: #9B3F26;
+  --c-olive: #6C7A52;
+  --c-olive-lite: #93A175;
+  --c-plum: #7A4356;
+  /* вторичный текст на молочной бумаге: 6.5:1 */
+  --c-nut-soft: #5C4E41;
+  --c-deep: #0C0908;
+
+  /* Поверхности: страница живёт на тёмном шоколаде, молочная пенка это текст */
+  --bg: var(--c-deep);
+  --bg-dark: var(--c-ink);
+  --fg: var(--c-milk);
+  --fg-mute: #B6A899;
+  --fg-on-dark: var(--c-milk);
+  --fg-on-dark-mute: rgba(242, 232, 218, .72);
+  --line: rgba(242, 232, 218, .18);
+  --line-dark: rgba(242, 232, 218, .2);
+  --accent: var(--c-amber);
+
+  /* Шрифты */
+  --serif: "Playfair Display", Georgia, serif;
+  --sans: "Manrope", "Helvetica Neue", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Радиусы */
+  --r-s: 8px;
+  --r-m: 14px;
+  --r-l: 22px;
+  --r-pill: 999px;
+
+  /* Тень: смещение + мягкое размытие */
+  --sh-s: 0 1px 2px rgba(12, 9, 8, .12), 0 6px 18px -10px rgba(12, 9, 8, .45);
+  --sh-l: 0 2px 6px rgba(12, 9, 8, .18), 0 26px 60px -34px rgba(12, 9, 8, .7);
+  --sh-glow: 0 2px 4px rgba(12, 9, 8, .3), 0 18px 40px -26px rgba(12, 9, 8, .85);
+
+  /* Сетка */
+  --wrap: 1360px;
+  --pad: 40px;
+  --pad-s: 20px;
+
+  /* Движение */
+  --ease: cubic-bezier(.16, .84, .28, 1);
+  --ease-out: cubic-bezier(.22, 1, .36, 1);
+}
