@@ -3,7 +3,8 @@
    <script src="/ap/badge.js" defer data-ap="папка"></script>.
 
    Язычок на левом краю по центру высоты: внизу у макетов свои корзины,
-   кнопки мессенджеров и всплывашки, наверху шапка. Всё в теневом DOM, со
+   кнопки мессенджеров и всплывашки, наверху шапка. На экранах уже 1024 вместо
+   язычка ухо шириной в поле макета. Всё в теневом DOM, со
    своими именами шрифтов: стили макета плашку не трогают, и она их тоже.
    Нажали — раскрывается карточка «кто это нарисовал» с кнопкой «нанять». */
 (() => {
@@ -68,8 +69,12 @@
 .x:hover{color:var(--white)}
 .home{display:block;margin-top:14px;font-size:12.5px;color:var(--dim);text-decoration:none}
 .home:hover{color:var(--white)}
-/* на телефоне по центру язычок закрывает начало строк первого экрана, поэтому он внизу, над пальцем */
-@media (max-width:640px){.tab{padding:10px 6px 12px 5px;gap:8px;top:auto;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-110%,0)}.tab.is-on{transform:none}.tab:hover{transform:translate(3px,0)}.tab span{font-size:11px}.tab small{display:none}}
+/* до 1024 поля у макетов 16-24px, а язычок 37-41px: где бы он ни стоял, он закрывает начало строк
+   (07.10 на 360-768 это 1-3 строки на каждой витрине, на первом экране ещё и главную кнопку). Поэтому
+   здесь вместо язычка ухо 18px с одной головой паши: оно помещается в поле макета и текста не касается */
+@media (max-width:1023px){.tab{width:18px;padding:14px 0;gap:0;border-radius:0 9px 9px 0;overflow:hidden;
+    top:auto;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-110%,0)}
+  .tab.is-on,.tab:hover{transform:none}.tab span,.tab small{display:none}.tab svg{width:14px;height:16px;flex:none}}
 @media (prefers-reduced-motion:reduce){.tab,.card{transition:none}}`;
 
   const host = document.createElement('div');
