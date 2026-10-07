@@ -1,0 +1,122 @@
+/* ============================================================
+   ЛАМПА: бренд-файл. Все цвета, шрифты, радиусы и тени живут здесь.
+   Перекраска и смена названия делаются только в этом файле и в logo.svg
+   ============================================================ */
+
+@import url("fonts/prata/fonts.css");
+@import url("fonts/onest/fonts.css");
+@import url("fonts/ibm-plex-mono/fonts.css");
+
+:root {
+  /* цвет: тёмная часть */
+  --ink: #14100C;
+  --ink-2: #1C1712;
+  --ink-3: #2A2219;
+  --line: #332A20;
+  --line-soft: rgba(241, 233, 220, 0.14);
+  --paper: #F1E9DC;
+  --muted: #A99C8A;
+  --faint: #8E8172;
+  --accent: #E3A145;
+  --accent-deep: #B9781F;
+  --accent-ink: #24170A;
+
+  /* цвет: светлые секции на бумаге (ритм страницы) */
+  --paper-bg: #F0E7D8;
+  --paper-ink: #241C13;
+  --paper-muted: #665846;
+  --paper-line: #D8C9B1;
+  --paper-plate: #FBF6EC;
+  --accent-on-paper: #8A5810;
+
+  /* цвет: первый экран (текст поверх фото) */
+  --hero-text: #EFE7DA;
+  --hero-note: #D6CCBA;
+  --hero-lead: #DCD3C2;
+
+  /* шрифты */
+  --font-display: 'Prata', Georgia, 'Times New Roman', serif;
+  --font-text: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'Courier New', monospace;
+
+  /* радиусы */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+  --r-pill: 999px;
+
+  /* сетка */
+  --wrap: 1320px;
+  --pad: clamp(18px, 4vw, 64px);
+  --gap: clamp(24px, 3.4vw, 56px);
+
+  /* тени: со смещением и мягким размытием */
+  --shadow-s: 0 10px 22px -14px rgba(0, 0, 0, 0.7);
+  --shadow-m: 0 26px 48px -30px rgba(0, 0, 0, 0.85);
+  --shadow-l: 0 46px 90px -46px rgba(0, 0, 0, 0.9);
+  --shadow-paper: 0 24px 44px -32px rgba(64, 46, 26, 0.55);
+
+  /* движение */
+  --ease: cubic-bezier(0.16, 0.84, 0.28, 1);
+  --slow: 0.9s var(--ease);
+  --mid: 0.55s var(--ease);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  scrollbar-color: var(--accent-deep) var(--ink);
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font: 400 17px/1.62 var(--font-text);
+  font-weight: 380;
+  letter-spacing: 0.002em;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.022em; line-height: 1.04; margin: 0; text-wrap: balance; }
+p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; height: auto; }
+button, input, textarea { font: inherit; color: inherit; }
+button { background: none; border: 0; cursor: pointer; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip {
+  position: absolute; left: 12px; top: -60px; z-index: 100;
+  background: var(--accent); color: var(--accent-ink);
+  padding: 12px 18px; border-radius: var(--r-sm); font-weight: 600;
+  transition: top 0.25s var(--ease);
+}
+.skip:focus { top: 12px; }
+
+/* скроллбар браузера в цветах палитры */
+* { scrollbar-width: thin; scrollbar-color: var(--ink-3) var(--ink); }
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--ink-3); border-radius: var(--r-pill); border: 3px solid var(--ink); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-deep); }
+
+::placeholder { color: var(--faint); opacity: 1; }
