@@ -215,7 +215,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .day-open-cap {
   font-family: var(--mono); font-size: 12.5px; letter-spacing: .02em;
   color: var(--c-ink);
-  padding: 14px 0 26px;
+  padding: 14px 0 10px;
 }
 .day-open-h {
   font-family: var(--serif); font-weight: 500;
@@ -226,7 +226,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   overflow-wrap: anywhere;
 }
 .day-open-note {
-  margin-top: clamp(20px, 3vh, 40px);
+  margin-top: clamp(4px, .8vh, 12px);
   max-width: 46ch;
   font-size: clamp(15px, 1.05vw, 17.5px);
   line-height: 1.6;
@@ -311,7 +311,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .menu-open { padding: clamp(64px, 11vh, 150px) var(--pad) clamp(30px, 5vh, 70px); }
 .menu-cap {
   font-family: var(--mono); font-size: 12.5px; letter-spacing: .02em;
-  color: var(--c-clay-deep); padding-bottom: 24px;
+  color: var(--c-clay-deep); padding-bottom: 10px;
 }
 .menu-h {
   font-family: var(--serif); font-weight: 500;
@@ -321,7 +321,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   color: var(--c-ink);
 }
 .menu-lead {
-  margin-top: clamp(18px, 2.6vh, 34px);
+  margin-top: clamp(6px, 1vh, 16px);
   max-width: 44ch;
   font-size: clamp(15px, 1.05vw, 17.5px); line-height: 1.6;
   color: var(--c-nut-soft);
@@ -352,18 +352,28 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 
 .menu-scene { position: relative; height: 440vh; background-color: var(--c-milk); }
 .menu-sticky { position: sticky; top: 0; height: 100svh; overflow: hidden; background-color: var(--c-milk); }
+/* Разворот главы: слово главы сверху, лист с позициями под ним, фото справа.
+   Всё в потоке сетки, поэтому ничто ни на что не ложится ни при какой высоте окна. */
 .chap-page {
+  --ln: clamp(18px, min(1.7vw, 2.6vh), 29px);
+  --ln-pad: clamp(7px, 1.3vh, 14px);
   position: absolute; inset: 0;
   overflow: hidden;
   opacity: 0;
   pointer-events: none;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min(38vw, 560px);
+  grid-template-rows: auto auto;
+  align-content: center;
+  padding: clamp(42px, 6.2vh, 88px) clamp(20px, 2.6vw, 44px) clamp(42px, 6.2vh, 86px) clamp(52px, 6vw, 104px);
 }
 .chap-page.is-on { opacity: 1; pointer-events: auto; }
 .chap-h {
-  position: absolute; z-index: 1;
-  left: var(--pad); top: clamp(74px, 11vh, 138px);
+  grid-column: 1 / -1; grid-row: 1;
+  position: relative; z-index: 1;
+  margin: 0;
   font-family: var(--serif); font-weight: 500;
-  font-size: clamp(70px, 13.4vw, 206px);
+  font-size: clamp(40px, min(7.4vw, 10.2vh), 116px);
   line-height: .94;
   letter-spacing: -.045em;
   color: var(--c-ink);
@@ -372,7 +382,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .chap-slab {
   position: absolute; z-index: 2;
   top: 7vh; right: 0;
-  width: min(44vw, 640px); height: 64vh;
+  width: min(38vw, 560px); height: 64vh;
   margin: 0; overflow: hidden;
   background: #241A14;
   border-radius: var(--r-l) 0 0 var(--r-l);
@@ -383,15 +393,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   left: 12px; top: 0; bottom: 0;
   writing-mode: vertical-rl; transform: rotate(180deg);
   font-family: var(--mono); font-size: 12px; letter-spacing: .04em;
-  color: rgba(26, 20, 17, .46);
+  color: rgba(26, 20, 17, .58);
 }
 .chap-list {
-  position: absolute; z-index: 3;
-  left: clamp(52px, 6vw, 104px);
-  bottom: clamp(50px, 7.5vh, 92px);
-  width: min(760px, 60vw);
+  grid-column: 1; grid-row: 2;
+  position: relative; z-index: 3;
+  margin: clamp(14px, 2.4vh, 32px) 0 0;
+  width: auto;
   background-color: var(--c-milk);
-  padding: clamp(18px, 2vw, 32px) clamp(20px, 2.6vw, 42px) clamp(16px, 1.8vh, 26px);
+  padding: clamp(12px, 1.4vw, 22px) clamp(20px, 2.6vw, 42px) clamp(12px, 1.4vh, 20px);
   box-shadow: 0 34px 70px -48px rgba(26, 20, 17, .62);
 }
 .chap-cap {
@@ -402,19 +412,20 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .ln {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  gap: 5px 22px; align-items: baseline;
-  padding: clamp(12px, 1.7vh, 19px) 0;
+  gap: 4px 20px; align-items: baseline;
+  padding: var(--ln-pad) 0;
   border-bottom: 1px solid rgba(26, 20, 17, .18);
 }
 .ln-name {
   font-family: var(--serif); font-weight: 500;
-  font-size: clamp(20px, 2vw, 33px);
+  font-size: var(--ln);
   line-height: 1.1; letter-spacing: -.022em;
   color: var(--c-ink);
 }
 .ln-desc {
+  display: none;
   grid-column: 1 / -1;
-  font-size: 13.5px; line-height: 1.45;
+  font-size: 13.5px; line-height: 1.42;
   color: var(--c-nut-soft);
   max-width: 46ch;
 }
@@ -426,8 +437,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
-.ln.lead .ln-name { font-size: clamp(27px, 3vw, 52px); font-style: italic; }
-.ln.lead .ln-desc { font-size: 14px; }
+.ln.lead .ln-name { font-size: calc(var(--ln) * 1.72); font-style: italic; }
+.ln.lead .ln-desc { display: block; font-size: 14px; }
 .ln.lead .ln-price { color: var(--c-clay-deep); }
 .chap-note { padding-top: 14px; font-family: var(--mono); font-size: 12.5px; color: var(--c-nut-soft); }
 .menu-progress {
@@ -479,7 +490,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   color: var(--c-milk);
 }
 .roast-lead {
-  margin-top: clamp(16px, 2.4vh, 30px);
+  margin-top: clamp(4px, .8vh, 12px);
   max-width: 46ch;
   font-size: clamp(15px, 1.05vw, 17.5px);
   line-height: 1.6;
@@ -510,8 +521,22 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .roast-ship { max-width: 40ch; font-size: 14.5px; line-height: 1.55; color: rgba(242, 232, 218, .78); }
 
-/* ---------- Пекарня: партии вразнобой ---------- */
-.bak-gap { position: relative; height: 210vh; }
+/* ---------- Пекарня: партии вразнобой ----------
+   Щель с фотографией поднимается над концом обжарки на --handover: две
+   закреплённые сцены идут не одна за другой, а одна наезжает на другую, и
+   между ними не остаётся ровного экрана в целую сцену. Высота секции растёт на
+   ту же величину, иначе закреплённая часть стала бы короче прежней. */
+.bak {
+  position: relative;
+  padding: 0 0 clamp(80px, 13vh, 170px);
+  --handover: 150vh;
+  --gap-h: calc(210vh + var(--handover));
+  /* Фон пекарни начинается там, где щель отпускает экран. Выше он закрывал бы
+     закреплённый кадр обжарки, который в этот момент ещё держит экран. */
+  --ink-at: calc(var(--gap-h) - 100svh);
+  background: linear-gradient(180deg, transparent 0 var(--ink-at), var(--c-ink) var(--ink-at));
+}
+.bak-gap { position: relative; height: var(--gap-h); margin-top: calc(-1 * var(--handover)); }
 .bak-gap-sticky {
   position: sticky; top: 0; height: 100svh;
   overflow: hidden;
@@ -531,15 +556,15 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   position: absolute; z-index: 2;
   left: 50%; top: 50%;
   transform: translate(-50%, -50%);
-  width: 44vw; height: 62vh; margin: 0;
+  width: min(38vw, 560px); height: 62vh; margin: 0;
   overflow: hidden;
   clip-path: inset(0 50%);
   background: #241A14;
 }
 .bg-photo-in { width: 100%; height: 100%; object-fit: cover; will-change: transform; }
 
-.bak { position: relative; background: var(--c-ink); padding: clamp(70px, 12vh, 160px) 0 clamp(80px, 13vh, 170px); }
 .bak-head {
+  margin-top: clamp(70px, 12vh, 160px);
   padding: 0 var(--pad);
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 30vw);
@@ -563,42 +588,48 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .bak-typo {
   grid-column: 1 / -1;
-  margin-top: clamp(26px, 5vh, 70px);
+  margin-top: clamp(4px, .8vh, 14px);
   font-family: var(--serif); font-weight: 500;
   font-size: clamp(30px, 4.6vw, 86px);
   line-height: 1.02;
   letter-spacing: -.03em;
-  color: rgba(242, 232, 218, .28);
+  color: rgba(242, 232, 218, .46);
 }
 .bak-typo em { font-style: italic; color: var(--c-amber); }
+
+/* У этих заголовков плотный интерлиньяж: выносной блок букв Playfair выходит за
+   рамку примерно на 0,24 em вверх и вниз. Отдаём соседям это место, иначе строка
+   подписи и абзац ложатся на буквы заголовка при любой высоте окна. */
+.day-open-h, .menu-h, .roast-h, .bak-h, .spots-h, .firm-h { margin: .24em 0; }
+/* Лента партий: шесть горизонтальных кадров во всю ширину, высоты вразнобой,
+   подпись в одну строку. В любом положении прокрутки на экране крупное фото. */
 .bak-rail {
   margin-top: clamp(40px, 8vh, 120px);
-  padding: 0 var(--pad);
-  display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: clamp(16px, 2vw, 34px);
-  align-items: start;
+  display: block;
 }
 .bcard { margin: 0; }
+.bcard + .bcard { margin-top: clamp(10px, 1.6vh, 22px); }
 .bcard-in { overflow: hidden; background: #241A14; }
 .bcard-in img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease); }
 .bcard:hover .bcard-in img { transform: scale(1.05); }
-.bcard figcaption { display: flex; flex-direction: column; gap: 8px; padding-top: 14px; }
-.bcard b { font-family: var(--mono); font-weight: 400; font-size: clamp(15px, 1.1vw, 18px); color: var(--c-amber); }
-.bcard span { font-size: clamp(13px, .95vw, 15.5px); line-height: 1.45; color: var(--c-ash-lite); }
-.bcard i { font-family: var(--mono); font-size: clamp(14px, 1.05vw, 17px); color: var(--c-milk); font-variant-numeric: tabular-nums; }
-.b1 { grid-column: 1 / 5; }
-.b1 .bcard-in { aspect-ratio: 4 / 5; }
-.b2 { grid-column: 5 / 10; margin-top: clamp(40px, 10vh, 130px); }
-.b2 .bcard-in { aspect-ratio: 3 / 2; }
-.b3 { grid-column: 2 / 8; margin-top: clamp(60px, 14vh, 180px); }
-.b3 .bcard-in { aspect-ratio: 16 / 9; }
-.b4 { grid-column: 9 / 13; margin-top: clamp(30px, 7vh, 90px); }
-.b4 .bcard-in { aspect-ratio: 3 / 4; }
-.b5 { grid-column: 1 / 6; margin-top: clamp(50px, 12vh, 150px); }
-.b5 .bcard-in { aspect-ratio: 4 / 5; }
-.b6 { grid-column: 7 / 13; margin-top: clamp(70px, 16vh, 210px); }
-.b6 .bcard-in { aspect-ratio: 16 / 10; }/* ---------- Две точки: крупная типографика, вторичное в аккордеоне ---------- */
+.bcard figcaption {
+  display: flex; align-items: baseline; gap: clamp(14px, 2vw, 30px);
+  padding: 13px var(--pad) 0;
+}
+.bcard b { font-family: var(--mono); font-weight: 400; font-size: clamp(15px, 1.1vw, 18px); color: var(--c-amber); white-space: nowrap; }
+.bcard span { font-size: clamp(13.5px, 1vw, 16px); line-height: 1.4; color: var(--c-ash-lite); max-width: 52ch; }
+.bcard i {
+  margin-left: auto;
+  font-family: var(--mono); font-style: normal; font-size: clamp(14px, 1.05vw, 17px); color: var(--c-milk);
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.b1 .bcard-in { height: clamp(200px, 46vh, 520px); }
+.b2 .bcard-in { height: clamp(170px, 33vh, 380px); }
+.b3 .bcard-in { height: clamp(210px, 52vh, 600px); }
+.b4 .bcard-in { height: clamp(180px, 38vh, 440px); }
+.b5 .bcard-in { height: clamp(190px, 44vh, 500px); }
+.b6 .bcard-in { height: clamp(200px, 49vh, 560px); }
+/* ---------- Две точки: крупная типографика, вторичное в аккордеоне ---------- */
 .spots { position: relative; background: var(--c-deep); padding: clamp(70px, 12vh, 160px) 0 clamp(80px, 13vh, 170px); }
 .spots-head {
   padding: 0 var(--pad);
@@ -616,6 +647,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .spots-lead { font-size: clamp(15px, 1.05vw, 17.5px); line-height: 1.6; color: var(--c-ash-lite); padding-bottom: 12px; }
 
 .spot-acc { display: block; }
+/* свёрнутый аккордеон не должен оставлять за собой невидимых строк:
+   без display:none закрытый details держит высоту и подложки под картинками */
+.spot-acc:not([open]) > .spot-fold { display: none; }
 .spot-sum { list-style: none; display: block; }
 .spot-sum::-webkit-details-marker { display: none; }
 .spot-plus { display: none; }
@@ -664,13 +698,14 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .spot-b .spot-photo-b { grid-column: 8 / 13; grid-row: 1; margin: 0; aspect-ratio: 3 / 4; overflow: hidden; background: #241A14; align-self: start; }
 .spot-b .spot-photo-b img { width: 100%; height: 100%; object-fit: cover; }
 .spot-addr.vert {
-  position: absolute; left: 0; top: 0; bottom: 0;
+  position: absolute; left: 18px; top: 0; bottom: 0;
   margin: 0;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
   font-size: clamp(23px, 2.4vw, 54px);
   line-height: 1;
   text-align: left;
+  white-space: nowrap;
   pointer-events: none;
 }
 
@@ -714,7 +749,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   letter-spacing: -.04em;
   color: var(--c-milk);
 }
-.firm-lead { margin-top: clamp(20px, 3vh, 40px); max-width: 52ch; font-size: clamp(16px, 1.15vw, 19px); line-height: 1.6; color: rgba(242, 232, 218, .86); }
+.firm-lead { margin-top: clamp(4px, .8vh, 12px); max-width: 52ch; font-size: clamp(16px, 1.15vw, 19px); line-height: 1.6; color: rgba(242, 232, 218, .86); }
 .firm-price { margin-top: clamp(40px, 7vh, 96px); }
 .fp-cap { font-family: var(--mono); font-size: 12.5px; letter-spacing: .02em; color: var(--c-amber); padding-bottom: clamp(18px, 2.6vh, 34px); }
 .fp-grid {
@@ -798,11 +833,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   border-radius: 50%;
   overflow: hidden; pointer-events: none;
   opacity: 0;
-  transition: opacity .4s var(--ease);
   box-shadow: 0 30px 60px -28px rgba(12, 9, 8, .72);
   will-change: transform;
 }
 .cursor-photo.is-on { opacity: 1; }
+@media (max-width: 899px), (hover: none), (pointer: coarse) {
+  .cursor-photo { display: none; }
+}
 .cursor-photo img { width: 100%; height: 100%; object-fit: cover; }
 
 /* Лист заявки */
@@ -905,14 +942,18 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ---------- Планшет ---------- */
 @media (max-width: 1024px) {
   .foot-word { font-size: 22vw; }
-  .chap-list { left: clamp(44px, 5vw, 70px); width: min(700px, 66vw); }
-  .chap-h { font-size: clamp(64px, 13.6vw, 150px); }
   .spot-a .spot-photo { grid-column: 1 / 7; }
   .spot-a .spot-acc { grid-column: 5 / 13; }
   .spot-b .spot-acc { grid-column: 2 / 8; }
   .spot-b .spot-photo-b { grid-column: 8 / 13; }
   .firm-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .bak-rail { gap: 18px; }
+  .b1 .bcard-in { height: clamp(180px, 34vh, 340px); }
+  .b2 .bcard-in { height: clamp(160px, 30vh, 300px); }
+  .b3 .bcard-in { height: clamp(190px, 38vh, 380px); }
+  .b4 .bcard-in { height: clamp(170px, 32vh, 320px); }
+  .b5 .bcard-in { height: clamp(180px, 36vh, 360px); }
+  .b6 .bcard-in { height: clamp(180px, 35vh, 350px); }
 }
 
 /* ---------- Телефон ---------- */
@@ -976,24 +1017,27 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .chap span { font-size: 22px; }
   .chap i { font-size: 11.5px; }
   .menu-scene { height: 400vh; }
-  .chap-page { display: flex; flex-direction: column; }
-  .chap-slab { position: relative; order: -1; flex: 0 0 29%; top: auto; right: auto; width: 100%; height: auto; border-radius: 0; }
-  .chap-h { position: relative; left: auto; top: auto; font-size: clamp(32px, 10.6vw, 54px); line-height: .98; padding: 16px var(--pad-s) 0; }
+  .chap-page { display: flex; flex-direction: column; padding: 0; }
+  .chap-slab { position: relative; order: -1; flex: 0 0 27%; top: auto; right: auto; width: 100%; height: auto; border-radius: 0; }
+  .chap-h {
+    grid-column: auto; grid-row: auto;
+    font-size: clamp(32px, 10.6vw, 54px); line-height: .98;
+    padding: 16px var(--pad-s) 0;
+  }
   .chap-side { display: none; }
   .chap-list {
-    position: relative; left: auto; bottom: auto; width: auto;
+    margin: 0;
     flex: 1 1 auto; min-height: 0; overflow: hidden;
     background: none; box-shadow: none;
     padding: 16px var(--pad-s) 34px;
   }
-  .chap-cap { padding-bottom: 10px; }
-  .ln { padding: 14px 0; gap: 4px 14px; }
-  .ln:nth-child(2n) { padding-left: 16px; }
+  .ln { padding: 12px 0; gap: 4px 14px; }
   .ln-name { font-size: 21px; }
-  .ln-desc { display: none; }
-  .ln.lead .ln-desc { display: block; font-size: 13px; max-width: 34ch; }
-  .ln-price { font-size: 15px; }
   .ln.lead .ln-name { font-size: 27px; }
+  .chap-cap { padding-bottom: 10px; }
+  .ln:nth-child(2n) { padding-left: 16px; }
+  .ln.lead .ln-desc { font-size: 13px; max-width: none; }
+  .ln-price { font-size: 15px; }
   .chap-note { padding-top: 12px; font-size: 12px; }
   .menu-progress { left: var(--pad-s); right: var(--pad-s); bottom: 20px; }
   .menu-foot { padding: 36px var(--pad-s) 48px; font-size: 15px; }
@@ -1023,11 +1067,11 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .roast-ship { font-size: 14px; }
 
   /* Пекарня: лента с разной высотой, ритм ломается сдвигами */
-  .bak { padding-bottom: 84px; }
-  .bak-gap { height: 190vh; }
+  .bak { padding-bottom: 84px; --handover: 55vh; --gap-h: calc(190vh + var(--handover)); }
+  .bak-gap { height: var(--gap-h); }
   .bak-gap-sticky { padding: 0 var(--pad-s); }
   .bg-word { font-size: clamp(34px, 8.8vw, 54px); }
-  .bg-photo { width: 62vw; height: 48vh; }
+  .bg-photo { width: 36vw; height: 48vh; }
   .bak-head { grid-template-columns: 1fr; gap: 20px; }
   .bak-lead { grid-column: 1; }
   .bak-typo { font-size: clamp(28px, 8.4vw, 44px); }
@@ -1046,13 +1090,20 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .bak-rail::-webkit-scrollbar { display: none; }
   .bcard { flex: 0 0 74vw; scroll-snap-align: start; margin-top: 0 !important; }
   .b1 { padding-top: 0; }
-  .b2 { padding-top: 44px; }
-  .b3 { padding-top: 16px; }
-  .b4 { padding-top: 60px; }
-  .b5 { padding-top: 24px; }
-  .b6 { padding-top: 38px; }
-  .bcard figcaption { padding-top: 12px; }
-  .bcard span { font-size: 14px; }
+  .b2 { padding-top: 40px; }
+  .b3 { padding-top: 14px; }
+  .b4 { padding-top: 54px; }
+  .b5 { padding-top: 22px; }
+  .b6 { padding-top: 34px; }
+  .b1 .bcard-in { height: 88vw; }
+  .b2 .bcard-in { height: 74vw; }
+  .b3 .bcard-in { height: 96vw; }
+  .b4 .bcard-in { height: 80vw; }
+  .b5 .bcard-in { height: 86vw; }
+  .b6 .bcard-in { height: 92vw; }
+  .bcard figcaption { flex-direction: column; gap: 6px; padding: 12px 0 0; }
+  .bcard i { margin-left: 0; }
+  .bcard span { font-size: 14px; max-width: none; }
 
   /* Точки: компактные аккордеоны */
   .spots-head { grid-template-columns: minmax(0, 1fr); gap: 22px; }
@@ -1065,7 +1116,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .spot-sum {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 44px;
-    align-items: center; column-gap: 14px; row-gap: 4px;
+    align-items: center; column-gap: 14px; row-gap: 9px;
     padding: 12px 0 14px;
     border-top: 1px solid rgba(242, 232, 218, .2);
     cursor: pointer;
@@ -1139,6 +1190,9 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .spot-addr { font-size: 27px; }
   .hero-word-2 { font-size: 8vw; }
   .ln-name { font-size: 20px; }
+  .ln { padding: 10px 0; }
+  .ln.lead .ln-name { font-size: 25px; }
+  .ln.lead .ln-desc { font-size: 12.5px; }
   .bcard { flex: 0 0 78vw; }
   .chap span { font-size: 20px; }
 }
@@ -1151,4 +1205,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
     transition-duration: .001ms !important;
     scroll-behavior: auto !important;
   }
+  /* сцена пекарни стоит на CSS-щели: без скролла её надо раскрыть сразу */
+  .bg-photo { clip-path: none; }
 }

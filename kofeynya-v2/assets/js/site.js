@@ -281,18 +281,17 @@
           var photo = $('.chap-slab', page);
           var inner = $('.chap-slab-in', page);
           var word = $('.chap-h', page);
+          var d = f - k;
+          // главы сменяются резко: наложение двух страниц текста и пустой кадр
+          // между ними одинаково плохи, поэтому переход отдаёт список позиций
+          gsap.set(page, { opacity: (k === i ? 1 : 0), zIndex: k });
           if (k === i) {
-            var local = f - i;
+            var local = d;
             var open = clamp(local * 3.2, 0, 1);
             var insetY = (1 - open) * 16;
             if (photo) gsap.set(photo, { clipPath: 'inset(' + insetY.toFixed(2) + '% 0% ' + insetY.toFixed(2) + '% 0%)' });
             if (inner) gsap.set(inner, { scale: 1.18 - open * .14, yPercent: -3 + local * 7 });
             if (word) gsap.set(word, { yPercent: -local * 5 });
-            gsap.set(page, { opacity: clamp(local * 9, 0, 1) });
-          } else if (k === i - 1) {
-            gsap.set(page, { opacity: clamp(1 - (f - k) * 9, 0, 1) });
-          } else {
-            gsap.set(page, { opacity: 0 });
           }
         }
       }
@@ -348,17 +347,20 @@
   function maskIn(sel, delay) {
     var els = $$(sel);
     els.forEach(function (el) {
-      gsap.set(el, { yPercent: 108 });
       ST.create({
-        trigger: el, start: 'top 90%', once: true,
-        onEnter: function () { gsap.to(el, { yPercent: 0, duration: 1.15, ease: 'expo.out', delay: delay || 0 }); }
+        trigger: el, start: 'top 92%', once: true,
+        onEnter: function () {
+          gsap.fromTo(el,
+            { opacity: 0, clipPath: 'inset(100% 0% 0% 0%)' },
+            { opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: 1.15, ease: 'expo.out', delay: delay || 0 });
+        }
       });
     });
   }
   function fadeUp(sel, opt) {
     var els = $$(sel);
     if (!els.length) return;
-    gsap.set(els, { y: 40, opacity: 0 });
+    gsap.set(els, { y: 22, opacity: 0 });
     var box = els[0].closest('section') || els[0];
     ST.create({
       trigger: box, start: 'top 84%', once: true,
@@ -390,7 +392,7 @@
   }
 
   maskIn('.bak-h, .spots-h, .firm-h, .menu-h, .day-open-h, .bak-typo');
-  fadeUp('.bak-lead, .spots-lead, .firm-lead, .menu-lead, .day-open-note, .day-open-cap, .bak-typo em, .menu-cap, .fp-cap');
+  fadeUp('.bak-lead, .spots-lead, .firm-lead, .menu-lead, .day-open-note, .day-open-cap, .menu-cap, .fp-cap');
   wordRead('.firm-lead');
   fadeUp('.bcard', { stagger: .07 });
   fadeUp('.spot-city, .spot-note, .spot-meta, .spot-maps, .spot-sum');
@@ -437,6 +439,7 @@
     var frame = $('#roastFrame');
     var img = $('#roastImg');
     var scrim = $('#roastScrim');
+    var layer = $('.roast-layer');
     var svg = $('#roastLine');
     var path = svg && $('path', svg);
     var len = 0;
@@ -445,19 +448,48 @@
       path.style.strokeDasharray = len;
       path.style.strokeDashoffset = len;
     }
+    /* Размеры карточки: снимаем их со стиля, а не с кадра, который уже может
+       ехать по скроллу. По ним же считаем, до каких размеров карточка
+       разворачивается во весь экран к концу сцены. */
+    var L0 = 0, T0 = 0, F0 = 0, Fh0 = 0, VW = 0, VH = 0;
+    function measure() {
+      if (!frame) return;
+      var l = frame.style.left, t = frame.style.top, w = frame.style.width, h = frame.style.height;
+      frame.style.left = frame.style.top = frame.style.width = frame.style.height = '';
+      L0 = frame.offsetLeft; T0 = frame.offsetTop; F0 = frame.offsetWidth; Fh0 = frame.offsetHeight;
+      VW = frame.parentElement.clientWidth; VH = frame.parentElement.clientHeight;
+      frame.style.left = l; frame.style.top = t; frame.style.width = w; frame.style.height = h;
+    }
+    measure();
+    window.addEventListener('resize', measure, { passive: true });
     ST.create({
       trigger: sec, start: 'top top', end: 'bottom bottom', scrub: true,
+      onRefresh: measure,
+      onEnter: measure,
       onUpdate: function (self) {
         var p = self.progress;
-        var k = clamp(p * 1.25, 0, 1);
+        var k = clamp(p * 1.6, 0, 1);
+        /* Надпись уходит раньше, чем карточка дойдёт до её края и раньше, чем
+           приедет щель пекарни: сцены наезжают друг на друга, и два текста на
+           одном кадре ложились бы друг на друга. */
+        var m = clamp((p - .62) / .18, 0, 1);
+        if (layer && !reduce) gsap.set(layer, { opacity: 1 - clamp((p - .52) / .09, 0, 1) });
         if (frame) {
+          if (!VW) measure();
           gsap.set(frame, {
             clipPath: 'inset(' + ((1 - k) * 15).toFixed(2) + 'vh ' + ((1 - k) * 21).toFixed(2) + 'vw round ' + ((1 - k) * 22).toFixed(1) + 'px)',
-            borderRadius: ((1 - k) * 22).toFixed(1) + 'px'
+            borderRadius: ((1 - k) * 22).toFixed(1) + 'px',
+            left: (L0 * (1 - m)).toFixed(1) + 'px',
+            top: (T0 * (1 - m)).toFixed(1) + 'px',
+            width: (F0 + (VW - F0) * m).toFixed(1) + 'px',
+            height: (Fh0 + (VH - Fh0) * m).toFixed(1) + 'px'
           });
         }
         if (img) gsap.set(img, { scale: 1.32 - .3 * k, yPercent: -4 + 8 * p });
-        if (scrim) gsap.set(scrim, { opacity: clamp(p * 1.5, 0, 1) });
+        /* Затемнение держит надпись поверх фотографии. Надпись ушла — уходит и
+           затемнение: иначе кадр, развернувшийся во весь экран, остаётся
+           чёрным пятном и между двумя сценами снова пустое место. */
+        if (scrim) gsap.set(scrim, { opacity: clamp(p * 1.5, 0, 1) * (1 - clamp((p - .56) / .14, 0, 1)) });
         if (path) gsap.set(path, { strokeDashoffset: len * (1 - clamp((p - .18) / .5, 0, 1)) });
       }
     });
@@ -493,24 +525,52 @@
     });
   })();
 
-  /* ---------- Пекарня: щель между словами, из неё растёт кадр ---------- */
+  /* ---------- Пекарня: щель между словами, из неё растёт кадр ----------
+     Сначала щель раскрывается в узкую рамку во всю высоту экрана (слова
+     по краям она не достаёт), потом слова уходят, и только потом кадр
+     раздвигается на весь экран: листать дальше не приходится по пустоте. */
   (function bakGap() {
     var sec = $('.bak-gap');
     if (!sec || !ST) return;
+    var wrap = $('.bak-gap-sticky', sec);
     var photo = $('.bg-photo', sec);
     var img = $('.bg-photo-in', sec);
     var a = $('.bg-a', sec);
     var b = $('.bg-b', sec);
     var sm = function (t) { return t * t * (3 - 2 * t); };
+    var W0 = 0, H0 = 0, W1 = 0, H1 = 0;
+    function measure() {
+      if (!photo || !wrap) return;
+      // размеры берём из стиля, а не из кадра, который уже мог расти по скроллу
+      var w = photo.style.width, h = photo.style.height;
+      photo.style.width = ''; photo.style.height = '';
+      W0 = photo.offsetWidth; H0 = photo.offsetHeight;
+      photo.style.width = w; photo.style.height = h;
+      W1 = wrap.clientWidth; H1 = wrap.clientHeight;
+    }
+    measure();
+    window.addEventListener('resize', measure, { passive: true });
     ST.create({
       trigger: sec, start: 'top top', end: 'bottom bottom', scrub: true,
+      onEnter: measure,
+      onRefresh: measure,
       onUpdate: function (self) {
         var p = self.progress;
-        var k = sm(clamp(p / .6, 0, 1));
+        if (!W1) measure();
+        var k = sm(clamp(p / .18, 0, 1));                       // щель раскрывается
+        var g = sm(clamp((p - .30) / .62, 0, 1));              // кадр идёт во весь экран
         var inset = (50 - 50 * k).toFixed(2);
-        if (photo) gsap.set(photo, { clipPath: 'inset(0 ' + inset + '% 0 ' + inset + '%)' });
-        if (img) gsap.set(img, { scale: 1.26 - .26 * k, yPercent: -4 + 8 * k });
-        var f = sm(clamp((p - .58) / .42, 0, 1));
+        if (photo) {
+          gsap.set(photo, {
+            clipPath: 'inset(0 ' + inset + '% 0 ' + inset + '%)',
+            width: Math.round(W0 * k + (W1 - W0 * k) * g),
+            height: Math.round(H0 + (H1 - H0) * k)
+          });
+        }
+        /* Кадр ползёт и на последних процентах сцены: иначе последний экран щели
+           стоит на месте и прокрутка идёт вхолостую. */
+        if (img) gsap.set(img, { scale: 1.22 - .22 * k + .08 * p, yPercent: -4 + 8 * k + 5 * p });
+        var f = sm(clamp((p - .24) / .16, 0, 1));               // слова уходят в тень
         if (a) gsap.set(a, { opacity: 1 - f, x: -f * 2 });
         if (b) gsap.set(b, { opacity: 1 - f, x: f * 2 });
       }
@@ -543,12 +603,14 @@
   /* ---------- Меню: круглое фото едет за курсором от строки к строке ---------- */
   (function cursorPhoto() {
     var lines = $$('.chap-lines');
-    if (!lines.length) return;
+    var previewMedia = window.matchMedia('(min-width: 900px) and (hover: hover) and (pointer: fine)');
+    if (!lines.length || !previewMedia.matches) return;
+    /* только кадры, которых больше нет в других блоках страницы */
     var PH = {
-      0: ['assets/img/window-cup.jpg', 'assets/img/croissant.jpg', 'assets/img/hero-counter.jpg', 'assets/img/roaster.jpg', 'assets/img/shelves.jpg'],
-      1: ['assets/img/shelves.jpg', 'assets/img/window-cup.jpg', 'assets/img/bread-board.jpg', 'assets/img/barista.jpg', 'assets/img/hero-counter.jpg'],
-      2: ['assets/img/bread-board.jpg', 'assets/img/croissant.jpg', 'assets/img/hero-counter.jpg', 'assets/img/shelves.jpg', 'assets/img/barista.jpg', 'assets/img/croissant.jpg'],
-      3: ['assets/img/hero-counter.jpg', 'assets/img/barista.jpg', 'assets/img/window-cup.jpg', 'assets/img/croissant.jpg', 'assets/img/bread-board.jpg']
+      0: ['assets/img/window-cup.jpg', 'assets/img/hero-counter.jpg', 'assets/img/roaster.jpg', 'assets/img/shelves.jpg', 'assets/img/coffee-bag.jpg'],
+      1: ['assets/img/shelves.jpg', 'assets/img/window-cup.jpg', 'assets/img/bread-board.jpg', 'assets/img/barista.jpg', 'assets/img/coffee-bag.jpg'],
+      2: ['assets/img/bread-board.jpg', 'assets/img/hero-counter.jpg', 'assets/img/shelves.jpg', 'assets/img/barista.jpg', 'assets/img/window-cup.jpg', 'assets/img/roaster.jpg'],
+      3: ['assets/img/hero-counter.jpg', 'assets/img/barista.jpg', 'assets/img/window-cup.jpg', 'assets/img/bread-board.jpg', 'assets/img/coffee-bag.jpg']
     };
     var disc = document.createElement('div');
     disc.className = 'cursor-photo';
@@ -559,30 +621,54 @@
     document.body.appendChild(disc);
 
     var x = 0, y = 0, tx = 0, ty = 0, on = false, src = '';
-    function set(v) { if (v === on) return; on = v; disc.classList.toggle('is-on', on); }
+    var activePage = null;
+    function set(v) {
+      on = v;
+      disc.classList.toggle('is-on', on);
+    }
 
-    window.addEventListener('mousemove', function (e) { tx = e.clientX; ty = e.clientY; }, { passive: true });
-    window.addEventListener('scroll', function () { set(false); }, { passive: true });
+    // Показываем только после движения мыши. Прокрутка под неподвижным
+    // курсором тоже вызывает mouseover, но не должна возвращать превью.
+    function hide() { set(false); activePage = null; }
+    window.addEventListener('scroll', hide, { passive: true });
+    window.addEventListener('wheel', hide, { passive: true });
+    window.addEventListener('resize', hide, { passive: true });
+    window.addEventListener('blur', hide);
+    previewMedia.addEventListener('change', hide);
 
     lines.forEach(function (box) {
       var page = box.closest('.chap-page');
       var ch = page ? Number(page.dataset.ch) : 0;
       var list = PH[ch] || PH[0];
-      box.addEventListener('mouseover', function (e) {
+      box.addEventListener('mousemove', function (e) {
         var ln = e.target.closest ? e.target.closest('.ln') : null;
-        if (!ln) return;
+        if (!ln || !previewMedia.matches || !page.classList.contains('is-on')) { hide(); return; }
+        var slab = $('.chap-slab', page).getBoundingClientRect();
+        var radius = disc.offsetWidth / 2;
+        var left = Math.max(slab.left, 0) + radius + 12;
+        var right = Math.min(slab.right, window.innerWidth) - radius - 12;
+        var top = Math.max(slab.top, 0) + radius + 12;
+        var bottom = Math.min(slab.bottom, window.innerHeight) - radius - 12;
+        if (left > right || top > bottom) { hide(); return; }
+        // Превью движется в фотополосе, за пределами листа с меню.
+        tx = clamp(e.clientX, left, right);
+        ty = clamp(e.clientY, top, bottom);
         var i = Array.prototype.indexOf.call(box.children, ln);
         var next = list[(i < 0 ? 0 : i) % list.length];
         if (next !== src) { src = next; im.src = next; }
+        if (!on || activePage !== page) { x = tx; y = ty; }
+        activePage = page;
         set(true);
       });
-      box.addEventListener('mouseleave', function () { set(false); });
+      box.addEventListener('mouseleave', hide);
     });
 
     gsap.ticker.add(function () {
+      if (!on) return;
+      if (!activePage || !activePage.classList.contains('is-on')) { hide(); return; }
       x += (tx - x) * .12;
       y += (ty - y) * .12;
-      disc.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) translate(-50%,-50%) scale(' + (on ? 1 : .72) + ')';
+      disc.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) translate(-50%,-50%)';
     });
   })();
 
