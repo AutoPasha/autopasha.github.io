@@ -1,0 +1,127 @@
+@import url("fonts/literata/fonts.css");
+@import url("fonts/onest/fonts.css");
+@import url("fonts/ibm-plex-mono/fonts.css");
+
+/* ============================================================
+   Бренд: Сезон, бистро уральской кухни
+   Все цвета, шрифты и радиусы живут здесь. Меняешь этот файл,
+   меняешь весь сайт. Ниже по умолчанию стоит осень, сезоны
+   переопределяют бумагу, акцент, сезонный цвет и цвет огня.
+   ============================================================ */
+
+:root {
+  /* Палитра: осень (сейчас) */
+  --ink: #14120f;
+  --ink-soft: #1e1a15;
+  --ink-line: #332c24;
+  --paper: #efe5d4;
+  --paper-2: #e5d8c2;
+  --paper-ink: #241f18;
+  --paper-muted: #6b6152;
+  --accent: #c56a2b;
+  --season: #7b8a4e;
+  --muted: #a2958a;
+  --paper-tint: rgba(239, 229, 212, .06);
+
+  /* Огонь: им светит шейдер за первым заголовком */
+  --fire: #d98436;
+  --fire-2: #8c3f12;
+
+  /* Поверх тёмного фона */
+  --on-ink: #f2ece2;
+  --on-ink-muted: rgba(242, 236, 226, .68);
+  --on-ink-faint: rgba(242, 236, 226, .44);
+  --on-ink-line: rgba(242, 236, 226, .16);
+
+  /* Шапка. На тёмных секциях тёмная, на бумаге берёт цвет секции,
+     а знак переключается на тёмный: подложки-квадрата под логотипом нет.
+     Атрибут data-head на <html> ставит site.js, когда под шапкой светлая секция. */
+  --head-bg: var(--ink);
+  --head-fg: var(--on-ink);
+  --head-fg-muted: var(--on-ink-muted);
+  --head-line: var(--ink-line);
+  --head-line-soft: var(--on-ink-line);
+  --mark-light: block;
+  --mark-ink: none;
+
+  /* Шрифты */
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --text: "Onest", "Segoe UI", Arial, sans-serif;
+  --mono: "IBM Plex Mono", "Courier New", monospace;
+
+  /* Радиусы и линии */
+  --r-s: 8px;
+  --r-m: 14px;
+  --r-l: 22px;
+  --hair: 1px;
+
+  /* Тень: смещение и мягкость, без нулевого оффсета */
+  --shadow-m: 0 18px 40px -26px rgba(8, 6, 4, .85);
+  --shadow-l: 0 34px 70px -34px rgba(8, 6, 4, .9);
+
+  /* Ритм */
+  --pad: clamp(20px, 5vw, 72px);
+  --wrap: 1280px;
+  --ease: cubic-bezier(.16, .84, .28, 1);
+}
+
+/* Шапка на светлых секциях: фон бумажный, текст и знак тёмные */
+[data-head="paper"] {
+  --head-bg: var(--paper);
+  --head-fg: var(--paper-ink);
+  --head-fg-muted: var(--paper-muted);
+  --head-line: rgba(36, 31, 24, .26);
+  --head-line-soft: rgba(36, 31, 24, .16);
+  --mark-light: none;
+  --mark-ink: block;
+}
+
+/* Зима */
+[data-season="winter"] {
+  --ink: #10141a;
+  --ink-soft: #191f26;
+  --ink-line: #2c353e;
+  --paper: #e6eaea;
+  --paper-2: #d9dfe1;
+  --paper-muted: #5c666c;
+  --accent: #7fa5b2;
+  --season: #9fb6bd;
+  --paper-tint: rgba(230, 234, 234, .06);
+  --fire: #e08f3c;
+  --fire-2: #7e3410;
+}
+
+/* Весна */
+[data-season="spring"] {
+  --ink: #14180f;
+  --ink-soft: #1d2317;
+  --ink-line: #333a28;
+  --paper: #ececdd;
+  --paper-2: #e0e0cd;
+  --paper-muted: #666a52;
+  --accent: #b0713c;
+  --season: #86a04a;
+  --paper-tint: rgba(236, 236, 221, .06);
+  --fire: #d5822f;
+  --fire-2: #8a3a10;
+}
+
+/* Лето */
+[data-season="summer"] {
+  --ink: #12140e;
+  --ink-soft: #1b1e15;
+  --ink-line: #333824;
+  --paper: #f1ead4;
+  --paper-2: #e6dcc0;
+  --paper-muted: #6d6649;
+  --accent: #c98a2c;
+  --season: #6f9a45;
+  --paper-tint: rgba(241, 234, 212, .06);
+  --fire: #d68b38;
+  --fire-2: #93400f;
+}
+
+/* Выделение текста и полоса прокрутки в цветах палитры */
+::selection { background: var(--accent); color: var(--ink); }
+
+* { scrollbar-color: var(--ink-line) var(--ink); }
