@@ -1,0 +1,49 @@
+@import url("fonts/tenor-sans/fonts.css");
+@import url("fonts/literata/fonts.css");
+@import url("fonts/golos-text/fonts.css");
+@import url("fonts/ibm-plex-mono/fonts.css");
+
+/* ============ Кедр: все данные бренда ============ */
+:root{
+  /* палитра */
+  --lime: #F3EFE7;         /* известь, основной фон */
+  --sand: #D9CBB4;         /* песок, плашки и полосы */
+  --sage: #7E8C76;         /* шалфей, второстепенный */
+  --sage-l: #93A18B;       /* светлый шалфей, секция врачей, 5.3:1 с кедром */
+  --sand-l: #EBE3D5;       /* светлый песок, полосы-разделы */
+  --cedar: #2B2620;        /* кедр, тёмный тёплый */
+  --copper: #A2552C;       /* медь на светлом: текст и заливка, 4.7:1 на извести */
+  --copper-d: #E2A87E;     /* медь на кедре: акцент и подписи, 7.2:1 */
+  --copper-s: #4A2008;     /* глубокая медь на шалфее, 5.1:1 */
+  --ink: #2B2620;
+  --ink-70: rgba(43,38,32,.72);
+  --ink-50: rgba(43,38,32,.52);
+  --ink-14: rgba(43,38,32,.14);
+  --ink-10: rgba(43,38,32,.09);
+  --lime-70: rgba(243,239,231,.74);
+  --lime-40: rgba(243,239,231,.52);
+  --cedar-70: rgba(243,239,231,.74);
+  --cedar-40: rgba(243,239,231,.58);
+  --cedar-14: rgba(243,239,231,.16);
+
+  /* шрифты */
+  --display: "Tenor Sans", Georgia, serif;
+  --accent: "Literata", Georgia, serif;
+  --text: "Golos Text", "Helvetica Neue", sans-serif;
+  --mono: "IBM Plex Mono", "Courier New", monospace;
+
+  /* ритм */
+  --pad: 40px;
+  --maxw: 1440px;
+  --ease: cubic-bezier(.16,.84,.28,1);
+  --ease-io: cubic-bezier(.66,0,.2,1);
+
+  /* поверхности */
+  --shadow-soft: 0 30px 60px -34px rgba(43,38,32,.42);
+  --shadow-lift: 0 46px 90px -40px rgba(43,38,32,.5);
+  --radius: 14px;
+}
+
+@media (max-width: 900px){
+  :root{ --pad: 20px; }
+}
