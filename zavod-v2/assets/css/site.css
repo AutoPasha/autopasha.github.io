@@ -285,8 +285,18 @@ body.no-js .boot { display: none; }
 .plan-iso { color: var(--paper); }
 .plan-iso path { vector-effect: non-scaling-stroke; }
 .plan-iso .axis { opacity: .28; }
-.draw-photo { position: absolute; inset: 0; overflow: hidden; background: var(--graphite); }
-.draw-photo img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.14); }
+.draw-shots { position: absolute; inset: 0; overflow: hidden; background: var(--graphite); }
+.draw-shots::after {
+  content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(90deg, rgba(14, 16, 19, .94) 0%, rgba(14, 16, 19, .84) 38%, rgba(14, 16, 19, .68) 72%, rgba(14, 16, 19, .6) 100%);
+}
+.draw-shot {
+  position: absolute; inset: 0; margin: 0; overflow: hidden;
+  opacity: 0; clip-path: inset(0% 0% 100% 0%);
+  transition: opacity .5s var(--ease), clip-path .85s var(--ease);
+}
+.draw-shot.on { opacity: 1; clip-path: inset(0% 0% 0% 0%); }
+.draw-shot img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.06); }
 .draw-steps {
   position: absolute; z-index: 3; left: var(--pad); top: 50%; transform: translateY(-50%);
   width: min(330px, 34vw);
@@ -560,7 +570,7 @@ body.no-js .boot { display: none; }
 .ob-c-cap p { margin-top: 12px; font-size: clamp(14px, .98vw, 16px); line-height: 1.6; }
 
 /* фото, которое растёт из кадра на весь экран */
-.ob-x { position: relative; height: 260vh; margin-top: clamp(60px, 10vh, 150px); }
+.ob-x { position: relative; height: 220vh; margin-top: clamp(60px, 10vh, 150px); }
 .ob-x-stage { position: sticky; top: 0; height: 100svh; overflow: hidden; }
 .ob-x-fig {
   position: absolute; left: 50%; top: 50%; width: min(46vw, 640px); aspect-ratio: 16 / 10;
@@ -607,18 +617,34 @@ body.no-js .boot { display: none; }
 .sq.on { opacity: 1; visibility: visible; }
 .sq-fig { position: absolute; inset: 0; margin: 0; overflow: hidden; background: var(--graphite-3); }
 .sq-fig img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.08); }
+/* Второй шаг сцены: лист чертежа. Сетка была .06 на 26 px и на ровной тёмной
+   заливке читалась как пустое поле (17.6% живых клеток при пороге 15%), поэтому
+   разметка стала полноценной: крупная на 128 px плюс мелкая на 32 px, и над
+   ними мягкий свет на лист. */
 .sq-draw {
-  position: absolute; inset: 0; margin: 0; overflow: hidden; background: var(--graphite);
+  position: absolute; inset: 0; margin: 0; overflow: hidden;
+  background:
+    radial-gradient(118% 88% at 72% 32%, rgba(233, 230, 223, .075) 0%, rgba(233, 230, 223, 0) 64%),
+    var(--graphite);
   display: grid; place-items: center;
 }
 .sq-draw::before {
   content: ""; position: absolute; inset: 0;
   background-image:
-    linear-gradient(to right, rgba(233, 230, 223, .06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(233, 230, 223, .06) 1px, transparent 1px);
-  background-size: 26px 26px;
+    linear-gradient(to right, rgba(233, 230, 223, .17) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(233, 230, 223, .17) 2px, transparent 2px),
+    linear-gradient(to right, rgba(233, 230, 223, .055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(233, 230, 223, .055) 1px, transparent 1px);
+  background-size: 128px 128px, 128px 128px, 32px 32px, 32px 32px;
 }
 .sq-plan { position: relative; width: min(58vw, 880px); height: auto; color: var(--metal); }
+/* второй шаг: чертёж прижат вправо, текстовая колонка слева остаётся свободной,
+   контурная цифра шага уходит вниз, чтобы не лежать поверх чертежа */
+.sq-2 .sq-draw { place-items: center end; padding-right: var(--pad); }
+.sq-2 .sq-plan { width: min(44vw, 620px); }
+@media (min-width: 901px) {
+  .sq-2 .sq-num { top: auto; bottom: 8%; transform: none; }
+}
 .sqp-lines path, .sqp-dims path { vector-effect: non-scaling-stroke; }
 .sqp-dims, .sqp-txt { color: var(--spark); }
 .sq-plan text { font-family: var(--mono); font-size: 22px; letter-spacing: .06em; }
@@ -1030,8 +1056,8 @@ body.no-js .boot { display: none; }
 
   .ob-cap p { font-size: 14.5px; }
   .ob-strip { font-size: 11.5px; gap: 4px 14px; padding: 11px 0; }
-  .ob-x { height: 210vh; margin-top: clamp(50px, 9vh, 90px); }
-  .ob-x-fig { width: 76vw; }
+  .ob-x { height: 180vh; margin-top: clamp(50px, 9vh, 90px); }
+  .ob-x-fig { width: 86vw; }
   .ob-x-nums b { font-size: clamp(34px, 13vw, 64px); }
 
   /* четыре кадра идут друг под другом, шов идёт вертикально слева */
@@ -1226,6 +1252,16 @@ body.no-js .boot { display: none; }
   content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background: linear-gradient(90deg, rgba(9, 11, 13, .96) 0%, rgba(9, 11, 13, .8) 32%, rgba(9, 11, 13, .25) 58%, rgba(9, 11, 13, 0) 78%);
 }
+/* На кадре с чертежом текстовая колонка уже слева (48%), чертёж прижат вправо,
+   поэтому скрывающая подложка заканчивается на 54%, а не на 78%: разметка
+   листа остаётся видимой на большей части кадра и кадр перестаёт читаться
+   как ровная тёмная заливка. */
+.sq-2::before,
+.sq-draw::after {
+  background: linear-gradient(90deg,
+    rgba(9, 11, 13, .97) 0%, rgba(9, 11, 13, .9) 26%,
+    rgba(9, 11, 13, .55) 38%, rgba(9, 11, 13, .12) 47%, rgba(9, 11, 13, 0) 54%);
+}
 
 /* ---------------- Телефон: воздух и ритм ---------------- */
 @media (max-width: 900px) {
@@ -1246,7 +1282,9 @@ body.no-js .boot { display: none; }
   .hero-cta { font-size: 17px; }
   .hero-scope { inset: 8px var(--pad); }
   .hero-word { margin-bottom: .06em; }
-  .hw-br { display: none; }
+  /* слово в две строки: «СТАЛЬКОН» влезает в окно целиком на любой ширине телефона */
+  .hw-br { display: block; }
+  .hw { font-size: clamp(26px, 13vw, 56px); }
 
   /* продукция: горизонтальная лента вместо стопки карточек */
   .prod-wide { padding: 0 var(--pad); }
@@ -1337,8 +1375,8 @@ body.no-js .boot { display: none; }
 .motion .mach li { border-top-color: rgba(17, 19, 21, .2); }
 .motion .mach li:last-of-type { border-bottom-color: rgba(17, 19, 21, .2); }
 .motion .mach .m-name { color: var(--graphite-4); }
-.motion .mach .m-idx { color: rgba(14, 16, 19, .42); }
-.motion .mach .m-spec { color: rgba(14, 16, 19, .6); }
+.motion .mach .m-idx { color: rgba(14, 16, 19, .66); }
+.motion .mach .m-spec { color: rgba(14, 16, 19, .72); }
 .motion .mach li.on .m-spec { color: var(--spark-ink); }
 .motion .mach-note { color: var(--spark-ink); }
 .motion .shop-bar { background: rgba(17, 19, 21, .2); }
@@ -1357,8 +1395,8 @@ body.no-js .boot { display: none; }
     color: var(--graphite-4);
   }
   .motion .mach .m-name { color: var(--graphite-4); }
-  .motion .mach .m-idx { color: rgba(14, 16, 19, .42); }
-  .motion .mach .m-spec { color: rgba(14, 16, 19, .62); }
+  .motion .mach .m-idx { color: rgba(14, 16, 19, .66); }
+  .motion .mach .m-spec { color: rgba(14, 16, 19, .72); }
   .motion .mach-note { color: var(--spark-ink); }
   .motion .shop-bar { background: rgba(17, 19, 21, .2); }
   .quote blockquote { font-size: clamp(20px, 6vw, 30px); }
@@ -1405,6 +1443,90 @@ body.no-js .boot { display: none; }
   .ob-d { margin-top: clamp(46px, 9vh, 78px); }
 }
 
+/* ---------------- Телефон: закреплённые сцены становятся столбцом ----------------
+   Чертёж и цех на узком экране не держат экран закреплённым: сцена раскладывается
+   в обычную колонку, всё видно сразу, тексты не наезжают друг на друга. */
+@media (max-width: 900px) {
+  /* чертёж: колонка без закрепления */
+  .draw { height: auto; }
+  .draw-stick {
+    height: auto; min-height: 0; overflow: hidden;
+    display: grid; grid-template-columns: minmax(0, 1fr);
+    padding: 0 var(--pad) clamp(48px, 7vh, 72px);
+  }
+  .draw-grid { position: absolute; inset: 0; -webkit-mask-image: none; mask-image: none; }
+  .draw-head { position: static; order: 1; padding-top: 66px; font-size: 12px; }
+  .draw-head p { margin: 0; }
+  .draw-plan { position: static; order: 2; padding: 26px 0 4px; justify-items: center; }
+  .plan { width: min(100%, 560px); max-height: none; }
+  .plan-txt text { font-size: 38px; }
+  .plan-iso { display: none; }
+  .plan-lines, .plan-nodes, .plan-dims, .plan-txt, .plan-scale { opacity: 1 !important; }
+  .draw-shots {
+    position: static; order: 3; display: grid; gap: 8px;
+    margin: 26px 0 0; overflow: hidden; background: none;
+  }
+  .draw-shots::after { display: none; }
+  .draw-shot {
+    position: relative; inset: auto; opacity: 1; clip-path: none;
+    aspect-ratio: 16 / 10; transition: none;
+  }
+  .draw-shot img { transform: none; }
+  .draw-steps {
+    position: static; order: 4; width: auto; margin-top: 28px;
+    display: grid; gap: 0;
+  }
+  .draw-step {
+    position: static; opacity: 1; transform: none;
+    padding: 14px 0 15px; border-top: 1px solid var(--line);
+  }
+  .draw-step:last-child { border-bottom: 1px solid var(--line); }
+  .draw-step b { font-size: 26px; }
+  .draw-step span { margin-top: 8px; font-size: 12px; }
+  .draw-title {
+    position: static; order: 5; left: auto; right: auto; bottom: auto;
+    max-width: none; margin: 26px 0 0; text-align: left;
+    padding: 10px 12px; font-size: 12px; line-height: 1.55;
+  }
+  .draw-bar { display: none; }
+
+  /* цех: пять кадров и пять строк обычной колонкой, без тёмной смены */
+  .motion .shop-pin { height: auto; min-height: 0; overflow: hidden; }
+  .motion .shop-stage {
+    position: static; display: grid; grid-template-columns: minmax(0, 1fr);
+    gap: 0; padding-bottom: 6px;
+  }
+  .motion .mach { display: contents; }
+  .motion .mach-fig:nth-child(1) { order: 1; } .motion .mach li:nth-child(1) { order: 2; }
+  .motion .mach-fig:nth-child(2) { order: 3; } .motion .mach li:nth-child(2) { order: 4; }
+  .motion .mach-fig:nth-child(3) { order: 5; } .motion .mach li:nth-child(3) { order: 6; }
+  .motion .mach-fig:nth-child(4) { order: 7; } .motion .mach li:nth-child(4) { order: 8; }
+  .motion .mach-fig:nth-child(5) { order: 9; } .motion .mach li:nth-child(5) { order: 10; }
+  .motion .mach-note { order: 11; }
+  .motion .mach-fig,
+  .motion .mach-fig:nth-child(1), .motion .mach-fig:nth-child(2), .motion .mach-fig:nth-child(3),
+  .motion .mach-fig:nth-child(4), .motion .mach-fig:nth-child(5) {
+    position: relative; inset: auto; opacity: 1; clip-path: none;
+    aspect-ratio: 16 / 9; margin: 0; transition: none;
+  }
+  .motion .mach-fig img { transform: none; }
+  .motion .mach li,
+  .motion .mach li:last-of-type {
+    position: static; opacity: 1; padding: 17px 0 18px;
+    border-top: 1px solid rgba(17, 19, 21, .2); border-bottom: 0;
+  }
+  .motion .mach li:last-of-type { border-bottom: 1px solid rgba(17, 19, 21, .2); }
+  .motion .mach-note {
+    position: static; margin: 20px 0 0; padding-bottom: 10px; font-size: 12px;
+  }
+  .motion .shop-bar { display: none; }
+}
+
+/* без движения на большом экране: три кадра сцены в ряд, а не во всю высоту */
+@media (min-width: 901px) {
+  .draw-shots { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
 /* ---------------- Без движения ---------------- */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -1420,8 +1542,13 @@ body.no-js .boot { display: none; }
   .draw-step { position: static; opacity: 1; transform: none; margin-bottom: 14px; }
   .draw-step:not(.on) { display: none; }
   .draw-bar, .seq-seam { display: none; }
-  .draw-photo { position: relative; inset: auto; height: 320px; margin-bottom: 30px; }
-  .draw-photo img { transform: none; }
+  .draw-shots {
+    position: relative; inset: auto; height: auto; margin-bottom: 30px;
+    display: grid; gap: 6px; background: none;
+  }
+  .draw-shots::after { display: none; }
+  .draw-shot { position: relative; inset: auto; opacity: 1; clip-path: none; aspect-ratio: 16 / 10; transition: none; }
+  .draw-shot img { transform: none; }
   .seq-stick {
     height: auto; min-height: 0; overflow: visible;
     display: flex; flex-direction: column; gap: 40px;

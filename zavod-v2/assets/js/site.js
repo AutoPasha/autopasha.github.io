@@ -303,8 +303,7 @@
     var texts = plan.querySelectorAll('.plan-txt text');
     var iso = plan.querySelector('.plan-iso');
     var isoRot = plan.querySelector('.plan-iso-rot');
-    var photo = sec.querySelector('.draw-photo');
-    var photoImg = sec.querySelector('.draw-photo img');
+    var shots = [].slice.call(sec.querySelectorAll('.draw-shot'));
     var steps = sec.querySelectorAll('.draw-step');
     var bar = sec.querySelector('.draw-bar i');
 
@@ -313,6 +312,29 @@
       window.gsap.set(bar, { scaleX: 1 });
       return;
     }
+
+    var state = -1;
+    function setStep(i) {
+      if (i === state) return;
+      state = i;
+      steps.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+      shots.forEach(function (f, k) { f.classList.toggle('on', k === i); });
+    }
+
+    /* телефон: сцена не закрепляется, чертёж виден целиком и сразу */
+    var mm = window.gsap.matchMedia();
+    mm.add({ desk: '(min-width: 901px)', phone: '(max-width: 900px)' }, function (ctx) {
+      if (ctx.conditions.phone) {
+        window.gsap.set(steps, { opacity: 1, y: 0 });
+        [].slice.call(steps).forEach(function (s) { s.classList.add('on'); });
+        [].slice.call(lines).concat([].slice.call(dims), [].slice.call(scales)).forEach(function (p) {
+          p.style.strokeDasharray = 'none';
+          p.style.strokeDashoffset = '0';
+        });
+        window.gsap.set(nodes, { scale: 1 });
+        if (bar) window.gsap.set(bar, { scaleX: 1 });
+        return;
+      }
 
     var dashable = [].slice.call(lines).concat([].slice.call(dims), [].slice.call(scales));
     dashable.forEach(function (p) {
@@ -324,16 +346,9 @@
     var each = Math.min(.014, .26 / Math.max(1, lines.length - 1));
     window.gsap.set(nodes, { scale: 0, transformOrigin: '50% 50%' });
 
-    var state = -1;
-    function setStep(i) {
-      if (i === state) return;
-      state = i;
-      steps.forEach(function (s, k) { s.classList.toggle('on', k === i); });
-    }
-
     var tl = window.gsap.timeline({
       scrollTrigger: {
-        trigger: sec, start: 'top top', end: narrow ? '+=240%' : '+=300%',
+        trigger: sec, start: 'top top', end: '+=300%',
         pin: true, scrub: .55, anticipatePin: 1, invalidateOnRefresh: true,
         onUpdate: function (self) {
           window.gsap.set(bar, { scaleX: self.progress });
@@ -355,15 +370,19 @@
     tl.fromTo(isoRot, { rotation: -9, scale: .9, svgOrigin: '600 330' }, {
       rotation: 2, scale: 1, duration: .22, ease: 'none', svgOrigin: '600 330'
     }, .52);
-    tl.to(linesG, { opacity: .2, duration: .08, ease: 'none' }, .58);
+    tl.to(linesG, { opacity: .55, duration: .08, ease: 'none' }, .58);
     tl.to(iso, { opacity: 0, duration: .09, ease: 'none' }, .70);
-    tl.fromTo(photo, { opacity: 0, clipPath: 'inset(46% 0% 46% 0%)' }, {
-      opacity: 1, clipPath: 'inset(0% 0% 0% 0%)', duration: .22, ease: 'power2.inOut'
-    }, .66);
-    tl.fromTo(photoImg, { scale: 1.14 }, { scale: 1, duration: .26, ease: 'none' }, .66);
-    tl.to(planBox, { opacity: 0, duration: .12, ease: 'none' }, .82);
+    /* кадр появляется сразу, дальше меняется на каждом шаге: экран не стоит на месте */
+    var shotsBox = sec.querySelector('.draw-shots');
+    if (shotsBox) {
+      tl.fromTo(shotsBox, { clipPath: 'inset(42% 0% 42% 0%)' }, {
+        clipPath: 'inset(0% 0% 0% 0%)', duration: .18, ease: 'power2.inOut'
+      }, .02);
+    }
+    tl.to(planBox, { opacity: .45, duration: .14, ease: 'none' }, .78);
 
     setStep(0);
+    });
   }
 
   /* ---------- Цифры цены с перелистыванием ---------- */
@@ -562,6 +581,16 @@
     var imgs = figs.map(function (f) { return f.querySelector('img'); });
     var state = -1;
 
+    /* телефон: тёмной смены нет, пять кадров и пять строк идут обычной колонкой */
+    var mmPhone = window.gsap.matchMedia();
+    mmPhone.add('(max-width: 900px)', function () {
+      [].slice.call(rows).forEach(function (r) { r.classList.add('on'); });
+      figs.forEach(function (f) { f.style.opacity = 1; f.style.clipPath = 'none'; });
+      imgs.forEach(function (im) { if (im) window.gsap.set(im, { scale: 1 }); });
+      if (bar) window.gsap.set(bar, { scaleX: 1 });
+    });
+    if (window.matchMedia('(max-width: 900px)').matches) return;
+
     function show(k) {
       if (k === state) return;
       state = k;
@@ -656,7 +685,8 @@
     if (!fig || !img) return;
 
     function small() {
-      var w = Math.min(window.innerWidth * .46, 640);
+      /* старт крупный: пустого экрана, пока кадр растёт, не остаётся */
+      var w = Math.min(window.innerWidth * .62, 900);
       return { w: w, h: w / 1.6 };
     }
 
@@ -664,10 +694,10 @@
     var tl = window.gsap.timeline({
       scrollTrigger: { trigger: sec, start: 'top top', end: 'bottom bottom', scrub: .6, invalidateOnRefresh: true }
     });
-    tl.to(fig, { width: '100vw', height: window.innerHeight + 'px', duration: .58, ease: 'power2.inOut' }, .08);
-    tl.to(img, { scale: 1, duration: .68, ease: 'none' }, .08);
-    tl.fromTo(band, { opacity: 0 }, { opacity: 1, duration: .18, ease: 'none' }, .52);
-    tl.fromTo(cap, { opacity: 0, y: 34 }, { opacity: 1, y: 0, duration: .2, ease: 'power2.out' }, .6);
+    tl.to(fig, { width: '100vw', height: window.innerHeight + 'px', duration: .64, ease: 'power2.inOut' }, 0);
+    tl.to(img, { scale: 1, duration: .72, ease: 'none' }, 0);
+    tl.fromTo(band, { opacity: 0 }, { opacity: 1, duration: .16, ease: 'none' }, .3);
+    tl.fromTo(cap, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: .16, ease: 'power2.out' }, .02);
     tl.to(cap, { y: -22, duration: .12, ease: 'none' }, .84);
   }
 
@@ -685,6 +715,7 @@
     var media = frames.map(function (f) { return f.querySelector('.sq-fig, .sq-draw'); });
     var imgs = frames.map(function (f) { return f.querySelector('img'); });
     var bodies = frames.map(function (f) { return f.querySelector('.sq-body'); });
+    var nums = frames.map(function (f) { return f.querySelector('.sq-num'); });
 
     var planPaths = [].slice.call(sec.querySelectorAll('.sqp-lines path, .sqp-dims path'));
     planPaths.forEach(function (p) {
@@ -714,17 +745,47 @@
       live.innerHTML = 'Сейчас идёт <b>0' + (i + 1) + '</b> из 05 · ' + STAGE[i] + ' · в работе ' + TONS[i] + ' т';
     }
 
+    /* Переход «накрытием», а не перекрёстным затуханием. Кадры лежат друг
+       поверх друга (поздний в разметке сверху), поэтому новый кадр въезжает
+       ПОВЕРХ старого, а старый убирается только когда новый уже непрозрачен.
+       Перекрёстное затухание давало ровно ноль на стыке двух кадров, и между
+       шагами сцена проваливалась в пустой тёмный экран. */
+    var ОВЕР = .42;   // доля шага, за которую новый кадр накрывает предыдущий
+
+    /* Снять кадр, когда следующий раскрылся целиком. Иначе на быстром
+       скролле старый кадр повисает поверх нового до следующего шага колеса. */
+    function dropFrame(i) {
+      if (i < 0) return;
+      frames[i].style.opacity = 0;
+      frames[i].style.visibility = 'hidden';
+    }
+    /* номер кадра замыкается по значению: отдавать колбэк с общей переменной
+       нельзя, она успеет смениться, пока круг ещё раскрывается */
+    function снятьПо(i) { return function () { dropFrame(i); }; }
+
     function paint(p) {
       var n = frames.length;
+      var t = p * n;                                  // шаг с дробью, 0..n
+      var cur = Math.min(n - 1, Math.floor(p * n));
       for (var i = 0; i < n; i++) {
-        var mid = (i + .5) / n;
-        var d = Math.abs(p - mid) / (0.5 / n);
-        var op = Math.max(0, 1 - d);
+        /* первый кадр держится с самого начала, остальные въезжают на
+           последних ОВЕР доли своего шага */
+        var op = i === 0 ? 1 : Math.max(0, Math.min(1, (t - (i - ОВЕР)) / ОВЕР));
+        if (i < n - 1 && t >= i + 1 - .002) {
+          /* снимаем старый кадр, только когда следующий уже раскрыт целиком,
+             иначе круглое раскрытие мигнёт дырой */
+          var след = media[i + 1];
+          if (!след || !window.gsap.isTweening(след)) op = 0;
+        }
         frames[i].style.opacity = op;
         frames[i].style.visibility = op > .012 ? 'visible' : 'hidden';
-        if (imgs[i]) window.gsap.set(imgs[i], { scale: 1.02 + d * .1 });
+        if (imgs[i]) window.gsap.set(imgs[i], { scale: 1.02 + Math.max(0, 1 - Math.abs(t - i)) * .1 });
+        /* Текст и контурная цифра принадлежат только текущему шагу: два кадра
+           лежат в одной колонке, и если оставить оба, строки разных шагов
+           лягут друг на друга. Переключение здесь жесткое, без наложения. */
+        if (bodies[i]) bodies[i].style.opacity = i === cur ? 1 : 0;
+        if (nums[i]) nums[i].style.opacity = i === cur ? 1 : 0;
       }
-      var cur = Math.min(n - 1, Math.floor(p * n));
       if (cur !== lastIdx) {
         lastIdx = cur;
         labels.forEach(function (l, k) {
@@ -737,8 +798,11 @@
         var m = media[cur];
         if (m && !reduce) {
           window.gsap.fromTo(m, { clipPath: 'circle(3% at 76% 32%)' }, {
-            clipPath: 'circle(98% at 76% 32%)', duration: 1.15, ease: 'power2.inOut', overwrite: 'auto'
+            clipPath: 'circle(98% at 76% 32%)', duration: 1.15, ease: 'power2.inOut', overwrite: 'auto',
+            onComplete: снятьПо(cur - 1)
           });
+        } else {
+          dropFrame(cur - 1);
         }
         var b = bodies[cur];
         if (b && !reduce) window.gsap.fromTo(b, { yPercent: 5 }, { yPercent: 0, duration: .8, ease: 'power3.out', overwrite: 'auto' });
@@ -747,7 +811,14 @@
     }
 
     if (reduce || isNarrow) {
-      frames.forEach(function (f) { f.style.opacity = 1; f.style.visibility = 'visible'; });
+      /* столбиком: все кадры и весь их текст видны сразу, инлайновые opacity
+         от desktop-режима (текст принадлежит только текущему шагу) снимаем */
+      frames.forEach(function (f) {
+        f.style.opacity = 1; f.style.visibility = 'visible';
+        var t1 = f.querySelector('.sq-body'), t2 = f.querySelector('.sq-num');
+        if (t1) t1.style.opacity = '';
+        if (t2) t2.style.opacity = '';
+      });
       setLive(0);
       window.ScrollTrigger.create({
         trigger: sec, start: 'top 70%', end: 'bottom bottom', scrub: .4, invalidateOnRefresh: true,
