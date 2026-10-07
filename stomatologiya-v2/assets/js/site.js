@@ -39,13 +39,18 @@
     var h = Math.floor(mins / 60), m = mins % 60;
     return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
   }
+  // окна только в часы работы: после закрытия или впритык к нему — завтрашние с открытия
   function slots() {
     var n = nskNow();
-    var base = Math.ceil((n.mins + 12) / 20) * 20;
-    return [hm(base), hm(base + 100), hm(base + 260)];
+    var base = Math.max(Math.ceil((n.mins + 12) / 20) * 20, n.open);
+    if (base + 260 <= n.close - 40) return { day: 'сегодня', t: [hm(base), hm(base + 100), hm(base + 260)] };
+    var tomorrowOpen = (n.wd === 'Sa') ? 600 : 480;
+    return { day: 'завтра', t: [hm(tomorrowOpen + 20), hm(tomorrowOpen + 120), hm(tomorrowOpen + 280)] };
   }
   function paintClock() {
-    var n = nskNow(), s = slots();
+    var n = nskNow(), sl = slots(), s = sl.t;
+    var label = $('.hb-free > .mono');
+    if (label) label.textContent = 'Свободно ' + sl.day;
     var clock = $('#hero-clock');
     if (clock) clock.textContent = 'Сейчас в Новосибирске ' + hm(n.mins);
     var s1 = $('#slots'), s2 = $('#slots2');
@@ -55,7 +60,7 @@
     var open = $('#open-now');
     if (open) {
       open.innerHTML = n.isOpen
-        ? 'Открыто сейчас, до ' + hm(n.close) + '. Завтра в ' + s[0]
+        ? 'Открыто сейчас, до ' + hm(n.close) + '. Ближайшее окно ' + sl.day + ' в ' + s[0]
         : (n.mins < n.open ? 'Откроемся в ' + hm(n.open) : 'Закрыто, завтра в ' + (n.wd === 'Su' ? '10:00' : '08:00'));
     }
   }
@@ -95,29 +100,14 @@
         lastY = window.scrollY;
         body.classList.remove('reel-live'); shown = false;
         window.clearTimeout(tOut);
-        tOut = window.setTimeout(function () { body.classList.add('reel-live'); }, 700);
+
       }
     }, { passive: true });
     reel.addEventListener('mouseenter', function () { reel.style.transform += ' scale(1.06)'; });
     reel.addEventListener('mouseleave', function () {
       reel.style.transform = 'translate3d(' + (cx - reel.offsetWidth / 2) + 'px,' + (cy - reel.offsetHeight / 2) + 'px,0)';
     });
-    /* без мыши круг всё равно виден: стоит справа и медленно дышит */
-    var restX = window.innerWidth * .72, restY = window.innerHeight * .44;
-    function breathe() {
-      if (!shown) {
-        cx += (restX - cx) * .06; cy += (restY - cy) * .06;
-        reel.style.transform = 'translate3d(' + (cx - reel.offsetWidth / 2) + 'px,' + (cy - reel.offsetHeight / 2) + 'px,0)';
-        window.requestAnimationFrame(breathe);
-      }
-    }
-    window.setTimeout(function () {
-      if (shown) return;
-      body.classList.add('reel-live');
-      mx = restX; my = restY; cx = restX; cy = restY;
-      reel.style.transform = 'translate3d(' + (cx - reel.offsetWidth / 2) + 'px,' + (cy - reel.offsetHeight / 2) + 'px,0)';
-      breathe();
-    }, 2100);
+
   }
 
   /* ---------- меню ---------- */
@@ -349,26 +339,26 @@
   })();
 
   /* один кадр: квадратное фото растёт до полного экрана */
-  (function () {
+  GSAP.matchMedia().add('(min-width: 900px)', function () {
     var sec = $('.one');
     var ph = $('#one-ph');
     var cap = $('#one-cap');
     if (!sec || !ph || !cap) return;
-    GSAP.set(cap, { opacity: 0, y: 40 });
+    GSAP.set(cap, { opacity: 1, y: 0 });
     var tl = GSAP.timeline({
       scrollTrigger: {
         trigger: sec, start: 'top top', end: () => (window.innerWidth < 980 ? '+=105%' : '+=135%'), pin: '.one-stick', scrub: .6, anticipatePin: 1
       }
     });
-    tl.fromTo(ph, { width: '20vw', height: '20vw', borderRadius: '50%' },
-      { width: '100vw', height: '100svh', borderRadius: 0, ease: 'power2.inOut' }, 0)
+    tl.fromTo(ph, { width: '70vw', height: '74svh', borderRadius: '50%' },
+      { width: '100vw', height: '100svh', top: '50%', borderRadius: 0, ease: 'power2.inOut' }, 0)
       .fromTo('#one-video, #one-ph img', { scale: 1.06 }, { scale: 1.2, ease: 'none' }, 0)
       .to('.one-run', { yPercent: -14, opacity: 0, ease: 'power1.in' }, 0)
       .to(cap, { opacity: 1, y: 0, ease: 'power2.out' }, .55);
-  })();
+  });
 
   /* первый визит: один длинный кинематографичный кадр на четыре слоя */
-  (function () {
+  GSAP.matchMedia().add('(min-width: 900px)', function () {
     var sec = $('.visit');
     if (!sec) return;
     var frames = $$('.vt-fr', sec);
@@ -430,29 +420,30 @@
     tl.to('.vt-head', { y: -26, opacity: .45, ease: 'power1.in', duration: .6 }, .05);
     tl.fromTo('.vt-foot', { y: 22, opacity: .3 }, { y: 0, opacity: 1, ease: 'power2.out', duration: .6 }, D - .6);
     window.__vtTimeline = tl;
-  })();
+  });
 
   /* врачи: горизонтальная лента */
-  (function () {
+  GSAP.matchMedia().add('(min-width: 900px)', function () {
     var sec = $('.docs'), track = $('#docs-track'), bar = $('#docs-bar');
     if (!sec || !track) return;
     var getX = function () {
       return -(track.scrollWidth - window.innerWidth + parseFloat(getComputedStyle(track).paddingLeft || 0));
     };
-    var tween = GSAP.to(track, { x: getX, ease: 'none' });
+    var tween = GSAP.timeline().to({}, { duration: .55 }).to(track, { x: getX, duration: 1, ease: 'none' }).to({}, { duration: .55 });
     window.ScrollTrigger.create({
-      trigger: sec, start: 'top top',
-      end: function () { return '+=' + Math.max(1, track.scrollWidth - window.innerWidth + 40); },
-      pin: true, scrub: .8, invalidateOnRefresh: true, animation: tween,
+      trigger: '.docs-view', start: 'top 90px',
+      end: function () { return '+=' + Math.max(1, track.scrollWidth - window.innerWidth + window.innerHeight * 1.5); },
+      pin: '.docs-view', scrub: .8, invalidateOnRefresh: true, animation: tween,
       onUpdate: function (self) { if (bar) bar.style.transform = 'scaleX(' + self.progress.toFixed(4) + ')'; }
     });
-    $$('.doc-ph img', track).forEach(function (img) {
-      GSAP.fromTo(img, { yPercent: -4 }, {
-        yPercent: 4, ease: 'none',
-        scrollTrigger: { trigger: img, containerAnimation: tween, start: 'left right', end: 'right left', scrub: true }
-      });
-    });
-  })();
+
+  });
+
+  GSAP.matchMedia().add('(max-width: 899px)', function () {
+    var holder = $('.vt-frames'), frames = $$('.vt-fr'), steps = $$('.vt-step');
+    frames.forEach(function (frame, i) { steps[i].prepend(frame); });
+    return function () { frames.forEach(function (frame) { holder.appendChild(frame); }); };
+  });
 
   /* цены: цифры перелистываются */
   $$('.price').forEach(function (el) {

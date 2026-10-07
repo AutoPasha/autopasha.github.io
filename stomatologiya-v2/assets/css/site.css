@@ -594,3 +594,42 @@ body.no-motion .vt-clock b { color: var(--lime); }
 body.no-motion .docs-track { transform: none !important; flex-wrap: wrap; width: auto; }
 body.no-motion .docs-view { overflow: visible; }
 body.no-motion .rv { opacity: 1 !important; transform: none !important; }
+/* Исправления обхода: границы фото и адаптивные сцены. */
+.hb-free > .hf-times { display: flex; column-gap: 24px; }
+.photo-window { overflow: hidden; }
+.q-item .photo-window { margin-top: 22px; }
+.q-item .photo-window img { margin-top: 0; }
+.docs-view { background: var(--sage-l); }
+.docs-track { padding-right: var(--pad); align-items: flex-start; }
+.doc-end .lnk { color: var(--cedar); }
+.doc-end .lnk:hover { color: var(--copper-s); }
+.doc-ph img { max-height: 42svh; }
+.doc-gap, .doc-end { align-self: center; }
+.one-cap { pointer-events: auto; }
+@media (max-width: 899px) {
+  .one-stick { height: auto; min-height: 0; display: block; padding: 0 0 40px; }
+  .one-run { display: none; }
+  .one-ph { position: relative; left: auto; top: auto; translate: none; width: 100%; height: 55svh; border-radius: 0; }
+  .one-cap { position: relative; bottom: auto; margin-top: 28px; opacity: 1; color: var(--cedar); }
+  .one-cap p { color: var(--ink-70); }
+  .vt-stick { height: auto; min-height: 0; overflow: visible; }
+  .vt-frames, .vt-scrim, .vt-trackline, .vt-ghost { display: none; }
+  .vt-in { height: auto; padding-top: 40px; padding-bottom: 40px; gap: 28px; }
+  .vt-head { flex-wrap: wrap; }
+  .vt-clock { text-align: left; }
+  .vt-body { display: block; }
+  .vt-step { position: relative; opacity: 1; padding: 24px 0; }
+  .vt-step .vt-fr { position: relative; inset: auto; width: 100%; height: 48svh; opacity: 1; overflow: hidden; margin-bottom: 24px; }
+  .vt-step .vt-fr img { height: 100%; }
+  .docs-view { overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--pad); }
+  .docs-track { width: max-content; gap: 24px; }
+  .doc, .doc-end { width: calc(100vw - 2 * var(--pad)); max-width: 380px; scroll-snap-align: start; }
+  .doc-gap { display: none; }
+  .doc-ph img { max-height: none; aspect-ratio: 3/4; }
+  .docs-bar { display: none; }
+}
+
+@media (min-width: 900px) {
+  .one-ph { top: 40%; }
+}
+.doc-ph img { height: auto; }
