@@ -1,0 +1,622 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Северсталькон: металлоконструкции для зданий и ангаров, Череповец</title>
+<meta name="description" content="ООО «Северный завод стальных конструкций»: каркасы зданий и ангаров, фермы и балки, лестницы и площадки, резервуары. Цех 6 800 м² в Череповце, до 900 т в месяц, расчёт по чертежам за 2 рабочих дня.">
+<meta name="theme-color" content="#0E1013">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"ООО «Северный завод стальных конструкций»","alternateName":"Северсталькон","telephone":"+7 (8202) 49-17-60","email":"zakaz@severstalkon.ru","foundingDate":"2009","address":{"@type":"PostalAddress","streetAddress":"Промышленная ул., 14, цех 3","addressLocality":"Череповец","addressRegion":"Вологодская область","addressCountry":"RU"},"geo":{"@type":"GeoCoordinates","latitude":59.116,"longitude":39.782},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"17:00"}],"sameAs":["https://t.me/severstalkon_sales"]}</script>
+<link rel="preload" href="assets/fonts/unbounded/normal-300-900-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/onest/normal-300-800-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/jetbrains-mono/normal-400-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/brand.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/js/lib/gsap.min.js" defer></script>
+<script src="assets/js/lib/ScrollTrigger.min.js" defer></script>
+<script src="assets/js/lib/lenis.min.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body class="no-js">
+
+<!-- ================= Заставка: год основания табло ================= -->
+<div class="boot" id="boot" aria-hidden="true">
+  <div class="boot-year">
+    <b class="flap" data-to="2">2</b><b class="flap" data-to="0">0</b><b class="flap" data-to="0">0</b><b class="flap" data-to="9">9</b>
+  </div>
+  <p class="boot-meta mono">Северный завод стальных конструкций, Череповец, цех 3</p>
+  <div class="boot-seam"><i></i></div>
+</div>
+
+<!-- вертикальный шов по левому краю страницы, бежит по мере прокрутки -->
+<div class="seam-spine" id="seamSpine" aria-hidden="true"><i></i></div>
+<!-- зерно плёнки поверх всего -->
+<div class="grain" aria-hidden="true"></div>
+
+<a class="skip" href="#produkciya">К продукции</a>
+
+<!-- ================= Шапка: только слово, телефон и круглая кнопка ================= -->
+<header class="top" id="top">
+  <div class="top-in">
+    <a class="logo" href="#top" aria-label="Северсталькон, наверх">
+      <img src="assets/img/logo.svg" alt="Северсталькон" width="1170" height="122">
+    </a>
+    <a class="top-tel" href="tel:+78202491760">+7 (8202) 49-17-60</a>
+    <button class="burger" id="burger" type="button" aria-label="Меню" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="menu" id="menu" hidden>
+  <nav class="menu-list" aria-label="Меню сайта">
+    <a href="#produkciya"><span>Продукция</span></a>
+    <a href="#ceh"><span>Цех и станки</span></a>
+    <a href="#obyekty"><span>Объекты</span></a>
+    <a href="#zakaz"><span>Как идёт заказ</span></a>
+    <a href="#raschet"><span>Расчёт стоимости</span></a>
+    <a href="#kontakty"><span>Контакты</span></a>
+  </nav>
+  <div class="menu-foot">
+    <a href="tel:+78202491760">+7 (8202) 49-17-60</a>
+    <a href="mailto:zakaz@severstalkon.ru">zakaz@severstalkon.ru</a>
+    <a href="https://t.me/severstalkon_sales" target="_blank" rel="noopener">Telegram @severstalkon_sales</a>
+    <span>Пн-пт 8:00-17:00, Череповец</span>
+  </div>
+</div>
+
+<main>
+
+<!-- ================= Первый экран: кинокадр, чертёжная разметка, слово ================= -->
+<section class="hero" id="hero">
+  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto"
+         poster="assets/img/hero-poster.jpg" aria-hidden="true">
+    <source src="assets/video/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-veil" aria-hidden="true"></div>
+  <div class="hero-sweep" aria-hidden="true"></div>
+  <div class="hero-scope" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+  <div class="hero-in">
+    <div class="hero-top">
+      <p class="hero-place mono">Череповец, Промышленная 14, цех 3 · с 2009 года</p>
+      <p class="hero-board mono"><i class="pulse" aria-hidden="true"></i>в цеху <b id="liveTon">312</b> т · отгрузка сегодня <b id="liveTime">16:40</b></p>
+    </div>
+
+    <div class="hero-mid">
+      <h1 class="hero-head">
+        <span class="hero-sub">Каркасы зданий, ангаров и площадок. Расчёт по чертежам за <em>2 рабочих дня</em>, монтаж своими бригадами</span>
+      </h1>
+
+      <div class="hero-dim">
+        <svg class="hero-dim-svg" viewBox="0 0 1000 26" fill="none" stroke="currentColor" stroke-width="1" preserveAspectRatio="none" aria-hidden="true">
+          <path class="hd-path" d="M0 19 H1000 M0 9 V27 M250 13 V25 M500 9 V27 M750 13 V25 M1000 9 V27"/>
+        </svg>
+        <p class="hero-dim-tx mono"><span>24 000</span><span>шаг колонн 3 000</span><span>М 1:100</span></p>
+      </div>
+
+      <div class="hero-foot">
+        <a class="hero-cta" href="#raschet">
+          <span>Рассчитать стоимость</span>
+          <svg viewBox="0 0 40 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M0 6h38M33 1l5 5-5 5"/></svg>
+        </a>
+        <p class="hero-note mono">Расчёт бесплатный, ответ в течение рабочего дня</p>
+      </div>
+    </div>
+
+    <div class="hero-word">
+      <span class="hw-wrap"><span class="hw" id="hwWord">СЕВЕР<br class="hw-br">СТАЛЬКОН</span><i class="hw-seam" id="hwSeam"></i></span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Сцена: чертёж, каркас, металл ================= -->
+<section class="draw" id="certezh">
+  <div class="draw-stick">
+    <div class="draw-grid" aria-hidden="true"></div>
+
+    <div class="draw-head" aria-hidden="true">
+      <p class="draw-cap">Ферма покрытия. Разрез 1-1</p>
+      <p class="mono">Шаг колонн 3 000, пролёт 24 000, М 1:100</p>
+    </div>
+
+    <div class="draw-photo grade" id="drawPhoto" aria-hidden="true">
+      <img src="assets/img/hero-angar.jpg" alt="" width="1152" height="864" loading="lazy">
+    </div>
+
+    <div class="draw-plan" aria-hidden="true">
+      <svg class="plan" viewBox="0 0 1200 600" fill="none" preserveAspectRatio="xMidYMid meet">
+        <g class="plan-iso" opacity="0"><g class="plan-iso-rot"><g transform="matrix(0.87 0.5 -0.435 0.25 215 18)"><use href="#truss" /></g></g></g>
+        <g class="plan-lines" id="truss" stroke="currentColor" stroke-width="1.5" stroke-linecap="square">
+          <path d="M60 120 H1140" class="axis"/>
+          <path d="M100 20 V560" class="axis"/>
+          <path d="M140 190 H1060"/>
+          <path d="M140 420 H1060"/>
+          <path d="M140 190 V420"/>
+          <path d="M255 190 V420"/>
+          <path d="M370 190 V420"/>
+          <path d="M485 190 V420"/>
+          <path d="M600 190 V420"/>
+          <path d="M715 190 V420"/>
+          <path d="M830 190 V420"/>
+          <path d="M945 190 V420"/>
+          <path d="M1060 190 V420"/>
+          <path d="M140 190 L255 420"/>
+          <path d="M255 420 L370 190"/>
+          <path d="M370 190 L485 420"/>
+          <path d="M485 420 L600 190"/>
+          <path d="M600 190 L715 420"/>
+          <path d="M715 420 L830 190"/>
+          <path d="M830 190 L945 420"/>
+          <path d="M945 420 L1060 190"/>
+        </g>
+        <g class="plan-nodes"><circle class="plan-node" cx="140" cy="190" r="4.5"/><circle class="plan-node" cx="255" cy="190" r="4.5"/><circle class="plan-node" cx="370" cy="190" r="4.5"/><circle class="plan-node" cx="485" cy="190" r="4.5"/><circle class="plan-node" cx="600" cy="190" r="4.5"/><circle class="plan-node" cx="715" cy="190" r="4.5"/><circle class="plan-node" cx="830" cy="190" r="4.5"/><circle class="plan-node" cx="945" cy="190" r="4.5"/><circle class="plan-node" cx="1060" cy="190" r="4.5"/><circle class="plan-node" cx="140" cy="420" r="4.5"/><circle class="plan-node" cx="255" cy="420" r="4.5"/><circle class="plan-node" cx="370" cy="420" r="4.5"/><circle class="plan-node" cx="485" cy="420" r="4.5"/><circle class="plan-node" cx="600" cy="420" r="4.5"/><circle class="plan-node" cx="715" cy="420" r="4.5"/><circle class="plan-node" cx="830" cy="420" r="4.5"/><circle class="plan-node" cx="945" cy="420" r="4.5"/><circle class="plan-node" cx="1060" cy="420" r="4.5"/></g>
+        <g class="plan-dims" stroke="currentColor" stroke-width="1" stroke-linecap="square">
+          <path d="M140 520 H1060 M140 508 V532 M1060 508 V532"/>
+          <path d="M140 470 H462 M140 458 V482 M462 458 V482"/>
+          <path d="M72 190 V420 M60 190 H84 M60 420 H84"/>
+        </g>
+        <g class="plan-txt" fill="currentColor">
+          <text class="mono d1" x="600" y="546">24 000</text>
+          <text class="mono d2" x="301" y="496">8 400</text>
+          <text class="mono d3" x="46" y="305" text-anchor="middle" transform="rotate(-90 46 305)">6 000</text>
+        </g>
+        <g class="plan-scale" stroke="currentColor" stroke-width="1" stroke-linecap="square">
+          <path d="M140 566 H448 M140 558 V574 M294 558 V574 M448 558 V574"/>
+        </g>
+        <g class="plan-txt" fill="currentColor">
+          <text class="mono s1" x="132" y="596">0</text>
+          <text class="mono s2" x="424" y="596">6 м</text>
+        </g>
+      </svg>
+    </div>
+
+    <div class="draw-steps">
+      <p class="draw-step on"><b>Чертёж</b><span>Расчёт за 2 рабочих дня</span></p>
+      <p class="draw-step"><b>Металл</b><span>14 дней в цеху</span></p>
+      <p class="draw-step"><b>Монтаж</b><span>Своими бригадами</span></p>
+    </div>
+
+    <p class="draw-title mono">Ферма покрытия · разрез 1-1 · лист 1 из 1 · М 1:100 · ГОСТ 23118</p>
+
+    <div class="draw-bar" aria-hidden="true"><i id="drawBar"></i></div>
+  </div>
+</section>
+<!-- ================= Продукция: наборная полоса, не карточки ================= -->
+<section class="prod" id="produkciya">
+  <header class="prod-head wrap">
+    <h2>Что<br>производим</h2>
+    <p class="prod-lead">Пять позиций, которые делаем чаще всего. Цена за тонну готовой конструкции с покраской и доставкой до 50 км от Череповца, срок считаем от запуска в цех. Наведите строку, чтобы увидеть, как это выглядит в металле.</p>
+  </header>
+
+  <figure class="prod-wide">
+    <img src="assets/img/tsekh.jpg" alt="Цех днём: ряды сварных балок под мостовым краном, свет из высоких окон через пыль" width="949" height="782" loading="lazy">
+    <figcaption class="mono">Цех 3, дневной свет из высоких окон · профиля на хранении 1 240 т</figcaption>
+  </figure>
+
+  <div class="prod-sheet" id="prodSheet">
+    <article class="pr" data-img="assets/img/hero-angar.jpg">
+      <p class="pr-meta mono"><i>01</i>Пролёт до 36 м, высота до 12 м</p>
+      <h3 class="pr-h">Каркасы зданий<br>и ангаров</h3>
+      <figure class="pr-fig"><img src="assets/img/hero-angar.jpg" alt="Каркас ангара на стройке: колонны и фермы кровли собраны, кран сверху" width="1152" height="864" loading="lazy"></figure>
+      <p class="pr-p">Колонны, балки, связи. Считаем под снеговую и ветровую нагрузку вашего района, под промышленные и складские корпуса. По объекту даём ведомость объёмов, по которой потом считаем фактический вес.</p>
+      <p class="pr-price"><span class="pfrom">от</span><span class="price" data-to="118 000">118 000</span><u>₽/т</u></p>
+      <p class="pr-term mono">срок от 21 дня</p>
+    </article>
+
+    <article class="pr" data-img="assets/img/fermy.jpg">
+      <p class="pr-meta mono"><i>02</i>Склад профиля, отгрузка сразу</p>
+      <h3 class="pr-h">Фермы и балки<br>перекрытия</h3>
+      <figure class="pr-fig"><img src="assets/img/fermy.jpg" alt="Ряды сварных ферм и двутавров на складе готовой продукции" width="1248" height="832" loading="lazy"></figure>
+      <p class="pr-p">Сварные фермы из парных уголков и двутавра, прогоны, связи жёсткости. Часть профилей держим на складе готовой продукции и отгружаем в день заявки.</p>
+      <p class="pr-price"><span class="pfrom">от</span><span class="price" data-to="126 400">126 400</span><u>₽/т</u></p>
+      <p class="pr-term mono">срок от 14 дней</p>
+    </article>
+
+    <article class="pr" data-img="assets/img/lestnitsa.jpg">
+      <p class="pr-meta mono"><i>03</i>ГОСТ 23118, цинкование по заказу</p>
+      <h3 class="pr-h">Лестницы,<br>площадки, ограждения</h3>
+      <figure class="pr-fig"><img src="assets/img/lestnitsa.jpg" alt="Марши лестницы и площадки обслуживания, сложенные в цехе" width="1248" height="832" loading="lazy"></figure>
+      <p class="pr-p">Марши, площадки обслуживания, лестничные ограждения для кровли. Ступени гофрированные или решётчатые, перила по ГОСТ. На кровлю ангаров на 2 400 м² уходит около 9 тонн.</p>
+      <p class="pr-price"><span class="pfrom">от</span><span class="price" data-to="143 000">143 000</span><u>₽/т</u></p>
+      <p class="pr-term mono">срок от 10 дней</p>
+    </article>
+
+    <article class="pr" data-img="assets/img/rezerveyar.jpg">
+      <p class="pr-meta mono"><i>04</i>2 400 м³, дни по вашему чертежу</p>
+      <h3 class="pr-h">Резервуары<br>и баки</h3>
+      <figure class="pr-fig"><img src="assets/img/rezerveyar.jpg" alt="Вертикальные резервуары и баки с площадками и лестницами на площадке завода" width="1248" height="832" loading="lazy"></figure>
+      <p class="pr-p">Вертикальные и горизонтальные ёмкости, площадки обслуживания, спиральные лестницы. Сварка аттестованными сварщиками, швы под УЗК или ВИК по требованию заказчика.</p>
+      <p class="pr-price"><span class="pfrom">от</span><span class="price" data-to="158 900">158 900</span><u>₽/т</u></p>
+      <p class="pr-term mono">срок от 30 дней</p>
+    </article>
+
+    <article class="pr" data-img="assets/img/inzhener.jpg">
+      <p class="pr-meta mono"><i>05</i>Pdf, dwg или планы здания</p>
+      <h3 class="pr-h">Нестандарт<br>по чертежам</h3>
+      <figure class="pr-fig"><img src="assets/img/inzhener.jpg" alt="Руки инженера с чертежом конструкции и рулеткой" width="1248" height="832" loading="lazy"></figure>
+      <p class="pr-p">Рамки оборудования, эстакады, силоса, обвязка трубопроводов, площадки под мостки. Присылайте чертёж, инженер разберёт узлы и скажет, что можно упростить без потери прочности.</p>
+      <p class="pr-price"><span class="pfrom">от</span><span class="price" data-to="134 700">134 700</span><u>₽/т</u></p>
+      <p class="pr-term mono">срок от 18 дней</p>
+    </article>
+  </div>
+
+  <div class="prod-prog" aria-hidden="true"><i id="prodProg"></i></div>
+
+  <p class="prod-foot wrap mono">Цена указана за тонну готовой конструкции с грунтом ГФ-021 и эпоксидной покраской. Доставка своим транспортом по Череповцу и области до 50 км включена.</p>
+</section>
+
+<!-- ================= Цех: тёмная сцена, свет даёт кадр ================= -->
+<section class="shop" id="ceh">
+  <div class="wrap shop-intro">
+    <h2>Один цех,<br>полный цикл</h2>
+    <div class="shop-intro-side">
+      <p class="shop-lead" id="shopLead">Металл режем, гнём, варим и красим сами, поэтому срок держим на участке, а не в очереди к субподрядчику. Весь металл проходит через наше оборудование и нашу лабораторию, протокол ОТК на каждую партию выдаём мы.</p>
+    </div>
+  </div>
+
+  <div class="wrap shop-facts">
+    <div class="fx"><b class="mono">6 800</b><span>м² цеха, два пролёта по 24 м</span></div>
+    <div class="fx"><b class="mono">900</b><span>т металлоконструкций в месяц</span></div>
+    <div class="fx"><b class="mono">140</b><span>человек в цехе и на монтаже</span></div>
+    <div class="ring" id="ringBox">
+      <svg class="ring-svg" viewBox="0 0 132 132" fill="none" aria-hidden="true">
+        <circle class="ring-bg" cx="66" cy="66" r="60"/>
+        <circle class="ring-fg" id="ringFg" cx="66" cy="66" r="60"/>
+      </svg>
+      <b class="ring-num mono" id="ringNum">86<i>%</i></b>
+      <span class="ring-cap">операций делаем<br>в своём цехе</span>
+    </div>
+  </div>
+
+  <div class="shop-pin" id="shopPin">
+    <div class="shop-stage">
+      <figure class="mach-fig grade"><img src="assets/img/ceh-night.jpg" alt="Цех ночью: ряды сварных балок под мостовым краном" width="1248" height="832" loading="lazy"></figure>
+      <figure class="mach-fig grade"><img src="assets/img/plazma.jpg" alt="Плазменная резка листа: светящаяся линия реза и искры под соплом" width="1248" height="832" loading="lazy"></figure>
+      <figure class="mach-fig grade"><img src="assets/img/fermy.jpg" alt="Ряд профилей и сварных ферм на складе готовой продукции" width="1248" height="832" loading="lazy"></figure>
+      <figure class="mach-fig grade"><img src="assets/img/svar.jpg" alt="Сварщик в маске, сноп оранжевых искр в тёмном цехе" width="1248" height="832" loading="lazy"></figure>
+      <figure class="mach-fig grade"><img src="assets/img/pokras.jpg" alt="Окрашенные балки в покрасочном цехе" width="1248" height="832" loading="lazy"></figure>
+
+      <ul class="mach" id="machines">
+        <li class="on">
+          <span class="m-idx mono">01</span>
+          <span class="m-name">Цех 3, пролёт 24 м</span>
+          <span class="m-spec mono">мостовой кран 32 т, 6 800 м², с 2009 года</span>
+        </li>
+        <li>
+          <span class="m-idx mono">02</span>
+          <span class="m-name">Плазменная резка Messer</span>
+          <span class="m-spec mono">лист до 12 м, толщина до 40 мм</span>
+        </li>
+        <li>
+          <span class="m-idx mono">03</span>
+          <span class="m-name">Ленточнопильный центр</span>
+          <span class="m-spec mono">профиль до 600 мм, резка в размер, свой профильный склад</span>
+        </li>
+        <li>
+          <span class="m-idx mono">04</span>
+          <span class="m-name">Сварочный участок</span>
+          <span class="m-spec mono">полуавтомат и ручная УЗК, швы по ГОСТ 5264</span>
+        </li>
+        <li>
+          <span class="m-idx mono">05</span>
+          <span class="m-name">Дробеструйная камера и покраска</span>
+          <span class="m-spec mono">степень Sa 2,5, грунт ГФ-021, эпоксид, RAL по образцу</span>
+        </li>
+      </ul>
+      <p class="mach-note mono">ОТК: геометрия, комплектность, протокол на партию</p>
+    </div>
+    <div class="shop-bar" aria-hidden="true"><i id="shopBar"></i></div>
+  </div>
+</section>
+<!-- ================= Объекты: журнальная полоса, разный масштаб кадров ================= -->
+<section class="objs" id="obyekty">
+  <header class="objs-head wrap">
+    <h2>Что уже<br>стоит</h2>
+    <p class="objs-lead">Тоннаж и сроки из журнала производства. По каждому объекту готовы показать договор, ведомость объёмов и протоколы ОТК.</p>
+  </header>
+
+  <div class="ob-wrap">
+
+    <!-- широкая полоса 21:9 во всю ширину, цифры стоят на кадре -->
+    <article class="ob ob-a">
+      <figure class="ob-fig">
+        <img src="assets/img/obj-sklad.jpg" alt="Готовый склад 2 400 м² в Вологде вечером, стальные колонны под кровлей, мокрый асфальт" width="1152" height="864" loading="lazy">
+        <div class="ob-a-nums">
+          <p class="ob-a-city mono">Вологда, сдан в марте 2025</p>
+          <p class="ob-a-figs"><b class="mono">214</b><i>тонн металла</i><b class="mono">46</b><i>дней монтажа</i></p>
+        </div>
+      </figure>
+      <div class="ob-cap ob-cap-a">
+        <h3>Склад 2 400 м², Вологда</h3>
+        <p>Пролёт 24 м, стальные колонны и фермы под кровлю, силоса на две секции. Смонтировали за 46 дней, зимой работали по графику заказчика, без остановки работ.</p>
+      </div>
+    </article>
+
+    <!-- текстовая колонка и высокий кадр, сдвинутые друг относительно друга -->
+    <article class="ob ob-b">
+      <div class="ob-b-text">
+        <p class="ob-strip mono">Вологда <span>96 т</span> <span>61 день</span></p>
+        <h3>Пешеходный мост через дорогу, 54 м</h3>
+        <p>Переход к жилому кварталу. Сквозные фермы, настил из профнастила, поручни в сигнальный оранжевый по требованию заказчика. Проект согласовывали с городом четыре месяца, металл варили параллельно.</p>
+        <p class="ob-b-note mono">Основные балки: сдвоенный двутав 40Б1, шаг 3 м</p>
+      </div>
+      <figure class="ob-fig"><img src="assets/img/obj-most.jpg" alt="Пешеходный стальный мост 54 м через дорогу, поручни в сигнальный оранжевый" width="1152" height="864" loading="lazy"></figure>
+    </article>
+
+    <!-- широкая лента с подписью, поднятой вверх в пустое поле -->
+    <article class="ob ob-c">
+      <figure class="ob-fig"><img src="assets/img/obj-angar.jpg" alt="Утеплённый ангар для техники в Архангельской области, ворота и снег на площадке" width="1152" height="864" loading="lazy"></figure>
+      <div class="ob-c-cap">
+        <p class="ob-strip mono">Онега <span>128 т</span> <span>38 дней</span></p>
+        <h3>Ангар для техники, 1 800 м²</h3>
+        <p>Под ремонтный парк лесного хозяйства. Зимний вариант: утеплённый контур, ворота 6 на 6 м, продуваемые связи. Снеговая нагрузка для Онеги считалась отдельно.</p>
+      </div>
+    </article>
+
+    <article class="ob ob-a ob-d">
+      <figure class="ob-fig">
+        <img src="assets/img/obj-estakada.jpg" alt="Эстакада трубопроводов: стальные балки на Т-образных колоннах, четыре трассы труб, площадка обслуживания с ограждением" width="1152" height="864" loading="lazy">
+        <div class="ob-a-nums">
+          <p class="ob-a-city mono">Ухта, сдана в сентябре 2024</p>
+          <p class="ob-a-figs"><b class="mono">86</b><i>тонн металла</i><b class="mono">29</b><i>дней монтажа</i></p>
+        </div>
+      </figure>
+      <div class="ob-cap ob-cap-a">
+        <h3>Эстакада трубопроводов, 340 м</h3>
+        <p>Обвязка четырёх трасс на Т-образных колоннах, площадки обслуживания с ограждением по ГОСТ. Считали по рамочной схеме: инженер разложил 86 тонн по узлам за два рабочих дня, монтаж шёл по готовым секциям.</p>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- фото, которое растёт из кадра на весь экран -->
+  <div class="ob-x" id="moX">
+    <div class="ob-x-stage">
+      <figure class="ob-x-fig grade"><img src="assets/img/montazh.jpg" alt="Ночной монтаж каркаса: кран опускает ферму на колонны, прожекторы снизу" width="1152" height="864" loading="lazy"></figure>
+      <div class="ob-x-band" aria-hidden="true"></div>
+      <div class="ob-x-cap">
+        <p class="mono">Монтаж фермы пролётом 24 м, Череповец, октябрь</p>
+        <p class="ob-x-nums"><b class="mono">24</b><i>м пролёт</i><b class="mono">6</b><i>дней монтажа</i></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Как идёт заказ: пять кадров, шов и живой счётчик ================= -->
+<section class="flow" id="zakaz">
+  <div class="wrap flow-head">
+    <h2>Как идёт<br>заказ</h2>
+    <p id="flowLead">Остальное держим на себе: свой расчёт, свой цех, свой транспорт и свои монтажники. От вас нужны чертежи или ТЗ, доступ на площадку и подписанный договор.</p>
+  </div>
+
+  <div class="seq" id="seq">
+    <div class="seq-stick">
+
+      <article class="sq sq-1">
+        <figure class="sq-fig"><img src="assets/img/inzhener.jpg" alt="Руки инженера с чертежом конструкции и линейкой" width="1248" height="832" loading="lazy"></figure>
+        <p class="sq-num mono">01</p>
+        <div class="sq-body">
+          <h3>Чертёж или ТЗ</h3>
+          <p>Присылаете pdf, dwg или планы здания. Если чертежа нет, описываете пролёт, высоту и что должно стоять внутри. Этого хватает для предварительной цены.</p>
+          <p class="sq-term mono">2 дня</p>
+        </div>
+      </article>
+
+      <article class="sq sq-2">
+        <figure class="sq-draw" aria-hidden="true">
+          <svg class="sq-plan" viewBox="0 0 900 420" fill="none" preserveAspectRatio="xMidYMid meet">
+            <g class="sqp-lines" stroke="currentColor" stroke-width="1.4" stroke-linecap="square">
+              <path d="M60 130 H840"/>
+              <path d="M60 300 H840"/>
+              <path d="M60 130 V300"/>
+              <path d="M188 130 V300"/>
+              <path d="M316 130 V300"/>
+              <path d="M444 130 V300"/>
+              <path d="M572 130 V300"/>
+              <path d="M700 130 V300"/>
+              <path d="M840 130 V300"/>
+              <path d="M60 130 L188 300"/>
+              <path d="M188 300 L316 130"/>
+              <path d="M316 130 L444 300"/>
+              <path d="M444 300 L572 130"/>
+              <path d="M572 130 L700 300"/>
+              <path d="M700 300 L840 130"/>
+            </g>
+            <g class="sqp-dims" stroke="currentColor" stroke-width="1" stroke-linecap="square">
+              <path d="M60 356 H840 M60 344 V368 M840 344 V368"/>
+              <path d="M60 300 V130 M48 130 H72 M48 300 H72"/>
+            </g>
+            <g class="sqp-txt" fill="currentColor">
+              <text class="mono" x="450" y="382">24 000</text>
+              <text class="mono" x="36" y="215" text-anchor="middle" transform="rotate(-90 36 215)">8 400</text>
+            </g>
+          </svg>
+        </figure>
+        <p class="sq-num mono">02</p>
+        <div class="sq-body">
+          <h3>Расчёт и договор</h3>
+          <p>Инженер раскладывает конструкцию по узлам, даёт вес, стоимость металла и работ. Присылаем ведомость объёмов и график производства, цену и срок фиксируем в договоре.</p>
+          <p class="sq-term mono">2 рабочих дня + 1 день</p>
+        </div>
+      </article>
+
+      <article class="sq sq-3">
+        <figure class="sq-fig"><img src="assets/img/plazma.jpg" alt="Плазменная резка листа: светящаяся линия реза и искры под соплом" width="1248" height="832" loading="lazy"></figure>
+        <p class="sq-num mono">03</p>
+        <div class="sq-body">
+          <h3>Резка и сборка</h3>
+          <p>Плазменная резка листа, ленточная резка профиля в размер, сборка на кондукторе с прихваткой по узлам. Каждую партию взвешиваем и сверяем с ведомостью объёмов.</p>
+          <p class="sq-term mono">от 3 дней</p>
+        </div>
+      </article>
+
+      <article class="sq sq-4">
+        <figure class="sq-fig"><img src="assets/img/svar.jpg" alt="Сварщик в маске, сноп оранжевых искр в тёмном цехе" width="1248" height="832" loading="lazy"></figure>
+        <p class="sq-num mono">04</p>
+        <div class="sq-body">
+          <h3>Сварка и покраска</h3>
+          <p>Полуавтомат и ручная сварка по ГОСТ 5264, швы под УЗК, дробеструйная камера до Sa 2,5 и покраска по RAL. Раз в неделю присылаем фото с участка и отчёт по фактическому весу.</p>
+          <p class="sq-term mono">от 11 дней</p>
+        </div>
+      </article>
+
+      <article class="sq sq-5">
+        <figure class="sq-fig"><img src="assets/img/montazh.jpg" alt="Ночной монтаж каркаса: кран опускает ферму на колонны, прожекторы снизу" width="1248" height="832" loading="lazy"></figure>
+        <p class="sq-num mono">05</p>
+        <div class="sq-body">
+          <h3>Доставка и монтаж</h3>
+          <p>Вывозим своим транспортом по графику, монтируем своей бригадой. По северу области возим техникой с завода, работаем зимой и в выходные по согласованию с заказчиком.</p>
+          <p class="sq-term mono">от 3 дней</p>
+        </div>
+      </article>
+
+      <p class="seq-live mono" id="seqLive">Сейчас идёт <b>01</b> из 05 · чертёж или ТЗ · в работе 0 т</p>
+
+      <div class="seq-seam">
+        <div class="seq-line" aria-hidden="true"><i id="seqHead"></i></div>
+        <ul class="seq-labels">
+          <li class="on"><span>Чертёж</span><i class="mono">2 дня</i></li>
+          <li><span>Расчёт</span><i class="mono">2 + 1</i></li>
+          <li><span>Резка</span><i class="mono">3 дня</i></li>
+          <li><span>Сварка</span><i class="mono">11 дней</i></li>
+          <li><span>Монтаж</span><i class="mono">3 дня</i></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="wrap">
+    <figure class="quote">
+      <blockquote>Считаем не тонны, а узлы. Каждый узел, который можно упростить, стоит нам денег и заказчику месяца.</blockquote>
+      <figcaption class="mono">Алексей Ковалёв, главный инженер</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= Расчёт: заявка как короткая сцена ================= -->
+<section class="land" id="raschet">
+  <div class="wrap land-grid">
+    <div class="land-ask">
+      <h2 class="land-h">Расчёт<br>стоимости</h2>
+      <p class="land-sub">Пришлите чертёж или опишите пролёт и назначение здания. Инженер разложит конструкцию по узлам и пришлёт ведомость объёмов с ценой и сроком. Отвечаем в течение рабочего дня.</p>
+      <ul class="land-steps">
+        <li><span class="mono">01</span>Присылаете чертёж, dwg или ТЗ</li>
+        <li><span class="mono">02</span>Расчёт и ведомость объёмов за 2 рабочих дня</li>
+        <li><span class="mono">03</span>Согласование и договор с фиксированной ценой</li>
+      </ul>
+      <p class="land-meta mono">Вологодская и Архангельская области, Карелия, Северо-Запад</p>
+    </div>
+
+    <form class="ask-form" id="calcForm" novalidate>
+      <div class="ask-row">
+        <p class="ask-q"><i class="mono">01</i>Что делаем</p>
+        <div class="ask-chips" id="chips">
+          <label class="chip"><input type="radio" name="type" value="Каркас здания или ангара" checked><span>Каркас здания или ангара</span></label>
+          <label class="chip"><input type="radio" name="type" value="Фермы и балки перекрытия"><span>Фермы и балки перекрытия</span></label>
+          <label class="chip"><input type="radio" name="type" value="Лестницы, площадки, ограждения"><span>Лестницы, площадки, ограждения</span></label>
+          <label class="chip"><input type="radio" name="type" value="Резервуары и баки"><span>Резервуары и баки</span></label>
+          <label class="chip"><input type="radio" name="type" value="Нестандарт по чертежам"><span>Нестандарт по чертежам</span></label>
+        </div>
+      </div>
+
+      <div class="ask-row">
+        <p class="ask-q"><i class="mono">02</i>Сколько примерно металла</p>
+        <div class="ask-vol">
+          <output class="ask-vol-num mono" id="volOut" for="fVol">180 т</output>
+          <input class="ask-range" type="range" id="fVol" name="vol" min="20" max="600" step="10" value="180" aria-label="Примерный тоннаж, тонн">
+          <p class="ask-hint mono">Ползунок на глаз. Точный вес посчитает инженер по вашему чертежу</p>
+        </div>
+      </div>
+
+      <div class="ask-row">
+        <p class="ask-q"><i class="mono">03</i>Куда и когда</p>
+        <input class="ask-line" type="text" id="fCity" name="city" placeholder="Город и адрес площадки" autocomplete="address-level2">
+        <label class="ask-switch">
+          <input type="checkbox" id="fMount" name="mount" checked>
+          <span class="sw" aria-hidden="true"></span>
+          <span class="sw-tx">монтаж на площадке нужен</span>
+        </label>
+      </div>
+
+      <div class="ask-row">
+        <p class="ask-q"><i class="mono">04</i>Как с вами связаться</p>
+        <input class="ask-line ask-line-big" type="tel" id="fPhone" name="phone" placeholder="+7 (___) ___-__-__" inputmode="tel" autocomplete="tel">
+        <input class="ask-line" type="text" id="fName" name="name" placeholder="Имя или название компании" autocomplete="name">
+      </div>
+
+      <div class="ask-row">
+        <p class="ask-q"><i class="mono">05</i>Чертёж или ТЗ</p>
+        <div class="ask-file">
+          <label class="filebtn" for="fFile">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.4 11.1l-8.5 8.5a5 5 0 01-7.1-7.1l9.2-9.2a3.4 3.4 0 014.8 4.8l-9.2 9.2a1.8 1.8 0 01-2.5-2.5l8.5-8.5"/></svg>
+            <span id="fileName">Приложить pdf, dwg или zip</span>
+          </label>
+          <input type="file" id="fFile" name="file" class="fileinput" accept=".pdf,.dwg,.doc,.docx,.zip">
+        </div>
+      </div>
+
+      <div class="ask-send">
+        <p class="ask-mail mono" id="askMail">Письмо соберётся на zakaz@severstalkon.ru</p>
+        <div class="f-send-wrap">
+          <button class="send" type="submit" id="sendBtn" aria-label="Отправить расчёт на почту">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            <span class="send-tx">Отправить<br>расчёт</span>
+          </button>
+        </div>
+      </div>
+      <p class="f-status" id="fStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ================= Финал: панорама ================= -->
+<section class="vista" id="vista">
+  <div class="vista-stage">
+    <figure class="vista-fig"><img src="assets/img/obj-sklad.jpg" alt="Панорама готового склада вечером: стальной каркас под кровлей, мокрый асфальт и тёплый свет фонарей" width="1152" height="864" loading="lazy"></figure>
+    <div class="vista-shade" aria-hidden="true"></div>
+    <div class="wrap vista-in">
+      <p class="vista-live"><i class="pulse" aria-hidden="true"></i>Приём заявок до 16:00, ответ в течение дня</p>
+      <h2 class="vista-h">Череповец,<br>Промышленная 14</h2>
+      <p class="vista-meta mono">цех 6 800 м² · 140 человек · до 900 т в месяц · с 2009 года</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= Подвал ================= -->
+<footer class="foot" id="kontakty">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="fcol">
+        <h3>Контакты</h3>
+        <a href="tel:+78202491760">+7 (8202) 49-17-60</a>
+        <a href="mailto:zakaz@severstalkon.ru">zakaz@severstalkon.ru</a>
+        <a href="https://t.me/severstalkon_sales" target="_blank" rel="noopener">Telegram @severstalkon_sales</a>
+        <b>Пн-пт 8:00-17:00</b>
+      </div>
+      <div class="fcol">
+        <h3>Как проехать</h3>
+        <p>Россия, Вологодская область,<br>Череповец, Промышленная ул., 14,<br>цех 3, проходная с торца</p>
+        <a class="f-link" href="https://yandex.ru/maps/?text=%D0%A7%D0%B5%D1%80%D0%B5%D0%BF%D0%BE%D0%B2%D0%B5%D1%86%2C%20%D0%9F%D1%80%D0%BE%D0%BC%D1%8B%D1%88%D0%BB%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%2C%2014" target="_blank" rel="noopener">Открыть карту</a>
+        <p class="f-dim">От ж/д станции Череповец-2 9 км, от трассы Р-114 4 км</p>
+      </div>
+      <div class="fcol">
+        <h3>Реквизиты</h3>
+        <p class="mono f-req">ИНН 3528 045 716<br>КПП 352801001<br>ОГРН 1093528014327</p>
+        <p class="f-dim">Расчётный счёт в приложении к договору</p>
+      </div>
+      <div class="fcol fcol-docs">
+        <h3>Документы</h3>
+        <p>СРО № С-021-45 на работы с опасными производственными объектами, ISO 9001:2015, аттестация НАКС по сварке, сертификаты на сталь по ГОСТ 19281 и паспорта качества на каждую партию.</p>
+      </div>
+    </div>
+    <p class="foot-line">ООО «Северный завод стальных конструкций». Металлоконструкции для зданий, ангаров и площадок с 2009 года. Работаем по Череповцу, Вологодской и Архангельской областям, Карелии.</p>
+  </div>
+  <div class="foot-word" aria-hidden="true">СЕВЕРСТАЛЬКОН</div>
+</footer>
+
+</main>
+</body>
+</html>

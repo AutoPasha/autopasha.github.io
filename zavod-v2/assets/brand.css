@@ -1,0 +1,77 @@
+/* ============================================================
+   Северсталькон: все данные бренда в одном месте.
+   Меняешь этот файл под другого завода в нише, и весь сайт
+   меняет цвет, шрифт и радиус.
+
+   Палитра круга 3: одна тёмная тональная линия, без светлых
+   «зебр». Значения яркости идут ступенями, переходы между
+   секциями только градиентом, акцент один: сигнальная искра.
+   ============================================================ */
+@import url("fonts/unbounded/fonts.css");
+@import url("fonts/onest/fonts.css");
+@import url("fonts/jetbrains-mono/fonts.css");
+@import url("fonts/playfair-display/fonts.css");
+
+:root {
+  /* графит: пять ступеней одной температуры */
+  --graphite: #0E1013;
+  --graphite-2: #121519;
+  --graphite-3: #171B20;
+  --graphite-4: #0A0C0E;
+  --graphite-5: #1D2228;
+  --metal: #8A949C;
+  --metal-dim: #7C868F;
+  --paper: #E9E6DF;
+  --paper-2: #D6D2C9;
+  --spark: #FF5A1F;
+  --spark-deep: #C4441A;
+  --spark-ink: #A8380F;   /* та же искра на бумаге, читается по контрасту */
+
+  /* поверхности */
+  --bg: var(--graphite);
+  --bg-deep: var(--graphite-4);
+  --bg-lift: var(--graphite-2);
+  --ink: #F2EFE8;
+  --ink-dim: rgba(242, 239, 232, .66);
+  --ink-faint: rgba(242, 239, 232, .42);
+
+  /* шрифты */
+  --display: "Unbounded", "Arial Black", sans-serif;
+  --text: "Onest", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", "Consolas", monospace;
+  --serif: "Playfair Display", "Times New Roman", serif;
+
+  /* радиусы */
+  --r-s: 2px;
+  --r-m: 4px;
+  --r-l: 12px;
+  --r-pill: 999px;
+
+  /* сетка */
+  --pad: 40px;
+  --maxw: 1440px;
+  --gap: 24px;
+
+  /* линии и тени */
+  --line: rgba(233, 230, 223, 0.14);
+  --line-strong: rgba(233, 230, 223, 0.32);
+  --line-dark: rgba(17, 19, 21, 0.16);
+  --shadow-l: 0 24px 48px -24px rgba(0, 0, 0, .55);
+  --shadow-paper: 0 30px 60px -28px rgba(17, 19, 21, .5);
+
+  /* цветокор фото: файлы уже прогнаны через один нейтральный грейд
+     (tools/neutral.py), в браузере только лёгкая доводка без тонировки */
+  --grade: contrast(1.03) saturate(.94) brightness(1);
+  --grade-soft: contrast(1.02) saturate(.96) brightness(1.01);
+
+  /* движение */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* время */
+  --boot-ms: 1500ms;
+}
+
+@media (max-width: 900px) {
+  :root { --pad: 20px; --gap: 16px; }
+}
