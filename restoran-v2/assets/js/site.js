@@ -297,6 +297,7 @@
     });
 
     if (!hasGsap || !window.ScrollTrigger) return;
+    gsap.matchMedia().add('(min-width: 900px)', function () {
     ScrollTrigger.create({
       id: 'seasonsScene',
       trigger: section,
@@ -306,6 +307,7 @@
       pinSpacing: true,
       scrub: true,
       onUpdate: function (self) { apply(Math.min(3, Math.floor(self.progress * 4))); }
+    });
     });
   })();
 /* ---------------- меню: разделы, фото за курсором, развороты ---------------- */
@@ -441,7 +443,7 @@
     if (side) gsap.set(side, { opacity: 0, y: 34 });
 
     var tl = gsap.timeline({
-      scrollTrigger: { trigger: box, start: 'top top', end: 'bottom bottom', scrub: .55, invalidateOnRefresh: true }
+      scrollTrigger: { trigger: box, start: narrow ? 'top top' : 'top 75%', end: 'bottom bottom', scrub: .55, invalidateOnRefresh: true }
     });
     if (fig) tl.to(fig, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'power2.inOut', duration: .6 }, 0);
     if (scrim) tl.to(scrim, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'power2.inOut', duration: .6 }, 0);
@@ -559,8 +561,8 @@
     /* компьютер: пин на 250svh, медиа разной глубины парят вокруг центра */
     var center = $('#colCenter');
     if (center) {
-      gsap.fromTo(center, { y: 40, opacity: 0 }, {
-        y: -50, opacity: 1, ease: 'none',
+      gsap.fromTo(center, { y: 40 }, {
+        y: -50, ease: 'none',
         scrollTrigger: { trigger: section, start: 'top 60%', end: 'bottom top', scrub: true }
       });
     }
@@ -568,9 +570,9 @@
     $$('.hv').forEach(function (chip, k) {
       var speed = parseFloat(chip.dataset.speed || '.3');
       var dir = k % 2 ? -1 : 1;
-      var dist = 30 + speed * 170;
-      gsap.fromTo(chip, { y: dir * -dist, opacity: 0 }, {
-        y: dir * dist, opacity: 1, ease: 'none',
+      var dist = 12 + speed * 20;
+      gsap.fromTo(chip, { y: dir * -dist }, {
+        y: dir * dist, ease: 'none',
         scrollTrigger: { trigger: section, start: 'top bottom', end: 'bottom top', scrub: true }
       });
       var pic = chip.querySelector('.hv-fig img');

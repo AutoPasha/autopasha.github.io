@@ -355,8 +355,8 @@ section { scroll-margin-top: 84px; }
 .plate-no { position: absolute; z-index: 3; left: var(--pad); top: clamp(84px, 11vh, 118px); font-size: 12px; letter-spacing: .04em; color: var(--clay); }
 .plate-price { position: absolute; z-index: 4; right: var(--pad); top: clamp(80px, 10vh, 110px); font-size: clamp(26px, 2.4vw, 42px); color: var(--heat); letter-spacing: .03em; }
 .plate-ghost {
-  position: absolute; z-index: 2; right: var(--pad); bottom: 4vh;
-  font-size: 26vw; line-height: .68; letter-spacing: -.04em;
+  position: absolute; z-index: 2; right: var(--pad); top: 23%;
+  font-size: clamp(90px, 12vw, 180px); line-height: 1; letter-spacing: -.04em;
   color: transparent; -webkit-text-stroke: 1px rgba(239, 230, 216, .3);
   opacity: 0; user-select: none; pointer-events: none;
 }
@@ -455,7 +455,7 @@ section { scroll-margin-top: 84px; }
 .chef-par {
   font-family: var(--serif); font-weight: 300;
   font-size: clamp(21px, 1.95vw, 32px); line-height: 1.42;
-  color: rgba(239, 230, 216, .26); max-width: 30ch;
+  color: var(--ink-3); max-width: 30ch;
 }
 .chef-par span { transition: color .6s ease; }
 .chef-par span.lit { color: var(--ink); }
@@ -677,7 +677,7 @@ section { scroll-margin-top: 84px; }
 .drum-list li { height: var(--row); display: flex; align-items: center; }
 .drum-list button {
   display: flex; align-items: center; gap: 12px; width: 100%; height: 100%;
-  font-family: var(--mono); font-size: clamp(30px, 3.4vw, 58px); color: rgba(239, 230, 216, .28);
+  font-family: var(--mono); font-size: clamp(30px, 3.4vw, 58px); color: var(--ink-2);
   transition: color .35s;
 }
 .drum-list li.on button { color: var(--bone); }
@@ -908,7 +908,7 @@ section { scroll-margin-top: 84px; }
   .plate-stage { height: 86svh; min-height: 520px; }
   .plate-type { left: var(--pad); right: var(--pad); width: auto; bottom: clamp(126px, 21vh, 196px); }
   .plate-name { font-size: clamp(36px, 11.5vw, 72px); }
-  .plate-ghost { font-size: 46vw; right: -3vw; bottom: 2vh; }
+  .plate-ghost { display: none; }
   .plate-side { left: var(--pad); right: var(--pad); bottom: 30px; width: auto; gap: 10px; }
   .plate-comp { font-size: 15px; max-width: 36ch; }
   .plate-foot { display: none; }
