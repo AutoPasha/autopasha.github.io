@@ -1,0 +1,69 @@
+/* Сезон: все данные бренда. Меняются здесь и больше нигде. */
+
+@import url("fonts/cormorant-garamond/fonts.css");
+@import url("fonts/jost/fonts.css");
+@import url("fonts/jetbrains-mono/fonts.css");
+
+:root {
+  /* палитра */
+  --soot: #0E0C0B;
+  --coal: #2A1A14;
+  --clay: #C9A88A;
+  --bone: #EFE6D8;
+  --heat: #E25E41;
+
+  /* бумага: меню и подвал */
+  --paper: #EDE3D1;
+  --paper-2: #E3D7C1;
+
+  /* чернила на тёмном */
+  --ink: var(--bone);
+  --ink-2: rgba(239, 230, 216, .76);
+  --ink-3: rgba(239, 230, 216, .52);
+  --hair: rgba(239, 230, 216, .14);
+  --hair-2: rgba(239, 230, 216, .3);
+
+  /* чернила на бумаге */
+  --ink-d: #17120F;
+  --ink-d-2: rgba(23, 18, 15, .74);
+  --ink-d-3: rgba(23, 18, 15, .62);
+  --hair-d: rgba(23, 18, 15, .2);
+  --clay-d: #8A5A38;
+  --heat-d: #B23A18;
+
+  /* сезонные подмены фона */
+  --season-autumn: #2A1A14;
+  --season-winter: #16202A;
+  --season-spring: #1B2418;
+  --season-summer: #26200F;
+
+  /* поверхности */
+  --bg: var(--soot);
+  --surface: var(--coal);
+
+  /* шрифты */
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'Jost', 'Helvetica Neue', sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* радиусы */
+  --r-s: 4px;
+  --r-m: 8px;
+  --r-l: 16px;
+
+  /* сетка */
+  --pad: 40px;
+  --maxw: 1440px;
+
+  /* тени */
+  --shadow-deep: 0 30px 70px -34px rgba(0, 0, 0, .85);
+  --shadow-soft: 0 18px 44px -26px rgba(0, 0, 0, .7);
+
+  /* движение */
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --ease-out: cubic-bezier(.33, 1, .68, 1);
+}
+
+@media (max-width: 900px) {
+  :root { --pad: 20px; }
+}

@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Сезон: бистро уральской кухни на Шейнкмана 75, Екатеринбург</title>
+<meta name="description" content="Бистро «Сезон» в Екатеринбурге: уральская кухня, меню меняется четыре раза в год. Сейчас осень: форель из Режа, щучьи котлеты, суп из белых грибов. Бронь стола по телефону и в Telegram.">
+<meta name="theme-color" content="#0E0C0B">
+<link rel="preload" href="assets/video/hero.mp4" as="video" type="video/mp4">
+<link rel="preload" href="assets/img/hero-poster.jpg" as="image">
+<link rel="stylesheet" href="assets/brand.css">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+
+<!-- ============ заставка ============ -->
+<div class="splash" id="splash" aria-hidden="true">
+  <canvas class="splash-cv" id="splashCv"></canvas>
+  <div class="splash-word" id="splashWord">Сезон</div>
+  <div class="splash-curtain" id="splashCurtain"></div>
+</div>
+
+<!-- ============ шапка: без полосы, логотип по центру ============ -->
+<header class="top" id="top">
+  <p class="top-l mono"><a href="tel:+73432881471">+7 343 288-14-71</a><span class="top-l-sep"></span>Шейнкмана, 75</p>
+  <a class="logo" href="#top" aria-label="Сезон, наверх"><img src="assets/img/logo.svg" alt="Сезон, бистро уральской кухни" width="288" height="74"></a>
+  <div class="top-r">
+    <a class="top-book" href="#booking">Забронировать</a>
+    <button class="burger" id="burger" aria-label="Меню" aria-expanded="false" aria-controls="drawer"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="drawer" id="drawer">
+  <a href="#seam">Дерево и огонь</a>
+  <a href="#seasons">Сезоны</a>
+  <a href="#menu">Меню осени</a>
+  <a href="#chef">Шеф</a>
+  <a href="#farmers">Фермеры</a>
+  <a href="#lunch">Ланч и банкеты</a>
+  <a href="#booking">Бронь стола</a>
+  <a class="drawer-tel" href="tel:+73432881471">+7 343 288-14-71</a>
+</div>
+
+<main>
+
+<!-- ============ первый экран и бесшовный переход в контент ============ -->
+<div class="seam" id="seam">
+  <div class="seam-field" aria-hidden="true"></div>
+  <div class="seam-type" id="seamType">
+    <p class="seam-kicker mono">зал и кухня</p>
+    <p class="seam-word">Дерево</p>
+    <p class="seam-text">Поленья из пихты, соль из Косулино, вода из Режа. Остальное привозят те, кто вырастил. Печь у входа дровяная, разжигают в 11:30.</p>
+    <ul class="seam-facts mono">
+      <li><span>40 мест в зале</span><span>24 на веранде, с мая</span></li>
+      <li><span>средний чек</span><span>1 700 ₽</span></li>
+      <li><span>закупки</span><span>по субботам, сами</span></li>
+    </ul>
+  </div>
+  <p class="seam-fire" id="seamFire" aria-hidden="true"><em>Огонь</em></p>
+
+  <section class="hero" id="hero">
+    <div class="hero-media" id="heroMedia">
+      <img class="hero-poster" src="assets/img/hero-poster.jpg" alt="Огонь в печи у входа в зал" width="1600" height="870" fetchpriority="high">
+      <video class="hero-video" id="heroVideo" autoplay muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg" aria-hidden="true">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
+      <div class="hero-grain" aria-hidden="true"></div>
+      <div class="hero-veil" aria-hidden="true"></div>
+    </div>
+    <canvas class="hero-embers" id="heroEmbers" aria-hidden="true"></canvas>
+
+    <p class="hero-side hero-side-l mono" aria-hidden="true">56°49′ с.ш. · Екатеринбург</p>
+    <p class="hero-side hero-side-r mono" aria-hidden="true">меню переписывают четыре раза в год</p>
+
+    <div class="hero-in">
+      <h1 class="hero-title">
+        <span class="mask"><span class="hrow hrow-1">Сезон</span></span>
+        <span class="mask"><span class="hrow hrow-2">из того, что <em>выросло рядом</em></span></span>
+      </h1>
+      <button class="hero-play" id="heroPlay" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 7.5 16 12l-7 4.5V7.5Z"/></svg>
+        <span>смотреть очаг</span>
+      </button>
+      <p class="hero-cap mono">Шейнкмана, 75 · сейчас осень: грибы, форель, тыква</p>
+    </div>
+
+    <div class="hero-foot">
+      <p class="hero-sub">Тёмный зал у печи на Шейнкмана, 75.<br>Сейчас осень: грибы с северного леса,<br>форель из Режа, тыква с полей.</p>
+      <div class="hero-acts">
+        <p class="hero-live" id="heroLive"><b>сегодня до 23:00</b> · свободно 19:30, 20:15</p>
+        <a class="hero-cta" href="#booking">Забронировать стол</a>
+        <a class="hero-square" href="#menu" aria-label="Меню осени">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 12h10M12 7v10"/></svg>
+        </a>
+      </div>
+    </div>
+    <p class="hero-scroll mono" aria-hidden="true">прокрутите вниз</p>
+
+    <div class="hero-view" id="heroView" role="dialog" aria-modal="true" aria-label="Видео: очаг у входа" hidden>
+      <video autoplay muted loop playsinline preload="none" poster="assets/img/hero-poster.jpg">
+        <source src="assets/video/hero.mp4" type="video/mp4">
+      </video>
+      <button class="hero-view-close" id="heroViewClose" aria-label="Закрыть видео">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
+      <p class="hero-view-cap mono">печь у входа, дровяная, разжигают в 11:30 · Екатеринбург, Шейнкмана 75</p>
+    </div>
+  </section>
+</div>
+
+<!-- ============ четыре сезона ============ -->
+<section class="seasons" id="seasons">
+  <div class="seasons-stick" id="seasonsStick">
+    <div class="seasons-shots" id="seasonsShots">
+      <img class="on" src="assets/img/hero-autumn.jpg" alt="Осенний вечер у бистро, тёплый свет в окне зала" width="1280" height="720" fetchpriority="high">
+      <img src="assets/img/hero-winter.jpg" alt="Зимний лес за окном, снег на тропе к дому" width="1280" height="720" loading="lazy">
+      <img src="assets/img/hero-spring.jpg" alt="Весна на Северном Урале, талая вода в ручье" width="1280" height="720" loading="lazy">
+      <img src="assets/img/hero-summer.jpg" alt="Летний вечер на веранде, гирлянды над столом" width="1280" height="720" loading="lazy">
+    </div>
+    <div class="seasons-shade" aria-hidden="true"></div>
+    <div class="seasons-in">
+      <div class="seasons-meta">
+        <p class="seasons-when" id="seasonsWhen">осень 2026</p>
+        <p class="seasons-now" id="seasonsNow">это сейчас</p>
+      </div>
+      <div class="seasons-dish">
+        <p class="seasons-dish-name" id="dishName"><span class="in">Форель из Режа</span></p>
+        <p class="seasons-dish-desc" id="dishDesc">облепиховый соус, жареный картофель с грибами. Держим до начала декабря.</p>
+        <p class="seasons-dish-price mono" id="dishPrice">980 ₽</p>
+      </div>
+      <div class="seasons-tabs" id="seasonsTabs" role="tablist" aria-label="Сезоны меню">
+        <button class="seasons-tab on" data-i="0" role="tab" aria-selected="true"><i></i><b>Осень</b><small>сейчас</small></button>
+        <button class="seasons-tab" data-i="1" role="tab" aria-selected="false"><i></i><b>Зима</b><small>с декабря</small></button>
+        <button class="seasons-tab" data-i="2" role="tab" aria-selected="false"><i></i><b>Весна</b><small>с марта</small></button>
+        <button class="seasons-tab" data-i="3" role="tab" aria-selected="false"><i></i><b>Лето</b><small>с июня</small></button>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ============ меню: обложка на углях, кинетический разворот ============ -->
+<section class="menu" id="menu">
+  <div class="mcover">
+    <div class="wrap mhead">
+      <p class="mhead-kicker mono">меню осени · сменилось 1 октября 2026 · 17 позиций</p>
+      <h2 class="mhead-title">
+        <span class="mask"><span class="in">Меню</span></span>
+        <span class="mask"><span class="in mhead-em">осени</span></span>
+      </h2>
+      <div class="mhead-side">
+        <p class="mhead-lead">Переписывают четыре раза в год и не чаще. В нём то, что есть сейчас: грибы с северного леса, форель из Режа, тыква с полей и всё, что выросло за лето.</p>
+        <div class="mtabs" id="mTabs" role="tablist" aria-label="Разделы меню">
+          <button class="mtab on" data-p="0" role="tab" aria-selected="true"><span class="mono">01</span><b>Закуски</b><small class="mono">4 блюда</small></button>
+          <button class="mtab" data-p="1" role="tab" aria-selected="false"><span class="mono">02</span><b>Супы</b><small class="mono">4 блюда</small></button>
+          <button class="mtab" data-p="2" role="tab" aria-selected="false"><span class="mono">03</span><b>Горячее</b><small class="mono">5 блюд</small></button>
+          <button class="mtab" data-p="3" role="tab" aria-selected="false"><span class="mono">04</span><b>Сладкое</b><small class="mono">4 блюда</small></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="papers">
+
+    <article class="mpanel on" id="mp0" role="tabpanel" aria-label="Закуски">
+      <div class="spread spread-a">
+        <div class="plate">
+          <div class="plate-stage">
+            <figure class="plate-fig"><img src="assets/img/dish-tartar.jpg" alt="Тартар из речной форели с облепиховым маслом на ржаной тарке" width="1152" height="864" loading="lazy"></figure>
+            <div class="plate-scrim" aria-hidden="true"></div>
+            <p class="plate-no mono">01 · закуска · 180 г</p>
+            <p class="plate-price mono">860 ₽</p>
+            <p class="plate-ghost mono" aria-hidden="true">860</p>
+            <div class="plate-type">
+              <h3 class="plate-name">Тартар <em>из форели</em></h3>
+            </div>
+            <div class="plate-side">
+              <p class="plate-comp">Речная форель из Режа, облепиховое масло, дикий лук, ржаная тарка. Соль мелкая, из Косулино.</p>
+              <ul class="plate-ing mono">
+                <li>форель из режа</li><li>облепиховое масло</li><li>дикий лук</li><li>ржаная тарка</li><li>соль из Косулино</li>
+              </ul>
+            </div>
+            <p class="plate-foot mono">Порция на одного человека · к блюду стакан ягодного компота</p>
+          </div>
+        </div>
+
+        <div class="rest rest-a">
+          <p class="rest-cap mono">ещё три в разделе · зал принимает до 23:00, кухня до 22:20</p>
+          <article class="rcard rcard-wide" data-img="assets/img/dish-crostini.jpg" data-note="Картофельные крости с белыми грибами, 380 ₽">
+            <figure class="rcard-fig"><img src="assets/img/dish-crostini.jpg" alt="Картофельные крости с белыми грибами на тёмном блюде" width="1152" height="864" loading="lazy"></figure>
+            <p class="rcard-no mono">02</p>
+            <h4 class="rcard-name">Картофельные крости с грибами</h4>
+            <p class="rcard-comp mono">белые грибы, сливочное масло, укроп, соль из Косулино</p>
+            <p class="rcard-price mono">380 ₽</p>
+          </article>
+          <article class="rcard rcard-tall" data-img="assets/img/dish-celery.jpg" data-note="Сельдерей с яблоком и брусникой, 340 ₽">
+            <figure class="rcard-fig"><img src="assets/img/dish-celery.jpg" alt="Сельдерей с яблоком и брусникой на глиняной тарелке" width="1152" height="864" loading="lazy"></figure>
+            <p class="rcard-no mono">03</p>
+            <h4 class="rcard-name">Сельдерей с яблоком и брусникой</h4>
+            <p class="rcard-price mono">340 ₽</p>
+          </article>
+          <div class="rest-quote">
+            <p>Соль и хлеб не меняем с 2019 года: мельник в Арамили варит её для трёх ресторанов, и мы третий.</p>
+          </div>
+          <article class="rcard rcard-line" data-img="assets/img/dish-salo.jpg" data-note="Сало с солёными грушами, 590 ₽">
+            <p class="rcard-no mono">04</p>
+            <h4 class="rcard-name">Сало с солёными грушами</h4>
+            <p class="rcard-comp mono">фермерское сало, груша, хмели, хлеб на углях</p>
+            <p class="rcard-price mono">590 ₽</p>
+          </article>
+        </div>
+      </div>
+    </article>
+
+    <article class="mpanel" id="mp1" role="tabpanel" aria-label="Супы" hidden>
+      <div class="spread spread-b">
+        <div class="plate">
+          <div class="plate-stage">
+            <figure class="plate-fig"><img src="assets/img/dish-mushroom-soup.jpg" alt="Суп из белых грибов в глиняной миске с хлебной коркой" width="1280" height="720" loading="lazy"></figure>
+            <div class="plate-scrim" aria-hidden="true"></div>
+            <p class="plate-no mono">01 · суп · 300 мл</p>
+            <p class="plate-price mono">540 ₽</p>
+            <p class="plate-ghost mono" aria-hidden="true">540</p>
+            <div class="plate-type">
+              <h3 class="plate-name">Суп из <em>белых грибов</em></h3>
+            </div>
+            <div class="plate-side">
+              <p class="plate-comp">Тот самый, с северного леса. Белые грибы, картофель, сливки и хлебная корка с чесноком.</p>
+              <ul class="plate-ing mono">
+                <li>белые грибы</li><li>картофель</li><li>сливки 20%</li><li>хлебная корка</li><li>чеснок</li>
+              </ul>
+            </div>
+            <p class="plate-foot mono">Суп на выбор входит в бизнес-ланч с 12:00 до 16:00</p>
+          </div>
+        </div>
+
+        <div class="rest rest-b">
+          <p class="rest-cap mono">ещё три в разделе · варим с восьми утра, к полудню в миске остаётся треть</p>
+          <article class="rcard rcard-wide" data-img="assets/img/dish-ukha.jpg" data-note="Уха из речной форели, 520 ₽">
+            <figure class="rcard-fig"><img src="assets/img/dish-ukha.jpg" alt="Уха из речной форели в глиняной миске с луком" width="1280" height="720" loading="lazy"></figure>
+            <p class="rcard-no mono">02</p>
+            <h4 class="rcard-name">Уха из речной форели</h4>
+            <p class="rcard-comp mono">форель из Режа, лук, морковь, лавровый лист, 25 минут на медленном огне</p>
+            <p class="rcard-price mono">520 ₽</p>
+          </article>
+          <article class="rcard rcard-tall" data-img="assets/img/dish-borshch.jpg" data-note="Свекольник с говядиной и яблоком, 460 ₽">
+            <figure class="rcard-fig"><img src="assets/img/dish-borshch.jpg" alt="Свекольник с говядиной, яблоком и сметаной" width="1152" height="864" loading="lazy"></figure>
+            <p class="rcard-no mono">03</p>
+            <h4 class="rcard-name">Свекольник с говядиной и яблоком</h4>
+            <p class="rcard-price mono">460 ₽</p>
+          </article>
+          <div class="rest-quote">
+            <p>Сушить грибы не берём: сушёный белый гриб пахнет складом, а свежий пахнет лесом.</p>
+          </div>
+          <article class="rcard rcard-line" data-img="assets/img/dish-pumpkin-cream.jpg" data-note="Крем из тыквы с облепиховым маслом, 380 ₽">
+            <p class="rcard-no mono">04</p>
+            <h4 class="rcard-name">Крем из тыквы с облепиховым маслом</h4>
+            <p class="rcard-comp mono">печёная тыква, сливки, облепиховое масло, щепотка соли</p>
+            <p class="rcard-price mono">380 ₽</p>
+          </article>
+        </div>
+      </div>
+    </article>
+
+    <article class="mpanel" id="mp2" role="tabpanel" aria-label="Горячее" hidden>
+      <div class="spread spread-c">
+        <div class="plate">
+          <div class="plate-stage">
+            <figure class="plate-fig"><img src="assets/img/dish-forel.jpg" alt="Форель из Режа с облепиховым соусом на тёмной глиняной тарелке" width="1152" height="864" loading="lazy"></figure>
+            <div class="plate-scrim" aria-hidden="true"></div>
+            <p class="plate-no mono">01 · горячее · 240 г</p>
+            <p class="plate-price mono">980 ₽</p>
+            <p class="plate-ghost mono" aria-hidden="true">980</p>
+            <div class="plate-type">
+              <h3 class="plate-name">Форель из Режа <em>с облепихой</em></h3>
+            </div>
+            <div class="plate-side">
+              <p class="plate-comp">Форель на гриле, соус из облепихи и ягод можжевельника, жареный картофель с грибами.</p>
+              <ul class="plate-ing mono">
+                <li>форель на гриле</li><li>соус из облепихи</li><li>можжевельник</li><li>жареный картофель</li><li>лесные грибы</li>
+              </ul>
+            </div>
+            <p class="plate-foot mono">К горячему квас из ягоды или домашний компот, 190 ₽</p>
+          </div>
+        </div>
+
+        <div class="rest rest-a">
+          <p class="rest-cap mono">ещё четыре в разделе · средний чек вечера 1 700 ₽ на человека</p>
+          <article class="rcard rcard-wide" data-img="assets/img/dish-pike.jpg" data-note="Щучьи котлеты с пюре из печёной тыквы, 690 ₽">
+            <figure class="rcard-fig"><img src="assets/img/dish-pike.jpg" alt="Щучьи котлеты с пюре из печёной тыквы" width="1280" height="720" loading="lazy"></figure>
+            <p class="rcard-no mono">02</p>
+            <h4 class="rcard-name">Щучьи котлеты с пюре из тыквы</h4>
+            <p class="rcard-comp mono">щука из водоёмов под Косулино, печёная тыква, хрен</p>
+            <p class="rcard-price mono">690 ₽</p>
+          </article>
+          <article class="rcard rcard-tall" data-img="assets/img/dish-pelmeni.jpg" data-note="Пельмени с лосятиной и брусничным уксусом, 620 ₽">
+            <figure class="rcard-fig"><img src="assets/img/dish-pelmeni.jpg" alt="Пельмени с лосятиной в глиняной миске" width="1152" height="864" loading="lazy"></figure>
+            <p class="rcard-no mono">03</p>
+            <h4 class="rcard-name">Пельмени с лосятиной и брусничным уксусом</h4>
+            <p class="rcard-price mono">620 ₽</p>
+          </article>
+          <div class="rest-quote">
+            <p>Рыбу берём целиком и разбираем при вас: голова и хребет идут в бульон, а не в мусорку.</p>
+          </div>
+          <article class="rcard rcard-line" data-img="assets/img/dish-venison.jpg" data-note="Оленина с печёным картофелем, 1 190 ₽">
+            <p class="rcard-no mono">04</p>
+            <h4 class="rcard-name">Оленина с печёным картофелем</h4>
+            <p class="rcard-comp mono">окорок оленя, картофель в соли, брусничный соус, полынь</p>
+            <p class="rcard-price mono">1 190 ₽</p>
+          </article>
+          <article class="rcard rcard-line2" data-img="assets/img/dish-barley.jpg" data-note="Ячневая каша с грибами и яйцом, 560 ₽">
+            <p class="rcard-no mono">05</p>
+            <h4 class="rcard-name">Ячневая каша с грибами и яйцом</h4>
+            <p class="rcard-comp mono">крупа ячневая, белые грибы, яйцо от кур с Пышмы, тыквенное масло</p>
+            <p class="rcard-price mono">560 ₽</p>
+          </article>
+        </div>
+      </div>
+    </article>
+
+    <article class="mpanel" id="mp3" role="tabpanel" aria-label="Сладкое" hidden>
+      <div class="spread spread-d">
+        <div class="plate">
+          <div class="plate-stage">
+            <figure class="plate-fig"><img src="assets/img/dish-medovik.jpg" alt="Медовик с брусникой и сметаной на тёмном блюде" width="1152" height="864" loading="lazy"></figure>
+            <div class="plate-scrim" aria-hidden="true"></div>
+            <p class="plate-no mono">01 · сладкое · 130 г</p>
+            <p class="plate-price mono">390 ₽</p>
+            <p class="plate-ghost mono" aria-hidden="true">390</p>
+            <div class="plate-type">
+              <h3 class="plate-name">Медовик <em>с брусникой</em></h3>
+            </div>
+            <div class="plate-side">
+              <p class="plate-comp">Медовые коржи на сметане 20%, брусника с Северного Урала и немного мятного сиропа.</p>
+              <ul class="plate-ing mono">
+                <li>уральский мёд</li><li>сметана 20%</li><li>брусника</li><li>мятный сироп</li><li>грецкий орех</li>
+              </ul>
+            </div>
+            <p class="plate-foot mono">Десерт входит в ланч за 190 ₽, в зале даём на всех по куску</p>
+          </div>
+        </div>
+
+        <div class="rest rest-b">
+          <p class="rest-cap mono">ещё три в разделе · режем на куски по сантиметру</p>
+          <article class="rcard rcard-wide" data-img="assets/img/sweet-berry.jpg" data-note="Ягодный крем с кедровой крошкой, 420 ₽">
+            <figure class="rcard-fig"><img src="assets/img/sweet-berry.jpg" alt="Ягодный крем с кедровой крошкой в стеклянной чашке" width="1152" height="864" loading="lazy"></figure>
+            <p class="rcard-no mono">02</p>
+            <h4 class="rcard-name">Ягодный крем с кедровой крошкой</h4>
+            <p class="rcard-comp mono">сливочный крем, клюква, кедровые орехи, цедра</p>
+            <p class="rcard-price mono">420 ₽</p>
+          </article>
+          <article class="rcard rcard-tall" data-img="assets/img/sweet-seabuckthorn.jpg" data-note="Повидло из облепихи с мороженым, 360 ₽">
+            <figure class="rcard-fig"><img src="assets/img/sweet-seabuckthorn.jpg" alt="Повидло из облепихи с домашним мороженым" width="1152" height="864" loading="lazy"></figure>
+            <p class="rcard-no mono">03</p>
+            <h4 class="rcard-name">Повидло из облепихи с мороженым</h4>
+            <p class="rcard-price mono">360 ₽</p>
+          </article>
+          <div class="rest-quote">
+            <p>Ягоды в десертах не замораживаем: после заморозки брусника даёт воду и уходит кислота.</p>
+          </div>
+          <article class="rcard rcard-line" data-img="assets/img/sweet-tvorozhnik.jpg" data-note="Творожник с клюквенным соусом, 440 ₽">
+            <p class="rcard-no mono">04</p>
+            <h4 class="rcard-name">Творожник с клюквенным соусом</h4>
+            <p class="rcard-comp mono">творог из Арамили, клюква на воде, миндаль, немного соли</p>
+            <p class="rcard-price mono">440 ₽</p>
+          </article>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<div class="trail" id="trail" aria-hidden="true"><img id="trailImg" src="assets/img/dish-forel.jpg" alt=""><span class="trail-note" id="trailNote">Форель из Режа</span></div>
+
+<!-- ============ шеф: кадр закреплён, цитата воздушная, имя одно ============ -->
+<section class="chef" id="chef">
+  <div class="chef-stick" id="chefStick">
+    <div class="chef-grid">
+      <div class="chef-frame-in">
+        <p class="chef-tag mono">шеф-повар · 15 лет на кухне</p>
+        <blockquote class="chef-quote" id="chefQuote">
+          <span class="q"><span class="q-in">Меню у меня собирается</span></span>
+          <span class="q"><span class="q-in">из того, что привезли <em>вчера</em>,</span></span>
+          <span class="q"><span class="q-in">а не из того, что красиво</span></span>
+          <span class="q"><span class="q-in">на фотографии</span></span>
+        </blockquote>
+        <p class="chef-by mono">Денис Курбатов, шеф бистро «Сезон»</p>
+      </div>
+      <figure class="chef-shot">
+        <div class="chef-shot-in"><img id="chefImg" src="assets/img/chef.jpg" alt="Денис Курбатов у печи за стеклом открытой кухни" width="1280" height="720" loading="lazy"></div>
+        <figcaption class="mono">открытая кухня, за стеклом мясо, зола и пар</figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="wrap chef-after">
+    <p class="chef-par" id="chefWords"><span>Пятнадцать</span> <span>лет</span> <span>он</span> <span>ходит</span> <span>по</span> <span>рынкам</span> <span>раньше</span> <span>семи.</span> <span>У</span> <span>Никитина</span> <span>из</span> <span>Арамили</span> <span>сыр</span> <span>каждый</span> <span>вторник,</span> <span>у</span> <span>Мальцева</span> <span>форель</span> <span>каждое</span> <span>утро,</span> <span>у</span> <span>Дороховой</span> <span>грибы</span> <span>по</span> <span>субботам.</span> <span>Работал</span> <span>в</span> <span>«Гастроли</span> <span>у</span> <span>Зюминых»</span> <span>и</span> <span>в</span> <span>пивном</span> <span>ресторане</span> <span>на</span> <span>Малышева.</span> <span>Открыл</span> <span>«Сезон»</span> <span>на</span> <span>18</span> <span>посадок</span> <span>и</span> <span>с</span> <span>одной</span> <span>консоли</span> <span>от</span> <span>поставщика.</span></p>
+    <aside class="chef-facts">
+      <p class="chef-fact mono"><b>18</b><span>посадок в первый год, ноябрь 2019</span></p>
+      <p class="chef-fact mono"><b>40</b><span>мест сейчас, 24 из них на веранде</span></p>
+      <p class="chef-fact mono"><b>0</b><span>посредников между нами и фермерами</span></p>
+    </aside>
+  </div>
+</section>
+
+<!-- ============ фермеры: коллаж закупок вокруг светлой таблички ============ -->
+<section class="farmers" id="farmers">
+  <div class="farmers-stick" id="farmersStick">
+    <div class="col-center" id="colCenter">
+      <p class="col-kicker mono">закупки круглый год</p>
+      <h2 class="farmers-h2">От кого <span class="col-em">берём</span></h2>
+      <p class="farmers-lead">Четыре хозяйства, с которыми работаем круглый год. Закупки сами, объезды сами, объём небольшой.</p>
+      <div class="farm-route" id="farmRoute">
+        <div class="farm-route-row">
+          <p class="farm-stop"><b>Реж</b><span class="mono">каждое утро</span></p>
+          <p class="farm-stop"><b>Арамиль</b><span class="mono">вторник, 07:40</span></p>
+          <p class="farm-stop"><b>Бобровский</b><span class="mono">август</span></p>
+          <p class="farm-stop"><b>Северный Урал</b><span class="mono">суббота, с мая</span></p>
+        </div>
+        <div class="farm-route-line" id="farmLine">
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" focusable="false" aria-hidden="true">
+            <path class="route-path" d="M0,86 C 75,86 75,44 150,44 S 300,92 450,92 S 600,30 750,30 S 900,74 1050,74 S 1175,58 1200,58"/>
+          </svg>
+          <i class="route-dot" style="--x:12.5%;--y:36.7%;--k:.16"></i>
+          <i class="route-dot" style="--x:37.5%;--y:76.7%;--k:.4"></i>
+          <i class="route-dot" style="--x:62.5%;--y:25%;--k:.64"></i>
+          <i class="route-dot" style="--x:87.5%;--y:61.7%;--k:.88"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="harvest" id="harvest">
+      <article class="hv hv-a" data-speed=".16">
+        <figure class="hv-fig"><img src="assets/img/farmer.jpg" alt="Корзина белых грибов в уральском лесу" width="1248" height="832" loading="lazy"></figure>
+        <p class="hv-where mono">Северный Урал · 210 км · по субботам</p>
+        <h3 class="hv-name">Белые грибы и брусника</h3>
+        <p class="hv-text">Светлана Дорохова с сыновьями ездят каждую субботу с мая по сентябрь. Берём всё, что не берут перекупщики.</p>
+      </article>
+
+      <p class="hv-quote" data-speed=".38">За неделю в зал приходит <b>60 кг сыра</b> и <b>40 кг форели</b>. Остальное столько, сколько собрали за выходные.</p>
+
+      <article class="hv hv-b" data-speed=".3">
+        <figure class="hv-fig"><img src="assets/img/farm-cheese.jpg" alt="Сыры ручной работы в холодной кладовой" width="864" height="1152" loading="lazy"></figure>
+        <p class="hv-where mono">Арамиль · 42 км · вторник</p>
+        <h3 class="hv-name">Сыр из фермерского молока</h3>
+        <p class="hv-text">Гарий Никитин держит 14 коров, к нам едет каждый вторник.</p>
+      </article>
+
+      <figure class="hv hv-solo" data-speed=".52">
+        <div class="hv-fig"><img src="assets/img/dish-pike.jpg" alt="Щучьи котлеты с пюре из печёной тыквы на тарелке" width="1280" height="720" loading="lazy"></div>
+        <figcaption class="mono">щука из Косулино, пюре из печёной тыквы, хрен · 690 ₽</figcaption>
+      </figure>
+
+      <article class="hv hv-c" data-speed=".68">
+        <figure class="hv-fig"><img src="assets/img/farm-fish.jpg" alt="Форель из садка Петра Мальцева на родниковой воде" width="864" height="1152" loading="lazy"></figure>
+        <p class="hv-where mono">Реж · 68 км · каждое утро</p>
+        <h3 class="hv-name">Форель из Режа</h3>
+        <p class="hv-text">Пётр Мальцев выращивает форель в садках на родниковой воде, круглый год 8 градусов.</p>
+      </article>
+
+      <article class="hv hv-d" data-speed=".86">
+        <figure class="hv-fig"><img src="assets/img/farm-berry.jpg" alt="Брусника в ведре на мху в уральском лесу" width="864" height="1152" loading="lazy"></figure>
+        <p class="hv-where mono">Бобровский район · 95 км · август</p>
+        <h3 class="hv-name">Брусника и облепиха</h3>
+        <p class="hv-text">Айгун и Тимур Валевы собирают на горах в августе, ягоды вялят сами.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ланч и залы: два разных кадра ============ -->
+<section class="deal" id="lunch">
+  <div class="wrap deal-head">
+    <p class="deal-head-kicker mono">одна кухня работает в двух режимах</p>
+    <h2 class="deal-head-h2">
+      <span class="mask"><span class="in">Ланч</span></span>
+      <span class="mask"><span class="in em">и залы</span></span>
+    </h2>
+  </div>
+
+  <article class="scene scene-lunch">
+    <figure class="scene-fig">
+      <div class="scene-fig-in"><img src="assets/img/table.jpg" alt="Стол в зале с бокалами и керамикой ручной работы" width="1280" height="720" loading="lazy"></div>
+    </figure>
+    <div class="scene-in scene-in-lunch">
+      <p class="scene-kicker mono">будни · 12:00-16:00 · без записи</p>
+      <p class="scene-num mono" aria-label="490 рублей">
+        <span class="odo" aria-hidden="true">
+          <span class="odo-col" style="--d:4"><span class="odo-strip"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i></span></span>
+          <span class="odo-col" style="--d:9"><span class="odo-strip"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i></span></span>
+          <span class="odo-col" style="--d:0"><span class="odo-strip"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i></span></span>
+        </span>
+        <span class="scene-unit">₽</span>
+      </p>
+      <p class="scene-cap mono">за человека · с супом, вторым и стаканом из банки</p>
+    </div>
+    <div class="scene-side">
+      <h3 class="scene-h3">Суп, второе<br><em>и стакан из банки</em></h3>
+      <p class="scene-lead">Днём зал живёт иначе: светло, громко, и очередь в 13:10. Десерт за 190 ₽, но его почти не берут: в 15:40 уже тянут кофе.</p>
+      <p class="scene-facts mono">24 места · с 12:00 до 16:00 · по воскресеньям ланч не делаем</p>
+    </div>
+  </article>
+
+  <article class="scene scene-banquet">
+    <figure class="scene-fig scene-fig-tall">
+      <div class="scene-fig-in"><img src="assets/img/veranda.jpg" alt="Веранда бистро летним вечером" width="1280" height="720" loading="lazy"></div>
+      <figcaption class="mono">веранда, с мая по сентябрь · 24 места · гирлянды с мая</figcaption>
+    </figure>
+    <div class="scene-in scene-in-banquet">
+      <p class="scene-kicker mono">пт и сб · с 17:00 · зал закрывают целиком</p>
+      <p class="scene-num mono" aria-label="до 40 гостей">
+        <span class="scene-pre">до</span>
+        <span class="odo" aria-hidden="true">
+          <span class="odo-col" style="--d:4"><span class="odo-strip"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i></span></span>
+          <span class="odo-col" style="--d:0"><span class="odo-strip"><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i><i>0</i><i>1</i><i>2</i><i>3</i><i>4</i><i>5</i><i>6</i><i>7</i><i>8</i><i>9</i></span></span>
+        </span>
+        <span class="scene-unit scene-unit-word">гостей</span>
+      </p>
+    </div>
+    <div class="scene-side scene-side-banquet">
+      <h3 class="scene-h3">Зал <em>ваш</em><br>с семи вечера</h3>
+      <p class="scene-lead">Кухню можно оставить на вас: готовим большое меню и разносим по столам сами. Депозит 3 500 ₽ с гостя, остальное считаем в конце вечера.</p>
+      <p class="scene-facts mono">40 мест в зале · 24 на веранде · депозит от 3 500 ₽</p>
+      <a class="scene-link" href="#booking">Посчитать банкет на вечер
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+    </div>
+  </article>
+</section>
+
+<!-- ============ бронь: сцена с печью, книга записи на углях ============ -->
+<section class="book" id="booking">
+  <div class="book-stage" id="bookStage">
+    <figure class="book-bg" aria-hidden="true">
+      <div class="book-bg-in"><img src="assets/img/fire.jpg" alt="" width="1152" height="864" loading="lazy"></div>
+    </figure>
+    <div class="book-veil" aria-hidden="true"></div>
+
+    <div class="wrap book-grid">
+      <div class="book-note">
+        <p class="book-kicker mono">бронь стола · держим 15 минут</p>
+        <h2 class="book-h2"><span class="mask"><span class="in">Место</span></span> <span class="mask"><span class="in em">у печи</span></span></h2>
+        <p class="book-lead">Деревянные столы стоят в два ряда, второй у печи: там теплее и слышно, как шумит огонь. Выберите дату, время и сколько вас будет, оставьте имя и телефон, нажмите кнопку, откроется Telegram с готовым текстом. Проще позвонить, ответим в течение десяти минут.</p>
+        <a class="book-tel" href="tel:+73432881471">+7 (343) 288-14-71</a>
+        <p class="book-hours mono">вс-чт 12:00-23:00 · пт-сб 12:00-01:00</p>
+        <p class="book-status" id="openNowBook"><span class="lamp"></span><span id="openTextBook">считаем время Екатеринбурга</span></p>
+      </div>
+
+      <form class="sheet" id="bookForm" novalidate>
+        <p class="sheet-cap mono">книга записи · второй ряд, у печи</p>
+
+        <div class="sheet-row">
+          <p class="flabel mono" id="dateLabel">Дата</p>
+          <div class="tape" id="dateTape" role="group" aria-labelledby="dateLabel"></div>
+        </div>
+
+        <div class="sheet-row">
+          <p class="flabel mono" id="timeLabel">Время</p>
+          <div class="clock">
+            <button type="button" class="clock-btn" id="drumUp" aria-label="На час раньше">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+            </button>
+            <div class="drum" id="timeDrum">
+              <div class="drum-win">
+                <ul class="drum-list" id="drumList" aria-labelledby="timeLabel"></ul>
+              </div>
+            </div>
+            <button type="button" class="clock-btn" id="drumDown" aria-label="На час позже">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="sheet-row">
+          <p class="flabel mono" id="guestLabel">Гостей</p>
+          <div class="seats">
+            <div class="plates" id="plates" role="group" aria-labelledby="guestLabel"></div>
+            <output class="seats-out mono" id="gOut" aria-live="polite">2 гостя</output>
+          </div>
+          <p class="dial-note mono">зал 40 · веранда 24, столы в два ряда, второй у печи</p>
+        </div>
+
+        <div class="sheet-row sheet-row-two">
+          <p class="fld">
+            <label class="flabel mono" for="bName">Имя</label>
+            <input type="text" id="bName" name="name" placeholder="Как вас зовут" autocomplete="name" required>
+          </p>
+          <p class="fld">
+            <label class="flabel mono" for="bPhone">Телефон</label>
+            <input type="tel" id="bPhone" name="phone" placeholder="+7 900 000-00-00" autocomplete="tel" required>
+          </p>
+        </div>
+
+        <div class="form-foot">
+          <button type="submit" class="magnet" id="bookBtn">
+            <span class="magnet-in"><b>Забронировать стол</b><small>откроет Telegram с текстом брони</small></span>
+            <svg class="magnet-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </button>
+          <p class="form-hint" id="bookHint">Если Telegram закрыт, позвоните: +7 343 288-14-71, ответим в течение десяти минут.</p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ подвал на бумаге ============ -->
+<footer class="foot" id="foot">
+  <div class="wrap foot-top">
+    <div>
+      <h3>Адрес</h3>
+      <span class="big">ул. Шейнкмана, 75</span>
+      <p class="mono-line">Екатеринбург, Кировский район</p>
+      <p class="foot-note">Парковка во дворе, 20 мест, после 19:00 половина свободна. Велостоянка у входа на Шейнкмана.</p>
+      <div class="foot-maps">
+        <a class="map-btn" href="https://yandex.ru/maps/?text=Екатеринбург%2C%20улица%20Шейнкмана%2075" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Яндекс Карты
+        </a>
+        <a class="map-btn" href="https://2gis.ru/ekb/search/улица%20Шейнкмана%2075" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11a7 7 0 1 0-14 0c0 4.7 7 11 7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          2ГИС
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <h3>Часы</h3>
+      <p class="status" id="openNow"><span class="lamp"></span><span id="openText">считаем время Екатеринбурга</span></p>
+      <p class="mono-line foot-hours">вс-чт 12:00-23:00</p>
+      <p class="mono-line">пт-сб 12:00-01:00</p>
+      <p class="foot-note">Последний заказ за 40 минут до закрытия кухни. Кухня закрывается на час раньше зала.</p>
+    </div>
+
+    <div>
+      <h3>Связь</h3>
+      <span class="big"><a class="link-u" href="tel:+73432881471">+7 343 288-14-71</a></span>
+      <ul class="foot-links">
+        <li><a href="https://t.me/sezon_ekb" target="_blank" rel="noopener">Telegram: @sezon_ekb</a></li>
+        <li><a href="https://wa.me/73432881471" target="_blank" rel="noopener">WhatsApp: +7 343 288-14-71</a></li>
+        <li><a href="mailto:sezon@sezon-ekb.ru">sezon@sezon-ekb.ru</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="foot-word"><span class="foot-wordmark" id="footWord">Сезон</span></div>
+
+  <div class="foot-bot">
+    <span>ИП Курбатов Д. С., Екатеринбург, ОГРНИП 322961900118442</span>
+    <span>Меню и цены сменились 1 октября 2026</span>
+  </div>
+</footer>
+
+<script src="assets/js/lib/gsap.min.js"></script>
+<script src="assets/js/lib/ScrollTrigger.min.js"></script>
+<script src="assets/js/lib/lenis.min.js"></script>
+<script src="assets/js/site.js"></script>
+</body>
+</html>
