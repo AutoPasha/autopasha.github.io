@@ -1,161 +1,328 @@
 'use strict';
-const projects = [
- {image:'obj-angar',title:'Ангар для техники',place:'Онега',facts:'128 т · 1 800 м² · 38 дней',description:'Утеплённый контур, ворота 6 × 6 м. Производство и монтаж за 38 дней.'},
- {image:'obj-most',title:'Пешеходный мост',place:'Вологда',facts:'96 т · пролёт 54 м · 61 день',description:'Сквозные фермы, настил из профнастила, оранжевые поручни. От замера до сдачи 61 день.'},
- {image:'obj-sklad',title:'Склад 2 400 м²',place:'Вологда',facts:'214 т · пролёт 24 м · 46 дней',description:'Стальные колонны и фермы под кровлю. Объект сдан в марте 2025 года.'},
- {image:'fermy',title:'Фермы и балки',place:'Череповец · производство',facts:'от 126 400 ₽/т · от 14 дней',description:'Сварные фермы из парных уголков и двутавра, прогоны и связи жёсткости.'},
- {image:'rezerveyar',title:'Два резервуара по 400 м³',place:'Ухта',facts:'74 т · 52 дня',description:'Два корпуса с площадками. Окраска, монтаж и акт на гидроиспытание.'},
- {image:'lestnitsa',title:'Лестницы и площадки',place:'Череповец · производство',facts:'от 143 000 ₽/т · от 10 дней',description:'Марши и площадки обслуживания. Решётчатые или гофрированные ступени, вариант в горячее цинкование.'},
- {image:'tsekh',title:'Здесь металл становится каркасом',place:'Череповец · цех 3',facts:'6 800 м² · до 900 т в месяц',description:'Промышленная ул., 14. Полный цикл: резка, сборка, сварка, дробеструй и покраска.'},
- {image:'svar',title:'Сварка узлов',place:'Череповец · цех 3',facts:'24 сварщика с аттестацией НАКС',description:'Сварка аттестованными сварщиками. Швы под ультразвуковой или визуально-измерительный контроль.'},
- {image:'plazma',title:'Резка по вашим чертежам',place:'Череповец · цех 3',facts:'лист до 12 м · толщина до 40 мм',description:'Плазменная резка Messer. Нестандартные конструкции от 134 700 ₽ за тонну, от 18 дней.'},
- {image:'pokras',title:'Производственный корпус',place:'Кировск',facts:'340 т · 3 600 м² · 74 дня',description:'Двухэтажный каркас с кран-балкой 3,2 т. Лестницы и площадки обслуживания внутри цеха.'},
- {image:'inzhener',title:'Сначала разбираем чертёж',place:'Череповец · отдел продаж',facts:'Расчёт за 2 рабочих дня',description:'Присылайте PDF, DWG или планы здания. Инженер подготовит вес, стоимость металла и работ, график производства.'},
- {image:'hero-angar',title:'Каркас ангара',place:'Онега',facts:'128 т · пролёт 24 м',description:'Шаг колонн 6 м, высота до конька 8,4 м. Каркасы зданий и ангаров от 118 000 ₽ за тонну.'}
-];
-const rail = document.querySelector('#rail');
+// Северсталькон: пять актов, один цикл кадра. Каждый акт берёт свою долю
+// прокрутки (0..1) и рисует только когда виден. Только transform, opacity
+// и clip-path; на касании прокрутка родная (Lenis только для колеса).
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const ease = t => 1 - Math.pow(1 - t, 3);
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const label = document.querySelector('#label');
-const intro = document.querySelector('.introduction');
-const dialog = document.querySelector('#detail');
-const space = document.querySelector('.scroll-space');
-let mobile = innerWidth <= 600;
-let unit = innerHeight * 11 / 12;
-let target = 0, position = 0, pointerX = innerWidth * .71, pointerY = innerHeight * .69;
-let labelX = pointerX, labelY = pointerY, hovered = null, active = -1, lastFocused, selectedProject = null;
-const totalSteps = 12;
-const cards = projects.map((project, index) => {
- const card = document.createElement('button');
- card.className = 'card photo'; card.type = 'button'; card.dataset.index = index;
- card.setAttribute('aria-label', `${project.title}, ${project.place}. Рассмотреть объект`);
- const img = document.createElement('img'); img.src = `assets/img/${project.image}.jpg`; img.alt = project.title; img.decoding = 'async'; img.loading = index < 4 ? 'eager' : 'lazy';
- const caption = document.createElement('span'); caption.className = 'edge-name'; caption.textContent = project.title;
- card.append(img, caption); rail.append(card);
- card.addEventListener('pointerenter', () => {hovered = index; updateLabel(index);});
- card.addEventListener('pointerleave', () => {hovered = null;});
- card.addEventListener('focus', () => updateLabel(index));
- card.addEventListener('click', () => openProject(index, card));
- return card;
+const phone = () => innerWidth <= 760;
+
+const lenis = !reduced && window.Lenis ? new Lenis({ lerp: 0.09, smoothWheel: true, syncTouch: false }) : null;
+
+// доля прокрутки закреплённого акта: 0 — акт встал, 1 — уходит
+function pinProgress(sec) {
+  const r = sec.getBoundingClientRect();
+  const span = sec.offsetHeight - innerHeight;
+  return span > 0 ? clamp(-r.top / span) : clamp(1 - r.bottom / (innerHeight + r.height));
+}
+const visible = el => { const r = el.getBoundingClientRect(); return r.bottom > -40 && r.top < innerHeight + 40; };
+
+/* ───── Акт 1. Развеска ───── */
+const PRINTS = [
+  ['obj-angar', 'Онега', 'Ангар для техники', '128 т · 1 800 м² · 38 дней', 'Зимний вариант: утеплённый контур, ворота 6 на 6 м, продуваемые связи. Производство и монтаж за 38 дней.'],
+  ['obj-most', 'Вологда', 'Пешеходный мост, 54 м', '96 т · 61 день от замера', 'Сквозные фермы, настил из профнастила, поручни в сигнальный оранжевый по требованию заказчика.'],
+  ['obj-sklad', 'Вологда', 'Склад 2 400 м²', '214 т · пролёт 24 м · 46 дней', 'Стальные колонны и фермы под кровлю. Объект сдан в марте 2025 года.'],
+  ['tsekh', 'Череповец · цех 3', 'Цех 6 800 м²', 'мостовой кран 32 т · до 900 т в месяц', 'Промышленная ул., 14. Режем, гнём, варим и красим сами, с 2009 года.'],
+  ['fermy', 'Череповец · склад', 'Фермы и балки', 'от 126 400 ₽/т · от 14 дней', 'Сварные фермы из парных уголков и двутавра, прогоны, связи. Часть профилей на складе, отгружаем сразу.'],
+  ['rezerveyar', 'Ухта', 'Резервуары 2 × 400 м³', '74 т · 52 дня с монтажом', 'Два корпуса с площадками. Швы аттестованными сварщиками, акт на гидроиспытание.'],
+  ['svar', 'Череповец · цех 3', 'Сварка узлов', '24 сварщика с аттестацией НАКС', 'Швы под ультразвуковой или визуально-измерительный контроль, протокол ОТК на каждую партию.'],
+  ['hero-angar', 'Онега', 'Каркас ангара', 'пролёт 24 м · шаг колонн 6 м', 'Высота до конька 8,4 м. Каркасы зданий и ангаров от 118 000 ₽ за тонну, от 21 дня.'],
+  ['plazma', 'Череповец · цех 3', 'Плазменная резка Messer', 'лист до 12 м · толщина до 40 мм', 'Нестандарт по вашим чертежам от 134 700 ₽ за тонну, от 18 дней.'],
+  ['lestnitsa', 'Череповец · производство', 'Лестницы и площадки', 'от 143 000 ₽/т · от 10 дней', 'Марши, площадки обслуживания, ограждения кровли. Перила по ГОСТ, есть горячее цинкование.'],
+  ['pokras', 'Череповец · цех 3', 'Покрасочный участок', 'грунт ГФ-021 · эпоксид · RAL', 'Дробеструй до Sa 2,5 перед покраской, цвет по RAL заказчика.'],
+  ['inzhener', 'Отдел продаж', 'Сначала разбираем чертёж', 'расчёт за 2 рабочих дня', 'Присылайте pdf, dwg или планы здания: инженер даст вес, стоимость металла и работ.'],
+];
+const N = PRINTS.length;
+const hang = $('.hang');
+const rail = $('#rail');
+const label = $('#label');
+const bar = $('.hang-bar i');
+const hangBg = $('.hang-bg');
+const prints = PRINTS.map(([img, place, title], i) => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'print';
+  b.setAttribute('aria-label', `${title}, ${place}: открыть`);
+  b.innerHTML = `<img src="assets/img/${img}.jpg" alt="" decoding="async" ${i < 4 ? '' : 'loading="lazy"'}>`;
+  b.addEventListener('click', () => openPeek(i, b));
+  rail.append(b);
+  return b;
 });
-const calc = document.createElement('article'); calc.className = 'card calc-card'; calc.id = 'calc'; calc.setAttribute('data-lenis-prevent', '');
-calc.innerHTML = '<h2>Ваш проект.<br>Наш металл.</h2><p>Расчёт по чертежам за 2 рабочих дня.<br>Начнём с телефона для связи.</p><form id="calc-form"><label for="phone">Ваш телефон</label><div class="form-row"><input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+7 (___) ___-__-__" required aria-describedby="form-status"><button class="solid" type="submit">Подготовить письмо ↗</button></div><p class="form-note">Откроется почтовый клиент. Приложите чертёж к письму и отправьте его нам.</p><div id="form-status" class="form-status" role="status"></div></form>';
-const calculation = document.createElement('div');
-calculation.className = 'calculation';
-calculation.append(...calc.childNodes);
-calc.append(calculation);
-document.querySelector('.scene').append(calc);
-const footer = document.createElement('footer'); footer.className = 'footer-card';
-footer.innerHTML = '<h2>Увидимся в цехе.</h2><address>Череповец, Промышленная ул., 14<br>Цех 3, проходная с торца</address><p>Пн-пт 8:00-17:00</p><div class="footer-links"><a href="tel:+78202491760">+7 (8202) 49-17-60</a><a href="https://t.me/severstalkon_sales" target="_blank" rel="noopener">Telegram ↗</a><a href="mailto:zakaz@severstalkon.ru">Написать на почту ↗</a></div><small>ООО «Северный завод стальных конструкций»<br>Металлоконструкции с 2009 года</small>';
-calc.append(footer);
-const lenis = !reduced && window.Lenis ? new Lenis({lerp:.08,smoothWheel:true}) : null;
-function updateLabel(index) {
- if (active === index) return;
- active = index;
- const data = projects[index];
- label.querySelector('.label-place').textContent = data.place;
- label.querySelector('.label-title').textContent = data.title;
- label.querySelector('.label-facts').textContent = data.facts;
+let pos = 0, drift = 0, front = -1, last = performance.now();
+
+function setLabel(i) {
+  if (i === front) return;
+  front = i;
+  const [, place, title, facts] = PRINTS[i];
+  label.classList.add('is-swap');
+  setTimeout(() => {
+    label.querySelector('[data-l=place]').textContent = place;
+    label.querySelector('[data-l=title]').textContent = title;
+    label.querySelector('[data-l=facts]').textContent = facts;
+    label.classList.remove('is-swap');
+  }, front === -1 ? 0 : 180);
 }
-function resize() {
- mobile = innerWidth <= 600; unit = innerHeight * 11 / totalSteps;
- space.style.height = `${12 * innerHeight}px`;
- target = scrollY / unit;
+
+function layoutHang(dt) {
+  const p = pinProgress(hang);
+  const m = phone();
+  if (!reduced && visible(hang) && !peek.open) drift += dt * (m ? 0.09 : 0.05); // сама дышит: ~0.05 кадра в секунду
+  const target = p * (m ? 2.2 : 5) + drift;
+  pos = reduced ? 0 : lerp(pos, target, 0.085);
+  const W = innerWidth, H = innerHeight;
+  let best = 0, bestD = 99;
+  prints.forEach((el, i) => {
+    let d = ((i - pos) % N + N) % N;          // 0..N
+    if (d > N - 0.9) d -= N;                   // ушедшая за камеру — в (-0.9, 0]
+    let x, y, z, ry, o;
+    if (m) { x = d * 0.03 * W; y = -d * 0.05 * H; z = -d * 360; ry = -10; }
+    else { x = d * 0.2 * W; y = -d * 0.07 * H; z = -d * 560; ry = -28; }
+    if (d < 0) { o = clamp(1 + d / 0.85); x = d * 0.1 * W; y = -d * 1.25 * H; z = -d * 200; } // целиком уходит вниз за край, без призрака
+    else o = clamp(1 - (d - (m ? 2.4 : 3.2)) / 2.2);             // дальние уходят в дымку
+    el.style.opacity = o.toFixed(3);
+    el.style.visibility = o < 0.02 ? 'hidden' : 'visible';
+    el.style.zIndex = String(1000 - Math.round(d * 50));
+    el.style.transform = `translate3d(${x.toFixed(1)}px,${y.toFixed(1)}px,${z.toFixed(1)}px) rotateY(${ry}deg)`;
+    el.tabIndex = d > -0.2 && d < 3 ? 0 : -1;
+    if (d > -0.12 && d < bestD) { bestD = d; best = i; }
+  });
+  setLabel(best);
+  bar.style.transform = `scaleX(${p.toFixed(4)})`;
+  if (!reduced) hangBg.style.transform = `scale(${(1.08 + p * 0.1).toFixed(4)}) translate3d(0,${(-p * 3).toFixed(2)}%,0)`;
 }
-function transformCard(card, distance, isSpecial = false) {
- const x = distance * (mobile ? 40 : 320), y = distance * (mobile ? -220 : -150), z = distance * (mobile ? -480 : -520);
- const angle = mobile ? -9 : -28;
- card.style.transform = `translate3d(${x}px,${y - (isSpecial && mobile ? 70 : 0)}px,${z}px) rotateY(${angle}deg)`;
- const opacity = isSpecial ? (distance < -.35 || distance > 5 ? 0 : 1) : distance < -1.1 || distance > 6 ? 0 : distance < -.25 ? Math.max(0, 1 + (distance + .25) / .85) : Math.max(0, 1 - distance / 6);
- card.style.opacity = opacity;
- card.style.visibility = opacity < .015 ? 'hidden' : 'visible';
- card.style.pointerEvents = distance > 2.5 || opacity < .15 ? 'none' : 'auto';
- card.inert = distance > 2.5 || opacity < .15;
- // Затемнение задаётся слоем, без пересчёта фильтра на каждом кадре.
+
+/* ───── Акт 2. Чертёж → каркас ───── */
+const draw = $('.draw');
+const stage = $('.draw-stage');
+const photo = $('.draw-photo');
+const scan = $('.draw-scan');
+const svgNS = 'http://www.w3.org/2000/svg';
+(function buildDrawing() {
+  const grid = $('.draw-grid');
+  for (let x = 0; x <= 1200; x += 50) grid.insertAdjacentHTML('beforeend', `<line x1="${x}" y1="0" x2="${x}" y2="800"/>`);
+  for (let y = 0; y <= 800; y += 50) grid.insertAdjacentHTML('beforeend', `<line x1="0" y1="${y}" x2="1200" y2="${y}"/>`);
+  // рама ангара: две колонны, двускатная ферма с раскосами, прогоны второй рамы в перспективе
+  const L = 190, R = 1010, G = 690, E = 360, K = 210;            // левая, правая, земля, карниз, конёк
+  const P = [];
+  P.push([`M${L} ${G} V${E}`, 'main'], [`M${R} ${G} V${E}`, 'main']);
+  P.push([`M${L} ${E} L600 ${K} L${R} ${E}`, 'main'], [`M${L} ${E} H${R}`, '']);
+  for (let i = 1; i < 8; i++) {                                    // стойки и раскосы фермы
+    const x = L + (R - L) * i / 8;
+    const top = x < 600 ? E - (x - L) / (600 - L) * (E - K) : E - (R - x) / (R - 600) * (E - K);
+    P.push([`M${x.toFixed(0)} ${E} V${top.toFixed(0)}`, '']);
+    const xp = L + (R - L) * (i - 1) / 8;
+    P.push([`M${xp.toFixed(0)} ${E} L${x.toFixed(0)} ${top.toFixed(0)}`, '']);
+  }
+  const dx = 120, dy = -70;                                        // вторая рама глубже
+  P.push([`M${L + dx} ${G + dy} V${E + dy} L${600 + dx} ${K + dy} L${R + dx} ${E + dy} V${G + dy}`, '']);
+  P.push([`M${L} ${E} l${dx} ${dy}`, ''], [`M600 ${K} l${dx} ${dy}`, ''], [`M${R} ${E} l${dx} ${dy}`, '']);
+  P.push([`M${L} ${G} l${dx} ${dy}`, ''], [`M${R} ${G} l${dx} ${dy}`, '']);
+  P.push([`M80 ${G} H1120`, '']);
+  const g = $('.draw-lines');
+  P.forEach(([d, c], i) => {
+    const p = document.createElementNS(svgNS, 'path');
+    p.setAttribute('d', d);
+    p.setAttribute('pathLength', '1');
+    if (c) p.setAttribute('class', c);
+    p.style.strokeDasharray = '1';
+    p.style.strokeDashoffset = '1';
+    p.dataset.k = (i / P.length).toFixed(3);
+    g.append(p);
+  });
+  const dims = $('.draw-dims');
+  dims.innerHTML = `
+    <path d="M${L} ${G + 40} H${R} M${L} ${G + 30} v20 M${R} ${G + 30} v20"/><text x="600" y="${G + 72}" text-anchor="middle">пролёт 24 000</text>
+    <path d="M${L - 50} ${G} V${K} M${L - 60} ${G} h20 M${L - 60} ${K} h20"/><text x="${L - 64}" y="${(G + K) / 2}" text-anchor="end">8 400</text>
+    <text x="${R + dx - 6}" y="${E + dy - 16}" text-anchor="end">шаг колонн 6 000</text>`;
+  dims.style.opacity = '0';
+})();
+const lines = $$('.draw-lines path');
+
+function layoutDraw() {
+  if (!visible(draw)) return;
+  const p = reduced ? 1 : pinProgress(draw);
+  const d = clamp(p / 0.55);                                       // 0..0.55 рисуем
+  lines.forEach(l => { const k = +l.dataset.k * 0.6; l.style.strokeDashoffset = (1 - clamp((d - k) / 0.4)).toFixed(4); });
+  $('.draw-dims').style.opacity = clamp((d - 0.55) / 0.3).toFixed(3);
+  const w = clamp((p - 0.55) / 0.35);                              // 0.55..0.9 каркас проступает
+  const we = ease(w);
+  photo.style.clipPath = `inset(0 ${(100 - we * 100).toFixed(2)}% 0 0)`;
+  scan.style.opacity = w > 0 && w < 1 ? '1' : '0';
+  scan.style.transform = `translateX(${(we * stage.clientWidth).toFixed(1)}px)`;
+  $('.draw-lines').style.opacity = (1 - we * 0.75).toFixed(3);
+  stage.classList.toggle('is-built', w >= 0.98);
 }
-function render(time) {
- lenis?.raf(time);
- if (!dialog.open) {
- target = scrollY / unit;
- position += (target - position) * .08;
- if (Math.abs(target - position) < .001) position = target;
- cards.forEach((card, index) => {
-  let sequence = index;
-  // Ушедший кадр возвращается в дымку; прокрутка завершается формой.
-  if (position > index + 1.1) sequence = index + 12;
-  transformCard(card, sequence - position);
- });
- const finalVisible = position > 11.55;
- rail.style.display = position > 11.8 ? 'none' : '';
- calc.style.opacity = finalVisible ? String(Math.min(1, (position - 11.55) / .2)) : '0'; document.querySelector('.hud-center').style.visibility = finalVisible ? 'hidden' : '';
- calc.style.visibility = finalVisible ? 'visible' : 'hidden';
- calc.inert = !finalVisible;
- calc.style.transform = `translateY(${Math.max(0, 11.75 - position) * 70}px)`;
- const nearest = Math.max(0, Math.round(position));
- if (hovered === null) updateLabel(Math.min(11, nearest));
- label.style.opacity = finalVisible ? '0' : '1';
- document.querySelector('#counter').textContent = finalVisible ? 'РАСЧЁТ И КОНТАКТЫ' : `${String(Math.min(12, nearest + 1)).padStart(2,'0')} / 12`;
- const introOpacity = Math.max(0,1-position*1.4); intro.style.opacity = introOpacity; intro.style.visibility = introOpacity < .01 ? 'hidden' : 'visible';
- if (!mobile) {
-  labelX += (pointerX - labelX) * .12; labelY += (pointerY - labelY) * .12;
-  label.style.left = '0'; label.style.top = '0'; label.style.transform = `translate3d(${Math.min(innerWidth-305, Math.max(20,labelX+18))}px,${Math.min(innerHeight-250, Math.max(110,labelY+18))}px,0)`;
- } else {label.style.left='';label.style.top='';label.style.transform='';}
- // Подпись остаётся только у ближнего кадра и вне защищённых зон интерфейса.
- const protectedRects = [document.querySelector('.header'), document.querySelector('.hud'), ...(introOpacity > .01 ? [intro] : []), ...(!finalVisible ? [label] : [])].map(node => node.getBoundingClientRect());
- cards.forEach((card, index) => {
-  const caption = card.querySelector('.edge-name');
-  caption.style.visibility = 'hidden';
-  if (index !== nearest || finalVisible) return;
-  const rect = caption.getBoundingClientRect();
-  const overlaps = protectedRects.some(zone => rect.left < zone.right + 8 && rect.right > zone.left - 8 && rect.top < zone.bottom + 8 && rect.bottom > zone.top - 8);
-  if (!overlaps && rect.top >= 0 && rect.bottom < innerHeight - 60) caption.style.visibility = 'visible';
- });
- }
- requestAnimationFrame(render);
+
+/* ───── Акт 3. Сварка букв ───── */
+const weld = $('.weld');
+const word = $('.weld-word');
+const weldCap = $('.weld-cap');
+const letters = [...word.textContent].map(ch => { const s = document.createElement('span'); s.className = 'ch'; s.textContent = ch; s.setAttribute('aria-hidden', 'true'); return s; });
+word.textContent = '';
+letters.forEach(s => word.append(s));
+const seed = [[-0.9, -0.5, -40], [0.5, -0.2, 25], [-0.3, -0.9, -60], [0.8, -0.6, 35], [-0.7, -0.3, 50], [0.3, -1, -30], [0.9, -0.4, 45]]; // только вверх: абзац под словом не задевают
+function paintLetters() {                                          // шов идёт по слову целиком
+  const wr = word.getBoundingClientRect();
+  letters.forEach(s => {
+    s.style.backgroundSize = `${(wr.width * 3).toFixed(0)}px 100%`;
+    s.style.animationDelay = `${((s.offsetLeft / Math.max(1, wr.width)) * 0.9).toFixed(2)}s`;
+  });
 }
-function openProject(index, trigger) {
- const data = projects[index]; lastFocused = trigger; selectedProject = index;
- const source = trigger.getBoundingClientRect();
- dialog.querySelector('img').src = `assets/img/${data.image}.jpg`; dialog.querySelector('img').alt = data.title;
- document.querySelector('#detail-title').textContent = data.title;
- document.querySelector('#detail-place').textContent = data.place;
- document.querySelector('#detail-facts').textContent = `${data.facts}. ${data.description}`;
- lenis?.stop(); document.body.style.overflow = 'hidden'; dialog.showModal();
- if (!reduced) {
-  const image = dialog.querySelector('.detail-image'); const destination = image.getBoundingClientRect();
-  image.animate([{transformOrigin:'0 0',transform:`translate(${source.left}px,${source.top}px) scale(${source.width/destination.width},${source.height/destination.height})`,opacity:.7},{transformOrigin:'0 0',transform:'translate(0,0) scale(1,1)',opacity:1}],{duration:550,easing:'cubic-bezier(.22,1,.36,1)'});
- }
- dialog.querySelector('.close').focus();
+let counted = false;
+function layoutWeld() {
+  if (!visible(weld)) return;
+  const p = reduced ? 1 : pinProgress(weld);
+  const a = ease(clamp(p / 0.6));
+  const m = phone();
+  letters.forEach((s, i) => {
+    const [sx, sy, sr] = seed[i];
+    const k = 1 - a;
+    s.style.transform = `translate3d(${(sx * k * innerWidth * (m ? 0.25 : 0.32)).toFixed(1)}px,${(sy * k * innerHeight * 0.32).toFixed(1)}px,0) rotate(${(sr * k).toFixed(2)}deg)`;
+    s.style.opacity = (0.35 + 0.65 * a).toFixed(3);                 // разлёт только вверх, подпись над словом проявляется после сборки
+  });
+  word.classList.toggle('is-hot', a > 0.985);
+  weldCap.style.opacity = clamp((a - 0.8) / 0.2).toFixed(3);      // подпись над словом проявляется, когда буквы уже на месте
+  if (!counted && p > 0.45) { counted = true; countUp(); }
 }
-function closeProject() {dialog.close();}
-dialog.querySelector('.close').addEventListener('click',closeProject);
-dialog.addEventListener('close', () => {document.body.style.overflow='';lenis?.start();lastFocused?.focus({preventScroll:true});});
-function goCalc(event) {
- event.preventDefault(); calc.scrollTop = 0; if (dialog.open) {closeProject();document.body.style.overflow='';lenis?.start();}
- if (reduced) {calc.scrollIntoView();} else if (lenis) {lenis.scrollTo(unit*12,{duration:1.4});} else {scrollTo({top:unit*12,behavior:'smooth'});}
- // Фокус ждёт фактического появления карточки после сглаживания камеры.
- const focusDeadline = performance.now() + 20000;
- const focusForm = () => {
-  if (performance.now() > focusDeadline) return;
-  if (reduced || position > 11.8) calc.querySelector('input').focus({preventScroll:true});
-  else if (target > 11.5 || scrollY > unit * 11.5) requestAnimationFrame(focusForm);
-  else setTimeout(focusForm, 100);
- };
- setTimeout(focusForm, reduced ? 0 : 1500);
+function countUp() {
+  $$('[data-count]').forEach(el => {
+    const to = +el.dataset.count, t0 = performance.now(), dur = reduced ? 0 : 1300;
+    const step = now => {
+      const t = dur ? clamp((now - t0) / dur) : 1;
+      el.textContent = Math.round(to * ease(t)).toLocaleString('ru-RU');
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
 }
-document.querySelectorAll('[data-calc],.skip').forEach(link=>link.addEventListener('click',goCalc));
-document.querySelector('.brand').addEventListener('click',event=>{event.preventDefault();if(lenis)lenis.scrollTo(0);else scrollTo({top:0,behavior:reduced?'instant':'smooth'});});
-document.querySelector('#calc-form').addEventListener('submit', event => {
- event.preventDefault();const input=document.querySelector('#phone');const status=document.querySelector('#form-status');
- const digits=input.value.replace(/\D/g,'');
- if(digits.length<10 || digits.length>15){input.setAttribute('aria-invalid','true');status.textContent='Укажите телефон: от 10 до 15 цифр.';input.focus();return;}
- input.removeAttribute('aria-invalid');
- const body=`Здравствуйте! Прошу рассчитать металлоконструкции.\nТелефон для связи: ${input.value}\nОбъект: ${selectedProject === null ? 'Мой проект' : projects[selectedProject].title}\nЧертёж или ТЗ приложу к письму.`;
- const href=`mailto:zakaz@severstalkon.ru?subject=${encodeURIComponent('Расчёт металлоконструкций')}&body=${encodeURIComponent(body)}`;
- const link=document.createElement('a');link.href=href;link.textContent='Открыть письмо ещё раз';
- status.replaceChildren(document.createTextNode('Письмо подготовлено. Отправьте его из почтового клиента. '),link);
- location.href=href;
+
+/* ───── Акт 4. Журнал объектов: большое фото закреплено рядом и меняется со строкой ───── */
+const media = $$('.index-media img');
+const num = $('.index-num span');
+const rows = $$('.row');
+let activeRow = null;
+function setRow(row) {
+  if (row === activeRow) return;
+  activeRow = row;
+  rows.forEach(r => r.classList.toggle('is-active', r === row));
+  media.forEach(im => im.classList.toggle('is-on', im.dataset.k === row.dataset.img));
+  const t = parseInt($('.row-t', row).textContent, 10);
+  const t0 = parseInt(num.textContent, 10) || 0, start = performance.now();
+  const step = now => { const k = reduced ? 1 : clamp((now - start) / 600); num.textContent = Math.round(t0 + (t - t0) * ease(k)); if (k < 1) requestAnimationFrame(step); };
+  requestAnimationFrame(step);
+}
+rows.forEach(row => {
+  const btn = $('.row-btn', row);
+  btn.addEventListener('click', () => {
+    const open = !row.classList.contains('is-open');
+    $$('.row.is-open').forEach(r => { r.classList.remove('is-open'); $('.row-btn', r).setAttribute('aria-expanded', 'false'); });
+    row.classList.toggle('is-open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    setTimeout(() => lenis?.resize(), 600);
+  });
+  row.addEventListener('pointerenter', () => setRow(row));
 });
-addEventListener('pointermove',event=>{if(event.clientX===0 && event.clientY===0)return;pointerX=event.clientX;pointerY=event.clientY;});
-addEventListener('resize',resize);resize();updateLabel(0);
-if(!reduced)requestAnimationFrame(render);
-else {cards.forEach(card=>{card.inert=false;});space.style.height='0';}
+function layoutIndex() {
+  if (phone() || !visible($('.index'))) return;
+  const mid = innerHeight * 0.45;                                  // строка у середины экрана — активная
+  let best = rows[0], bd = 1e9;
+  rows.forEach(r => { const b = r.getBoundingClientRect(); const d = Math.abs(b.top + 42 - mid); if (d < bd) { bd = d; best = r; } });
+  if (!$('.row:hover')) setRow(best);
+}
+
+/* ───── Акт 5. Табло ───── */
+const DIGITS = '0123456789';
+$$('.flap').forEach(f => {
+  f.textContent = '';
+  [...f.dataset.v].forEach(ch => { const b = document.createElement('b'); b.textContent = ch === ' ' ? '' : '0'; if (ch === ' ') b.className = 'sp'; b.dataset.to = ch; f.append(b); });
+  f.setAttribute('aria-label', f.dataset.v + ' ₽ за тонну');
+});
+const boardIO = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  boardIO.unobserve(e.target);
+  $$('b:not(.sp)', e.target).forEach((b, i) => {
+    const to = b.dataset.to;
+    if (reduced) { b.textContent = to; return; }
+    let n = 0; const turns = 6 + i * 2 + Math.floor(Math.random() * 3);
+    const tick = () => {
+      b.classList.remove('turn'); void b.offsetWidth; b.classList.add('turn');
+      b.textContent = n >= turns ? to : DIGITS[(+to + n - turns + 20) % 10];
+      if (n++ < turns) setTimeout(tick, 70);
+    };
+    setTimeout(tick, 120 * e.target.closest('.board-row').dataset.i);
+  });
+}), { threshold: 0.6 });
+$$('.board-row').forEach((r, i) => { r.dataset.i = i; boardIO.observe($('.flap', r)); });
+
+/* ───── Финал и шапка ───── */
+const fin = $('.fin');
+const finPhoto = $('.fin-photo');
+const hdr = $('.hdr');
+const darks = [hang, draw, weld, $('.index'), $('.board'), fin];
+function layoutChrome() {
+  const y = 32;
+  hdr.classList.toggle('is-dark', darks.some(s => { const r = s.getBoundingClientRect(); return r.top <= y && r.bottom > y; }));
+  if (!reduced && visible(fin)) {
+    const r = fin.getBoundingClientRect();
+    const t = clamp(1 - r.top / innerHeight);
+    finPhoto.style.transform = `scale(${(1.14 - 0.14 * t).toFixed(4)})`;
+  }
+}
+
+/* ───── Окно объекта (из развески) ───── */
+const peek = $('#peek');
+let opener = null;
+function openPeek(i, from) {
+  const [img, place, title, facts, text] = PRINTS[i];
+  opener = from;
+  const im = $('.peek-img', peek);
+  im.src = `assets/img/${img}.jpg`;
+  im.alt = title;
+  $('#peek-place').textContent = place;
+  $('#peek-title').textContent = title;
+  $('#peek-text').textContent = `${facts}. ${text}`;
+  lenis?.stop();
+  peek.showModal();
+  if (!reduced) {
+    const a = from.getBoundingClientRect(), b = im.getBoundingClientRect();
+    im.animate([
+      { transformOrigin: '0 0', transform: `translate(${a.left - b.left}px,${a.top - b.top}px) scale(${a.width / b.width},${a.height / b.height})` },
+      { transformOrigin: '0 0', transform: 'none' }], { duration: 620, easing: 'cubic-bezier(.22,1,.36,1)' });
+    $('.peek-copy', peek).animate([{ opacity: 0, transform: 'translateY(24px)' }, { opacity: 1, transform: 'none' }], { duration: 500, delay: 260, fill: 'backwards', easing: 'cubic-bezier(.22,1,.36,1)' });
+  }
+  $('.peek-close', peek).focus();
+}
+peek.addEventListener('close', () => { lenis?.start(); opener?.focus({ preventScroll: true }); });
+$('.peek-close', peek).addEventListener('click', () => peek.close());
+peek.addEventListener('click', e => { if (e.target === peek || e.target.classList.contains('peek-img')) peek.close(); });
+$('[data-close]', peek).addEventListener('click', () => peek.close());
+
+/* якоря: плавно колесом, без прыжка */
+$$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const t = document.querySelector(a.getAttribute('href'));
+  if (!t) return;
+  e.preventDefault();
+  if (lenis) lenis.scrollTo(t, { duration: 1.4 }); else t.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+}));
+
+/* цикл */
+function frame(now) {
+  const dt = Math.min(0.05, (now - last) / 1000);
+  last = now;
+  lenis?.raf(now);
+  layoutHang(dt);
+  layoutDraw();
+  layoutWeld();
+  layoutIndex();
+  layoutChrome();
+  requestAnimationFrame(frame);
+}
+function relayout() { paintLetters(); }
+addEventListener('resize', relayout);
+document.fonts?.ready.then(relayout);
+relayout();
+requestAnimationFrame(frame);
