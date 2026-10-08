@@ -4,9 +4,9 @@
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#3f5d4b">
-<title>Кедр · Сначала план и цена. Потом кресло.</title>
-<meta name="description" content="Стоматология Кедр в Новосибирске. Открытые цены, свой КТ. Демьяна Бедного, 60. +7 (383) 312-58-04.">
+<meta name="theme-color" content="#121916">
+<title>Кедр · стоматология в Новосибирске. Сначала план и цена, потом кресло</title>
+<meta name="description" content="Стоматология «Кедр» на Демьяна Бедного, 60. Цены открыто, свой КТ, письменный план до лечения. +7 (383) 312-58-04.">
 <link rel="stylesheet" href="assets/fonts/literata/fonts.css">
 <link rel="stylesheet" href="assets/fonts/onest/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
@@ -15,39 +15,121 @@
 <script src="assets/js/site.js" defer></script>
 </head>
 <body>
-<a class="skip" href="#doctors">Перейти к врачам и контактам</a>
-<main>
-<section class="stage" id="top" aria-label="Клиника и направления лечения">
-<div class="scene" aria-hidden="true"><img id="scene-photo" src="assets/img/hero.jpg" alt="" decoding="async"></div>
-<div class="shade" aria-hidden="true"></div>
-<div class="progress" aria-hidden="true"><i id="progress-bar"></i></div>
-<header class="header">
-<a class="brand" href="./" aria-label="Кедр, главная">кедр<span>стоматология</span></a>
-<div class="header-right"><a class="phone" href="tel:+73833125804" aria-label="Позвонить: +7 (383) 312-58-04"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 3h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4c0 1-1 2-2 2C9 21 3 15 3 5c0-1 1-2 2-2Z"/></svg>+7 (383) 312-58-04</a><a class="button header-button" href="https://t.me/kedr_stom">Записаться <span>↗</span></a></div>
+<a class="skip" href="#plan">Перейти к ценам</a>
+
+<header class="top">
+  <a class="brand" href="#stage" aria-label="Кедр, к началу">кедр<small>стоматология</small></a>
+  <nav class="top-pill" aria-label="Связь">
+    <a class="top-phone" href="tel:+73833125804"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-3 2a15 15 0 0 0 6 6l2-3 5 2v4c0 1-1 2-2 2C9 21 3 15 3 5c0-1 1-2 2-2Z"/></svg><span>+7 (383) 312-58-04</span></a>
+    <a class="top-cta" href="https://t.me/kedr_stom">Записаться</a>
+  </nav>
 </header>
-<div class="story" id="story">
-<h1>Сначала план<br>и цена.<br><em>Потом кресло.</em></h1>
-<p class="intro">Стоматология, где сумму называют<br class="desktop-break"> до начала лечения. А снимок делают<br class="desktop-break"> здесь же, на своём КТ.</p>
-<a class="button story-cta" href="https://t.me/kedr_stom">Записаться на осмотр <span>↗</span></a>
-<div class="home-facts"><span>Новосибирск<br>Демьяна Бедного, 60</span><span>Пн-сб 8:00-21:00<br>Вс 10:00-17:00</span></div>
-</div>
-<div class="rail-zone"><p class="rail-hint">Выберите, с чего начнём <span>↘</span></p><div class="rail" id="rail" aria-label="Выбор направления"></div></div>
-<div class="stage-bottom">
-<div class="controls"><button id="prev" type="button" aria-label="Предыдущее направление">←</button><button id="next" type="button" aria-label="Следующее направление">→</button><span id="current">Знакомство</span><button id="pause" class="pause" type="button" aria-label="Приостановить смену направлений" aria-pressed="false">Ⅱ</button></div>
-<a class="scroll-link" href="#doctors">Люди, которым вы доверяете <span>↓</span></a>
-</div>
+
+<main>
+<section class="stage" id="stage" aria-label="Направления лечения" tabindex="-1">
+  <div class="scene" id="scene" aria-hidden="true"><div class="shot"><img src="assets/img/hero.jpg" alt="" decoding="async" style="object-position:62% 50%"></div></div>
+  <div class="dim" id="dim" aria-hidden="true"></div>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="ghost" id="ghost" aria-hidden="true" data-word="кедр"></div>
+
+  <div class="copy" id="copy" aria-live="polite"></div>
+
+  <div class="rail" id="rail" role="list" aria-label="Выбрать направление"></div>
+
+  <div class="foot">
+    <div class="arrows">
+      <button class="round" id="prev" type="button" aria-label="Предыдущее направление"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <button class="round" id="next" type="button" aria-label="Следующее направление"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="track" id="track" aria-hidden="true"></div>
+    <p class="where" id="where"><span id="where-name">Кедр</span><small id="where-count">первое из пяти</small></p>
+  </div>
 </section>
-<section class="closing" id="doctors">
-<div class="closing-head"><h2>Сначала познакомимся.</h2><p>Шесть врачей в штате.<br>Вот четверо, которые принимают каждый день.</p></div>
-<div class="doctors">
-<article><img src="assets/img/doc-1.jpg" alt="Ольга Сергеевна Мельникова" loading="lazy" decoding="async"><h3>Ольга Сергеевна<br>Мельникова</h3><p>Терапевт · 14 лет практики</p></article>
-<article><img src="assets/img/doc-2.jpg" alt="Артём Дмитриевич Ковалёв" loading="lazy" decoding="async"><h3>Артём Дмитриевич<br>Ковалёв</h3><p>Хирург-имплантолог · 11 лет</p></article>
-<article><img src="assets/img/doc-3.jpg" alt="Ирина Павловна Шевцова" loading="lazy" decoding="async"><h3>Ирина Павловна<br>Шевцова</h3><p>Гигиенист · 17 лет практики</p></article>
-<article><img src="assets/img/doc-4.jpg" alt="Кирилл Андреевич Батурин" loading="lazy" decoding="async"><h3>Кирилл Андреевич<br>Батурин</h3><p>Ортодонт · 9 лет практики</p></article>
-</div>
-<div class="visit"><img src="assets/img/entrance.jpg" alt="Вход в стоматологическую клинику Кедр" loading="lazy" decoding="async"><div class="visit-content"><h2>Будем рядом.<br>На Демьяна<br>Бедного, 60.</h2><p>Новосибирск. Вход с торца дома, первый этаж.<br>От метро «Гагаринская» 7 минут пешком.</p><div class="visit-line"><p>Понедельник-суббота<br><strong>8:00-21:00</strong></p><p>Воскресенье<br><strong>10:00-17:00</strong></p></div><a class="contact-phone" href="tel:+73833125804">+7 (383) 312-58-04</a><a class="button green" href="https://t.me/kedr_stom">Записаться в Telegram <span>↗</span></a></div></div>
-<footer><a class="footer-brand" href="#top">кедр ↑</a><p>Имеются противопоказания. Необходима консультация специалиста.<br>Цены носят информационный характер и не являются публичной офертой.</p><span>© 2014-2026 ООО «Кедр»<br>Лицензия Л041-01143-54/00381216</span></footer>
+
+<section class="plan" id="plan" aria-labelledby="plan-h">
+  <div class="plan-side">
+    <h2 id="plan-h">Сумму называем<br><em>до кресла.</em></h2>
+    <p>На первом приёме врач делает снимок и пишет план: список работ и цену. В цену уже входят анестезия, материалы и контрольный осмотр.</p>
+    <p>Если после осмотра сумма не совпала с прайсом, врач объяснит, из чего она сложилась.</p>
+    <figure class="plan-photo"><img src="assets/img/hands.jpg" alt="Врач в перчатках готовит инструмент" loading="lazy" decoding="async"></figure>
+  </div>
+  <div class="sheet" id="sheet">
+    <p class="sheet-head"><span>План и цены</span><small>восемь позиций, как в прайсе</small></p>
+    <div class="group"><p class="group-name">Знакомство и профилактика</p>
+      <button class="row" type="button" aria-expanded="false"><span class="row-name">Консультация и план лечения</span><i></i><b data-sum="0">0 ₽</b><span class="row-more">Осмотр, снимок на КТ, письменный план со списком работ и ценой. За лечение по этому плану консультация бесплатная.</span></button>
+      <button class="row" type="button" aria-expanded="false"><span class="row-name">Профессиональная гигиена</span><i></i><b data-sum="5900">5 900 ₽</b><span class="row-more">Ультразвук, Air Flow, полировка и фторирование за один визит. Около часа, есть можно сразу.</span></button>
+    </div>
+    <div class="group"><p class="group-name">Лечение</p>
+      <button class="row" type="button" aria-expanded="false"><span class="row-name">Лечение кариеса, за зуб</span><i></i><b data-sum="4800" data-from>от 4 800 ₽</b><span class="row-more">Пломба из фотокомпозита, анестезия, полировка и зашлифовка.</span></button>
+      <button class="row" type="button" aria-expanded="false"><span class="row-name">Лечение каналов</span><i></i><b data-sum="9700" data-from>от 9 700 ₽</b><span class="row-more">Под микроскопом, снимок на КТ после, временная и постоянная пломба. На перелечивание канала год гарантии.</span></button>
+      <button class="row" type="button" aria-expanded="false"><span class="row-name">Удаление зуба</span><i></i><b data-sum="3200" data-from>от 3 200 ₽</b><span class="row-more">Простое или хирургическое, с анестезией. Осмотр и снятие швов через неделю.</span></button>
+    </div>
+    <div class="group"><p class="group-name">Восстановление и эстетика</p>
+      <button class="row" type="button" aria-expanded="false"><span class="row-name">Имплант под ключ</span><i></i><b data-sum="54000" data-from>от 54 000 ₽</b><span class="row-more">Имплант, установка, абатмент и коронка из диоксида циркония. Гарантия на имплант 3 года, на коронку 1 год.</span></button>
+      <button class="row" type="button" aria-expanded="false"><span class="row-name">Коронка из диоксида циркония</span><i></i><b data-sum="28500">28 500 ₽</b><span class="row-more">Сканирование, примерка, цемент и подгонка по прикусу. Два-три визита.</span></button>
+      <button class="row" type="button" aria-expanded="false"><span class="row-name">Элайнеры, полный курс</span><i></i><b data-sum="160000" data-from>от 160 000 ₽</b><span class="row-more">План, 3D-сеты и контрольные визиты раз в 8-10 недель. Склеек на зубах не остаётся.</span></button>
+    </div>
+    <svg class="pen" viewBox="0 0 320 24" aria-hidden="true"><path d="M2 16c40-10 90-12 140-6s110 6 176-6"/></svg>
+    <p class="sheet-note">Нажмите на строку, чтобы увидеть, что входит в цену.</p>
+  </div>
+</section>
+
+<section class="visit" id="visit" aria-labelledby="visit-h">
+  <div class="visit-head">
+    <h2 id="visit-h">Первый визит.<br><em>Сорок пять минут без кресла.</em></h2>
+    <p>Вы не обязаны что-то лечить. Визит нужен, чтобы вы увидели снимок и услышали сумму.</p>
+  </div>
+  <ol class="steps" id="steps">
+    <li class="step"><p class="step-time"><span>10</span><small>минут</small></p><div class="step-text"><h3>Знакомство</h3><p>Встречаем, спрашиваем, что беспокоит и что уже лечили. И про лекарства и аллергии: это влияет на анестезию.</p></div><figure class="step-photo"><img src="assets/img/entrance.jpg" alt="Вход в клинику с торца дома" loading="lazy" decoding="async"></figure></li>
+    <li class="step"><p class="step-time"><span>20</span><small>минут</small></p><div class="step-text"><h3>Осмотр и снимок</h3><p>Снимок на своём КТ появляется на экране прямо в кресле. Смотрите его вместе с врачом.</p></div><figure class="step-photo"><img src="assets/img/ct.jpg" alt="Снимок с КТ на экране в кабинете" loading="lazy" decoding="async"></figure></li>
+    <li class="step"><p class="step-time"><span>15</span><small>минут</small></p><div class="step-text"><h3>Разговор о плане и цене</h3><p>За столом, а не в кресле. Что предлагаем, сколько стоит, что можно отложить, а что лучше не тянуть.</p></div><figure class="step-photo"><img src="assets/img/talk.jpg" alt="Врач и пациентка обсуждают план за столом" loading="lazy" decoding="async"></figure></li>
+    <li class="step"><p class="step-time"><span>40-90</span><small>минут</small></p><div class="step-text"><h3>Лечение, если готовы</h3><p>Готовы, начинаем сразу. Нет, отдаём план с ценами на руки, чтобы посоветоваться дома.</p></div><figure class="step-photo"><img src="assets/img/hero.jpg" alt="Кабинет с креслом и деревянной стеной" loading="lazy" decoding="async"></figure></li>
+  </ol>
+  <p class="visit-pain">Если во время работы становится больно, <em>мы останавливаемся.</em></p>
+</section>
+
+<section class="team" id="team" aria-labelledby="team-h">
+  <div class="team-head">
+    <h2 id="team-h">Врачи, которые<br><em>будут с вами.</em></h2>
+    <p>Шесть врачей в штате, четверо принимают каждый день. Стаж от 9 до 22 лет. Можно выбрать врача сразу или прийти на консультацию без имени.</p>
+  </div>
+  <div class="docs">
+    <article class="doc d1" data-speed="-0.06"><span class="float" aria-hidden="true">14 лет</span><figure><img src="assets/img/doc-1.jpg" alt="Ольга Сергеевна Мельникова" loading="lazy" decoding="async"></figure><div class="doc-card"><h3>Ольга Сергеевна Мельникова</h3><p class="doc-role">Терапевт, стаж 14 лет</p><p class="doc-quote">Объясняет каждый шаг до того, как возьмёт инструмент.</p></div></article>
+    <article class="doc d2" data-speed="0.1"><span class="float" aria-hidden="true">1000+ имплантов</span><figure><img src="assets/img/doc-2.jpg" alt="Артём Дмитриевич Ковалёв" loading="lazy" decoding="async"></figure><div class="doc-card"><h3>Артём Дмитриевич Ковалёв</h3><p class="doc-role">Хирург-имплантолог, стаж 11 лет</p><p class="doc-quote">Больше тысячи имплантов. Планирует по КТ-снимку, а не по отпечатку.</p></div></article>
+    <article class="doc d3" data-speed="-0.12"><span class="float" aria-hidden="true">17 лет</span><figure><img src="assets/img/doc-3.jpg" alt="Ирина Павловна Шевцова" loading="lazy" decoding="async"></figure><div class="doc-card"><h3>Ирина Павловна Шевцова</h3><p class="doc-role">Гигиенист, стаж 17 лет</p><p class="doc-quote">Чистит так, что пациенты не сверяют время в телефоне.</p></div></article>
+    <blockquote class="review" data-speed="0.03"><p>«Пришёл с тревогой и думал, что зуб придётся удалять. Ольга Сергеевна показала снимок на экране и объяснила, что можно вылечить. <em>Зуб остался свой.»</em></p><footer>Артём К., лечение кариеса, один визит</footer></blockquote>
+    <article class="doc d4" data-speed="0.05"><span class="float" aria-hidden="true">300+ элайнеров</span><figure><img src="assets/img/doc-4.jpg" alt="Кирилл Андреевич Батурин" loading="lazy" decoding="async"></figure><div class="doc-card"><h3>Кирилл Андреевич Батурин</h3><p class="doc-role">Ортодонт, стаж 9 лет</p><p class="doc-quote">Больше 300 случаев на элайнерах. Сразу говорит, сколько недель займёт.</p></div></article>
+  </div>
+</section>
+
+<section class="door" id="door" aria-labelledby="door-h">
+  <div class="door-room" aria-hidden="true"><img src="assets/img/waiting.jpg" alt="" loading="lazy" decoding="async"></div>
+  <div class="leaf leaf-l" aria-hidden="true"></div>
+  <div class="leaf leaf-r" aria-hidden="true"></div>
+  <div class="door-card">
+    <h2 id="door-h">Запишитесь на осмотр.<br><em>Это ни к чему не обязывает.</em></h2>
+    <a class="door-phone" href="tel:+73833125804">+7 (383) 312-58-04</a>
+    <div class="door-acts">
+      <a class="btn" href="https://t.me/kedr_stom">Написать в Telegram <span aria-hidden="true">↗</span></a>
+      <a class="btn btn-line" href="https://yandex.ru/maps/?text=%D0%9D%D0%BE%D0%B2%D0%BE%D1%81%D0%B8%D0%B1%D0%B8%D1%80%D1%81%D0%BA%2C%20%D0%94%D0%B5%D0%BC%D1%8C%D1%8F%D0%BD%D0%B0%20%D0%91%D0%B5%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE%2C%2060">Открыть на карте</a>
+    </div>
+    <dl class="door-facts">
+      <div><dt>Адрес</dt><dd>Демьяна Бедного, 60<br>вход с торца дома, первый этаж</dd></div>
+      <div><dt>Часы</dt><dd>Пн-сб 8:00-21:00<br>Вс 10:00-17:00</dd></div>
+      <div><dt>Дорога</dt><dd>«Гагаринская», 7 минут пешком<br>парковка во дворе</dd></div>
+    </dl>
+  </div>
 </section>
 </main>
+
+<footer class="end">
+  <a class="end-mark" href="#stage" aria-label="Кедр, к началу">кедр</a>
+  <div class="end-cols">
+    <div><p class="end-h">Связь</p><a href="tel:+73833125804">+7 (383) 312-58-04</a><a href="https://t.me/kedr_stom">Telegram @kedr_stom</a><p>Администратор отвечает с 8:00 до 21:00</p></div>
+    <div><p class="end-h">Клиника</p><p>Новосибирск, Демьяна Бедного, 60</p><p>С 2014 года. Шесть врачей, четыре кресла, свой КТ</p></div>
+    <div><p class="end-h">Реквизиты</p><p>ООО «Кедр», ИНН 5407051246</p><p>Лицензия Л041-01143-54/00381216</p></div>
+  </div>
+  <p class="end-law">Имеются противопоказания, необходима консультация специалиста. Цены на сайте носят информационный характер и не являются публичной офертой. © 2014-2026 ООО «Кедр»</p>
+</footer>
 </body>
 </html>
