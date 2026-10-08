@@ -81,7 +81,7 @@ function layoutHang(dt) {
     let x, y, z, ry, o;
     if (m) { x = d * 0.03 * W; y = -d * 0.05 * H; z = -d * 360; ry = -10; }
     else { x = d * 0.2 * W; y = -d * 0.07 * H; z = -d * 560; ry = -28; }
-    if (d < 0) { o = clamp(1 + d / 0.85); x = d * 0.1 * W; y = -d * 1.25 * H; z = -d * 200; } // целиком уходит вниз за край, без призрака
+    if (d < 0) { o = clamp((d + 0.75) / 0.15); x = d * (m ? 1.4 : 0.8) * W; y = d * 0.1 * H; z = -d * 220; } // пролистанная целиком уезжает влево поверх стопки, без полупрозрачного двойника
     else o = clamp(1 - (d - (m ? 2.4 : 3.2)) / 2.2);             // дальние уходят в дымку
     el.style.opacity = o.toFixed(3);
     el.style.visibility = o < 0.02 ? 'hidden' : 'visible';
@@ -123,6 +123,11 @@ const svgNS = 'http://www.w3.org/2000/svg';
   P.push([`M${L} ${G} l${dx} ${dy}`, ''], [`M${R} ${G} l${dx} ${dy}`, '']);
   P.push([`M80 ${G} H1120`, '']);
   const g = $('.draw-lines');
+  const ghost = document.createElementNS(svgNS, 'g');              // бледная калька под чертежом: сцена не пустая до первой линии
+  ghost.setAttribute('class', 'draw-ghost');
+  ghost.setAttribute('fill', 'none');
+  g.before(ghost);
+  P.forEach(([d, c]) => { const q = document.createElementNS(svgNS, 'path'); q.setAttribute('d', d); if (c) q.setAttribute('class', c); ghost.append(q); });
   P.forEach(([d, c], i) => {
     const p = document.createElementNS(svgNS, 'path');
     p.setAttribute('d', d);
@@ -145,7 +150,9 @@ const lines = $$('.draw-lines path');
 function layoutDraw() {
   if (!visible(draw)) return;
   const p = reduced ? 1 : pinProgress(draw);
-  const d = clamp(p / 0.55);                                       // 0..0.55 рисуем
+  const rd = draw.getBoundingClientRect();                         // чертить начинаем, пока сцена ещё въезжает: без пустого тёмного экрана
+  const raw = reduced ? 1 : -rd.top / Math.max(1, draw.offsetHeight - innerHeight);
+  const d = clamp((raw + 0.45) / 0.95);
   lines.forEach(l => { const k = +l.dataset.k * 0.6; l.style.strokeDashoffset = (1 - clamp((d - k) / 0.4)).toFixed(4); });
   $('.draw-dims').style.opacity = clamp((d - 0.55) / 0.3).toFixed(3);
   const w = clamp((p - 0.55) / 0.35);                              // 0.55..0.9 каркас проступает
@@ -154,6 +161,7 @@ function layoutDraw() {
   scan.style.opacity = w > 0 && w < 1 ? '1' : '0';
   scan.style.transform = `translateX(${(we * stage.clientWidth).toFixed(1)}px)`;
   $('.draw-lines').style.opacity = (1 - we * 0.75).toFixed(3);
+  $('.draw-ghost').style.opacity = (1 - we).toFixed(3);
   stage.classList.toggle('is-built', w >= 0.98);
 }
 
@@ -181,7 +189,7 @@ function layoutWeld() {
   letters.forEach((s, i) => {
     const [sx, sy, sr] = seed[i];
     const k = 1 - a;
-    s.style.transform = `translate3d(${(sx * k * innerWidth * (m ? 0.25 : 0.32)).toFixed(1)}px,${(sy * k * innerHeight * 0.32).toFixed(1)}px,0) rotate(${(sr * k).toFixed(2)}deg)`;
+    s.style.transform = `translate3d(${(sx * k * innerWidth * (m ? 0.06 : 0.32)).toFixed(1)}px,${(sy * k * innerHeight * (m ? 0.2 : 0.32)).toFixed(1)}px,0) rotate(${(sr * k).toFixed(2)}deg)`;
     s.style.opacity = (0.35 + 0.65 * a).toFixed(3);                 // разлёт только вверх, подпись над словом проявляется после сборки
   });
   word.classList.toggle('is-hot', a > 0.985);
@@ -209,7 +217,14 @@ function setRow(row) {
   if (row === activeRow) return;
   activeRow = row;
   rows.forEach(r => r.classList.toggle('is-active', r === row));
-  media.forEach(im => im.classList.toggle('is-on', im.dataset.k === row.dataset.img));
+  media.forEach(im => {                                            // новый кадр поднимается шторкой поверх прежнего
+    const on = im.dataset.k === row.dataset.img;
+    im.classList.toggle('was-on', !on && im.classList.contains('is-on'));
+    if (!on) im.classList.remove('is-on');
+  });
+  const next = media.find(im => im.dataset.k === row.dataset.img);
+  if (next) { void next.offsetWidth; next.classList.add('is-on'); }
+  setTimeout(() => media.forEach(im => { if (!im.classList.contains('is-on')) im.classList.remove('was-on'); }), 950);
   const t = parseInt($('.row-t', row).textContent, 10);
   const t0 = parseInt(num.textContent, 10) || 0, start = performance.now();
   const step = now => { const k = reduced ? 1 : clamp((now - start) / 600); num.textContent = Math.round(t0 + (t - t0) * ease(k)); if (k < 1) requestAnimationFrame(step); };
@@ -272,6 +287,11 @@ function layoutChrome() {
     finPhoto.style.transform = `scale(${(1.14 - 0.14 * t).toFixed(4)})`;
   }
 }
+
+/* название в финале поднимается буквами из-под строки */
+const finName = $('.fin-name');
+finName.innerHTML = [...finName.textContent].map((ch, i) => `<span class="fl" style="transition-delay:${(i * 0.045).toFixed(3)}s">${ch}</span>`).join('');
+new IntersectionObserver((es, io) => es.forEach(e => { if (e.isIntersecting) { finName.classList.add('is-in'); io.disconnect(); } }), { threshold: 0.4 }).observe(finName);
 
 /* ───── Окно объекта (из развески) ───── */
 const peek = $('#peek');
