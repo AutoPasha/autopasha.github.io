@@ -1,0 +1,30 @@
+/* Северсталькон: все данные бренда. Меняешь этот файл при ребрендинге. */
+
+@import url("fonts/wix-madefor-display/fonts.css");
+@import url("fonts/onest/fonts.css");
+@import url("fonts/jetbrains-mono/fonts.css");
+
+:root {
+  /* цвет: снят с кадров ролика, янтарь совпадает с искрами и прожекторами */
+  --c-noch: #0b0c12;
+  --c-indigo: #23263c;
+  --c-grafit: #3c3f55;
+  --c-bumag: #f2efe7;
+  --c-tih: #8e93ad;
+  --c-amber: #f2a541;
+  --c-amber-svet: #ffbe5c;
+  --c-tamniy-ink: #14100a;
+
+  /* шрифты */
+  --font-display: "Wix Madefor Display", "Onest", system-ui, sans-serif;
+  --font-text: "Onest", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Courier New", monospace;
+
+  /* радиусы */
+  --r-karta: 14px;
+
+  /* сетка */
+  --pole: clamp(20px, 4.2vw, 40px);
+  --shirina: 1440px;
+  --vysota-shapki: 56px;
+}
