@@ -2,45 +2,207 @@
 <html lang="ru">
 <head>
 <meta name="robots" content="noindex, nofollow, noarchive">
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0e0d0c">
-<meta name="description" content="Сезон, бистро уральской кухни в Екатеринбурге. Шейнкмана, 75. Средний чек 1 700 ₽, бизнес-ланч 490 ₽. Бронь по телефону и в Telegram.">
-<title>Сезон · Бистро уральской кухни</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230e0d0c'/%3E%3Ctext x='15' y='48' fill='%23efe7d8' font-size='48' font-family='serif'%3EС%3C/text%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/fonts/cormorant-garamond/fonts.css">
-<link rel="stylesheet" href="assets/fonts/jost/fonts.css">
-<link rel="stylesheet" href="assets/css/site.css">
-<script defer src="assets/lib/gsap.min.js"></script>
-<script defer src="assets/lib/ScrollTrigger.min.js"></script>
-<script defer src="assets/js/site.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0e0d0c"><title>Сезон · Бистро уральской кухни в Екатеринбурге</title>
+<meta name="description" content="Бистро уральской кухни в Екатеринбурге. Меню меняется четыре раза в год. Шейнкмана, 75. Бронь по телефону и в Telegram.">
+<link rel="icon" href="data:,">
+<link rel="preload" href="assets/img/hero-autumn.jpg" as="image" fetchpriority="high">
+<link rel="stylesheet" href="assets/fonts/cormorant-garamond/fonts.css"><link rel="stylesheet" href="assets/fonts/jost/fonts.css"><link rel="stylesheet" href="assets/css/site.css">
+<script>document.documentElement.classList.add('js')</script>
+<script defer src="assets/lib/gsap.min.js"></script><script defer src="assets/lib/ScrollTrigger.min.js"></script><script defer src="assets/js/site.js"></script>
 </head>
 <body>
 <a class="skip" href="#booking">Перейти к брони</a>
-<header class="header">
-<a class="brand" href="#" aria-label="Сезон, в начало">Сезон<span>бистро уральской кухни</span></a>
-<div class="header-actions"><a class="telephone" href="tel:+73432881471">+7 343 288-14-71</a><a class="book-link" href="#booking">Забронировать стол <span aria-hidden="true">↗</span></a></div>
-</header>
-<main id="story" class="story">
+<main>
+
+<!-- Акт 1. Видоискатель: сезоны сменяются лепестками диафрагмы -->
+<section class="lens-act" id="top" aria-label="Четыре сезона бистро">
 <div class="stage">
-<div class="photos" id="photos"><img class="photo active" src="assets/img/hero-autumn.jpg" alt="Осенний вечер в бистро Сезон" decoding="async" fetchpriority="high"></div>
-<div class="shade" aria-hidden="true"></div>
-<div class="lens" aria-hidden="true"><svg viewBox="0 0 800 800"><g id="scale"></g><circle cx="400" cy="400" r="368"/><circle cx="400" cy="400" r="351" class="inner-ring"/></svg></div>
-<div class="iris" aria-hidden="true"><svg id="iris-svg" viewBox="-1000 -1000 2000 2000"><defs><linearGradient id="metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#706a5e"/><stop offset=".18" stop-color="#252320"/><stop offset="1" stop-color="#11100f"/></linearGradient></defs><g id="blades"></g></svg></div>
-<div class="frame-copy" id="frame-copy"><h1 id="title">Урал.<br><em>На вкус.</em></h1><p id="fact" class="fact">Меню осени · Средний чек 1 700 ₽</p></div>
-<section class="booking" id="booking" aria-label="Бронь стола" hidden>
-<h2>Ваш вечер.<br><em>Наш стол.</em></h2>
-<p class="booking-address">Екатеринбург, Шейнкмана, 75<br>Вход со двора, второй этаж</p>
-<div class="hours"><p>Вс–чт <span>12:00–23:00</span></p><p>Пт–сб <span>12:00–01:00</span></p></div>
-<a class="booking-button" href="https://t.me/sezon_ekb" target="_blank" rel="noopener">Забронировать в Telegram <span aria-hidden="true">↗</span></a>
-<a class="booking-phone" href="tel:+73432881471">+7 343 288-14-71</a>
-<p class="booking-note">Стол держим 20 минут от указанного времени.</p>
-</section>
-<div class="side-note">Екатеринбург · Шейнкмана, 75</div>
-<div class="frame-number" id="frame-number">осень · 1/12</div>
-<footer class="stage-footer"><button id="next" type="button">Листайте по сезонам <span aria-hidden="true">↓</span></button><div class="progress" id="progress" role="img" aria-label="Кадр 1 из 13"></div><a href="https://t.me/sezon_ekb" target="_blank" rel="noopener">Telegram ↗</a></footer>
+<div class="frames" id="frames">
+<figure class="frame is-on"><img src="assets/img/hero-autumn.jpg" alt="Осенний вечер в зале, на заднем плане печь" decoding="async" fetchpriority="high"></figure>
+<figure class="frame"><img src="assets/img/hero-winter.jpg" alt="Зимой: суп у окна, за стеклом снег" decoding="async"></figure>
+<figure class="frame"><img src="assets/img/hero-spring.jpg" alt="Весной: салат с первой зеленью у окна" decoding="async"></figure>
+<figure class="frame"><img src="assets/img/veranda.jpg" alt="Летняя веранда с гирляндами среди берёз" decoding="async"></figure>
 </div>
+<div class="scrim" aria-hidden="true"></div>
+
+<div class="copies">
+<article class="copy is-on">
+<p class="kicker">Меню осени · до 1 декабря</p>
+<h1 class="title"><span class="ln">Урал.</span><span class="ln"><em>На вкус.</em></span></h1>
+<p class="plate">Форель из Режа, суп из белых грибов, щучьи котлеты с печёной тыквой</p>
+</article>
+<article class="copy">
+<p class="kicker">Меню зимы · с 1 декабря</p>
+<h2 class="title"><span class="ln">Щи</span><span class="ln"><em>у печи.</em></span></h2>
+<p class="plate">Копчёная курица с облепихой, щи с говядиной, медовик с брусникой</p>
+</article>
+<article class="copy">
+<p class="kicker">Меню весны · с 1 марта</p>
+<h2 class="title"><span class="ln">Первая</span><span class="ln"><em>зелень.</em></span></h2>
+<p class="plate">Редис с жирной сметаной и сибирская клюква в десертах</p>
+</article>
+<article class="copy">
+<p class="kicker">Веранда · с 1 июня по 31 августа</p>
+<h2 class="title"><span class="ln">Уха</span><span class="ln"><em>на углях.</em></span></h2>
+<p class="plate">Веранда на 24 места, холодные супы и зелень из своего огорода</p>
+</article>
+</div>
+
+<div class="iris" aria-hidden="true"><svg id="iris"><defs>
+<linearGradient id="bladeFill" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="260"><stop offset="0" stop-color="#3a342c"/><stop offset=".08" stop-color="#1d1b18"/><stop offset=".5" stop-color="#121110"/><stop offset="1" stop-color="#0e0d0c"/></linearGradient>
+<linearGradient id="bladeRim" gradientUnits="userSpaceOnUse" x1="-600" y1="0" x2="600" y2="0"><stop offset="0" stop-color="#efe7d8" stop-opacity="0"/><stop offset=".45" stop-color="#d9c7a6" stop-opacity=".75"/><stop offset=".55" stop-color="#efe7d8" stop-opacity=".9"/><stop offset="1" stop-color="#efe7d8" stop-opacity="0"/></linearGradient>
+</defs><g id="blades"></g></svg></div>
+
+<div class="hud" aria-hidden="true"><svg id="hud"><g id="hud-rings"></g></svg><div class="dial" id="dial"><div class="dial-spin"><svg id="dial-svg"><g id="hud-scale"></g></svg></div></div></div>
+
+<header class="top">
+<a class="brand" href="#top">Сезон</a>
+<span class="top-cap">Бистро уральской кухни · Екатеринбург</span>
+<div class="top-act"><a class="top-phone" href="tel:+73432881471" aria-label="Позвонить: +7 343 288-14-71"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h3l1.5 4.2-2 1.3a11 11 0 0 0 5.9 5.9l1.3-2 4.2 1.5v3a2 2 0 0 1-2.1 2A16.5 16.5 0 0 1 4.6 5.6a2 2 0 0 1 2-2.1z"/></svg><span>+7 343 288-14-71</span></a><a class="top-book" href="#booking">Забронировать стол</a></div>
+</header>
+
+<button class="nav-arrow prev" type="button" aria-label="Предыдущий сезон"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.5 6l-6 6 6 6"/></svg></button>
+<button class="nav-arrow next" type="button" aria-label="Следующий сезон"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 6l6 6-6 6"/></svg></button>
+<p class="counter" aria-hidden="true"><span id="counter-name">осень</span> · <span id="counter-num">1</span>/4</p>
+<nav class="seasons" aria-label="Сезоны">
+<button type="button" class="is-on" data-k="0">Осень</button><button type="button" data-k="1">Зима</button><button type="button" data-k="2">Весна</button><button type="button" data-k="3">Лето</button>
+</nav>
+<p class="scroll-hint" aria-hidden="true"><i></i>Листайте</p>
+</div>
+</section>
+
+<!-- Акт 2. Почерк шефа: цитата загорается по словам -->
+<section class="hand" id="kitchen" aria-labelledby="hand-title">
+<div class="hand-head">
+<p class="eyebrow">Денис Курбатов, шеф и совладелец</p>
+<h2 id="hand-title" class="lit">Не перебивать продукт специями. Закупать у&nbsp;тех, кого знаешь лично.</h2>
+</div>
+<figure class="hand-chef"><div class="curtain"><img src="assets/img/chef.jpg" alt="Руки шефа собирают тарелку перед подачей" loading="lazy" decoding="async"></div><figcaption>Денис собирает тарелку за четыре минуты до подачи.</figcaption></figure>
+<div class="hand-text">
+<p>Пятнадцать лет у плиты: девять в ресторанах Екатеринбурга, четыре в Казани, последние два в «Сезоне».</p>
+<p>Меню он пишет по четвертям. Сначала едет к поставщикам, потом на бумаге появляются четыре раздела и пятнадцать позиций. Всё, что нельзя объяснить одной строкой состава, в меню не идёт.</p>
+</div>
+<p class="facts-line">В зале <b data-n="40">40</b> мест, на кухне <b data-n="12">12</b> человек, рыбу привозят <b data-n="2">2</b> раза в неделю, а Денис стоит у плиты <b data-n="15">15</b> лет.</p>
+<div class="sources">
+<figure class="sources-photo"><div class="curtain"><img src="assets/img/farmer.jpg" alt="Корзина белых грибов в руках у фермера" loading="lazy" decoding="async"></div></figure>
+<div class="sources-list">
+<h3>Откуда берём</h3>
+<ol>
+<li><span class="src-place">Арамиль</span><strong>Ферма Ржавиных</strong><span>Сыры из цельного молока, выдержка четыре месяца</span></li>
+<li><span class="src-place">Реж</span><strong>Рыбхоз</strong><span>Форель два раза в неделю, берём живую</span></li>
+<li><span class="src-place">Косулино</span><strong>Поповы</strong><span>Сушёные белые грибы, три партии в год</span></li>
+<li><span class="src-place">Артёмовский</span><strong>Свой участок</strong><span>Облепиха, смородина, мёд и вся зелень</span></li>
+</ol>
+</div>
+</div>
+</section>
+
+<!-- Акт 3. Печь разгорается: с 10:00 до 12:00 за одну прокрутку -->
+<section class="oven" id="fire" aria-labelledby="oven-title">
+<div class="oven-pin">
+<div class="oven-side">
+<p class="eyebrow">Печь</p>
+<p class="oven-clock" aria-hidden="true"><span id="oven-time">10:00</span></p>
+<div class="oven-bar" aria-hidden="true"><i id="oven-bar"></i></div>
+<h2 id="oven-title">Разжигаем в&nbsp;10:00.<br><em>К&nbsp;12:00 держится жар.</em></h2>
+<p class="oven-note">Зимой гости садятся у печи, летом выносим столы на веранду.</p>
+</div>
+<div class="oven-window"><img src="assets/img/fire.jpg" alt="Живой огонь в печи бистро" loading="lazy" decoding="async"><canvas id="sparks" aria-hidden="true"></canvas><div class="oven-dark" aria-hidden="true"></div></div>
+</div>
+</section>
+
+<!-- Акт 4. Меню осени: три блюда разворотами и короткая карта -->
+<section class="menu" id="menu" aria-labelledby="menu-title">
+<div class="menu-head">
+<h2 id="menu-title">Меню <em>осени</em></h2>
+<p>Печатаем на плотной бумаге и раздаём на входе. Карта меняется четыре раза в год, следующая выходит 1 декабря.</p>
+<p class="menu-avg">Средний чек <b>1 700 ₽</b></p>
+</div>
+
+<article class="spread spread-a">
+<figure class="spread-photo"><div class="win"><img src="assets/img/forel.jpg" alt="Форель из Режа с облепиховым соусом и пюре" loading="lazy" decoding="async"></div></figure>
+<div class="spread-text">
+<p class="quote"><span class="ln">Форель из Режа,</span><span class="ln"><em>облепиху привозят</em></span><span class="ln"><em>каждую неделю.</em></span></p>
+<div class="tag"><p class="row"><span class="dish">Форель из Режа</span><i></i><span class="price">980 ₽</span></p><p class="desc">Облепиховый соус, картофельное пюре, копчёное сало</p></div>
+</div>
+</article>
+
+<article class="spread spread-b">
+<div class="big-price" data-n="540" aria-hidden="true"></div>
+<div class="spread-text">
+<p class="quote"><span class="ln">Белые грибы сушат</span><span class="ln"><em>в Косулино,</em></span><span class="ln"><em>завариваем без специй.</em></span></p>
+<div class="tag"><p class="row"><span class="dish">Суп из белых грибов</span><i></i><span class="price">540 ₽</span></p><p class="desc">Сливочная основа, булочка с грибами, лавровый лист</p></div>
+</div>
+<figure class="spread-photo"><div class="win"><img src="assets/img/soup.jpg" alt="Суп из белых грибов в глиняной миске" loading="lazy" decoding="async"></div></figure>
+</article>
+
+<article class="spread spread-c">
+<figure class="band"><img src="assets/img/medovik.jpg" alt="Медовик с брусникой рядом с чашкой чая" loading="lazy" decoding="async"></figure>
+<div class="tag tag-c"><p class="row"><span class="dish">Медовик с брусникой</span><i></i><span class="price">390 ₽</span></p><p class="desc">Сметанный крем, ягоды северного сбора, грецкий орех.</p></div>
+</article>
+
+<div class="carte">
+<h3 class="carte-title">Ещё в карте</h3>
+<section aria-labelledby="c0"><h4 id="c0">Из леса и с реки</h4><ul>
+<li><span>Щучьи котлеты</span><b>690 ₽</b></li><li><span>Сельдь бочковая</span><b>340 ₽</b></li><li><span>Скумбрия с гриля</span><b>760 ₽</b></li></ul></section>
+<section aria-labelledby="c1"><h4 id="c1">Супы</h4><ul>
+<li><span>Щи из квашеной капусты</span><b>430 ₽</b></li><li><span>Уха из сигов</span><b>520 ₽</b></li><li><span>Окрошка на квасе</span><b>390 ₽</b></li></ul></section>
+<section aria-labelledby="c2"><h4 id="c2">Горячее</h4><ul>
+<li><span>Пельмени с лосятиной</span><b>620 ₽</b></li><li><span>Говядина с соусом из редьки</span><b>1 240 ₽</b></li><li><span>Курица с грибами</span><b>880 ₽</b></li></ul></section>
+<section aria-labelledby="c3"><h4 id="c3">Сладкое</h4><ul>
+<li><span>Шоколадный тарт</span><b>420 ₽</b></li><li><span>Ягодный мусс</span><b>360 ₽</b></li><li><span>Печёная груша</span><b>340 ₽</b></li></ul></section>
+<p class="menu-foot">Вегетарианское меню и без глютена спросите у официанта. Цены на момент печати меню.</p>
+</div>
+</section>
+
+<!-- Акт 5. Обед посреди дня: чек выползает из щели -->
+<section class="lunch" id="lunch" aria-labelledby="lunch-title">
+<div class="lunch-copy">
+<h2 id="lunch-title">Обед<br><em>посреди дня.</em></h2>
+<p>В будни с 12:00 до 16:00. Ланч не меняется и не делится на половину порции: заказывают целиком.</p>
+<a class="line-link" href="tel:+73432881471">Забронировать обед: +7 343 288-14-71</a>
+</div>
+<div class="till">
+<div class="till-slot" aria-hidden="true"></div>
+<div class="till-mouth">
+<div class="receipt">
+<p class="r-head">Сезон · Шейнкмана, 75</p>
+<p class="r-row"><span>Бизнес-ланч</span><i></i><b>490 ₽</b></p>
+<p class="r-sub">Суп или салат, горячее с гарниром, хлеб, вода, чай или компот</p>
+<p class="r-row"><span>Обед для компаний от пяти человек</span><i></i><b>450 ₽</b></p>
+<p class="r-sub">По заявке, счёт на организацию</p>
+<p class="r-row"><span>Последний заказ</span><i></i><b>15:40</b></p>
+<p class="r-row"><span>Кухня закрывается</span><i></i><b>16:00</b></p>
+<p class="r-end">20 минут на медовик<br>и чай из липы.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Финал. Диафрагма раскрывается на стол -->
+<section class="finale" id="booking" aria-labelledby="book-title">
+<div class="aperture" aria-hidden="true">
+<svg id="ap" viewBox="-500 -500 1000 1000">
+<defs><clipPath id="apClip"><circle r="430"/></clipPath></defs>
+<g clip-path="url(#apClip)"><image id="ap-img" href="assets/img/table.jpg" x="-430" y="-430" width="860" height="860" preserveAspectRatio="xMidYMid slice"/><g id="ap-blades"></g></g>
+<circle class="ap-edge" r="431"/>
+<g id="ap-scale"></g>
+</svg>
+</div>
+<div class="book">
+<h2 id="book-title">Ваш вечер.<br><em>Наш стол.</em></h2>
+<p class="book-addr">Екатеринбург, Шейнкмана, 75<br>Вход со двора, второй этаж, лифта нет</p>
+<dl class="hours"><div><dt>Вс-чт</dt><dd>12:00-23:00</dd></div><div><dt>Пт-сб</dt><dd>12:00-01:00</dd></div></dl>
+<div class="book-actions"><a class="btn" href="https://t.me/sezon_ekb" target="_blank" rel="noopener">Забронировать в Telegram</a><a class="book-phone" href="tel:+73432881471">+7 343 288-14-71</a></div>
+<p class="book-note">Стол держим 20 минут от указанного времени. Кухня закрывается за час до зала.</p>
+<p class="book-note">Зал целиком: до 40 гостей, банкетное меню от 3 900 ₽ на гостя. Парковка во дворе на 30 мест, первый час бесплатно.</p>
+</div>
+<footer class="foot">
+<p class="foot-brand">Сезон</p>
+<nav class="foot-links" aria-label="Связь"><a href="https://wa.me/73432881471" target="_blank" rel="noopener">WhatsApp</a><a href="https://vk.com/sezon_ekb" target="_blank" rel="noopener">ВКонтакте</a><a href="mailto:sezon@sezon-ekb.ru">sezon@sezon-ekb.ru</a><a href="https://yandex.ru/maps/?text=Екатеринбург%2C%20улица%20Шейнкмана%2C%2075" target="_blank" rel="noopener">Яндекс Карты</a><a href="https://2gis.ru/ekb/search/улица%20Шейнкмана%2075" target="_blank" rel="noopener">2ГИС</a></nav>
+<p class="foot-legal">ИП Курбатов Д. А., ОГРНИП 323743800487216, ИНН 667801234567</p>
+</footer>
+</section>
 </main>
-<noscript><style>.story{height:auto}.stage{position:relative;min-height:100vh}.frame-copy,.side-note,.frame-number,.stage-footer,.iris{display:none}.booking[hidden]{display:flex}</style></noscript>
-</body>
-</html>
+</body></html>
