@@ -10,11 +10,12 @@
     sceny: [1, 66, 113],
     imena: ['КАРКАС ЦЕХА', 'СВАРНОЙ ШОВ', 'ЦЕХ С ВЫСОТЫ']
   };
-  /* окна текста по кадрам: появление, уход */
+  /* окна текста по кадрам: появление, уход, и пятым — через сколько кадров
+     после заголовка начинают приходить цифры сцены */
   var OKNA = [
-    [-20, 0, 44, 55],
-    [69, 77, 99, 109],
-    [118, 130, 200, 222]
+    [-20, 0, 44, 55, 0],
+    [69, 77, 99, 109, 6],
+    [118, 130, 200, 222, 24]
   ];
 
   var тряс = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -43,6 +44,7 @@
     var nomerEl = scena.querySelector('[data-nomer]');
     var imenaEl = scena.querySelector('[data-imena]');
     var zakras = scena.querySelector('[data-zakras]');
+    var indikator = scena.querySelector('.kino-hod');
     var delki = scena.querySelectorAll('[data-del]');
     var sceny = scena.querySelectorAll('.scena');
 
@@ -95,15 +97,18 @@
           if (!podpis) continue;
           var kr = tochki[k].getBoundingClientRect();
           var pr = podpis.getBoundingClientRect();
-          if (!pr.width || !pr.height || !kr.width) continue;
+          /* точку до появления сжали в ноль через scale, берём её размер из
+             раскладки, а центр прямоугольника: масштаб центр не двигает */
+          if (!pr.width || !pr.height || !tochki[k].offsetWidth) continue;
           var tochkaX = (kr.left + kr.width / 2 - sr.left) / sr.width * 1000;
           var tochkaY = (kr.top + kr.height / 2 - sr.top) / sr.height * 1000;
-          var levo = pr.right - sr.left < sr.width / 2;
-          var ux = (levo ? pr.right : pr.left) - sr.left;
-          var uy = pr.top + Math.min(pr.height * 0.32, 38) - sr.top;
+          var seredina = pr.left + pr.width / 2 - sr.left;
+          var levo = tochkaX < seredina;           /* точка левее подписи */
+          var ux = (levo ? pr.left : pr.right) - sr.left;
+          var uy = pr.top + Math.min(pr.height * 0.3, 34) - sr.top;
           ux = ux / sr.width * 1000;
           uy = uy / sr.height * 1000;
-          var plecho = levo ? 46 : -46;
+          var plecho = levo ? -54 : 54;
           puti[k].setAttribute('d',
             'M' + tochkaX.toFixed(1) + ' ' + tochkaY.toFixed(1) +
             ' L' + (ux + plecho).toFixed(1) + ' ' + uy.toFixed(1) +
@@ -175,6 +180,20 @@
       return 1;
     }
 
+    /* ЦИФРА ПОЯВЛЯЕТСЯ СВОЕЙ ОЧЕРЕДЬЮ: подпись, тонкая линия и кружок на
+       конце приходят вместе, следующая через пять кадров. */
+
+    function pustitCifru(kadr, set, vynos, puti, tochki, k) {
+      if (G && !тряс) {
+        G.fromTo(vynos, { y: 26, opacity: 0 },
+          { y: 0, opacity: 1, duration: 1.05, ease: 'expo.out', overwrite: true });
+        G.fromTo(puti[k], { strokeDashoffset: 1 },
+          { strokeDashoffset: 0, duration: .95, ease: 'power2.inOut', overwrite: true });
+        G.fromTo(tochki[k], { scale: 0, opacity: 0 },
+          { scale: 1, opacity: 1, duration: .8, ease: 'back.out(2.2)', overwrite: true });
+      }
+    }
+
     function vidSceny(p) {
       for (var i = 0; i < sceny.length; i++) {
         var v = pozh(p, OKNA[i][0], OKNA[i][1], OKNA[i][2], OKNA[i][3]);
@@ -183,27 +202,38 @@
           el.style.opacity = v.toFixed(3);
           el.style.transform = 'translate3d(0,' + ((1 - v) * 26).toFixed(2) + 'px,0)';
         }
+        var set = el.querySelector('.vynos-set');
+        var vynoski = el.querySelectorAll('.vynos');
+        var zam = OKNA[i][4] || 0;
+
         if (v > 0.35 && el.dataset.pokazana !== '1') {
           el.dataset.pokazana = '1';
-          if (!тряс && G) {
+          if (G && !тряс) {
             G.fromTo(el.querySelectorAll('.stroka > span'),
               { yPercent: 108 },
               { yPercent: 0, duration: 1.15, ease: 'expo.out', stagger: 0.085, overwrite: true });
-            G.fromTo(el.querySelectorAll('.vynos'),
-              { y: 20, opacity: 0 },
-              { y: 0, opacity: 1, duration: 1, ease: 'expo.out', stagger: 0.15, delay: 0.18, overwrite: true });
-            G.fromTo(el.querySelectorAll('.vynos-liniya'),
-              { strokeDashoffset: 1 },
-              { strokeDashoffset: 0, duration: 0.9, ease: 'power2.inOut', stagger: 0.15, delay: 0.34, overwrite: true });
+            G.fromTo(el.querySelectorAll('.oblozhka-podpis, .oblozhka-imya'),
+              { y: 18, opacity: 0 },
+              { y: 0, opacity: 1, duration: .9, ease: 'expo.out', stagger: .12, delay: .38, overwrite: true });
           }
         }
-        /* выноски приходят по очереди после заголовка сцены */
-        var vynoski = el.querySelectorAll('.vynos');
+
+        if (!set || !vynoski.length) continue;
+        var puti = set.querySelectorAll('.vynos-liniya');
+        var tochki = set.querySelectorAll('.tochka');
         for (var k = 0; k < vynoski.length; k++) {
-          if (vynoski[k].dataset.pokazana === '1') continue;
-          var a = OKNA[i][1] + 3 + k * 5, b2 = a + 8;
-          var c2 = Math.max(b2 + 4, OKNA[i][2] - 7 + k * 3), d2 = c2 + 10;
-          if (pozh(p, a, b2, c2, d2) > 0.35) vynoski[k].dataset.pokazana = '1';
+          var otkr = false;
+          /* на телефоне точки и линии скрыты, но сами цифры приходят по очереди */
+          if (vynoski[k].offsetParent) {
+            var a = OKNA[i][1] + zam + k * 5, b2 = a + 7;
+            var c2 = Math.max(b2 + 4, OKNA[i][2] - 7 + k * 3), d2 = c2 + 10;
+            otkr = pozh(p, a, b2, c2, d2) > 0.3;
+            if (otkr && vynoski[k].dataset.otkryt !== '1') {
+              vynoski[k].dataset.otkryt = '1';
+              pustitCifru(p, set, vynoski[k], puti, tochki, k);
+            }
+          }
+          if (!(G && !тряс)) vynoski[k].style.opacity = otkr ? '1' : '0';
         }
       }
     }
@@ -231,6 +261,8 @@
       if (risovatSnova || n !== posledniiKadr) { кадрДля(n); posledniiKadr = n; risovatSnova = false; }
       if (nomerEl) nomerEl.textContent = (n < 10 ? '00' : n < 100 ? '0' : '') + n + ' / ' + KADRY.kadrov;
       if (zakras) zakras.style.transform = 'scaleX(' + (tek / (KADRY.kadrov - 1)).toFixed(4) + ')';
+      /* обложка держит кадр в одиночку, счётчик кадров приходит после неё */
+      if (indikator) indikator.style.opacity = pozh(tek, 56, 60, 70, 82).toFixed(3);
       var si = 0;
       while (si < 2 && n >= KADRY.sceny[si + 1]) si++;
       if (si !== posledniaiaScena && imenaEl) {
@@ -246,12 +278,28 @@
       return Math.max(0, Math.min(1, p));
     }
 
+    /* НАЧАЛЬНОЕ СОСТОЯНИЕ ЦИФР: скрыты, линии не нарисованы, точки сжаты.
+       Задаётся здесь, в CSS этих transform нет. */
+    (function nachalnoe() {
+      for (var i = 0; i < sceny.length; i++) {
+        var el = sceny[i];
+        var vynoski = el.querySelectorAll('.vynos');
+        var set = el.querySelector('.vynos-set');
+        if (!vynoski.length) continue;
+        if (G && !тряс) {
+          G.set(vynoski, { opacity: 0 });
+          if (set) {
+            G.set(set.querySelectorAll('.vynos-liniya'), { strokeDasharray: 1, strokeDashoffset: 1 });
+            G.set(set.querySelectorAll('.tochka'), { scale: 0, opacity: 0 });
+          }
+        } else {
+          Array.prototype.forEach.call(vynoski, function (v) { v.style.opacity = '0'; });
+        }
+      }
+    })();
+
     razmerit();
     начать();
-    if (G && !тряс) {
-      /* линии спрятаны до своей очереди: dashoffset ставит скрипт, в CSS его нет */
-      G.set(scena.querySelectorAll('.vynos-liniya'), { strokeDasharray: 1, strokeDashoffset: 1 });
-    }
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { linii(); });
 
     if (ST) {
@@ -316,6 +364,69 @@
     }
   }
 
+  /* ФИНАЛ: кадр из ролика у строки журнального списка.
+     На мыши всплывает по наведению, на телефоне — когда строка доходит до
+     середины экрана. Кадр обрезан в узкую карточку, файл не трогаем. */
+
+  var chto = document.querySelector('[data-chto]');
+  if (chto) {
+    var spisok = chto.querySelector('.chto-spisok');
+    var kartochka = chto.querySelector('[data-kadr-kart]');
+    var kartImg = kartochka ? kartochka.querySelector('img') : null;
+    var stroki = Array.prototype.slice.call(chto.querySelectorAll('.chto-stroka'));
+    var aktivnaia = null;
+
+    function postavitKadr(stroka) {
+      if (!kartImg || !stroka || !kartochka) return;
+      var n = stroka.getAttribute('data-kadr');
+      var src = 'assets/kino/d/' + n + '.webp';
+      if (kartImg.getAttribute('src') !== src) {
+        kartImg.src = src;
+        var naz = stroka.querySelector('.chto-naz');
+        kartImg.alt = 'Кадр завода: ' + (naz ? naz.textContent : 'цех');
+      }
+      var baze = chto.getBoundingClientRect();
+      var sp = spisok.getBoundingClientRect();
+      var r = stroka.getBoundingClientRect();
+      var vys = kartochka.offsetHeight || 1;
+      var top = r.top + r.height / 2 - vys / 2 - baze.top;
+      top = Math.max(0, Math.min(top, sp.bottom - baze.top - vys));
+      kartochka.style.top = Math.round(top) + 'px';
+      kartochka.classList.add('vidna');
+      if (aktivnaia && aktivnaia !== stroka) aktivnaia.classList.remove('aktiv');
+      aktivnaia = stroka;
+    }
+
+    function ubratKadr(stroka) {
+      if (kartochka) kartochka.classList.remove('vidna');
+      if (stroka && stroka === aktivnaia) { stroka.classList.remove('aktiv'); aktivnaia = null; }
+    }
+
+    if (kartochka && stroki.length && spisok) {
+      var mysh = matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if (mysh) {
+        stroki.forEach(function (s) {
+          s.addEventListener('mouseenter', function () { postavitKadr(s); });
+          s.addEventListener('mouseleave', function () { ubratKadr(s); });
+        });
+      } else if ('IntersectionObserver' in window) {
+        var nablyudatel = new IntersectionObserver(function (zapisi) {
+          for (var i = 0; i < zapisi.length; i++) {
+            if (!zapisi[i].isIntersecting) continue;
+            var stroka = zapisi[i].target;
+            if (aktivnaia === stroka) continue;
+            aktivnaia && aktivnaia.classList.remove('aktiv');
+            postavitKadr(stroka);
+          }
+        }, { rootMargin: '-46% 0px -46% 0px', threshold: 0 });
+        stroki.forEach(function (s) { nablyudatel.observe(s); });
+      }
+      window.addEventListener('resize', function () {
+        if (kartochka.classList.contains('vidna') && aktivnaia) postavitKadr(aktivnaia);
+      });
+    }
+  }
+
   /* ЯКОРЯ --------------------------------------------------------------- */
 
   Array.prototype.forEach.call(document.querySelectorAll('a[href^="#"]'), function (a) {
@@ -349,7 +460,7 @@
     });
   }
 
-  /* ПОЯВЛЕНИЕ ЗНАКА В ЗАЯВКЕ -------------------------------------------- */
+  /* ПОЯВЛЕНИЕ ЗНАКА В ФИНАЛЕ -------------------------------------------- */
 
   var znak = document.querySelector('[data-znak]');
   if (znak && ST && G && !тряс) {

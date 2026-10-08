@@ -21,6 +21,7 @@ body {
 ::-webkit-scrollbar-thumb:hover { background: var(--c-amber); }
 
 h1, h2, h3, p, ul, figure { margin: 0; }
+ul { padding: 0; list-style: none; }
 a { color: inherit; text-decoration: none; }
 img, canvas, svg, picture { display: block; }
 button, input, select, textarea { font: inherit; }
@@ -39,7 +40,7 @@ button, input, select, textarea { font: inherit; }
 .shapka {
   position: fixed; inset: 0 0 auto; z-index: 60;
   height: var(--vysota-shapki);
-  display: inline-flex; align-items: center; gap: 14px;
+  display: inline-flex; align-items: center; gap: 16px;
   padding: 0 var(--pole);
   background: linear-gradient(180deg, rgba(8, 9, 14, .92) 0%, rgba(8, 9, 14, .68) 62%, rgba(8, 9, 14, 0) 100%);
   pointer-events: none;
@@ -47,14 +48,18 @@ button, input, select, textarea { font: inherit; }
 .shapka > * { pointer-events: auto; }
 .shapka-znak { display: block; width: 30px; height: 30px; flex: none; }
 .shapka-push { flex: 1 1 auto; }
-.shapka-tel {
-  font-family: var(--font-mono); font-size: 14px; letter-spacing: .02em;
-  color: var(--c-bumag); white-space: nowrap;
+.shapka-tel, .shapka-rassch {
+  display: inline-flex; align-items: center;
+  min-height: 40px; white-space: nowrap;
   border-bottom: 1px solid rgba(242, 239, 231, .3);
   padding-bottom: 2px;
+  color: var(--c-bumag);
   transition: color .25s ease, border-color .25s ease;
 }
-.shapka-tel:hover { color: var(--c-amber); border-color: var(--c-amber); }
+.shapka-tel { font-family: var(--font-mono); font-size: 14px; letter-spacing: .01em; }
+.shapka-rassch { font-size: 15px; }
+.shapka-tel:hover, .shapka-rassch:hover { color: var(--c-amber); border-color: var(--c-amber); }
+.shapka-rassch:active, .shapka-tel:active { color: rgba(242, 239, 231, .78); }
 
 /* КИНО ------------------------------------------------------------------- */
 
@@ -93,32 +98,66 @@ button, input, select, textarea { font: inherit; }
 .js .scena { opacity: 0; }
 .scena-box { position: relative; z-index: 3; pointer-events: auto; }
 
-/* сцена 1: имя, заголовок во весь размах кадра, одна строка и тонкий призыв */
+/* сцена 1: журнальная обложка.
+   «Сталь» сверху слева, «в срок» снизу справа, между ними сварщик с искрами.
+   Сетка: первый ряд — заголовок во всю высоту, второй — нижняя рейка. */
 
-.scena-1 {
-  align-items: flex-start;
-  padding-top: calc(var(--vysota-shapki) + clamp(16px, 2.6vh, 38px));
-}
+.scena-1 { display: block; padding: 0; }
 .scena-1::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(180deg,
-      rgba(7, 8, 13, .92) 0%, rgba(7, 8, 13, .84) 22%, rgba(7, 8, 13, .64) 36%,
-      rgba(7, 8, 13, .36) 47%, rgba(7, 8, 13, .1) 56%, rgba(7, 8, 13, 0) 64%);
+    radial-gradient(62% 40% at 4% 6%, rgba(7, 8, 13, .94) 0%, rgba(7, 8, 13, .74) 44%, rgba(7, 8, 13, .2) 68%, rgba(7, 8, 13, 0) 86%),
+    radial-gradient(60% 44% at 98% 94%, rgba(7, 8, 13, .95) 0%, rgba(7, 8, 13, .78) 42%, rgba(7, 8, 13, .24) 66%, rgba(7, 8, 13, 0) 86%),
+    linear-gradient(180deg, rgba(7, 8, 13, .62) 0%, rgba(7, 8, 13, .16) 16%, rgba(7, 8, 13, 0) 30%),
+    linear-gradient(0deg, rgba(7, 8, 13, .5) 0%, rgba(7, 8, 13, .12) 14%, rgba(7, 8, 13, 0) 28%);
 }
-.scena-1 .scena-box { max-width: 100%; }
 
-.sc-imya {
-  display: inline-flex; align-items: center; gap: 14px;
-  margin: 0 0 clamp(14px, 1.8vh, 22px);
-  font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(14px, 1.05vw, 17px);
+.oblozhka {
+  position: absolute; inset: 0; z-index: 3;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, auto);
+  grid-template-rows: minmax(0, 1fr) auto;
+  align-items: end;
+  padding: calc(var(--vysota-shapki) + clamp(8px, 2.6vh, 34px)) var(--pole) clamp(26px, 5vh, 58px);
+}
+.oblozhka-h {
+  grid-area: 1 / 1 / 2 / 3;
+  align-self: stretch;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 0;
+  margin: 0;
+  font-family: var(--font-display); font-weight: 800;
+  line-height: .94; letter-spacing: -.045em; text-transform: uppercase;
+  color: var(--c-bumag);
+  text-shadow: 0 3px 18px rgba(7, 8, 13, .92), 0 0 46px rgba(7, 8, 13, .78),
+    0 10px 60px rgba(7, 8, 13, .7);
+}
+.oblozhka-stal { align-self: flex-start; font-size: min(16.2vw, 22vh); }
+.oblozhka-srokom { align-self: flex-end; text-align: right; font-size: min(13.4vw, 18vh); }
+
+.oblozhka-imya {
+  grid-column: 1; grid-row: 2; align-self: end;
+  font-family: var(--font-mono); font-size: 12px;
   letter-spacing: .1em; text-transform: uppercase;
-  color: rgba(242, 239, 231, .9);
+  color: rgba(242, 239, 231, .72);
+  text-shadow: 0 2px 14px rgba(7, 8, 13, .9);
 }
-.sc-imya i { display: block; width: clamp(34px, 4vw, 64px); height: 1px; background: var(--c-amber); }
+.oblozhka-podpis {
+  grid-column: 2; grid-row: 2; align-self: end; justify-self: end;
+  margin: 0 0 4px;
+  max-width: min(46ch, 44vw);
+  font-size: clamp(15px, 1.06vw, 18px); line-height: 1.45;
+  color: rgba(242, 239, 231, .86);
+  text-shadow: 0 2px 18px rgba(7, 8, 13, .95);
+}
+.oblozhka-podpis::before {
+  content: ""; display: block;
+  width: clamp(40px, 5vw, 84px); height: 1px;
+  margin: 0 0 12px auto;
+  background: var(--c-amber);
+}
 
-/* сцены 2 и 3: заголовок в углу, цифры выносками у своих точек кадра */
+/* сцены 2 и 3: заголовок в углу, цифры у своих точек кадра */
 
 .scena-2, .scena-3 { display: block; }
 .scena-box-verh {
@@ -129,21 +168,21 @@ button, input, select, textarea { font: inherit; }
 .scena-2::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(180deg, rgba(7, 8, 13, .9) 0%, rgba(7, 8, 13, .58) 15%, rgba(7, 8, 13, 0) 31%),
-    radial-gradient(52% 42% at 2% 62%, rgba(7, 8, 13, .88) 0%, rgba(7, 8, 13, 0) 74%),
-    radial-gradient(46% 38% at 100% 20%, rgba(7, 8, 13, .82) 0%, rgba(7, 8, 13, 0) 74%),
-    radial-gradient(48% 40% at 100% 82%, rgba(7, 8, 13, .86) 0%, rgba(7, 8, 13, 0) 74%),
-    linear-gradient(0deg, rgba(7, 8, 13, .42) 0%, rgba(7, 8, 13, 0) 24%);
+    linear-gradient(180deg, rgba(7, 8, 13, .9) 0%, rgba(7, 8, 13, .56) 15%, rgba(7, 8, 13, 0) 31%),
+    radial-gradient(33% 31% at 14% 56%, rgba(7, 8, 13, .9) 0%, rgba(7, 8, 13, .55) 50%, rgba(7, 8, 13, 0) 82%),
+    radial-gradient(24% 20% at 95% 25%, rgba(7, 8, 13, .82) 0%, rgba(7, 8, 13, .42) 52%, rgba(7, 8, 13, 0) 84%),
+    radial-gradient(23% 23% at 87% 69%, rgba(7, 8, 13, .84) 0%, rgba(7, 8, 13, .44) 52%, rgba(7, 8, 13, 0) 84%),
+    linear-gradient(0deg, rgba(7, 8, 13, .4) 0%, rgba(7, 8, 13, 0) 22%);
 }
 .scena-3::before {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(180deg, rgba(7, 8, 13, .92) 0%, rgba(7, 8, 13, .74) 20%, rgba(7, 8, 13, .44) 32%, rgba(7, 8, 13, .14) 44%, rgba(7, 8, 13, 0) 54%),
-    radial-gradient(38% 24% at 2% 36%, rgba(7, 8, 13, .8) 0%, rgba(7, 8, 13, 0) 76%),
-    radial-gradient(44% 38% at 100% 22%, rgba(7, 8, 13, .82) 0%, rgba(7, 8, 13, 0) 74%),
-    radial-gradient(44% 38% at 100% 80%, rgba(7, 8, 13, .84) 0%, rgba(7, 8, 13, 0) 74%),
-    radial-gradient(46% 40% at 0% 86%, rgba(7, 8, 13, .9) 0%, rgba(7, 8, 13, 0) 74%),
-    linear-gradient(0deg, rgba(7, 8, 13, .5) 0%, rgba(7, 8, 13, 0) 22%);
+    linear-gradient(180deg, rgba(7, 8, 13, .92) 0%, rgba(7, 8, 13, .74) 20%,
+      rgba(7, 8, 13, .44) 32%, rgba(7, 8, 13, .14) 44%, rgba(7, 8, 13, 0) 54%),
+    radial-gradient(35% 31% at 14% 55%, rgba(7, 8, 13, .9) 0%, rgba(7, 8, 13, .55) 50%, rgba(7, 8, 13, 0) 82%),
+    radial-gradient(26% 22% at 95% 21%, rgba(7, 8, 13, .84) 0%, rgba(7, 8, 13, .44) 52%, rgba(7, 8, 13, 0) 84%),
+    radial-gradient(25% 23% at 80% 73%, rgba(7, 8, 13, .88) 0%, rgba(7, 8, 13, .5) 52%, rgba(7, 8, 13, 0) 84%),
+    linear-gradient(0deg, rgba(7, 8, 13, .44) 0%, rgba(7, 8, 13, 0) 20%);
 }
 
 /* заголовки сцен: кегль от ширины окна, слова всегда целиком */
@@ -159,12 +198,6 @@ button, input, select, textarea { font: inherit; }
   text-shadow: 0 2px 22px rgba(7, 8, 13, .75);
 }
 .sc-zag .net { white-space: nowrap; }
-.scena-1 .sc-zag {
-  margin: 0 0 clamp(16px, 2.2vh, 26px);
-  font-size: min(15vw, 30vh);
-  line-height: .96; letter-spacing: -.04em;
-  text-shadow: 0 4px 34px rgba(7, 8, 13, .6);
-}
 
 .stroka {
   display: block; overflow: hidden;
@@ -179,87 +212,76 @@ button, input, select, textarea { font: inherit; }
   color: rgba(242, 239, 231, .92);
   text-shadow: 0 2px 18px rgba(7, 8, 13, .85);
 }
-.scena-1 .sc-tekst { max-width: 46ch; }
 .sc-tekst-verh {
   margin: 0; max-width: 44ch;
   font-size: clamp(15px, 1.02vw, 17px); line-height: 1.45;
   color: rgba(242, 239, 231, .84);
 }
 
-/* призыв: тонкая линия, текст и стрелка, без плашки */
-
-.sc-cta {
-  position: relative;
-  display: inline-flex; align-items: center; gap: .6em;
-  min-height: 48px;
-  margin-top: 2px;
-  padding: 10px 0 12px;
-  border-bottom: 1px solid rgba(242, 239, 231, .55);
-  color: var(--c-bumag);
-  font-size: clamp(17px, 1.25vw, 20px); font-weight: 500;
-  letter-spacing: .01em;
-  transition: color .3s ease, border-color .3s ease;
-}
-.sc-cta::after {
-  content: ""; position: absolute; left: 0; right: 0; bottom: -1px;
-  height: 2px; background: var(--c-amber);
-  transform: scaleX(0); transform-origin: left center;
-  transition: transform .45s cubic-bezier(.2, .7, .2, 1);
-}
-.sc-cta:hover, .sc-cta:focus-visible { color: var(--c-amber); }
-.sc-cta:hover::after, .sc-cta:focus-visible::after { transform: scaleX(1); }
-.sc-cta:active { color: rgba(242, 239, 231, .8); }
-.sc-cta svg { width: 1.1em; height: 1.1em; flex: none; transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
-.sc-cta:hover svg { transform: translateX(6px); }
-
-/* ВЫНОСКИ: цифра у своей точки кадра, тонкая линия к шву, балке, крыше */
+/* ВЫНОСКИ: асимметричный ритм. Одна цифра главная и огромная, две малые
+   на разной высоте; каждая стоит у своей точки кадра, к точке ведёт тонкая
+   линия с кружком на конце. */
 
 .vynos-set { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .tochka {
   position: absolute;
   left: var(--x); top: var(--y);
-  width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px;
+  width: 11px; height: 11px; margin: -5.5px 0 0 -5.5px;
   border: 1px solid var(--c-amber); border-radius: 50%;
-  box-shadow: 0 0 0 3px rgba(7, 8, 13, .5);
+  box-shadow: 0 0 0 3px rgba(7, 8, 13, .55);
 }
 .tochka::after {
-  content: ""; position: absolute; inset: 3px;
+  content: ""; position: absolute; inset: 3.5px;
   background: var(--c-amber); border-radius: 50%;
 }
 .vynos-linii {
   position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible;
-  filter: drop-shadow(0 1px 2px rgba(7, 8, 13, .9));
+  filter: drop-shadow(0 1px 3px rgba(7, 8, 13, .95));
 }
 .vynos-liniya {
-  fill: none; stroke: var(--c-amber); stroke-width: 1;
-  stroke-opacity: .7; vector-effect: non-scaling-stroke;
+  fill: none; stroke: var(--c-amber); stroke-width: 1.25;
+  stroke-opacity: .78; vector-effect: non-scaling-stroke;
 }
 
 .vynos {
   position: absolute; z-index: 3;
-  display: grid; gap: 6px; align-content: start;
-  max-width: min(320px, 30vw);
+  display: grid; gap: 7px; align-content: start;
+  max-width: min(330px, 30vw);
   pointer-events: auto;
 }
 .vynos-chislo {
-  font-family: var(--font-display); font-weight: 700;
-  font-size: clamp(34px, 3.4vw, 56px); line-height: .96;
-  letter-spacing: -.03em; color: var(--c-bumag);
-  text-shadow: 0 2px 24px rgba(7, 8, 13, .95), 0 0 3px rgba(7, 8, 13, .8);
+  font-family: var(--font-display); font-weight: 800;
+  line-height: .94; letter-spacing: -.035em;
+  color: var(--c-bumag);
+  text-shadow: 0 3px 26px rgba(7, 8, 13, .95), 0 0 4px rgba(7, 8, 13, .85);
 }
 .vynos-podpis {
   max-width: 24ch;
-  font-size: 14px; line-height: 1.4;
+  font-size: 14px; line-height: 1.42;
   color: rgba(242, 239, 231, .84);
   text-shadow: 0 2px 16px rgba(7, 8, 13, .95);
 }
 
-.vynos-lev { left: var(--pole); top: 50%; }
-.vynos-prav-verh { right: var(--pole); top: 14%; text-align: right; justify-items: end; }
-.vynos-prav-verh .vynos-podpis { margin-left: auto; }
-.vynos-prav-niz { right: var(--pole); bottom: 15%; text-align: right; justify-items: end; }
-.vynos-prav-niz .vynos-podpis { margin-left: auto; }
-.vynos-lev-niz { left: var(--pole); bottom: 19%; }
+/* главная цифра: слева, низ кадра, кегль на порядок больше */
+.vynos-glav { left: var(--pole); top: 46%; max-width: min(430px, 32vw); }
+.vynos-glav .vynos-chislo { font-size: clamp(60px, 8.4vw, 148px); }
+.vynos-glav .vynos-podpis {
+  max-width: 26ch; font-size: 15px; line-height: 1.45;
+  padding-top: 2px;
+  border-top: 1px solid rgba(242, 165, 65, .55);
+  margin-top: 4px;
+}
+/* две малые: справа, на разной высоте и с разным отступом */
+.vynos-malyi { max-width: min(300px, 24vw); }
+.vynos-malyi .vynos-chislo { font-size: clamp(24px, 2.45vw, 43px); }
+.vynos-malyi .vynos-podpis { font-size: 13.5px; }
+.vynos-a { right: var(--pole); top: 23%; text-align: right; justify-items: end; }
+.vynos-b { right: calc(var(--pole) + 5%); top: 64%; text-align: right; justify-items: end; }
+
+/* сцена 3 — свой ритм: главная выше, малые разведены шире */
+.scena-3 .vynos-glav { top: 44%; }
+.scena-3 .vynos-a { top: 19%; }
+.scena-3 .vynos-b { top: 67%; right: calc(var(--pole) + 12%); }
 
 /* индикатор хода камеры */
 
@@ -268,6 +290,8 @@ button, input, select, textarea { font: inherit; }
   right: var(--pole); bottom: clamp(26px, 4vh, 44px);
   display: grid; justify-items: end; gap: 9px;
   pointer-events: none;
+  /* на обложке индикатора нет: приходит, когда камера поехала (assets/js/site.js) */
+  transition: opacity .5s ease;
 }
 .kino-hod-nomer, .kino-hod-imena {
   font-family: var(--font-mono); font-size: 12px;
@@ -333,9 +357,7 @@ button, input, select, textarea { font: inherit; }
   font-family: var(--font-mono); font-size: 12px;
   letter-spacing: .1em;
   color: rgba(242, 239, 231, .7);
-}
-
-/* ЗАЯВКА: продолжает кино, последний кадр затемнён и размыт --------------- */
+}/* ФИНАЛ: журнальный список, фраза-форма, монументальный подвал ---------- */
 
 .zayavka {
   --k-display: var(--font-display);
@@ -344,53 +366,101 @@ button, input, select, textarea { font: inherit; }
   --k-ink-svet: var(--c-bumag);
   --k-accent: var(--c-amber);
   --k-accent-ink: var(--c-tamniy-ink);
-  padding: clamp(96px, 15vh, 168px) 0 0;
+  --kadr-shirina: clamp(168px, 17vw, 250px);
+  --kadr-probel: clamp(24px, 3vw, 56px);
+  padding: clamp(84px, 13vh, 150px) 0 0;
 }
 .zayavka > * { grid-column: 1 / -1; }
 .zayavka-fon {
   position: absolute; z-index: -2; height: auto;
-  top: calc(0px - clamp(96px, 15vh, 168px));
+  top: calc(0px - clamp(84px, 13vh, 150px));
   right: 0; bottom: 0; left: 0;
 }
 .zayavka-fon img {
   width: 100%; height: 100%; object-fit: cover;
-  filter: blur(13px) brightness(1.35) saturate(1.05);
-  transform: scale(1.09);
+  filter: blur(14px) brightness(1.18) saturate(1.04);
+  transform: scale(1.08);
 }
 .zayavka::after {
   content: "";
   position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(180deg, rgba(7, 8, 13, .62) 0%, rgba(7, 8, 13, .2) 24%,
-      rgba(7, 8, 13, .26) 62%, rgba(7, 8, 13, .74) 100%),
-    linear-gradient(90deg, rgba(7, 8, 13, .5) 0%, rgba(7, 8, 13, .38) 44%,
-      rgba(7, 8, 13, .1) 72%, rgba(7, 8, 13, .3) 100%);
-}
-.zayavka-tekst { position: relative; padding: 0 var(--pole); }
-/* мягкая подложка под фразой: кадр гаснет слева, город виден справа */
-.zayavka-tekst::before {
-  content: ""; position: absolute; z-index: -1; pointer-events: none;
-  inset: -18vh -10vw -4vh -10vw;
-  background: radial-gradient(58% 62% at 24% 52%, rgba(7, 8, 13, .86) 0%, rgba(7, 8, 13, .55) 52%, rgba(7, 8, 13, 0) 84%);
+    linear-gradient(180deg,
+      rgba(7, 8, 13, .9) 0%, rgba(7, 8, 13, .76) 18%, rgba(7, 8, 13, .72) 46%,
+      rgba(7, 8, 13, .74) 72%, rgba(7, 8, 13, .86) 100%),
+    linear-gradient(90deg, rgba(7, 8, 13, .5) 0%, rgba(7, 8, 13, .22) 46%, rgba(7, 8, 13, .46) 100%);
 }
 
-.zayavka .zf-h {
-  margin: 0 0 clamp(18px, 2.6vh, 30px);
-  max-width: 52ch;
-  font-family: var(--font-text); font-weight: 400;
-  font-size: clamp(17px, 1.5vw, 24px); line-height: 1.45;
-  letter-spacing: 0;
-  color: rgba(242, 239, 231, .82);
-  text-shadow: 0 2px 20px rgba(7, 8, 13, .95);
+/* «Что производим»: пять строк крупным кеглем, справа место под кадр */
+
+.chto { position: relative; padding: 0 var(--pole); }
+.chto-h {
+  margin: 0 0 clamp(18px, 2.6vh, 34px);
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(30px, 3.3vw, 56px);
+  line-height: 1.04; letter-spacing: -.03em;
+  color: var(--c-bumag);
+  text-shadow: 0 3px 26px rgba(7, 8, 13, .9);
 }
+.chto-spisok { margin: 0; }
+
+.chto-stroka {
+  position: relative;
+  padding: clamp(13px, 1.9vh, 24px) 0 clamp(15px, 2.1vh, 26px);
+  padding-right: calc(var(--kadr-shirina) + var(--kadr-probel));
+}
+.chto-stroka::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 1px;
+  right: calc(-1 * (var(--pole) + var(--kadr-shirina) + var(--kadr-probel)));
+  background: rgba(242, 239, 231, .16);
+}
+.chto-naz {
+  display: block;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(26px, 3.05vw, 54px);
+  line-height: 1.06; letter-spacing: -.025em;
+  color: var(--c-bumag);
+  text-shadow: 0 3px 26px rgba(7, 8, 13, .9);
+  transition: transform .55s cubic-bezier(.2, .7, .2, 1), color .35s ease;
+}
+.chto-ved {
+  display: block; margin-top: 9px;
+  max-width: 46ch;
+  font-size: clamp(14px, .98vw, 16px); line-height: 1.4;
+  color: rgba(242, 239, 231, .68);
+}
+.chto-stroka:hover .chto-naz,
+.chto-stroka.aktiv .chto-naz { transform: translateX(16px); color: var(--c-amber); }
+
+/* кадр из ролика, всплывающий у строки: узкая карточка, кадр обрезан */
+.chto-kadr {
+  position: absolute; z-index: 2;
+  right: var(--pole); top: 0;
+  width: var(--kadr-shirina); aspect-ratio: 3 / 4;
+  margin: 0; overflow: hidden;
+  border-radius: var(--r-karta);
+  background: var(--c-indigo);
+  opacity: 0; visibility: hidden;
+  transform: translateY(16px) scale(.96);
+  box-shadow: 0 26px 70px rgba(7, 8, 13, .72);
+  transition: opacity .45s ease, transform .6s cubic-bezier(.2, .7, .2, 1), visibility .45s;
+  pointer-events: none;
+}
+.chto-kadr img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: 50% 58%;
+}
+.chto-kadr.vidna { opacity: 1; visibility: visible; transform: none; }
+
 .zayavka-ceny {
   display: flex; flex-wrap: wrap; align-items: baseline;
-  gap: 6px 26px;
-  margin: 0 0 clamp(30px, 5vh, 62px);
+  gap: 8px 30px;
+  margin: clamp(26px, 4vh, 48px) 0 0;
+  padding-right: calc(var(--kadr-shirina) + var(--kadr-probel));
   text-shadow: 0 2px 16px rgba(7, 8, 13, .95);
 }
 .cena {
-  display: inline-flex; align-items: baseline; gap: 8px;
+  display: inline-flex; align-items: baseline; gap: 9px;
   font-family: var(--font-mono); font-weight: 500;
   font-size: 15px; line-height: 1.3;
   color: var(--c-amber); letter-spacing: .01em;
@@ -400,7 +470,18 @@ button, input, select, textarea { font: inherit; }
   font-size: 14px; color: rgba(242, 239, 231, .7);
 }
 
-.zayavka .zf-forma { padding: 0; row-gap: 18px; }
+/* фраза-форма */
+
+.zayavka-forma {
+  position: relative;
+  padding: clamp(56px, 9vh, 108px) var(--pole) 0;
+  row-gap: 18px;
+}
+.zayavka-forma::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  inset: -6vh -8vw;
+  background: radial-gradient(56% 62% at 20% 52%, rgba(7, 8, 13, .9) 0%, rgba(7, 8, 13, .58) 54%, rgba(7, 8, 13, 0) 86%);
+}
 .zayavka .zf-fraza {
   font-family: var(--font-display); font-weight: 400;
   font-size: clamp(21px, 3vw, 44px); line-height: 1.32;
@@ -417,6 +498,7 @@ button, input, select, textarea { font: inherit; }
   font-size: clamp(17px, 1.25vw, 20px); letter-spacing: .01em;
   transform: none !important;
   cursor: pointer;
+  justify-self: start;
   transition: color .3s ease, border-color .3s ease;
 }
 .zayavka .zf-knopka svg { width: 1.1em; height: 1.1em; transition: transform .35s cubic-bezier(.2, .7, .2, 1); }
@@ -425,15 +507,18 @@ button, input, select, textarea { font: inherit; }
 .zayavka .zf-knopka:active { color: rgba(242, 239, 231, .8); }
 .zayavka .zf-pole select option { color: var(--c-tamniy-ink); background: var(--c-bumag); }
 .zayavka .zf-otvet { margin-top: 4px; color: var(--c-amber); }
-.zayavka .zf-melko { color: rgba(242, 239, 231, .66); font-size: 13px; max-width: 52ch; }
+.zayavka .zf-melko { color: rgba(242, 239, 231, .68); font-size: 13px; max-width: 52ch; }
+
+/* подвал: контакты одной строкой, под ними знак во всю ширину экрана */
 
 .razdelka {
-  height: 1px; margin: clamp(46px, 8vh, 92px) var(--pole) 0;
+  height: 1px; margin: clamp(48px, 8vh, 96px) var(--pole) 0;
   background: rgba(242, 239, 231, .16);
 }
 .zayavka-kontakty {
   display: flex; flex-wrap: wrap; align-items: baseline;
-  gap: 12px 14px;
+  justify-content: space-between;
+  gap: 12px 18px;
   margin: clamp(24px, 3.4vh, 40px) var(--pole) 0;
 }
 .kontakt { font-size: 15px; color: rgba(242, 239, 231, .78); }
@@ -445,47 +530,58 @@ a.kontakt:hover { color: var(--c-amber); }
 }
 .kontakt + .kontakt::before {
   content: ""; display: inline-block;
-  width: 1px; height: 1.1em; margin-right: 14px;
+  width: 1px; height: 1.1em; margin-right: 18px;
   background: rgba(242, 239, 231, .32);
   vertical-align: -.16em;
 }
 
-/* знак в подвале: слово во всю ширину экрана, низ обрезан */
-
 .zayavka-znak {
-  margin: clamp(30px, 6vh, 74px) 0 -.1em;
+  margin: clamp(30px, 6vh, 74px) 0 -.11em;
   font-family: var(--font-display); font-weight: 800;
-  font-size: 11.05vw; line-height: .74;
+  font-size: 11.02vw; line-height: .74;
   letter-spacing: -.035em; text-transform: uppercase;
   color: var(--c-bumag);
   white-space: nowrap;
   text-align: center;
-  text-shadow: 0 6px 40px rgba(7, 8, 13, .8);
+  text-shadow: 0 6px 44px rgba(7, 8, 13, .85);
 }
 
 /* ТЕЛЕФОН ---------------------------------------------------------------- */
 
 @media (max-width: 899px) {
   :root { --vysota-shapki: 52px; }
-  .shapka { gap: 10px; }
-  .shapka-tel { font-size: 13px; }
+  .shapka { gap: 12px; }
+  .shapka-tel { font-size: 12.5px; }
+  .shapka-rassch { font-size: 14px; }
 
-  .scena { padding: 0 var(--pole); }
-  .scena-1 { padding-top: calc(var(--vysota-shapki) + 14px); }
+  /* обложка: «Сталь» сверху, «в срок» снизу, сварщик с искрами между ними */
   .scena-1::before {
-    background: linear-gradient(180deg,
-      rgba(7, 8, 13, .92) 0%, rgba(7, 8, 13, .86) 22%, rgba(7, 8, 13, .66) 34%,
-      rgba(7, 8, 13, .34) 45%, rgba(7, 8, 13, .1) 54%, rgba(7, 8, 13, 0) 62%);
+    background:
+      linear-gradient(180deg,
+        rgba(7, 8, 13, .94) 0%, rgba(7, 8, 13, .88) 12%, rgba(7, 8, 13, .5) 22%,
+        rgba(7, 8, 13, .08) 32%, rgba(7, 8, 13, 0) 42%, rgba(7, 8, 13, .1) 58%,
+        rgba(7, 8, 13, .62) 74%, rgba(7, 8, 13, .92) 90%, rgba(7, 8, 13, .96) 100%);
   }
-  .scena-1 .sc-zag { font-size: min(13vw, 12vh); }
-  .scena-1 .sc-tekst { max-width: 100%; }
-  .sc-imya { margin-bottom: 12px; }
-  .sc-cta { font-size: 17px; }
+  .oblozhka {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    padding: calc(var(--vysota-shapki) + 12px) var(--pole) clamp(22px, 4.5vh, 44px);
+  }
+  .oblozhka-h { grid-area: 1 / 1 / 2 / 2; }
+  .oblozhka-stal { font-size: min(21vw, 17vh); }
+  .oblozhka-srokom { font-size: min(18vw, 14vh); }
+  .oblozhka-imya { display: none; }
+  .oblozhka-podpis {
+    grid-column: 1; justify-self: stretch; text-align: left;
+    max-width: 100%; margin: 0;
+    font-size: 15px;
+  }
+  .oblozhka-podpis::before { margin: 0 0 10px; }
 
-  /* сцены 2 и 3: выноски столбиком внизу, разного размера и сдвига */
+  /* сцены 2 и 3: главная цифра огромная, две малые под ней со сдвигом */
   .scena-2, .scena-3 {
     display: flex; flex-direction: column; justify-content: flex-end;
-    padding-top: calc(var(--vysota-shapki) + 14px);
+    padding-top: calc(var(--vysota-shapki) + 12px);
     padding-bottom: clamp(84px, 14vh, 124px);
     gap: clamp(14px, 2.2vh, 22px);
   }
@@ -506,41 +602,55 @@ a.kontakt:hover { color: var(--c-amber); }
 
   .vynos-set { display: none; }
   .vynos {
-    position: static; max-width: 88%;
-    grid-template-columns: auto minmax(0, 1fr);
-    align-items: baseline; gap: 12px;
+    position: static; max-width: 100%;
     text-align: left; justify-items: start;
-    padding-left: 14px;
-    border-left: 1px solid rgba(242, 165, 65, .6);
+    padding-left: 15px;
+    border-left: 1px solid rgba(242, 165, 65, .55);
   }
-  .vynos-chislo { font-size: 30px; }
-  .vynos:nth-of-type(1) { margin-left: 0; }
-  .vynos:nth-of-type(1) .vynos-chislo { font-size: 32px; }
-  .vynos:nth-of-type(2) { margin-left: 9%; max-width: 80%; }
-  .vynos:nth-of-type(2) .vynos-chislo { font-size: 22px; }
-  .vynos:nth-of-type(3) { margin-left: 3%; max-width: 86%; }
-  .vynos:nth-of-type(3) .vynos-chislo { font-size: 26px; }
-  .vynos-podpis { max-width: none; font-size: 13px; }
+  .vynos-glav .vynos-chislo { font-size: clamp(56px, 17vw, 92px); }
+  .vynos-glav { margin-left: 0; max-width: 100%; }
+  .vynos-glav .vynos-podpis { font-size: 14px; max-width: 100%; }
+  .vynos-malyi .vynos-chislo { font-size: 26px; }
+  .vynos-malyi .vynos-podpis { font-size: 13px; max-width: 100%; }
+  .vynos-malyi.vynos-a { margin-left: 10%; max-width: 90%; }
+  .vynos-malyi.vynos-b { margin-left: 3%; max-width: 97%; }
 
   .kino-hod { bottom: 20px; gap: 7px; }
   .kino-hod-liniya { width: 128px; }
   .kino-hod-nomer, .kino-hod-imena { font-size: 11px; letter-spacing: .12em; }
 
+  /* финал */
+  .zayavka {
+    --kadr-shirina: clamp(104px, 29vw, 158px);
+    --kadr-probel: 18px;
+  }
   .zayavka::after {
     background:
-      linear-gradient(180deg, rgba(7, 8, 13, .96) 0%, rgba(7, 8, 13, .9) 12%,
-        rgba(7, 8, 13, .66) 24%, rgba(7, 8, 13, .32) 38%, rgba(7, 8, 13, .38) 66%,
-        rgba(7, 8, 13, .85) 100%);
+      linear-gradient(180deg, rgba(7, 8, 13, .95) 0%, rgba(7, 8, 13, .88) 12%,
+        rgba(7, 8, 13, .74) 26%, rgba(7, 8, 13, .72) 62%, rgba(7, 8, 13, .84) 100%),
+      linear-gradient(90deg, rgba(7, 8, 13, .42) 0%, rgba(7, 8, 13, .16) 50%, rgba(7, 8, 13, .4) 100%);
   }
+  .chto-naz { font-size: clamp(22px, 6vw, 30px); }
+  .chto-ved { font-size: 13.5px; margin-top: 7px; }
   .zayavka .zf-fraza { max-width: 100%; font-size: clamp(21px, 5.6vw, 30px); }
-  .zayavka-znak { font-size: 11.05vw; }
+  .zayavka-kontakty { justify-content: flex-start; gap: 9px 12px; }
+  .kontakt { font-size: 13.5px; }
+  .kontakt-tel { font-size: 17px; }
+  .kontakt + .kontakt::before { margin-right: 12px; }
+  .zayavka-znak { font-size: 11.02vw; }
 }
 
 /* УМЕНЬШЕННАЯ МОБИЛЬНОСТЬ И КРУПНЫЙ ЭКРАН */
 
+@media (max-width: 560px) {
+  .shapka { gap: 10px; }
+  .shapka-rassch { font-size: 13px; }
+  .shapka-tel { font-size: 12px; }
+}
+
 @media (min-width: 900px) and (max-width: 1100px) {
-  .vynos-chislo { font-size: 38px; }
-  .vynos { max-width: min(260px, 28vw); }
+  .vynos-glav .vynos-chislo { font-size: clamp(56px, 7.4vw, 92px); }
+  .vynos { max-width: min(280px, 28vw); }
   .sc-zag { font-size: 42px; }
 }
 
@@ -549,8 +659,8 @@ a.kontakt:hover { color: var(--c-amber); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .kino-holst, .kino-poster, .kino-zagruzka, .sc-cta,
-  .sc-cta::after, .sc-cta svg, .zf-knopka, .zf-knopka svg { transition: none; }
-  .sc-cta:hover::after, .sc-cta:focus-visible::after { transform: scaleX(0); }
-  .sc-cta:hover svg, .zf-knopka:hover svg { transform: none; }
+  .kino-holst, .kino-poster, .kino-zagruzka, .zf-knopka,
+  .zf-knopka svg, .chto-kadr, .chto-naz { transition: none; }
+  .zf-knopka:hover svg { transform: none; }
+  .chto-stroka:hover .chto-naz, .chto-stroka.aktiv .chto-naz { transform: none; }
 }
