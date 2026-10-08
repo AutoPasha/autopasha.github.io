@@ -89,13 +89,14 @@
       let acc = 0, all = 0;
       for (let j = 0; j < N - 1; j++) { const st = sc(j) + sc(j + 1); all += st; if (j < i) acc += st; }
       const phi = (-150 + acc / all * 296) * Math.PI / 180;
-      const R = mobile ? W * .34 : Math.min(W * .23, H * .36);
+      const R = mobile ? W * .27 : Math.min(W * .23, H * .36); // на телефоне подкова целиком в экране, крайние не режутся краем
       const ry = mobile ? H * .2 : R * .8;
       const s = sc(i);
       return P(x0 + Math.sin(phi) * R * (mobile ? 1 : 1.12), -Math.cos(phi) * ry + (mobile ? 10 : 0), -240 + 300 * t, 8 * (1 - t), 0, phi * 180 / Math.PI * .1 + 3, s);
     }
     if (k === 1) { // стопка, как брошенные
-      return P(x0 + (rnd(i, 1) - .5) * 16, (rnd(i, 2) - .5) * 12 - (mobile ? 0 : H * .02), i * 2.5 - 20, 0, 0, (rnd(i, 3) - .5) * 9, mobile ? 1.12 : 1.02);
+      // крупно и вразброс: одна аккуратная пачка посреди пустого экрана читалась как недогруз
+      return P(x0 + (rnd(i, 1) - .5) * (mobile ? 46 : 110), (rnd(i, 2) - .5) * (mobile ? 30 : 60) - (mobile ? 0 : H * .02), i * 2.5 - 20, 0, 0, (rnd(i, 3) - .5) * (mobile ? 22 : 30), mobile ? 1.22 : 1.55);
     }
     if (k === 2) { // каскад в глубину по диагонали
       if (mobile) return P(lerp(-W * .26, W * .2, t), lerp(-H * .27, H * .24, t), -220 + 260 * t, -10, -24, -9, .55 + .38 * t);
@@ -335,7 +336,8 @@
     gsap.ticker.lagSmoothing(0);
   }
   ScrollTrigger.create({
-    trigger: '.deck', start: 'top top', end: () => '+=' + innerHeight * (innerWidth <= 760 ? 1.45 : 3.2),
+    // пальцем (телефон и планшет) колода держит экран коротко: длинное закрепление под пальцем — «страница застряла»
+    trigger: '.deck', start: 'top top', end: () => '+=' + innerHeight * (innerWidth <= 760 || matchMedia('(pointer: coarse)').matches ? 1.45 : 3.2),
     pin: '.deck-screen', anticipatePin: 1, invalidateOnRefresh: true,
     onUpdate: self => { target = self.progress; }
   });
@@ -378,7 +380,7 @@
 
   // Меню: лист лежит на столе наискось и распрямляется, фото бариста приколото сверху
   scrub('.sheet-paper', {rotate: mobile ? -2 : -4, y: 120, scale: .94}, {rotate: 0, y: 0, scale: 1}, '.doska', 'top bottom', 'top 15%');
-  scrub('.pinned', {rotate: 14, y: 160}, {rotate: 5, y: -40}, '.doska');
+  scrub('.pinned', {rotate: 14, y: mobile ? 50 : 90}, {rotate: 5, y: mobile ? -10 : -30}, '.doska'); // ход короткий: фото держится в углу над шапкой, на списки не заезжает
   $$('.m-col').forEach(col => gsap.from($$('.m-row', col), {y: 18, opacity: 0, duration: .7, ease: 'power3.out', stagger: .05, scrollTrigger: {trigger: col, start: 'top 85%'}}));
 
   // Две точки: створки съезжаются, свет в окнах загорается по ходу

@@ -97,7 +97,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--crust); outline
 .deck-copy h1, .copy-big { font-size: clamp(44px, 4.4vw, 72px); line-height: 1.02; }
 .deck-copy h1 em, .copy-big em { display: block; }
 .deck-copy p:not(.copy-big) { margin-top: 18px; font-size: 17px; color: var(--ink-soft); max-width: 25em; }
-.deck-copy.is-gone { opacity: 0; transform: translateY(14px); transition: opacity .4s var(--ease), transform .5s var(--ease); pointer-events: none; }
+.deck-copy.is-gone { opacity: 0; transform: translateY(14px); transition: opacity .22s linear, transform .4s var(--ease); pointer-events: none; }
 .deck-copy { transition: opacity .5s var(--ease), transform .6s var(--ease); }
 
 .flow-caption {
@@ -116,7 +116,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--crust); outline
   box-shadow: 0 1px 2px #3a24161a, 0 10px 24px -10px #3a241650; transition: transform .3s var(--ease), background .3s;
 }
 .flow-btn:hover { transform: translateY(-2px); background: #fff; }
-.is-flow .flow-caption { opacity: 1; transform: translate(-50%, 0); }
+.is-flow .flow-caption { opacity: 1; transform: translate(-50%, 0); transition-delay: .28s; } /* подпись ленты выходит, когда прежний текст уже погас: без двойного текста */
 .is-flow .flow-nav { opacity: 1; pointer-events: auto; }
 .deck-hint {
   position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); z-index: 4;
@@ -245,6 +245,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--crust); outline
 .paper-head h2 { font-size: clamp(52px, 6vw, 104px); line-height: .95; letter-spacing: -.04em; }
 .paper-head h2 em { display: block; }
 .paper-head p { max-width: 20em; color: var(--ink-soft); font-size: 16px; padding-bottom: 8px; }
+.paper-head { padding-right: clamp(150px, 17vw, 240px); } /* место под приколотое фото бариста: оно не ложится на текст */
 .paper-cols { display: grid; grid-template-columns: 1.15fr 1fr 1.15fr; gap: 0 4vw; margin-top: 40px; }
 .m-col h3 { font-family: 'Prata', serif; font-weight: 400; font-size: 32px; color: var(--crust); margin-bottom: 10px; }
 .m-row { display: grid; grid-template-columns: 1fr auto; column-gap: 12px; padding: 12px 0; border-top: 1px solid #2a211b1f; }
@@ -290,7 +291,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--crust); outline
 .call-note { color: var(--ink-soft); font-size: 15px; max-width: 26em; }
 .giant {
   font-family: 'Prata', serif; font-size: 27vw; line-height: .8; letter-spacing: -.06em; text-align: center;
-  margin-top: 8vh; color: var(--ink); white-space: nowrap; will-change: transform;
+  margin-top: max(8vh, 9vw); color: var(--ink); white-space: nowrap; will-change: transform; /* строка ниже глифов: сверху запас, чтобы не ложилась на строку про кофе-брейк */
 }
 .foot { display: flex; flex-wrap: wrap; gap: 8px 32px; justify-content: space-between; padding: 26px 4.2vw 28px; border-top: 1px solid #2a211b22; font-size: 15px; color: var(--ink-soft); }
 .foot a { min-height: 44px; display: inline-flex; align-items: center; }
@@ -325,6 +326,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--crust); outline
 body.is-locked { overflow: hidden; }
 
 /* Телефон */
+/* планшет: расписание печи на всю ширину, фото полки под ним — иначе третья колонка уезжает под фото */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .oven-title { grid-column: 1 / span 7; }
+  .oven-lead { grid-column: 8 / span 5; }
+  .schedule { grid-column: 1 / -1; }
+  .oven-fig { grid-column: 3 / -1; grid-row: 3; margin-top: 8vh; }
+}
+
 @media (max-width: 760px) {
   :root { --cw: 150px; }
   body { font-size: 16px; }
@@ -373,6 +382,7 @@ body.is-locked { overflow: hidden; }
 
 
   .oven-shot { height: 100vh; }
+  .oven-shot::after { height: 72%; background: linear-gradient(#1b141000, #1b1410d9 45%, var(--night) 82%); } /* цитата на телефоне ложится на хлеб: под ней тёмная подложка */
   .oven-quote { bottom: 7vh; left: 16px; right: 16px; }
   .oven-quote p { font-size: 44px; }
   .oven-spread { display: block; padding: 8vh 16px 0; }
@@ -389,7 +399,8 @@ body.is-locked { overflow: hidden; }
   .doska { padding: 12vh 12px 12vh; }
   .sheet-paper { padding: 28px 20px 26px; }
   .paper-head { flex-direction: column; align-items: flex-start; gap: 14px; padding-bottom: 20px; }
-  .paper-head h2 { font-size: 52px; padding-right: 110px; }
+  .paper-head { padding-right: 106px; }
+  .paper-head h2 { font-size: 52px; }
   .paper-cols { grid-template-columns: 1fr; margin-top: 18px; }
   .m-col { margin-top: 22px; }
   .m-note { display: none; }
