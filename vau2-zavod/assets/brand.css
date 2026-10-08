@@ -1,0 +1,41 @@
+/* Северсталькон: все данные бренда здесь. Меняешь этот файл - меняется весь сайт. */
+@import url("fonts/commissioner/fonts.css");
+@import url("fonts/jetbrains-mono/fonts.css");
+
+:root {
+  /* фон и поверхности */
+  --fon:        #e9e7e2;   /* бетон */
+  --fon-dark:   #dfdcd5;   /* бетон темнее, поля и плашки */
+  --ink:        #1a1a1a;   /* графит */
+  --ink-soft:   #5d5b57;   /* графит приглушённый, контраст 5.3:1 на --fon */
+  --ink-dark-soft: #a8a5a0;/* светлый графит на тёмном фоне */
+  --dark:       #16181b;   /* тёмный цех */
+  --line:       #c9c5bd;   /* тонкая линия на бетоне */
+  --line-dark:  #34373b;   /* тонкая линия на графите */
+  /* акцент: только цифры и кнопки */
+  --accent:     #d9a514;   /* крановый жёлтый */
+  --accent-ink: #4a3606;   /* жёлтый затемнённый, hover */
+  --on-accent:  #1a1a1a;
+  /* радиусы */
+  --r:   14px;
+  --r-s: 8px;
+  --r-l: 20px;
+  /* шрифты */
+  --display: 'Commissioner', 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'JetBrains Mono', 'Courier New', monospace;
+  /* движение */
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --shadow-plate: 0 18px 44px -26px rgba(26, 26, 26, .6);
+  /* поля страницы */
+  --pad: 40px;
+  /* высота экрана */
+  --vh: 100svh;
+}
+
+@media (max-width: 767px) {
+  :root { --pad: 20px; --r: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --ease: linear; }
+}
