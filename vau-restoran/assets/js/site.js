@@ -242,7 +242,7 @@ const ovenTime = $('#oven-time'), ovenBar = $('#oven-bar');
 const O = { q: 0 };
 function renderOven() {
   const q = O.q;
-  ovenDark.style.opacity = (.86 * (1 - easeOut(q))).toFixed(3);
+  ovenDark.style.opacity = (.5 * (1 - easeOut(q))).toFixed(3);
   ovenImg.style.transform = `scale(${(1.18 - .18 * q).toFixed(4)})`;
   ovenBar.style.transform = `scaleX(${q.toFixed(4)})`;
   const m = 600 + Math.round(q * 120);
