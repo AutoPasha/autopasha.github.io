@@ -1,0 +1,493 @@
+/* Сезон: бистро уральской кухни. Стили сайта. Палитра и шрифты в brand.css. */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: auto; }
+
+body {
+  margin: 0;
+  background: var(--fon);
+  color: var(--ink);
+  font-family: var(--text);
+  font-size: 17px;
+  line-height: 1.55;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+}
+
+img { max-width: 100%; display: block; }
+h1, h2, h3, p, ul, ol, dl, figure, blockquote { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: inherit; text-decoration: none; }
+button, input, select, textarea { font: inherit; color: inherit; }
+
+:focus-visible { outline: 2px solid var(--salf); outline-offset: 3px; }
+
+.skip {
+  position: absolute; left: -9999px; top: 0; z-index: 200;
+  background: var(--ink); color: var(--splashka); padding: 12px 18px;
+}
+.skip:focus { left: var(--pole); top: 8px; }
+
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--pole); }
+
+.caps {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--ink-45);
+}
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 48px; padding: 12px 24px;
+  font-size: 15px; letter-spacing: 0.02em; font-weight: 600;
+  border: 1px solid transparent; border-radius: var(--r-s);
+  background: var(--ink); color: var(--splashka);
+  transition: background var(--t-fast) var(--ease), color var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease);
+  cursor: pointer;
+}
+.btn:hover { background: var(--salf); }
+.btn:active { transform: translateY(1px); }
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+.btn--ghost:hover { border-color: var(--salf); color: var(--salf); background: transparent; }
+.btn svg { width: 18px; height: 18px; flex: none; }
+
+.link-u {
+  font-size: 15px; font-weight: 600;
+  border-bottom: 1px solid var(--salf);
+  padding-bottom: 3px;
+  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.link-u:hover { color: var(--salf); }
+
+/* ---------- шапка ---------- */
+.hdr {
+  position: fixed; inset: 0 0 auto 0; z-index: 90;
+  padding: 12px var(--pole);
+  transition: background var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease),
+              transform 0.4s var(--ease);
+  will-change: transform;
+}
+/* Пока страница едет, шапка уходит вверх: под ней не должно быть текста,
+   который наполовину закрыт логотипом. На остановке возвращается. */
+.hdr.is-hide { transform: translateY(-125%); }
+.hdr.is-solid { background: var(--fon); box-shadow: 0 1px 0 var(--line); }
+.hdr-in {
+  max-width: var(--max); margin: 0 auto;
+  display: flex; align-items: center; gap: 16px;
+}
+.hdr-logo { display: block; flex: none; }
+.hdr-logo img { width: 132px; height: auto; }
+.hdr-logo .logo-light { display: none; }
+.hdr.is-light .hdr-logo .logo-ink { display: none; }
+.hdr.is-light .hdr-logo .logo-light { display: block; }
+.hdr-nav { display: none; margin-left: auto; gap: 26px; }
+.hdr-nav a {
+  font-size: 14px; color: var(--ink-70); padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: color var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+.hdr-nav a:hover { color: var(--ink); border-bottom-color: var(--line); }
+.hdr-right { display: flex; align-items: center; gap: 12px; margin-left: auto; }
+.hdr-tel {
+  font-size: 15px; font-weight: 600; white-space: nowrap;
+  display: none;
+}
+.hdr-tel:hover { color: var(--salf); }
+.hdr-book { display: none; min-height: 44px; padding: 10px 20px; }
+.burger {
+  width: 46px; height: 46px; flex: none;
+  display: grid; place-content: center; gap: 5px;
+  background: transparent; border: 1px solid var(--line); border-radius: var(--r-s);
+  cursor: pointer;
+}
+.burger span { display: block; width: 20px; height: 1.5px; background: var(--ink); transition: transform var(--t-fast) var(--ease), opacity var(--t-fast) var(--ease); }
+.burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(3.25px) rotate(45deg); }
+.burger[aria-expanded="true"] span:nth-child(2) { transform: translateY(-3.25px) rotate(-45deg); }
+
+.mobmenu {
+  position: fixed; inset: 0; z-index: 89;
+  background: var(--fon);
+  padding: 96px var(--pole) 40px;
+  display: flex; flex-direction: column; gap: 4px;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.3s var(--ease), visibility 0.3s;
+}
+.mobmenu.is-open { opacity: 1; visibility: visible; }
+.mobmenu a {
+  font-family: var(--display); font-size: 34px; line-height: 1.2;
+  padding: 10px 0; border-bottom: 1px solid var(--line);
+}
+.mobmenu .mobmenu-tel { font-family: var(--text); font-size: 20px; margin-top: 18px; border: 0; }
+.mobmenu .btn { margin-top: 14px; }
+
+@media (min-width: 900px) {
+  .hdr { padding: 16px var(--pole); }
+  .hdr-logo img { width: 158px; }
+  .hdr-nav, .hdr-tel, .hdr-book { display: flex; }
+  .burger, .mobmenu { display: none; }
+  .hdr-right { margin-left: 0; }
+}
+
+/* ---------- акт 1: слово расходится, колода блюд ---------- */
+.a1-sec { position: relative; }
+.a1-stage {
+  position: relative;
+  height: 100svh;
+  overflow: hidden;
+  background: var(--fon);
+  display: block;
+  --cw: clamp(150px, 15vw, 230px);
+  --ch: calc(var(--cw) * 1.26);
+}
+.a1-word {
+  position: absolute; left: 0; right: 0; top: 3%;
+  margin: 0; text-align: center;
+  font-weight: 500;
+  z-index: 40;
+}
+.hw-line {
+  position: relative;
+  display: flex; justify-content: center; align-items: baseline;
+  width: max-content; margin: 0 auto;
+}
+.hw-half { display: inline-block; }
+.hw-half i {
+  display: block; font-style: normal;
+  font-family: var(--display);
+  font-size: var(--s, 17vw);
+  line-height: 0.94;
+  letter-spacing: -0.015em;
+  font-weight: 500;
+}
+.hw-mob { display: none; }
+
+.a1-deck {
+  position: absolute; left: 50%; top: 66%;
+  width: 0; height: 0;
+}
+.a1-card {
+  position: absolute; left: 0; top: 0;
+  width: var(--cw); height: var(--ch);
+  overflow: hidden;
+  background: var(--fon-2);
+  box-shadow: 0 24px 60px -30px rgba(35, 32, 28, 0.55);
+}
+.a1-card img { width: 100%; height: 100%; object-fit: cover; }
+
+.a1-plaque {
+  position: absolute; left: 50%; top: calc(66% + var(--ch) / 2 + 22px);
+  transform: translateX(-50%);
+  background: var(--splashka);
+  border: 1px solid var(--line);
+  padding: 12px 20px;
+  min-width: min(340px, 78vw);
+  z-index: 70;
+}
+.pl-mask { position: relative; height: 26px; overflow: hidden; }
+.pl-row {
+  position: absolute; inset: 0;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 20px;
+  transition: transform 0.3s var(--ease), opacity 0.3s var(--ease);
+  transform: translateY(115%); opacity: 0;
+}
+.pl-row.is-on { transform: translateY(0); opacity: 1; }
+.pl-row b { font-family: var(--display); font-size: 20px; font-weight: 500; line-height: 1.1; }
+.pl-row span { font-size: 17px; font-weight: 700; color: var(--rust); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+.a1-bot {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: 14px var(--pole) 18px;
+  background: var(--fon);
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 20px;
+  z-index: 60;
+}
+.a1-bot p { font-size: 14px; color: var(--ink-70); max-width: 30ch; }
+.a1-bot .link-u { white-space: nowrap; }
+
+@media (max-width: 899px) {
+  .hw-desk { display: none; }
+  .hw-mob { display: block; }
+  .hw-mob .hw-line { flex-direction: column; align-items: center; }
+  .hw-mob .hw-half + .hw-half { margin-top: -0.08em; }
+  .a1-stage { --cw: min(38vw, 165px); }
+  .a1-deck .a1-card:nth-child(n + 6) { display: none; }
+  .a1-word { top: 6%; }
+  .a1-deck { top: 58%; }
+  .a1-plaque { top: calc(58% + var(--ch) / 2 + 18px); }
+  .a1-card--tel { display: none; }
+  .a1-bot { padding: 12px var(--pole) 16px; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .a1-bot p { max-width: none; font-size: 13px; }
+  .a1-plaque { padding: 10px 16px; }
+  .pl-row b { font-size: 18px; }
+}
+
+/* ---------- акт 2: фото сезона сжимается в стену ---------- */
+.a2 { background: var(--season-fon); transition: background 0.8s var(--ease); }
+.a2-run { position: relative; height: 175svh; }
+.a2-stage {
+  position: sticky; top: 0;
+  height: 100svh;
+  overflow: hidden;
+  transition: background 0.8s var(--ease);
+}
+.a2-move {
+  position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+  transform-origin: 0 0;
+  will-change: transform;
+  z-index: 2;
+}
+.a2-move-in { width: 100%; height: 100%; overflow: hidden; transform-origin: 0 0; }
+.a2-move-in img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0;
+  transition: opacity 0.8s var(--ease);
+}
+.a2-move-in img.is-on { opacity: 1; }
+
+.a2-side {
+  position: absolute; left: var(--pole); top: 13svh; bottom: 22svh;
+  display: none;
+  z-index: 4;
+}
+.a2-side p {
+  writing-mode: vertical-rl; text-orientation: mixed;
+  font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--ink-70); line-height: 1.7;
+}
+.a2-side .w { display: inline-block; }
+
+.a2-wall {
+  position: absolute;
+  top: 9svh; left: var(--pole); right: var(--pole);
+  height: 62svh;
+  display: grid;
+  grid-template-columns: 1.42fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  z-index: 1;
+}
+/* Панель-приёмник для фото сезона: под ним своё фото, пустой рамки не видно. */
+.a2-slot {
+  grid-row: 1 / span 2;
+  position: relative;
+  overflow: hidden;
+  background: var(--ink);
+}
+.a2-slot img { width: 100%; height: 100%; object-fit: cover; }
+.a2-tile { position: relative; overflow: hidden; background: var(--ink); }
+.a2-tile img { width: 100%; height: 100%; object-fit: cover; }
+.a2-tile figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  background: var(--splashka); color: var(--splashka-ink);
+  font-size: 12px; line-height: 1.35; padding: 7px 10px;
+}
+
+.a2-tabs {
+  position: absolute; left: var(--pole); right: var(--pole); bottom: 5svh;
+  display: flex; gap: 8px; justify-content: flex-end;
+  z-index: 5;
+}
+.a2-tab {
+  flex: 1 1 0; min-width: 0;
+  min-height: 48px; padding: 10px 6px;
+  background: transparent; border: 1px solid var(--line); border-radius: var(--r-s);
+  font-size: 14px; font-weight: 600; color: var(--ink-70); cursor: pointer;
+  transition: color var(--t-fast) var(--ease), background var(--t-fast) var(--ease),
+              border-color var(--t-fast) var(--ease);
+}
+.a2-tab:hover { border-color: var(--salf); color: var(--ink); }
+.a2-tab.is-on { background: var(--ink); border-color: var(--ink); color: var(--splashka); }
+
+.a2-mobile-txt { display: block; }
+
+@media (max-width: 899px) {
+  .a2-run { height: 165svh; }
+  .a2-side { display: none; }
+  .a2-wall {
+    top: 8svh; height: 50svh;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.12fr 1fr 1fr;
+  }
+  .a2-slot { grid-column: 1 / span 2; grid-row: 1; }
+  .a2-tile figcaption { font-size: 11px; padding: 5px 8px; }
+  .a2-mobile-txt {
+    position: absolute; left: var(--pole); right: var(--pole); top: 61svh;
+    font-size: 15px; color: var(--ink-70); max-width: 62ch;
+    z-index: 4;
+  }
+  .a2-mobile-txt b { color: var(--ink); font-weight: 600; }
+  .a2-mobile-txt .w { display: inline-block; }
+  .a2-tabs { bottom: 4svh; }
+}
+@media (min-width: 900px) {
+  .a2-wall { left: calc(var(--pole) + 74px); height: 64svh; }
+  .a2-side { display: block; }
+  .a2-mobile-txt { display: none; }
+}
+/* ---------- акт 3: карусель вечера с инерцией ---------- */
+.a3-sec { background: var(--fon-2); height: 190svh; position: relative; padding: 8px; }
+.a3-stage {
+  position: sticky; top: 0; height: 100svh; overflow: hidden;
+  display: flex; align-items: center;
+}
+.a3-in { width: 100%; max-width: var(--max); }
+.a3-head { display: flex; flex-wrap: wrap; gap: 14px 40px; align-items: flex-end; justify-content: space-between; }
+.a3-head h2 {
+  font-family: var(--display); font-weight: 500;
+  font-size: clamp(30px, 3.4vw, 52px); line-height: 1.06; letter-spacing: -0.015em;
+}
+.a3-head h2 i { font-style: italic; color: var(--salf); font-size: 0.72em; }
+.a3-head p { font-size: 15px; color: var(--ink-70); max-width: 44ch; }
+
+/* Тёмная полоса под каруселью: фото на стене, а не светлые пустые прямоугольники. */
+.a3-view {
+  position: relative;
+  overflow: hidden;
+  height: min(46svh, 420px);
+  margin: clamp(18px, 3svh, 34px) 0 clamp(14px, 2.4svh, 26px);
+  background: var(--ink);
+}
+.a3-car {
+  position: absolute; inset: 0;
+  perspective: 1300px; perspective-origin: 50% 46%;
+  touch-action: pan-y;
+  cursor: grab;
+}
+.a3-car.is-drag { cursor: grabbing; }
+.a3-card {
+  position: absolute; left: 50%; top: 0;
+  width: var(--cw); height: 100%;
+  margin: 0 0 0 calc(var(--cw) / -2);
+  background: var(--ink);
+  border: 1px solid rgba(246, 241, 232, 0.22);
+  overflow: hidden;
+  will-change: transform;
+  user-select: none;
+  box-shadow: 0 30px 70px -46px rgba(0, 0, 0, 0.9);
+}
+.a3-card img { width: 100%; height: 100%; object-fit: cover; }
+.a3-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--splashka); color: var(--ink);
+  border: 1px solid rgba(35, 32, 28, 0.15);
+  display: grid; place-items: center; cursor: pointer; z-index: 30;
+  transition: border-color var(--t-fast) var(--ease), color var(--t-fast) var(--ease);
+}
+.a3-nav:hover { border-color: var(--salf); color: var(--salf); }
+.a3-nav svg { width: 20px; height: 20px; }
+.a3-nav--prev { left: 0; }
+.a3-nav--next { right: 0; }
+.a3-cta {
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 32px;
+  border-top: 1px solid var(--line); padding-top: 18px;
+}
+.a3-cap { flex: 1 1 320px; min-width: 0; }
+.a3-cap h3 { font-family: var(--display); font-weight: 500; font-size: clamp(22px, 2vw, 30px); line-height: 1.1; margin-bottom: 6px; }
+.a3-cap p { font-size: 15px; line-height: 1.45; color: var(--ink-70); max-width: 52ch; }
+.a3-cap .a3-cap-price { color: var(--rust); font-weight: 700; font-size: 15px; margin-top: 6px; font-variant-numeric: tabular-nums; }
+.a3-btns { display: flex; flex-wrap: wrap; gap: 10px; flex: none; }
+
+@media (max-width: 899px) {
+  .a3-sec { height: 170svh; }
+  .a3-view { height: min(40svh, 330px); margin: 14px 0 12px; }
+  .a3-car { --cw: min(62vw, 250px); }
+  .a3-card { box-shadow: none; }
+  .a3-nav { width: 46px; height: 46px; }
+  .a3-nav--prev { left: 0; }
+  .a3-nav--next { right: 0; }
+  .a3-cta { padding-top: 14px; gap: 12px; }
+  .a3-cap { flex: 1 1 100%; }
+  .a3-cap h3 { font-size: 24px; }
+  .a3-cap p { font-size: 14px; }
+  .a3-btns { width: 100%; }
+  .a3-btns .btn { flex: 1 1 auto; }
+}
+@media (min-width: 900px) {
+  .a3-car { --cw: clamp(280px, 25vw, 380px); }
+}/* ---------- финал ---------- */
+.a4 { position: relative; min-height: 100svh; overflow: hidden; background: #241f1a; display: flex; }
+.a4-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.a4-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(28, 24, 20, 0.42) 0%, rgba(28, 24, 20, 0.12) 34%, rgba(28, 24, 20, 0.62) 78%, rgba(28, 24, 20, 0.82) 100%);
+}
+.a4-in {
+  position: relative; z-index: 3;
+  width: 100%;
+  padding-top: clamp(96px, 16svh, 180px);
+  padding-bottom: 20svh;
+}
+.a4-plaque {
+  background: var(--splashka); color: var(--splashka-ink);
+  padding: clamp(24px, 3vw, 40px);
+  max-width: 560px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.a4-plaque .caps { color: var(--salf); }
+.a4-addr { font-family: var(--display); font-size: clamp(24px, 2.4vw, 34px); line-height: 1.14; }
+.a4-hours { font-size: 15px; color: var(--ink-70); }
+.a4-tel { font-size: clamp(20px, 1.8vw, 26px); font-weight: 700; letter-spacing: 0.01em; }
+.a4-tel:hover { color: var(--salf); }
+.a4-btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+.a4-plaque .btn--ghost { border-color: var(--line); }
+.a4-word {
+  position: absolute; left: 0; right: 0; bottom: 2svh; z-index: 4;
+  text-align: center; color: #f6f1e8;
+}
+.a4-word .hw-half i { color: #f6f1e8; font-weight: 500; }
+
+@media (max-width: 899px) {
+  .a4-in { padding-top: 92px; padding-bottom: 26svh; }
+  .a4-word { bottom: 3svh; }
+}
+
+/* ---------- подвал ---------- */
+.foot { background: var(--fon); padding: 44px 0 34px; border-top: 1px solid var(--line); }
+.foot-grid {
+  display: grid; gap: 26px;
+  grid-template-columns: 1fr;
+  padding-bottom: 26px;
+}
+.foot-logo { width: 140px; height: auto; }
+.foot p { font-size: 15px; color: var(--ink-70); }
+.foot .foot-tel { font-size: 19px; font-weight: 700; color: var(--ink); }
+.foot a:hover { color: var(--salf); }
+.foot-soc { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 6px; }
+.foot-soc a { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; }
+.foot-soc svg { width: 17px; height: 17px; }
+.foot-line {
+  border-top: 1px solid var(--line); padding-top: 18px;
+  display: flex; flex-wrap: wrap; gap: 8px 26px;
+}
+.foot-line p { font-size: 12.5px; color: var(--ink-45); }
+@media (min-width: 760px) {
+  .foot-grid { grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; }
+}
+
+/* ---------- светлая шапка над финальным фото ---------- */
+.hdr.is-light { background: transparent; box-shadow: none; }
+.hdr.is-light .hdr-logo, .hdr.is-light .hdr-nav a, .hdr.is-light .hdr-tel { color: #f6f1e8; }
+.hdr.is-light .hdr-nav a { color: rgba(246, 241, 232, 0.8); }
+.hdr.is-light .hdr-nav a:hover { color: #f6f1e8; }
+.hdr.is-light .hdr-book { background: #f6f1e8; color: var(--ink); }
+.hdr.is-light .hdr-book:hover { background: var(--salf); color: #f6f1e8; }
+.hdr.is-light .burger { border-color: rgba(246, 241, 232, 0.5); }
+.hdr.is-light .burger span { background: #f6f1e8; }
+
+/* ---------- меньше движения ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .a1-card { box-shadow: none; }
+  .hdr.is-hide { transform: none; }
+}

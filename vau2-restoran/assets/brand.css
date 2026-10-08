@@ -1,0 +1,51 @@
+/* Бренд: цвета, шрифты, радиусы. Меняется whole при ребрендинге. */
+@import url("fonts/playfair-display/fonts.css");
+@import url("fonts/manrope/fonts.css");
+
+:root {
+  /* палитра */
+  --fon: #f3eee6;
+  --fon-2: #eae3d6;
+  --ink: #23201c;
+  --ink-70: #5d574e;
+  --ink-45: #6f685c;
+  --salf: #5a6849;
+  --rust: #8f5527;
+  --line: #d8cfbe;
+  --splashka: #fbf8f2;
+  --splashka-ink: #23201c;
+
+  /* сезонные фоны акта 2 */
+  --s-vesna: #eef0e6;
+  --s-leto: #f2ece0;
+  --s-osen: #f3eee6;
+  --s-zima: #ebeae6;
+  --season-fon: var(--s-osen);
+
+  /* шрифты */
+  --display: "Playfair Display", Georgia, serif;
+  --text: "Manrope", "Helvetica Neue", sans-serif;
+
+  /* радиусы и ритм */
+  --r-s: 2px;
+  --r-m: 4px;
+  --r-l: 10px;
+  --pole: 20px;
+  --pole-desk: 44px;
+  --max: 1440px;
+
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 0.28s;
+}
+
+@media (min-width: 900px) {
+  :root { --pole: var(--pole-desk); }
+}
+
+::selection { background: var(--salf); color: var(--splashka); }
+
+html { scrollbar-color: var(--line) var(--fon); }
+
+body::-webkit-scrollbar { width: 10px; }
+body::-webkit-scrollbar-track { background: var(--fon-2); }
+body::-webkit-scrollbar-thumb { background: var(--line); border-radius: 20px; }
