@@ -82,7 +82,7 @@ a { color: inherit; }
 }
 .top-in { display: flex; align-items: center; gap: 28px; height: var(--head-h); }
 .brand { display: flex; flex: none; }
-.brand img { width: 168px; height: auto; display: block; }
+.brand img { width: 168px; height: auto; display: block; pointer-events: none; } /* клик ловит сама ссылка */
 .top-nav { display: flex; gap: 26px; margin-left: auto; }
 .top-nav a {
   font: 400 15px/1 var(--font-text); text-decoration: none;
@@ -199,11 +199,19 @@ a { color: inherit; }
   position: sticky; top: 0; height: 100svh; overflow: hidden;
   display: flex; align-items: center; background: var(--paper);
 }
-.a2-in { display: flex; flex-direction: column; height: 100svh; padding-top: calc(var(--head-h) + 26px); padding-bottom: 34px; }
+.a2-in { display: flex; flex-direction: column; justify-content: center; height: 100svh; padding-top: calc(var(--head-h) + 26px); padding-bottom: 34px; }
 .a2-head { flex: none; margin-bottom: 22px; }
 .a2-head .lead { margin-top: 14px; max-width: 52ch; }
-.a2-window { position: relative; flex: 1 1 auto; min-height: 0; overflow: hidden; }
+.a2-window {
+  position: relative; flex: 0 1 auto; min-height: 0; overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
+}
 .a2-list { will-change: transform; }
+.a2-scene.is-fit { height: auto; }
+.a2-scene.is-fit .a2-stick { position: relative; height: auto; }
+.a2-scene.is-fit .a2-in { height: auto; padding-bottom: 0; }
+.a2-scene.is-fit .a2-window { -webkit-mask-image: none; mask-image: none; }
 
 .lp-row {
   position: relative; display: flex; align-items: baseline; justify-content: space-between;
@@ -214,7 +222,7 @@ a { color: inherit; }
 }
 .lp-name {
   font: 400 var(--name-f)/1.05 var(--font-display); letter-spacing: -0.028em;
-  max-width: 76%; overflow-wrap: anywhere;
+  flex: 1 1 auto; min-width: 0; max-width: 76%; overflow-wrap: normal; hyphens: manual;
 }
 .lp-cost {
   font: 500 var(--cost-f)/1 var(--font-text); font-variant-numeric: tabular-nums;
@@ -223,52 +231,37 @@ a { color: inherit; }
 }
 .lp-row.is-under .lp-cost { color: var(--accent); }
 
-/* второй слой того же текста: увеличение под каплей */
-.lp-lens {
-  position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  display: flex; align-items: baseline; justify-content: space-between;
-  gap: clamp(14px, 2vw, 36px); padding: 22px 0 24px;
-  transform-origin: var(--ox, 0px) var(--oy, 0px);
-  -webkit-mask-image: radial-gradient(circle var(--mr, 60px) at var(--mx, 0px) var(--my, 0px), #000 0 58%, rgba(0, 0, 0, .88) 76%, rgba(0, 0, 0, 0) 100%);
-  mask-image: radial-gradient(circle var(--mr, 60px) at var(--mx, 0px) var(--my, 0px), #000 0 58%, rgba(0, 0, 0, .88) 76%, rgba(0, 0, 0, 0) 100%);
-  will-change: transform;
-}
-.lp-paper {
-  position: absolute; inset: 0; z-index: 1; pointer-events: none; background: var(--paper);
-  -webkit-mask-image: radial-gradient(circle calc(var(--mr, 60px) * 1.6) at var(--mx, 0px) var(--my, 0px), #000 0 60%, rgba(0, 0, 0, .9) 80%, rgba(0, 0, 0, 0) 100%);
-  mask-image: radial-gradient(circle calc(var(--mr, 60px) * 1.6) at var(--mx, 0px) var(--my, 0px), #000 0 60%, rgba(0, 0, 0, .9) 80%, rgba(0, 0, 0, 0) 100%);
-}
-.lp-lens .lp-lname {
-  font: 400 var(--name-f)/1.05 var(--font-display); letter-spacing: -0.028em;
-  max-width: 76%; overflow-wrap: anywhere;
-}
-.lp-lens .lp-lname::before { content: attr(data-name); }
-.lp-lens .lp-lcost {
-  font: 500 var(--cost-f)/1 var(--font-text); font-variant-numeric: tabular-nums;
-  color: var(--accent-deep); white-space: nowrap; flex: none; text-align: right;
-}
-.lp-lens .lp-lcost::before { content: attr(data-cost); }
-.lp-rim {
-  z-index: 3;
-  -webkit-mask-image: radial-gradient(circle var(--mr2, 70px) at var(--mx, 0px) var(--my, 0px), rgba(0, 0, 0, 0) 0 60%, rgba(0, 0, 0, .55) 80%, rgba(0, 0, 0, 0) 100%);
-  mask-image: radial-gradient(circle var(--mr2, 70px) at var(--mx, 0px) var(--my, 0px), rgba(0, 0, 0, 0) 0 60%, rgba(0, 0, 0, .55) 80%, rgba(0, 0, 0, 0) 100%);
-}
-
+/* увеличение: одна копия прайса внутри капли, едет вместе с ней */
 .a2-drop {
   position: absolute; left: 0; top: 0; z-index: 4; pointer-events: none;
-  width: var(--drop, 180px); height: var(--drop, 180px); border-radius: 50%;
+  width: var(--drop, clamp(176px, 15vw, 236px)); height: var(--drop, clamp(176px, 15vw, 236px));
+  border-radius: 50%; overflow: hidden;
+  /* стекло: строка под каплей уходит в мягкую дымку, поверх неё чёткая увеличенная */
+  background: rgba(253, 251, 247, .48);
+  -webkit-backdrop-filter: blur(9px) saturate(.9); backdrop-filter: blur(9px) saturate(.9);
+  box-shadow: 0 22px 40px -22px rgba(31, 29, 26, .5), 0 4px 10px -6px rgba(31, 29, 26, .25), 0 0 0 1px rgba(150, 82, 58, .28);
+  will-change: transform;
+}
+.a2-zoom {
+  position: absolute; left: 0; top: 0; z-index: 0; transform-origin: 0 0;
+  will-change: transform;
+}
+.a2-zoom .lp-name::before, .a2-zoom .lp-cost::before { content: attr(data-t); }
+.a2-glass {
+  position: absolute; inset: 0; z-index: 2; border-radius: 50%;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, .9),
-    inset 0 -18px 30px rgba(185, 105, 78, .12),
-    inset 0 0 0 1px rgba(31, 29, 26, .08);
+    inset 0 -22px 34px rgba(185, 105, 78, .14),
+    inset 0 0 0 5px rgba(253, 251, 247, .85),
+    inset 0 0 0 6px rgba(150, 82, 58, .18);
 }
 .a2-drop::before {
-  content: ""; position: absolute; left: 11%; top: 5%; width: 52%; height: 34%;
+  content: ""; position: absolute; z-index: 3; left: 11%; top: 5%; width: 52%; height: 34%;
   border-radius: 50%;
-  background: radial-gradient(60% 60% at 50% 50%, rgba(255, 255, 255, .55), rgba(255, 255, 255, 0) 72%);
+  background: radial-gradient(60% 60% at 50% 50%, rgba(255, 255, 255, .5), rgba(255, 255, 255, 0) 72%);
 }
 .a2-drop::after {
-  content: ""; position: absolute; inset: -1px; border-radius: 50%;
+  content: ""; position: absolute; z-index: 3; inset: 0; border-radius: 50%;
   border: 1px solid rgba(31, 29, 26, .1);
   animation: dropBreathe 7s ease-in-out infinite;
 }
@@ -277,7 +270,7 @@ a { color: inherit; }
   50% { transform: scale(1.035); opacity: .95; }
 }
 
-.a2-tail { padding-top: clamp(60px, 9vh, 110px); padding-bottom: clamp(70px, 11vh, 130px); }
+.a2-tail { padding-top: clamp(40px, 7vh, 90px); padding-bottom: clamp(24px, 4vh, 56px); }
 .note { font: 400 clamp(17px, 1.5vw, 24px)/1.55 var(--font-display); letter-spacing: -0.015em; max-width: 40ch; }
 
 /* ============================================================
@@ -463,13 +456,12 @@ a { color: inherit; }
   .a2-scene { height: 150svh; }
   .a2-in { padding-top: calc(var(--head-h) + 18px); padding-bottom: 22px; }
   .a2-head { margin-bottom: 14px; }
-  .a2-window { flex: 0 0 auto; height: 54svh; min-height: 300px; }
-  .lp-row, .lp-lens { padding: 20px 0 22px; }
-  .a2-drop { --drop: 148px; }
-  .lp-row { --name-f: clamp(21px, 6.1vw, 30px); --cost-f: clamp(17px, 4.6vw, 22px); }
-  .lp-name, .lp-lens .lp-lname { max-width: 68%; }
-  .lp-cost, .lp-lens .lp-lcost { width: clamp(104px, 32vw, 140px); }
-  .a2-tail { padding-top: 46px; padding-bottom: 70px; }
+  .a2-window { min-height: 300px; }
+  .lp-row { padding: 18px 0 20px; }
+  .a2-drop { --drop: clamp(140px, 38vw, 200px); }
+  .lp-row { --name-f: clamp(20px, 5.3vw, 30px); --cost-f: clamp(16px, 4.3vw, 22px); }
+  .lp-name { max-width: none; }
+  .a2-tail { padding-top: 36px; padding-bottom: 20px; }
 
   .a3-scene { height: 150svh; }
   .a3-in { padding-top: calc(var(--head-h) + 14px); padding-bottom: 18px; }
@@ -480,8 +472,8 @@ a { color: inherit; }
   .wc-role { margin-bottom: 10px; font-size: 12px; }
   .wc-note { font-size: 15px; margin-bottom: 14px; }
   .wc-btn { width: 100%; }
-  .a3-tabs { gap: 2px 6px; margin-bottom: 12px; }
-  .a3-tabs button { padding: 10px 10px; font-size: 15px; }
+  .a3-tabs { flex-wrap: nowrap; gap: 0; margin-bottom: 12px; max-width: 100%; }
+  .a3-tabs button { padding: 10px clamp(5px, 1.6vw, 12px); font-size: clamp(14px, 3.8vw, 15px); white-space: nowrap; }
 
   .fin-in { padding-top: clamp(70px, 16vh, 130px); }
   .fin-plate { padding: 22px 20px; }
@@ -489,6 +481,14 @@ a { color: inherit; }
   .fin-word { font-size: clamp(66px, 22vw, 130px); }
 
   .foot-in { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+}
+
+/* ---------- планшет и узкий ноутбук: компьютерная раскладка, но в одну колонку там, где тесно ---------- */
+@media (min-width: 900px) and (max-width: 1199px) {
+  .a1-tail { grid-template-columns: minmax(0, 1fr); gap: 34px; margin-top: -38vh; }
+  .tail-head { position: static; max-width: 640px; }
+  .lp-row { --name-f: clamp(26px, 3.4vw, 40px); --cost-f: clamp(19px, 2.2vw, 26px); }
+  .wcard { width: min(760px, 86vw); }
 }
 
 @media (max-width: 400px) {
@@ -521,13 +521,12 @@ a { color: inherit; }
   .a1-tail { margin-top: 0; }
   .a2-window { overflow: visible; }
   .a2-drop { display: none; }
-  .lp-lens, .lp-rim { display: none; }
+  .a2-window { -webkit-mask-image: none; mask-image: none; }
   .a3-wheel { height: auto; display: grid; gap: 24px; }
   .wcard { position: relative; inset: auto; margin: 0; width: 100%; height: auto; min-height: 380px; }
   .wcard .wc-body, .wcard:not(.is-front) .wc-body { visibility: visible; }
   .wcard { opacity: 1 !important; transform: none !important; z-index: auto !important; }
   .wf, .wf-in { transform: none !important; }
-  .lp-lens, .lp-rim, .lp-paper { display: none !important; }
   .a3-tabs { display: none; }
 }
 /* ---------- узкий телефон: шапка помещается в 360 ---------- */
