@@ -54,7 +54,6 @@
     <div class="a1-scene" id="a1-scene">
       <div class="a1-stick" id="a1-stick">
         <div class="a1-wall" id="wall">
-          <figure class="wf w1" style="--d:.62"><div class="wf-in"><img src="assets/img/hero.jpg" width="1344" height="576" alt="Кабинет клиники «Кедр»: сосновая панель, кресло и мягкий свет из окна"></div></figure>
           <figure class="wf w2" style="--d:1.22"><div class="wf-in"><img src="assets/img/ct.jpg" width="1152" height="864" alt="Снимок зуба на мониторе КТ-аппарата в кабинете"></div></figure>
           <figure class="wf w3" style="--d:.88"><div class="wf-in"><img src="assets/img/doc-3.jpg" width="864" height="1152" alt="Ирина Павловна Шевцова, гигиенист, в светлой рабочей форме"></div></figure>
           <figure class="wf w4" style="--d:1.3"><div class="wf-in"><img src="assets/img/doc-4.jpg" width="864" height="1152" alt="Кирилл Андреевич Батурин, ортодонт, у кабинета"></div></figure>
@@ -65,159 +64,184 @@
           <figure class="wf w9" style="--d:1.14"><div class="wf-in"><img src="assets/img/doc-2.jpg" width="864" height="1152" alt="Артём Дмитриевич Ковалёв, хирург-имплантолог, у стола с инструментами"></div></figure>
         </div>
 
+        <!-- кадр кабинета на весь экран; по прокрутке ужимается в центр стены -->
+        <figure class="a1-main" id="a1-main">
+          <img class="a1-media" src="assets/img/hero.jpg" width="1344" height="576" alt="Кабинет клиники «Кедр»: сосновая панель, кресло и мягкий свет из окна">
+          <video class="a1-media a1-vid" id="a1-vid" muted loop playsinline preload="none" aria-hidden="true" data-desk="assets/img/hero-desk.mp4" data-mob="assets/img/hero-mob.mp4"></video>
+          <span class="a1-shade" aria-hidden="true"></span>
+        </figure>
+
         <div class="a1-plate" id="a1-plate">
+          <p class="plate-k">Стоматология «Кедр», Новосибирск</p>
           <h1 class="plate-h" id="hero-h">
             <span class="mask"><span>Первый визит</span></span>
             <span class="mask"><span>стоит <b>0 ₽</b></span></span>
           </h1>
-          <p class="plate-p">Осмотр, снимок на своём КТ-аппарате и письменный план с ценой. Лечиться в первый раз не обязательно: посмотрите снимок, решите потом.</p>
-          <a class="btn btn-accent" href="#zapis" data-magnet>Записаться на осмотр</a>
-          <p class="plate-note">Пн-сб 8:00-21:00, вс 10:00-17:00, время Новосибирска</p>
+          <div class="plate-row">
+            <p class="plate-p">Осмотр, снимок на своём КТ-аппарате и письменный план с ценой. Лечиться в первый раз не обязательно: посмотрите снимок, решите потом.</p>
+            <div class="plate-go">
+              <a class="btn btn-light" href="#zapis" data-magnet>Записаться на осмотр</a>
+              <p class="plate-note">Пн-сб 8:00-21:00, вс 10:00-17:00</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="a1-tail wrap" id="visit">
-      <div class="tail-head">
-        <h2 class="h2">Что происходит в первый раз</h2>
-        <p class="lead">Визит нужен, чтобы вы увидели снимок и услышали сумму до начала работ. Если решите подумать, ничего страшного, врачи так и работают.</p>
+    <div class="a1-tail" id="visit">
+      <div class="wrap vz-head">
+        <p class="kicker">Первый визит</p>
+        <h2 class="vz-h">
+          <span class="vz-line"><span>Сорок пять минут,</span></span>
+          <span class="vz-line"><span>и у вас на руках</span></span>
+          <span class="vz-line"><span><em>снимок и цена</em></span></span>
+        </h2>
+        <p class="lead vz-lead">Визит нужен, чтобы вы увидели снимок и услышали сумму до начала работ. Если решите подумать, ничего страшного, врачи так и работают.</p>
       </div>
-      <ol class="steps">
-        <li class="step">
-          <p class="step-t">10 мин</p>
-          <h3 class="step-h">Знакомство</h3>
-          <p class="step-p">Встречаем в зоне ожидания, спрашиваем, что беспокоит и что уже лечили. Спрашиваем о лекарствах и аллергиях, это влияет на анестезию.</p>
+
+      <ol class="wrap vz-steps" id="vz-steps">
+        <li class="vz vz-1">
+          <div class="vz-media" role="img" aria-label="Зона ожидания: кресла, журнальный столик и книги на окне"><i class="vz-pic" style="background-image:url(assets/img/waiting.jpg)"></i></div>
+          <div class="vz-text">
+            <p class="vz-num"><span class="vz-count" data-to="10">10</span><small>мин</small></p>
+            <h3 class="vz-t">Знакомство</h3>
+            <p class="vz-p">Встречаем в зоне ожидания, спрашиваем, что беспокоит и что уже лечили. Спрашиваем о лекарствах и аллергиях, это влияет на анестезию.</p>
+          </div>
         </li>
-        <li class="step">
-          <p class="step-t">20 мин</p>
-          <h3 class="step-h">Осмотр и снимок</h3>
-          <p class="step-p">Врач осматривает зубы и делает снимок на своём КТ-аппарате. Снимок появляется на экране в кресле, вы смотрите его вместе с врачом.</p>
+        <li class="vz vz-2">
+          <div class="vz-media" role="img" aria-label="Снимок зуба на мониторе КТ-аппарата"><i class="vz-pic" style="background-image:url(assets/img/ct.jpg)"></i></div>
+          <div class="vz-text">
+            <p class="vz-num"><span class="vz-count" data-to="20">20</span><small>мин</small></p>
+            <h3 class="vz-t">Осмотр и снимок</h3>
+            <p class="vz-p">Врач осматривает зубы и делает снимок на своём КТ-аппарате. Снимок появляется на экране в кресле, вы смотрите его вместе с врачом.</p>
+          </div>
         </li>
-        <li class="step">
-          <p class="step-t">15 мин</p>
-          <h3 class="step-h">Разговор о плане и цене</h3>
-          <p class="step-p">Показываем, что предлагаем, сколько это стоит и в какой последовательности. Отдельно говорим, что можно отложить.</p>
+        <li class="vz vz-3">
+          <div class="vz-media" role="img" aria-label="Врач разговаривает с пациентом за столом"><i class="vz-pic" style="background-image:url(assets/img/talk.jpg)"></i></div>
+          <div class="vz-text">
+            <p class="vz-num"><span class="vz-count" data-to="15">15</span><small>мин</small></p>
+            <h3 class="vz-t">Разговор о плане и цене</h3>
+            <p class="vz-p">Показываем, что предлагаем, сколько это стоит и в какой последовательности. Отдельно говорим, что можно отложить.</p>
+          </div>
         </li>
-        <li class="step">
-          <p class="step-t">40-90 мин</p>
-          <h3 class="step-h">Лечение в то же кресло</h3>
-          <p class="step-p">Если пациент готов, начинаем сразу. Если нет, записываем на другое время и отдаём план с ценами на руки.</p>
+        <li class="vz vz-4">
+          <div class="vz-media" role="img" aria-label="Руки врача в перчатках со стоматологическим зеркалом"><i class="vz-pic" style="background-image:url(assets/img/hands.jpg)"></i></div>
+          <div class="vz-text">
+            <p class="vz-num"><span class="vz-count">40-90</span><small>мин</small></p>
+            <h3 class="vz-t">Лечение в то же кресло</h3>
+            <p class="vz-p">Если пациент готов, начинаем сразу. Если нет, записываем на другое время и отдаём план с ценами на руки.</p>
+          </div>
         </li>
       </ol>
     </div>
   </section>
 
-  <!-- ============ Акт 2: лупа над прайсом ============ -->
+  <!-- ============ Акт 2: прайс барабаном, цена набегает, кадр меняется шторкой ============ -->
   <section class="act act2" id="price" aria-labelledby="price-h">
     <div class="a2-scene" id="a2-scene">
       <div class="a2-stick">
         <div class="wrap a2-in">
           <div class="a2-head">
-            <h2 class="h2" id="price-h">Прайс, который лежит на сайте</h2>
-            <p class="lead">Восемь основных позиций. В цену уже входит анестезия, расходные материалы и контрольный осмотр.</p>
+            <p class="kicker">Прайс</p>
+            <h2 class="h2 a2-h" id="price-h">Сколько стоит, <em>видно заранее</em></h2>
           </div>
 
-          <div class="a2-window" id="lp-window">
-            <div class="a2-list" id="lp-list">
-              <div class="lp-row" data-name="Консультация и план лечения" data-cost="0 ₽">
-                <span class="lp-name">Консультация и план лечения</span><span class="lp-cost">0 ₽</span>
-              </div>
-              <div class="lp-row" data-name="Профессиональная гигиена" data-cost="5 900 ₽">
-                <span class="lp-name">Профессиональная гигиена</span><span class="lp-cost">5 900 ₽</span>
-              </div>
-              <div class="lp-row" data-name="Лечение кариеса" data-cost="от 4 800 ₽">
-                <span class="lp-name">Лечение кариеса</span><span class="lp-cost">от 4 800 ₽</span>
-              </div>
-              <div class="lp-row" data-name="Лечение каналов" data-cost="от 9 700 ₽">
-                <span class="lp-name">Лечение каналов</span><span class="lp-cost">от 9 700 ₽</span>
-              </div>
-              <div class="lp-row" data-name="Удаление зуба" data-cost="от 3 200 ₽">
-                <span class="lp-name">Удаление зуба</span><span class="lp-cost">от 3 200 ₽</span>
-              </div>
-              <div class="lp-row" data-name="Имплант под ключ" data-cost="от 54 000 ₽">
-                <span class="lp-name">Имплант под ключ</span><span class="lp-cost">от 54 000 ₽</span>
-              </div>
-              <div class="lp-row" data-name="Коронка из диоксида циркония" data-cost="28 500 ₽">
-                <span class="lp-name">Коронка из диоксида циркония</span><span class="lp-cost">28 500 ₽</span>
-              </div>
-              <div class="lp-row" data-name="Элайнеры" data-cost="от 160 000 ₽">
-                <span class="lp-name">Элайнеры</span><span class="lp-cost">от 160 000 ₽</span>
-              </div>
+          <div class="a2-ctx" aria-hidden="true">
+            <div class="pc-frame">
+              <i class="pc-pic is-on" style="background-image:url(assets/img/talk.jpg)"></i>
+              <i class="pc-pic" style="background-image:url(assets/img/doc-3.jpg)"></i>
+              <i class="pc-pic" style="background-image:url(assets/img/doc-1.jpg)"></i>
+              <i class="pc-pic" style="background-image:url(assets/img/ct.jpg)"></i>
+              <i class="pc-pic" style="background-image:url(assets/img/doc-2.jpg)"></i>
+              <i class="pc-pic" style="background-image:url(assets/img/hands.jpg)"></i>
+              <i class="pc-pic" style="background-image:url(assets/img/hero.jpg)"></i>
+              <i class="pc-pic" style="background-image:url(assets/img/doc-4.jpg)"></i>
             </div>
-            <div class="a2-drop" id="lp-drop" aria-hidden="true"></div>
+          </div>
+
+          <div class="a2-reel" id="pr-reel">
+            <ol class="pr-list" id="pr-list">
+              <li class="pr-row is-on" data-cost="0" data-pre="" data-why="Осмотр, снимок на своём КТ и письменный план с ценой. Лечиться в тот же день не обязательно."><span class="pr-name">Консультация и план лечения</span><span class="pr-cost">0 ₽</span></li>
+              <li class="pr-row" data-cost="5900" data-pre="" data-why="Ультразвук и Air Flow, без бормашины. Ведёт Ирина Шевцова, гигиенист, стаж 17 лет."><span class="pr-name">Профессиональная гигиена</span><span class="pr-cost">5 900 ₽</span></li>
+              <li class="pr-row" data-cost="4800" data-pre="от" data-why="Анестезия и материалы уже в цене. Ведёт Ольга Мельникова, терапевт, стаж 14 лет."><span class="pr-name">Лечение кариеса</span><span class="pr-cost">от 4 800 ₽</span></li>
+              <li class="pr-row" data-cost="9700" data-pre="от" data-why="Снимок до и после на своём КТ. Сложные случаи после других клиник Ольга Мельникова берёт по вторникам и четвергам."><span class="pr-name">Лечение каналов</span><span class="pr-cost">от 9 700 ₽</span></li>
+              <li class="pr-row" data-cost="3200" data-pre="от" data-why="Удаляет хирург Артём Ковалёв, стаж 11 лет. Анестезия и контрольный осмотр входят в цену."><span class="pr-name">Удаление зуба</span><span class="pr-cost">от 3 200 ₽</span></li>
+              <li class="pr-row" data-cost="54000" data-pre="от" data-why="У Артёма Ковалёва больше тысячи установленных имплантов, из них 40 синус-лифтингов."><span class="pr-name">Имплант под ключ</span><span class="pr-cost">от 54 000 ₽</span></li>
+              <li class="pr-row" data-cost="28500" data-pre="" data-why="Цена за одну коронку. Сумму по всем зубам называем на первом приёме, до начала работ."><span class="pr-name">Коронка из диоксида циркония</span><span class="pr-cost">28 500 ₽</span></li>
+              <li class="pr-row" data-cost="160000" data-pre="от" data-why="Слепки сканером, срок в неделях называют на первом приёме. Ведёт Кирилл Батурин, больше 300 случаев."><span class="pr-name">Элайнеры</span><span class="pr-cost">от 160 000 ₽</span></li>
+            </ol>
+          </div>
+
+          <div class="a2-big" aria-hidden="true">
+            <p class="pr-big"><span class="pr-pre" id="pr-pre"></span><span class="pr-num" id="pr-num">0</span><span class="pr-cur">₽</span></p>
+            <p class="pr-why" id="pr-why">Осмотр, снимок на своём КТ и письменный план с ценой. Лечиться в тот же день не обязательно.</p>
           </div>
         </div>
       </div>
     </div>
     <div class="wrap a2-tail">
-      <p class="note">Профилактика раз в полгода обходится дешевле, чем лечение одного зуба. Если зубы болят, тянуть не нужно: запишитесь на осмотр и снимок, это ни к чему не обязывает.</p>
+      <p class="note">В цену уже входит анестезия, расходные материалы и контрольный осмотр. Профилактика раз в полгода обходится дешевле, чем лечение одного зуба. Если зубы болят, тянуть не нужно: осмотр и снимок ни к чему не обязывают.</p>
     </div>
   </section>
 
-  <!-- ============ Акт 3: врачи на невидимом колесе ============ -->
+  <!-- ============ Акт 3: врачи, крупные кадры по горизонтали ============ -->
   <section class="act act3" id="doctors" aria-labelledby="doctors-h">
-    <div class="a3-scene" id="a3-scene">
-      <div class="a3-stick">
-        <div class="wrap a3-in">
-          <div class="a3-head">
-            <h2 class="h2" id="doctors-h">Врачи, которые будут с вами</h2>
+    <div class="dr-scene" id="dr-scene">
+      <div class="dr-stick">
+        <div class="dr-track" id="dr-track">
+          <div class="dr-intro">
+            <p class="kicker">Врачи</p>
+            <h2 class="dr-h" id="doctors-h">Люди, <em>которые будут</em> с вами</h2>
             <p class="lead">Шесть врачей в штате, четверо принимают каждый день. Стаж от 9 до 22 лет.</p>
           </div>
 
+          <article class="dr dr-1">
+            <figure class="dr-ph"><img src="assets/img/doc-1.jpg" width="864" height="1152" loading="lazy" alt="Ольга Сергеевна Мельникова, врач-терапевт"></figure>
+            <div class="dr-tx">
+              <p class="dr-yrs"><b>14</b><span>лет<br>практики</span></p>
+              <p class="dr-say">Объясняет каждый шаг до того, как возьмёт инструмент.</p>
+              <h3 class="dr-name">Ольга Сергеевна Мельникова</h3>
+              <p class="dr-role">терапевт · кариес и каналы</p>
+              <p class="dr-note">Ведёт взрослых и детей с 2012 года. Сложные случаи после лечения каналов в других клиниках берёт по вторникам и четвергам.</p>
+              <a class="dr-go" href="https://wa.me/73833125804?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BA%20%D0%9C%D0%B5%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%D0%BE%D0%B9%20%D0%9E%D0%BB%D1%8C%D0%B3%D0%B5%20%D0%A1%D0%B5%D1%80%D0%B3%D0%B5%D0%B5%D0%B2%D0%BD%D0%B0" target="_blank" rel="noopener">Записаться к Ольге Сергеевне</a>
+            </div>
+          </article>
 
-          <div class="a3-tabs" id="wheel-tabs" role="group" aria-label="Выбрать врача">
-            <button type="button" data-go="0" class="is-on">Мельникова</button>
-            <button type="button" data-go="1">Ковалёв</button>
-            <button type="button" data-go="2">Шевцова</button>
-            <button type="button" data-go="3">Батурин</button>
-          </div>
+          <article class="dr dr-2">
+            <figure class="dr-ph"><img src="assets/img/doc-2.jpg" width="864" height="1152" loading="lazy" alt="Артём Дмитриевич Ковалёв, хирург-имплантолог"></figure>
+            <div class="dr-tx">
+              <p class="dr-yrs"><b>11</b><span>лет<br>практики</span></p>
+              <p class="dr-say">Больше тысячи имплантов, из них 40 синус-лифтингов.</p>
+              <h3 class="dr-name">Артём Дмитриевич Ковалёв</h3>
+              <p class="dr-role">хирург-имплантолог · импланты и удаление</p>
+              <p class="dr-note">Ставит импланты по одному, чтобы пациент мог открыть рот и услышать, как всё прижилось.</p>
+              <a class="dr-go" href="https://wa.me/73833125804?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BA%20%D0%9A%D0%BE%D0%B2%D0%B0%D0%BB%D1%91%D0%B2%D1%83%20%D0%90%D1%80%D1%82%D1%91%D0%BC%D1%83" target="_blank" rel="noopener">Записаться к Артёму Дмитриевичу</a>
+            </div>
+          </article>
 
-          <div class="a3-wheel" id="wheel">
-            <article class="wcard" style="--i:0">
-              <div class="wc-photo"><img src="assets/img/doc-1.jpg" width="864" height="1152" loading="lazy" alt="Ольга Сергеевна Мельникова, врач-терапевт"></div>
-              <div class="wc-body">
-                <h3 class="wc-name">Ольга Сергеевна Мельникова</h3>
-                <p class="wc-role">терапевт, стаж 14 лет</p>
-                <p class="wc-what">Кариес и каналы</p>
-                <p class="wc-note">Объясняет каждый шаг до того, как возьмёт инструмент. Ведёт взрослых и детей с 2012 года, сложные случаи после лечения каналов в других клиниках берёт по вторникам и четвергам.</p>
-                <a class="btn btn-accent wc-btn" href="https://wa.me/73833125804?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BA%20%D0%9C%D0%B5%D0%BB%D1%8C%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%D0%BE%D0%B9%20%D0%9E%D0%BB%D1%8C%D0%B3%D0%B5%20%D0%A1%D0%B5%D1%80%D0%B3%D0%B5%D0%B5%D0%B2%D0%BD%D0%B0" target="_blank" rel="noopener">Записаться к врачу</a>
-              </div>
-            </article>
+          <article class="dr dr-3">
+            <figure class="dr-ph"><img src="assets/img/doc-3.jpg" width="864" height="1152" loading="lazy" alt="Ирина Павловна Шевцова, гигиенист"></figure>
+            <div class="dr-tx">
+              <p class="dr-yrs"><b>17</b><span>лет<br>практики</span></p>
+              <p class="dr-say">Работает без бормашины: ультразвук и Air Flow не травмируют эмаль.</p>
+              <h3 class="dr-name">Ирина Павловна Шевцова</h3>
+              <p class="dr-role">гигиенист · гигиена и профилактика</p>
+              <p class="dr-note">Объясняет, какую щётку купить и почему паста с соседней полки не подойдёт.</p>
+              <a class="dr-go" href="https://wa.me/73833125804?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B3%D0%B8%D0%B3%D0%B8%D0%B5%D0%BD%D1%83" target="_blank" rel="noopener">Записаться к Ирине Павловне</a>
+            </div>
+          </article>
 
-            <article class="wcard" style="--i:1">
-              <div class="wc-photo"><img src="assets/img/doc-2.jpg" width="864" height="1152" loading="lazy" alt="Артём Дмитриевич Ковалёв, хирург-имплантолог"></div>
-              <div class="wc-body">
-                <h3 class="wc-name">Артём Дмитриевич Ковалёв</h3>
-                <p class="wc-role">хирург-имплантолог, стаж 11 лет</p>
-                <p class="wc-what">Импланты и удаление зубов</p>
-                <p class="wc-note">Ставит импланты по одной, чтобы пациент мог открыть рот и услышать, как всё прижилось. Установил больше тысячи имплантов, из них 40 синус-лифтингов.</p>
-                <a class="btn btn-accent wc-btn" href="https://wa.me/73833125804?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BA%20%D0%9A%D0%BE%D0%B2%D0%B0%D0%BB%D1%91%D0%B2%D1%83%20%D0%90%D1%80%D1%82%D1%91%D0%BC%D1%83" target="_blank" rel="noopener">Записаться к врачу</a>
-              </div>
-            </article>
-
-            <article class="wcard" style="--i:2">
-              <div class="wc-photo"><img src="assets/img/doc-3.jpg" width="864" height="1152" loading="lazy" alt="Ирина Павловна Шевцова, гигиенист"></div>
-              <div class="wc-body">
-                <h3 class="wc-name">Ирина Павловна Шевцова</h3>
-                <p class="wc-role">гигиенист, стаж 17 лет</p>
-                <p class="wc-what">Гигиена и профилактика</p>
-                <p class="wc-note">Работает без бормашины: ни ультразвук, ни Air Flow не травмируют эмаль. Объясняет, какую щётку купить и почему паста из соседней полки не подойдёт.</p>
-                <a class="btn btn-accent wc-btn" href="https://wa.me/73833125804?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B3%D0%B8%D0%B3%D0%B8%D0%B5%D0%BD%D1%83" target="_blank" rel="noopener">Записаться к врачу</a>
-              </div>
-            </article>
-
-            <article class="wcard" style="--i:3">
-              <div class="wc-photo"><img src="assets/img/doc-4.jpg" width="864" height="1152" loading="lazy" alt="Кирилл Андреевич Батурин, ортодонт"></div>
-              <div class="wc-body">
-                <h3 class="wc-name">Кирилл Андреевич Батурин</h3>
-                <p class="wc-role">ортодонт, стаж 9 лет</p>
-                <p class="wc-what">Элайнеры и прикус</p>
-                <p class="wc-note">Показывает план по снимкам на первом приёме и сразу говорит, сколько это займёт недель. Ведёт больше 300 случаев на элайнерах, слепки снимает сканером.</p>
-                <a class="btn btn-accent wc-btn" href="https://wa.me/73833125804?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E" target="_blank" rel="noopener">Записаться к врачу</a>
-              </div>
-            </article>
-          </div>
-
+          <article class="dr dr-4">
+            <figure class="dr-ph"><img src="assets/img/doc-4.jpg" width="864" height="1152" loading="lazy" alt="Кирилл Андреевич Батурин, ортодонт"></figure>
+            <div class="dr-tx">
+              <p class="dr-yrs"><b>9</b><span>лет<br>практики</span></p>
+              <p class="dr-say">На первом приёме говорит, сколько недель займёт лечение.</p>
+              <h3 class="dr-name">Кирилл Андреевич Батурин</h3>
+              <p class="dr-role">ортодонт · элайнеры и прикус</p>
+              <p class="dr-note">Показывает план по снимкам. Ведёт больше 300 случаев на элайнерах, слепки снимает сканером.</p>
+              <a class="dr-go" href="https://wa.me/73833125804?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%BA%D0%BE%D0%BD%D1%81%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%86%D0%B8%D1%8E" target="_blank" rel="noopener">Записаться к Кириллу Андреевичу</a>
+            </div>
+          </article>
         </div>
       </div>
     </div>

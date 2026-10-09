@@ -136,20 +136,41 @@
     });
     var plate = $('#a1-plate');
 
-    if (!reduce) {
-      /* вход: кадры раскрываются из узкой щели, заголовок едет из маски */
-      gsap.timeline({ defaults: { ease: 'expo.out' } })
-        .from('.plate-h .mask > span', { yPercent: 110, duration: 1.05, stagger: .08 }, 0)
-        .from('.wf-in', { clipPath: 'inset(0% 46% 0% 46%)', duration: 1.15, stagger: .055, ease: 'power3.inOut' }, .05)
-        .from('.plate-p, .plate-note', { y: 14, opacity: 0, duration: .9, stagger: .08 }, .28)
-        .from('.a1-plate .btn', { y: 14, opacity: 0, duration: .8 }, .4);
+    /* живой кадр кабинета: свой ролик для широкого и для вертикального экрана */
+    var vid = $('#a1-vid');
+    if (vid && !reduce) {
+      var узкий = window.matchMedia('(max-width: 899px)').matches;
+      /* VP9 играют Chrome, Firefox и свежий Safari; где не умеют — тот же ролик в H.264 */
+      var ext = vid.canPlayType('video/webm; codecs="vp9"') ? '.webm' : '.mp4';
+      vid.src = (узкий ? vid.dataset.mob : vid.dataset.desk).replace(/\.mp4$/, ext);
+      vid.addEventListener('playing', function () { vid.classList.add('is-on'); }, { once: true });
+      var пуск = vid.play();
+      if (пуск && пуск.catch) пуск.catch(function () {});
+    }
 
-      /* плашка уходит вверх только там, где сцена закреплена */
+    if (!reduce) {
+      /* вход: кадр кабинета медленно отъезжает, заголовок поднимается из маски */
+      gsap.timeline({ defaults: { ease: 'expo.out' } })
+        .from('#a1-main .a1-media', { scale: 1.16, duration: 2.6, ease: 'power3.out' }, 0)
+        .from('.plate-h .mask > span', { yPercent: 110, duration: 1.15, stagger: .09 }, .15)
+        .from('.plate-k, .plate-row', { y: 16, opacity: 0, duration: 1, stagger: .1 }, .45);
+
+      /* компьютер: кадр ужимается в центр, вокруг собирается стена, заголовок уходит вверх */
       gsap.matchMedia().add('(min-width: 900px)', function () {
-        gsap.to(plate, {
-          y: function () { return -wall.stick.offsetHeight * .95; },
-          ease: 'none',
-          scrollTrigger: { trigger: wall.scene, start: 'top top', end: 'bottom bottom', scrub: .3 }
+        gsap.timeline({
+          scrollTrigger: { trigger: wall.scene, start: 'top top', end: 'bottom bottom', scrub: .4 }
+        })
+          .to(plate, { y: -90, opacity: 0, duration: .2, ease: 'power1.in' }, 0)
+          .to('#a1-main', { clipPath: 'inset(23% 31% 23% 31%)', duration: .55, ease: 'power2.inOut' }, 0)
+          .to('.a1-shade', { opacity: 0, duration: .35, ease: 'none' }, .05)
+          .fromTo('.wf-in', { opacity: 0, scale: .8 }, { opacity: 1, scale: 1, duration: .3, stagger: .025, ease: 'power2.out' }, .22)
+          .to({}, { duration: .3 });
+      });
+      /* телефон: кадр чуть плывёт вниз, пока его пролистывают */
+      gsap.matchMedia().add('(max-width: 899px)', function () {
+        gsap.to('#a1-main .a1-media', {
+          yPercent: 7, ease: 'none',
+          scrollTrigger: { trigger: wall.stick, start: 'top top', end: 'bottom top', scrub: true }
         });
       });
     }
@@ -168,155 +189,168 @@
     window.addEventListener('resize', cacheWall);
     if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(cacheWall);
 
-    /* всплытие текста в хвосте акта */
+    /* первый визит: строки заголовка из маски, кадры раскрываются и плывут, минуты набегают */
     if (!reduce) {
-      $$('.step').forEach(function (el) {
-        gsap.from(el, {
-          y: 26, opacity: 0, duration: 1, ease: 'expo.out',
-          scrollTrigger: { trigger: el, start: 'top 92%', once: true }
+      gsap.from('.vz-line > span', {
+        yPercent: 108, duration: 1.1, stagger: .09, ease: 'expo.out',
+        scrollTrigger: { trigger: '.vz-h', start: 'top 86%', once: true }
+      });
+      $$('.vz').forEach(function (el) {
+        var media = $('.vz-media', el), pic = $('.vz-pic', el), num = $('.vz-count', el);
+        gsap.fromTo(media, { clipPath: 'inset(14% 10% 14% 10%)' }, {
+          clipPath: 'inset(0% 0% 0% 0%)', ease: 'none',
+          scrollTrigger: { trigger: media, start: 'top 96%', end: 'top 52%', scrub: .4 }
         });
+        gsap.fromTo(pic, { yPercent: -6 }, {
+          yPercent: 6, ease: 'none',
+          scrollTrigger: { trigger: media, start: 'top bottom', end: 'bottom top', scrub: true }
+        });
+        gsap.from($('.vz-text', el), {
+          y: 34, opacity: 0, duration: 1.1, ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 82%', once: true }
+        });
+        if (num && num.dataset.to) {
+          var box = { v: 0 }, to = parseFloat(num.dataset.to);
+          num.textContent = '0';
+          gsap.to(box, {
+            v: to, duration: 1.4, ease: 'power3.out',
+            scrollTrigger: { trigger: el, start: 'top 82%', once: true },
+            onUpdate: function () { num.textContent = String(Math.round(box.v)); }
+          });
+        }
       });
     }
   }
 
   /* ============================================================
-     Акт 2: лупа над прайсом
+     Акт 2: прайс барабаном, цена набегает, кадр меняется шторкой
      ============================================================ */
-  var loupe = {
-    scene: $('#a2-scene'), win: $('#lp-window'), list: $('#lp-list'),
-    drop: $('#lp-drop'), stick: $('.a2-stick'),
-    rows: $$('.lp-row'),
-    x: 0, y: 0, tx: 0, ty: 0, R: 90, ready: false, last: -9, p: 0
+  var pr = {
+    scene: $('#a2-scene'), reel: $('#pr-reel'), list: $('#pr-list'),
+    rows: $$('.pr-row'), pics: $$('.pc-pic'),
+    num: $('#pr-num'), pre: $('#pr-pre'), why: $('#pr-why'),
+    pos: 0, target: 0, cur: 0, shown: { v: 0 }, mid: [], h: [], vt: []
   };
-  if (loupe.scene) {
-    /* одна копия прайса внутри капли: те же строки, текст через attr(), увеличена как целое */
-    var zoom = doc.createElement('div');
-    zoom.className = 'a2-zoom';
-    loupe.rows.forEach(function (r) {
-      var z = doc.createElement('div');
-      z.className = 'lp-row';
-      var n = doc.createElement('span'); n.className = 'lp-name'; n.setAttribute('data-t', r.dataset.name || '');
-      var c = doc.createElement('span'); c.className = 'lp-cost'; c.setAttribute('data-t', r.dataset.cost || '');
-      z.appendChild(n); z.appendChild(c); zoom.appendChild(z);
-    });
-    var glass = doc.createElement('div');
-    glass.className = 'a2-glass';
-    loupe.drop.appendChild(zoom); loupe.drop.appendChild(glass);
-    loupe.zoom = zoom; loupe.zrows = Array.prototype.slice.call(zoom.children); loupe.S = fine ? 1.45 : 1.3;
-    var setDrop = function () {
-      zoom.style.width = loupe.list.clientWidth + 'px';
-      var r = loupe.drop.getBoundingClientRect();
-      loupe.R = r.width / 2 || 90;
-      var wb = loupe.win.getBoundingClientRect();
-      if (!loupe.ready) { loupe.x = r.left + r.width / 2 - wb.left; loupe.y = r.top + r.height / 2 - wb.top; loupe.ready = true; }
+  if (pr.scene && pr.rows.length) {
+    var n2 = pr.rows.length;
+    /* середины строк по раскладке: за кадр раскладку не читаем */
+    var prMeasure = function () {
+      for (var i = 0; i < n2; i++) { pr.h[i] = pr.rows[i].offsetHeight; pr.mid[i] = pr.rows[i].offsetTop + pr.h[i] / 2; }
+      pr.vt = [];
     };
-    setDrop();
-    window.addEventListener('resize', function () { loupe.ready = false; setDrop(); ScrollTrigger.refresh(); });
+    prMeasure();
+    window.addEventListener('resize', prMeasure);
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(prMeasure);
 
-    if (loupe.stick) {
-      loupe.stick.addEventListener('pointermove', function (e) {
-        loupe.tx = e.clientX; loupe.ty = e.clientY; loupe.last = performance.now() / 1000;
-      }, { passive: true });
-    }
+    var groups = function (v) { return String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); };
+    pr.show = function (k) {
+      if (k === pr.cur) return;
+      var old = pr.cur;
+      pr.cur = k;
+      pr.rows[old].classList.remove('is-on');
+      pr.rows[k].classList.add('is-on');
+      pr.pics.forEach(function (p) { p.classList.remove('was'); });
+      pr.pics[old].classList.remove('is-on'); pr.pics[old].classList.add('was');
+      pr.pics[k].classList.add('is-on');
+      var row = pr.rows[k];
+      pr.pre.textContent = row.dataset.pre || '';
+      pr.why.textContent = row.dataset.why || '';
+      var to = parseFloat(row.dataset.cost) || 0;
+      if (reduce) { pr.shown.v = to; pr.num.textContent = groups(to); return; }
+      /* цена набегает от прежней к новой, как счётчик */
+      gsap.to(pr.shown, {
+        v: to, duration: .7, ease: 'power4.out', overwrite: true,
+        onUpdate: function () { pr.num.textContent = groups(pr.shown.v); }
+      });
+    };
 
-    /* строки едут под каплей по прокрутке, телефон и компьютер одинаково */
-    var travel = function () {
-      return Math.max(0, loupe.list.scrollHeight - loupe.win.clientHeight);
-    };
-    /* длина закрепления по ходу строк: прайс влез целиком — сцену не держим пустой */
-    var fitScene = function () {
-      if (reduce) return;
-      loupe.scene.classList.remove('is-fit');
-      loupe.scene.style.height = '';
-      var vh = loupe.stick.offsetHeight || window.innerHeight, tr = travel();
-      /* прайс влез в экран целиком: никакого закрепления, секция идёт обычным потоком */
-      if (tr < 2) { loupe.scene.classList.add('is-fit'); return; }
-      loupe.scene.style.height = Math.round(vh + tr * 1.15 + vh * (fine ? .3 : .12)) + 'px';
-    };
-    fitScene();
-    var lastW = window.innerWidth;
-    /* только смена ширины: на телефоне высота пляшет от адресной строки, сцена не должна прыгать */
-    window.addEventListener('resize', function () {
-      if (window.innerWidth === lastW) return;
-      lastW = window.innerWidth; fitScene(); ScrollTrigger.refresh();
-    });
-    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(function () { fitScene(); ScrollTrigger.refresh(); });
-    gsap.to(loupe.list, {
-      y: function () { return -travel(); },
-      ease: 'none',
-      scrollTrigger: { trigger: loupe.scene, start: 'top top', end: 'bottom bottom', scrub: .3 }
-    });
     ScrollTrigger.create({
-      trigger: loupe.scene, start: 'top top', end: 'bottom bottom',
-      onUpdate: function (self) { loupe.p = self.progress; }
+      trigger: pr.scene, start: 'top top', end: 'bottom bottom',
+      onUpdate: function (self) {
+        /* небольшая стоянка на первой и последней строке */
+        pr.target = clamp((self.progress - .05) / .88, 0, 1) * (n2 - 1);
+      }
     });
-
-    /* капля сама ходит по строкам, пока курсор молчит */
-    var idlePoint = function (t) {
-      var w = loupe.win.getBoundingClientRect(), R = loupe.R;
-      var ph = t * .22, free = Math.max(10, w.width - R * 2), freeH = Math.max(10, w.height - R * 2);
-      return {
-        /* без курсора капля ходит над ценами и иногда заглядывает в названия */
-        x: w.right - R - Math.min(free * .45, R * 1.3) * (.5 - Math.cos(ph * .8) * .5),
-        y: w.top + R + freeH * (.03 + .94 * clamp(loupe.p + .03 + Math.sin(ph) * .09, 0, 1))
-      };
+    pr.tick = function () {
+      pr.pos += (pr.target - pr.pos) * (reduce ? 1 : .14);
+      var k = clamp(Math.round(pr.pos), 0, n2 - 1);
+      if (k !== pr.cur) pr.show(k);
+      if (reduce) return;
+      /* строка в фокусе стоит посередине барабана */
+      var a = Math.floor(pr.pos), b = Math.min(n2 - 1, a + 1), f = pr.pos - a;
+      var c = pr.mid[a] + (pr.mid[b] - pr.mid[a]) * f;
+      var RH = pr.reel.clientHeight, shift = RH / 2 - c;
+      var ty = 'translate3d(0,' + shift.toFixed(1) + 'px,0)';
+      if (pr.vt.list !== ty) { pr.list.style.transform = ty; pr.vt.list = ty; }
+      for (var i = 0; i < n2; i++) {
+        var ad = Math.abs(i - pr.pos);
+        var s = 1 - Math.min(ad, 1) * .4, op = 1 - Math.min(ad, 2) * .17;
+        /* строка, что не влезла в окно барабана целиком, не видна вовсе: под кадром и шапкой текста нет */
+        var half = pr.h[i] * s / 2, y = pr.mid[i] + shift;
+        var inside = y - half >= -2 && y + half <= RH + 2;
+        var t2 = 'scale(' + s.toFixed(3) + ')|' + op.toFixed(2) + '|' + inside;
+        if (pr.vt[i] !== t2) {
+          pr.rows[i].style.transform = 'scale(' + s.toFixed(3) + ')';
+          pr.rows[i].style.opacity = inside ? op.toFixed(2) : '0';
+          pr.rows[i].style.visibility = inside ? '' : 'hidden';
+          pr.vt[i] = t2;
+        }
+      }
     };
-    loupe.idlePoint = idlePoint;
   }
 
   /* ============================================================
-     Акт 3: врачи на невидимом колесе
+     Акт 3: врачи, крупные кадры по горизонтали
      ============================================================ */
-  var wheel = {
-    scene: $('#a3-scene'), stick: $('.a3-stick'), area: $('#wheel'),
-    cards: $$('.wcard'), tabs: $$('#wheel-tabs button'),
-    rot: 0, target: 0, step: 90, lim: 0, built: false, dragging: false, sx: 0, base: 0, moved: false
+  var drs = {
+    scene: $('#dr-scene'), stick: $('.dr-stick'), track: $('#dr-track'),
+    figs: $$('.dr-ph'), imgs: $$('.dr-ph img'),
+    wide: window.matchMedia('(min-width: 900px)'), vt: []
   };
-  if (wheel.scene) {
-    /* карточка ниже барабана не ходит: иначе накрывает кнопки выбора врача */
-    var build = function () {
-      var card = wheel.cards[0].offsetHeight, box = wheel.area.offsetHeight;
-      wheel.lim = Math.max(0, (box - card) / 2);
-      wheel.step = Math.min(card * .17, Math.max(10, wheel.lim * .95), fine ? 96 : 62);
-      wheel.built = true;
+  if (drs.scene && drs.track) {
+    var drTravel = function () { return Math.max(0, drs.track.scrollWidth - window.innerWidth); };
+    /* высота сцены по длине ленты: сколько ехать вбок, столько и листать */
+    var drFit = function () {
+      if (reduce || !drs.wide.matches) { drs.scene.style.height = ''; return; }
+      /* плюс стоянка в 0,8 экрана: заголовок раздела успевают прочесть до того, как лента поедет */
+      drs.scene.style.height = Math.round(drs.stick.offsetHeight * 1.9 + drTravel()) + 'px';
     };
-    build();
-    window.addEventListener('resize', function () { build(); ScrollTrigger.refresh(); });
-
-    ScrollTrigger.create({
-      trigger: wheel.scene, start: 'top top', end: 'bottom bottom',
-      onUpdate: function (self) { if (!wheel.dragging) wheel.target = self.progress * (wheel.cards.length - 1); }
+    drFit();
+    var drW = window.innerWidth;
+    window.addEventListener('resize', function () {
+      if (window.innerWidth === drW) return;
+      drW = window.innerWidth; drFit(); ScrollTrigger.refresh();
     });
+    if (doc.fonts && doc.fonts.ready) doc.fonts.ready.then(function () { drFit(); ScrollTrigger.refresh(); });
+    window.addEventListener('load', drFit);
 
-    var scrollToRot = function (r) {
-      var total = wheel.scene.offsetHeight - wheel.stick.offsetHeight;
-      var y = wheel.scene.offsetTop + (r / (wheel.cards.length - 1)) * total;
-      if (window.lenis) window.lenis.scrollTo(y, { duration: .9 });
-      else window.scrollTo({ top: y, behavior: 'smooth' });
-    };
-
-    wheel.tabs.forEach(function (b) {
-      b.addEventListener('click', function () { scrollToRot(parseFloat(b.dataset.go)); });
-    });
-
-    /* свайп и протяжка мышью крутят колесо */
     if (!reduce) {
-      var area = $('.a3-in');
-      if (area) {
-        area.addEventListener('pointerdown', function (e) {
-          wheel.dragging = true; wheel.moved = false; wheel.sx = e.clientX; wheel.base = wheel.target;
+      var mm = gsap.matchMedia();
+      mm.add('(min-width: 900px)', function () {
+        gsap.to(drs.track, {
+          x: function () { return -drTravel(); },
+          ease: 'none',
+          scrollTrigger: { trigger: drs.scene, start: 'top -80%', end: 'bottom 110%', scrub: .5, invalidateOnRefresh: true }
         });
-        window.addEventListener('pointermove', function (e) {
-          if (!wheel.dragging) return;
-          var dx = e.clientX - wheel.sx;
-          if (Math.abs(dx) > 10) wheel.moved = true;
-          wheel.target = clamp(wheel.base - dx / 190, 0, wheel.cards.length - 1);
+        gsap.from('.dr-intro > *', {
+          y: 30, opacity: 0, duration: 1.1, stagger: .08, ease: 'expo.out',
+          scrollTrigger: { trigger: drs.scene, start: 'top 70%', once: true }
         });
-        window.addEventListener('pointerup', function () {
-          if (wheel.dragging && wheel.moved) scrollToRot(wheel.target);
-          wheel.dragging = false;
+      });
+      mm.add('(max-width: 899px)', function () {
+        drs.figs.forEach(function (f) {
+          gsap.fromTo(f, { clipPath: 'inset(12% 8% 12% 8%)' }, {
+            clipPath: 'inset(0% 0% 0% 0%)', ease: 'none',
+            scrollTrigger: { trigger: f, start: 'top 96%', end: 'top 50%', scrub: .4 }
+          });
         });
-      }
+        $$('.dr-tx').forEach(function (t) {
+          gsap.from(t, {
+            y: 30, opacity: 0, duration: 1, ease: 'expo.out',
+            scrollTrigger: { trigger: t, start: 'top 90%', once: true }
+          });
+        });
+      });
     }
   }
 
@@ -337,7 +371,7 @@
   }
 
   /* ============================================================
-     Общий цикл: стена, лупа, колесо
+     Общий цикл: стена, прайс, врачи
      ============================================================ */
   function tick(t) {
     /* --- стена --- */
@@ -347,7 +381,7 @@
         var run = wall.scene.offsetHeight - wall.stick.offsetHeight;
         var H1 = window.innerHeight;
         var p, amp;
-        if (run > 8) { p = clamp(-r1.top / run, 0, 1); amp = .24 * H1; }
+        if (run > 8) { p = clamp(-r1.top / run, 0, 1); amp = .08 * H1; }
         else { p = clamp(-r1.top / Math.max(1, r1.height), 0, 1); amp = .07 * H1; }
         var wb = wall.box.getBoundingClientRect();
         var now = t;
@@ -371,80 +405,24 @@
       }
     }
 
-    /* --- лупа --- */
-    if (loupe.scene && loupe.ready) {
-      var w = loupe.win.getBoundingClientRect();
-      if (w.bottom > -240 && w.top < window.innerHeight + 240) {
-        var R = loupe.R;
-        var tx, ty, now2 = performance.now() / 1000;
-        if (!fine) {
-          /* телефон: капля ловит цену той строки, что ближе к середине окна, и переезжает к следующей */
-          var mid = clamp(window.innerHeight * .5, w.top, w.bottom), best = null, bd = 1e9;
-          for (var k = 0; k < loupe.rows.length; k++) {
-            var rk = loupe.rows[k].getBoundingClientRect(), dk = Math.abs(rk.top + rk.height / 2 - mid);
-            if (dk < bd) { bd = dk; best = k; }
-          }
-          var cb = loupe.rows[best].children[1].getBoundingClientRect();
-          tx = cb.left + cb.width / 2;
-          ty = cb.top + cb.height / 2;
-        } else if (now2 - loupe.last < 2.4) {
-          tx = clamp(loupe.tx, w.left + R, w.right - R);
-          ty = clamp(loupe.ty, w.top + R, w.bottom - R);
-        } else {
-          var ip = loupe.idlePoint(t);
-          tx = ip.x; ty = ip.y;
-        }
-        /* фокус увеличения может стоять у самого края, капля — нет: цена у правого края видна целиком */
-        var fx0 = tx, fy0 = ty;
-        tx = clamp(tx, w.left + R, w.right - R);
-        ty = clamp(ty, w.top + R, w.bottom - R);
-        /* положение капли внутри окна, в локальных координатах */
-        loupe.x += ((tx - w.left) - loupe.x) * .12;
-        loupe.y += ((ty - w.top) - loupe.y) * .12;
-        if (loupe.fx === undefined) { loupe.fx = loupe.x; loupe.fy = loupe.y; }
-        loupe.fx += ((fx0 - w.left) - loupe.fx) * .12;
-        loupe.fy += ((fy0 - w.top) - loupe.fy) * .12;
-        loupe.drop.style.transform = 'translate3d(' + (loupe.x - R).toFixed(1) + 'px,' + (loupe.y - R).toFixed(1) + 'px,0)';
-        var vx = w.left + loupe.x, vy = w.top + loupe.y;
-
-        /* копия прайса сдвигается так, чтобы точка под центром капли осталась на месте */
-        var lr = loupe.list.getBoundingClientRect(), S = loupe.S;
-        var fx = w.left + loupe.fx, fy = w.top + loupe.fy;
-        loupe.zoom.style.transform = 'translate3d(' + (R - (fx - lr.left) * S).toFixed(1) + 'px,' +
-          (R - (fy - lr.top) * S).toFixed(1) + 'px,0) scale(' + S + ')';
-        for (var j = 0; j < loupe.rows.length; j++) {
-          var rr = loupe.rows[j].getBoundingClientRect();
-          var under = vy >= rr.top && vy < rr.bottom;
-          if (loupe.rows[j].classList.contains('is-under') !== under) {
-            loupe.rows[j].classList.toggle('is-under', under);
-            loupe.zrows[j].classList.toggle('is-under', under);
-          }
-        }
-      }
+    /* --- прайс --- */
+    if (pr.tick) {
+      var r2 = pr.scene.getBoundingClientRect();
+      if (r2.bottom > -240 && r2.top < window.innerHeight + 240) pr.tick();
     }
 
-    /* --- колесо врачей --- */
-    if (wheel.scene && wheel.built && !wheel.dragging && !reduce) {
-      var near = wheel.stick.getBoundingClientRect();
+    /* --- врачи: кадр внутри рамки плывёт против хода --- */
+    if (drs.scene && !reduce) {
+      var near = drs.stick.getBoundingClientRect();
       if (near.bottom > -240 && near.top < window.innerHeight + 240) {
-        wheel.rot += (wheel.target - wheel.rot) * .11;
-        var n = wheel.cards.length;
-        for (var q = 0; q < n; q++) {
-          var card = wheel.cards[q];
-          var dd = q - wheel.rot, ad = Math.abs(dd);
-          var y = clamp(dd > 0 ? dd * wheel.step : dd * wheel.step * .62, -wheel.lim, wheel.lim);
-          var sc = 1 - Math.min(ad, 2) * .07;
-          var rx = clamp(dd, -1.7, 1.7) * 11;
-          var op = ad > 1.35 ? clamp(1.9 - ad, 0, 1) : 1;
-          card.style.transform = 'translate3d(0,' + y.toFixed(1) + 'px,0) rotateX(' + rx.toFixed(2) + 'deg) scale(' + sc.toFixed(4) + ')';
-          card.style.opacity = op.toFixed(2);
-          card.style.zIndex = String(2000 - Math.round(ad * 1000));
-          card.style.setProperty('--shade', Math.min(ad * .2, .5).toFixed(3));
-          var front = ad < .5;
-          if (front !== card.classList.contains('is-front')) card.classList.toggle('is-front', front);
+        var Wv = window.innerWidth, Hv = window.innerHeight, wide = drs.wide.matches;
+        for (var q = 0; q < drs.figs.length; q++) {
+          var fr = drs.figs[q].getBoundingClientRect();
+          var d = wide ? (fr.left + fr.width / 2 - Wv / 2) / Wv : (fr.top + fr.height / 2 - Hv / 2) / Hv;
+          d = clamp(d, -1, 1) * -5.5;
+          var tf2 = (wide ? 'translate3d(' + d.toFixed(2) + '%,0,0)' : 'translate3d(0,' + d.toFixed(2) + '%,0)') + ' scale(1.14)';
+          if (drs.vt[q] !== tf2) { drs.imgs[q].style.transform = tf2; drs.vt[q] = tf2; }
         }
-        var act = clamp(Math.round(wheel.rot), 0, n - 1);
-        wheel.tabs.forEach(function (b, i) { if (i === act) b.classList.add('is-on'); else b.classList.remove('is-on'); });
       }
     }
   }
