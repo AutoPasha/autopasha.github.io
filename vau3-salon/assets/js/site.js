@@ -177,7 +177,7 @@
   var holeState = { mask: holeBase(), clip: 0 };
   function applyHole() {
     if (!heroHole) return;
-    var pos = holeState.mask > 100 ? '50% 46%' : '50% 46%';
+    var pos = isSm() ? '50% 34%' : '50% 46%';  /* на телефоне слово выше плашки записи */
     var size = holeState.mask + '% auto, 100% 100%';
     var where = pos + ', 0 0';
     var c = holeState.clip;
@@ -202,7 +202,8 @@
     }
     gsap.set(heroDim, { opacity: 1 });
     gsap.set(heroTint, { opacity: 0 });
-    gsap.set(heroPlate, { opacity: 0, y: 34 });
+    /* на телефоне плашка стоит с первого кадра: экран не пустой до первой прокрутки */
+    gsap.set(heroPlate, isSm() ? { opacity: 1, y: 0 } : { opacity: 0, y: 34 });
     gsap.set(heroCaps, { opacity: 1, y: 0 });
 
     var base = holeBase();
@@ -214,7 +215,7 @@
         holeState.mask = base * (1 + 0.12 * (pr / 0.34));
         holeState.clip = 0;
       } else {
-        var u = clamp((pr - 0.34) / 0.56, 0, 1);
+        var u = clamp((pr - 0.34) / 0.46, 0, 1);  /* поле уходит целиком до конца закрепления */
         holeState.mask = base * (1.12 + 0.22 * u);
         holeState.clip = 50 * u;
       }
