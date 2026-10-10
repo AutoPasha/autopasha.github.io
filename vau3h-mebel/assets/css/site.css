@@ -448,11 +448,11 @@ img { display: block; max-width: 100%; height: auto; }
   .plate-title { font-size: 30px; }
   .hero-media { top: 64svh; left: 0; right: 0; bottom: 0; }
 
-  .blue-title { left: 6vw; top: 12svh; max-width: none; font-size: 34px; }
+  .blue-title { left: 6vw; right: 6vw; top: 10svh; max-width: none; font-size: 34px; text-wrap: balance; }
   .blue-frame {
-    --w: 40svh;
+    --w: 36svh;
     left: calc(50% - var(--w) * 0.375);
-    top: 19svh;
+    top: calc(10svh + 100px);
   }
   .steps-wrap { left: 6vw; right: 6vw; top: 62svh; width: auto; }
   .steps li { font-size: 22px; padding: 10px 0; }
@@ -468,7 +468,8 @@ img { display: block; max-width: 100%; height: auto; }
   .swatches { grid-template-columns: repeat(2, 1fr); gap: 44px 22px; margin-top: 6svh; }
   .ring text { font-size: 19px; }
 
-  .final-media { min-height: 0; padding: 60svh 5vw 6svh; }
+  .final-media { min-height: 0; padding: 30svh 5vw 6svh; }
+  .final-phone { font-size: min(26px, 6.6vw); white-space: nowrap; }
   .final-plate { width: 100%; padding: 24px; }
   .final-word { font-size: 26vw; }
 }
