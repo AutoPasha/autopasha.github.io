@@ -38,7 +38,6 @@
   const win = hero.querySelector('.hero-window');
   const word = document.getElementById('win-word');
   const fill = document.getElementById('win-fill');
-  const measure = hero.querySelector('.hero-measure');
   const plate = hero.querySelector('.hero-plate');
   const foot = document.querySelector('.foot-word');
   const footWrap = document.querySelector('.site-foot');
@@ -53,15 +52,13 @@
   function layoutHero() {
     W = hero.clientWidth;
     H = hero.clientHeight;
-    const emWidth = textWidth(measure) / 100;
-    F0 = (W * 0.92) / emWidth;
-    word.setAttribute('font-size', F0.toFixed(2));
-    word.setAttribute('y', (F0 * 0.32).toFixed(2));
+    // слово-окно — контур в em шириной 2.336 (Cormorant Garamond 500)
+    F0 = (W * 0.92) / 2.336;
   }
 
   function renderHero(p) {
     const f1 = ease(clamp(p / 0.6));
-    word.setAttribute('transform', `translate(${W / 2} ${H / 2}) scale(${(1 + f1 * 2.4).toFixed(4)})`);
+    word.setAttribute('transform', `translate(${W / 2} ${H / 2}) scale(${(F0 * (1 + f1 * 2.4)).toFixed(3)})`);
     const f2 = ease(clamp((p - 0.5) / 0.42));
     const w = W * f2, h = H * f2;
     fill.setAttribute('x', ((W - w) / 2).toFixed(1));
