@@ -1,0 +1,760 @@
+/* ============ Общие раскладки ============ */
+.mask { display: block; overflow: hidden; padding-bottom: .06em; }
+.mask > span { display: block; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--r-m);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: .005em;
+  text-align: center;
+  transition: background-color .35s var(--ease), color .35s var(--ease), transform .5s var(--ease);
+}
+.btn-solid { background: var(--walnut); color: var(--paper); }
+.btn-solid:hover { background: var(--walnut-deep); }
+.btn-solid:active { transform: translateY(1px); }
+.btn-lg { min-height: 58px; padding: 0 30px; font-size: 19px; }
+.btn-short { display: none; }
+
+.preload .mask > span,
+.preload .a1-plate,
+.preload .a1-lead,
+.preload .a1-city { visibility: hidden; }
+
+/* ============ Заставка ============ */
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--paper);
+}
+.curtain-in { display: grid; gap: 20px; justify-items: center; }
+.curtain-mark {
+  font: 500 30px/1 var(--serif);
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+.curtain-bar {
+  position: relative;
+  width: 190px;
+  height: 1px;
+  background: var(--line-soft);
+  overflow: hidden;
+}
+.curtain-bar i {
+  position: absolute;
+  inset: 0;
+  background: var(--walnut);
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+.curtain-count { color: var(--line-ink); font-size: 13px; }
+
+/* ============ Шапка ============ */
+.head {
+  position: relative;
+  z-index: 60;
+  height: var(--head-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 var(--pad);
+  background: var(--paper);
+  box-shadow: 0 1px 0 var(--line-soft);
+}
+.head-logo { display: block; line-height: 0; }
+.head-logo img { width: 134px; height: 38px; }
+.head-right { display: flex; align-items: center; gap: 10px; }
+.head-tel {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: .01em;
+  padding: 10px 6px;
+  border-bottom: 1px solid transparent;
+  transition: border-color .35s var(--ease);
+}
+.head-tel:hover { border-bottom-color: var(--walnut); }
+.head-tel-ico { display: none; }
+.head-tel-ico svg { width: 22px; height: 22px; }
+
+/* ============ Акт 1. Волокно ============ */
+.act1 { position: relative; }
+.a1-stage {
+  position: relative;
+  height: 100svh;
+  min-height: 620px;
+  overflow: hidden;
+  background: var(--paper);
+}
+.a1-canvas {
+  position: relative;
+  height: calc(100svh - var(--head-h));
+  min-height: 552px;
+  overflow: hidden;
+}
+
+/* правая половина: под шпоном цех, сверху видео, полосы снимаются вверх */
+.a1-plates {
+  position: absolute;
+  inset: 0 0 0 46%;
+  overflow: hidden;
+  background: var(--night);
+}
+.a1-base,
+.a1-band { position: absolute; inset: 0; }
+.a1-base { z-index: 0; }
+.a1-base img,
+.a1-band img,
+.a1-band video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.04);
+  background: var(--night);
+}
+.a1-band { z-index: 1; will-change: transform; }
+.a1-band-still {
+  background-image: url("../img/hero.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.a1-band[data-band="1"] { clip-path: inset(0 0 66.666% 0); }
+.a1-band[data-band="2"] { clip-path: inset(33.333% 0 33.333% 0); }
+.a1-band[data-band="3"] { clip-path: inset(66.666% 0 0 0); }
+.a1-fiber {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  width: 100%;
+  height: 100%;
+  color: #ffffff;
+  opacity: .42;
+  pointer-events: none;
+}
+.a1-plates::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background:
+    linear-gradient(0deg, rgba(29, 24, 19, .5) 0%, rgba(29, 24, 19, 0) 30%),
+    linear-gradient(90deg, rgba(29, 24, 19, .3) 0%, rgba(29, 24, 19, 0) 18%);
+}
+.a1-platecap {
+  position: absolute;
+  z-index: 6;
+  right: var(--pad);
+  top: calc(84px + 12px);
+  padding: 7px 12px;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 12px;
+  will-change: transform;
+}
+.a1-word {
+  position: absolute;
+  z-index: 6;
+  left: 3%;
+  bottom: 3vh;
+  margin: 0;
+  font: 500 clamp(88px, 14.5vw, 228px)/.82 var(--serif);
+  letter-spacing: -.04em;
+  color: var(--paper);
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.a1-copy {
+  position: absolute;
+  z-index: 8;
+  left: var(--pad);
+  top: 0;
+  bottom: 0;
+  width: min(41%, 600px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.a1-h {
+  font: 500 clamp(40px, 5.4vw, 86px)/.98 var(--serif);
+  letter-spacing: -.03em;
+  color: var(--ink);
+}
+.a1-h i { font-style: italic; font-weight: 400; color: var(--walnut); }
+.a1-lead {
+  margin-top: 26px;
+  max-width: 34ch;
+  font-size: clamp(16px, 1.12vw, 18px);
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+.a1-plate {
+  margin-top: 34px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 20px 22px;
+  background: var(--paper);
+  border: 1px solid var(--line-soft);
+  border-radius: var(--r-m);
+  width: fit-content;
+  max-width: 100%;
+}
+.a1-platenote { font-size: 15px; line-height: 1.45; color: var(--ink); }
+.a1-city { margin-top: 26px; color: var(--line-ink); font-size: 13px; }
+
+/* ============ Акт 2. Чертёж становится вещью ============ */
+.act2 { position: relative; background: var(--walnut-deep); }
+.a2-stage {
+  position: relative;
+  height: 100svh;
+  min-height: 640px;
+  overflow: hidden;
+  background: var(--walnut-deep);
+  display: grid;
+  grid-template-columns: minmax(0, 23%) minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(16px, 3vw, 48px);
+  padding: clamp(26px, 5.5vh, 58px) var(--pad) clamp(26px, 5.5vh, 58px);
+}
+/* сетка миллиметровки на тёмной стене: пустого поля тут нет */
+.a2-stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, rgba(242, 233, 218, .07) 1px, transparent 1px);
+  background-size: 46px 46px;
+}
+.a2-h {
+  position: relative;
+  z-index: 6;
+  grid-column: 1;
+  grid-row: 1;
+  color: var(--paper);
+  font: 500 clamp(30px, 3.4vw, 56px)/1 var(--serif);
+  letter-spacing: -.03em;
+}
+.a2-h i { font-style: italic; color: var(--oak); }
+
+/* спецификация слева внизу: до того, как на её место придут строки работы */
+.a2-side {
+  position: relative;
+  z-index: 6;
+  grid-column: 1;
+  grid-row: 2;
+  align-self: end;
+  padding: 14px 18px 16px 0;
+  background: var(--walnut-deep);
+}
+.a2-side-cap { color: rgba(242, 233, 218, .74); margin-bottom: 14px; }
+.a2-spec { list-style: none; margin: 0; padding: 0; border-top: 1px solid rgba(242, 233, 218, .26); }
+.a2-spec li {
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(242, 233, 218, .16);
+  font-size: 14.5px;
+  line-height: 1.35;
+  color: rgba(242, 233, 218, .82);
+}
+.a2-spec-price { margin-top: 16px; font-size: 15px; color: var(--oak); }
+
+/* лист чертежа: бумага внизу, линии поверх фото.
+   z-index 3 обязателен: у листа появляется transform (масштаб), он делает
+   его отдельным слоем, и без z-index фото шкафа ложится поверх чертежа. */
+.a2-frame {
+  position: relative;
+  z-index: 3;
+  grid-column: 2;
+  grid-row: 1 / -1;
+  align-self: center;
+  justify-self: center;
+  width: min(100%, 700px, calc(100svh - 226px));
+  aspect-ratio: 1 / 1;
+}
+.a2-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: var(--paper-2);
+}
+.a2-draw {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+  color: var(--line);
+}
+.a2-draw .dw-num { color: var(--line-ink); }
+.a2-cap {
+  position: absolute;
+  z-index: 3;
+  left: 24px;
+  color: var(--line-ink);
+  font-size: 12px;
+  letter-spacing: .04em;
+}
+.a2-cap-1 { top: 22px; }
+.a2-cap-2 { bottom: 20px; }
+
+.a2-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  clip-path: inset(50% 50% 50% 50%);
+  will-change: clip-path;
+  background: var(--night);
+}
+.a2-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  background: var(--night);
+}
+
+.a2-end {
+  position: absolute;
+  z-index: 7;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 46%;
+  padding: clamp(20px, 2.6vw, 38px) var(--pad);
+  background: var(--paper);
+  border-top: 1px solid var(--line-soft);
+  display: grid;
+  grid-template-columns: minmax(170px, 230px) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 64px);
+  align-items: start;
+  will-change: transform;
+}
+.a2-hands { margin: 0; }
+.a2-hands img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  background: var(--paper-3);
+}
+.a2-hands figcaption { margin-top: 10px; color: var(--line-ink); font-size: 13px; }
+.a2-steps-cap { color: var(--line-ink); }
+.a2-list { list-style: none; margin: 16px 0 0; padding: 0; }
+.a2-step {
+  display: grid;
+  grid-template-columns: minmax(118px, 200px) minmax(0, 1fr);
+  gap: 8px 32px;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.a2-step:last-child { border-bottom: 0; }
+.a2-step b { font: 500 clamp(18px, 1.6vw, 25px)/1.12 var(--serif); letter-spacing: -.015em; color: var(--ink); }
+.a2-step span { font-size: 15px; line-height: 1.45; color: var(--ink-soft); }
+
+/* ============ Акт 3. Образцы пород ============ */
+.act3 {
+  position: relative;
+  background: var(--a3-tone, var(--paper));
+  color: var(--a3-ink, var(--ink));
+  transition: background-color .6s var(--ease), color .6s var(--ease);
+  min-height: 100svh;
+  padding: clamp(48px, 7vh, 92px) var(--pad) clamp(104px, 15vh, 156px);
+  display: flex;
+  flex-direction: column;
+}
+.a3-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(20px, 4vw, 64px);
+  align-items: end;
+}
+.a3-h {
+  font: 500 clamp(38px, 5vw, 78px)/.96 var(--serif);
+  letter-spacing: -.03em;
+}
+.a3-lead {
+  font-size: clamp(16px, 1.1vw, 18px);
+  line-height: 1.5;
+  max-width: 40ch;
+}
+.a3-body {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+  gap: clamp(28px, 4.5vw, 76px);
+  align-items: center;
+  padding: clamp(22px, 3.6vh, 52px) 0;
+}
+.a3-states { display: grid; }
+.a3-state {
+  grid-area: 1 / 1;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .45s var(--ease), visibility .45s var(--ease);
+}
+.a3-state.is-on { opacity: 1; visibility: visible; }
+.a3-piece {
+  font: 400 clamp(26px, 2.6vw, 40px)/1.08 var(--serif);
+  letter-spacing: -.02em;
+}
+.a3-price {
+  margin-top: 18px;
+  font: 400 clamp(30px, 3.6vw, 56px)/1.05 var(--mono);
+  letter-spacing: -.02em;
+}
+.a3-price .flip {
+  display: block;
+  padding-bottom: .1em;
+  overflow: hidden;
+}
+.a3-price .flip > span { display: inline-block; will-change: transform; }
+.a3-unit {
+  margin-top: 10px;
+  font-size: 15px;
+  color: currentColor;
+}
+.a3-note {
+  margin-top: 20px;
+  font-size: 15.5px;
+  line-height: 1.55;
+  max-width: 36ch;
+}
+.a3-shot {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  background: var(--paper-3);
+  overflow: hidden;
+}
+.a3-ph {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity .5s var(--ease);
+}
+.a3-ph.is-on { opacity: 1; }
+.a3-ph img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--paper-3);
+}
+.a3-foot { margin-top: auto; }
+.a3-loop-facts { display: none; color: currentColor; margin-bottom: 16px; }
+
+.a3-samples {
+  position: relative;
+  max-width: 1280px;
+  margin-inline: auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 3.4vw, 64px);
+}
+.smp {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  min-height: 44px;
+}
+.smp-swatch {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 152px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: var(--paper-3);
+  outline: 1px solid transparent;
+  outline-offset: 6px;
+  transition: outline-color .45s var(--ease), transform .6s var(--ease);
+}
+.smp-swatch img { width: 100%; height: 100%; object-fit: cover; }
+.smp-name {
+  display: block;
+  margin-top: 14px;
+  font: 400 17px/1.2 var(--serif);
+  letter-spacing: -.01em;
+  transition: opacity .45s var(--ease);
+}
+.smp:hover .smp-swatch { transform: translateY(-4px); }
+.smp.is-on .smp-swatch { outline-color: currentColor; }
+.smp:not(.is-on) .smp-name { opacity: .72; }
+
+.a3-loop {
+  position: absolute;
+  z-index: 3;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: var(--a3-tone, var(--paper));
+  transition: background-color .6s var(--ease);
+  pointer-events: none;
+  opacity: 0;
+}
+.a3-loop svg { width: 100%; height: 100%; overflow: visible; display: block; }
+.a3-loop text {
+  font-family: var(--mono);
+  font-size: 12px;
+  fill: currentColor;
+}/* ============ Финал ============ */
+.fin { position: relative; background: var(--night); }
+.fin-stage {
+  position: relative;
+  height: 100svh;
+  min-height: 640px;
+  overflow: hidden;
+  background: var(--night);
+  padding: 12px;
+}
+.fin-photo {
+  position: absolute;
+  inset: -12px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: var(--night);
+  will-change: transform;
+}
+.fin-shade {
+  position: absolute;
+  inset: -12px;
+  background:
+    linear-gradient(180deg, rgba(29, 24, 19, .5) 0%, rgba(29, 24, 19, .06) 30%, rgba(29, 24, 19, .86) 100%);
+}
+.fin-inner { position: absolute; inset: 0; }
+.fin-plate {
+  position: absolute;
+  left: var(--pad);
+  top: clamp(92px, 13vh, 140px);
+  width: min(430px, calc(100% - var(--pad) * 2));
+  padding: clamp(22px, 2.2vw, 32px);
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: var(--r-m);
+  display: grid;
+  gap: 18px;
+  will-change: transform;
+}
+.fin-adress { font: 400 20px/1.35 var(--serif); letter-spacing: -.015em; }
+.fin-hours {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  padding-top: 16px;
+  border-top: 1px solid var(--line-soft);
+}
+.fin-actions { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.fin-tg {
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--walnut);
+  transition: color .35s var(--ease), border-color .35s var(--ease);
+}
+.fin-tg:hover { color: var(--walnut); }
+.fin-word {
+  position: absolute;
+  left: var(--pad);
+  right: var(--pad);
+  bottom: clamp(26px, 5vh, 64px);
+  margin: 0;
+  font: 500 clamp(64px, 20.5vw, 250px)/.84 var(--serif);
+  letter-spacing: -.04em;
+  color: var(--paper);
+  white-space: nowrap;
+  will-change: transform;
+}
+.fin-word span { display: inline-block; will-change: transform; }
+
+/* ============ Подвал ============ */
+.foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  align-items: baseline;
+  padding: 22px var(--pad) 26px;
+  background: var(--paper-2);
+  border-top: 1px solid var(--line-soft);
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.foot-tel { font-size: 16px; font-weight: 500; color: var(--ink); }
+.foot-tg { color: var(--ink); border-bottom: 1px solid var(--line); }
+.foot-tg:hover { border-bottom-color: var(--walnut); }
+
+/* ============ Телефон и планшет ============ */
+@media (max-width: 1024px) {
+  .a1-copy { width: min(46%, 520px); }
+  .a1-h { font-size: clamp(38px, 5vw, 62px); }
+  .a2-frame { width: min(100%, 600px); }
+}
+
+@media (max-width: 899px) {
+  .btn { min-height: 48px; padding: 0 20px; }
+
+  .a1-canvas {
+    display: grid;
+    grid-template-rows: minmax(0, auto) minmax(0, 1fr);
+  }
+  .a1-copy {
+    position: static;
+    grid-row: 1;
+    transform: none;
+    width: auto;
+    padding: 80px var(--pad) 20px;
+  }
+  .a1-plates { grid-row: 2; position: relative; inset: auto; min-height: 230px; }
+  .a1-h { font-size: clamp(40px, 11vw, 52px); }
+  .a1-lead { margin-top: 18px; max-width: 44ch; font-size: 16px; line-height: 1.5; }
+  .a1-plate { margin-top: 22px; padding: 16px 18px; gap: 14px; width: 100%; }
+  .a1-platenote { font-size: 15px; }
+  .a1-city { margin-top: 16px; }
+  .a1-platecap { top: 14px; }
+  .a1-word { left: var(--pad); bottom: 2.5vh; font-size: clamp(60px, 21vw, 110px); }
+
+  .a2-stage {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr) auto;
+    gap: 14px;
+    padding: 54px var(--pad) 20px;
+  }
+  .a2-h {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: clamp(26px, 7.4vw, 38px);
+  }
+  .a2-side { grid-column: 1; grid-row: 3; align-self: end; }
+  .a2-side-cap { margin-bottom: 10px; font-size: 12px; }
+  .a2-spec li { padding: 6px 0; font-size: 13.5px; }
+  .a2-spec-price { margin-top: 10px; font-size: 13.5px; }
+  .a2-frame {
+    grid-column: 1;
+    grid-row: 2;
+    width: min(100%, 440px);
+    aspect-ratio: 3 / 4;
+    align-self: center;
+    justify-self: center;
+  }
+  .a2-cap { left: 14px; font-size: 12px; }
+  .a2-cap-1 { top: 14px; }
+  .a2-cap-2 { bottom: 12px; }
+  .a2-end {
+    height: 56%;
+    grid-template-columns: minmax(0, 1fr);
+    padding: 16px var(--pad) 22px;
+    overflow: hidden;
+  }
+  .a2-hands { display: none; }
+  .a2-list { margin-top: 8px; }
+  .a2-step { grid-template-columns: minmax(0, 1fr); gap: 2px; padding: 7px 0; }
+  .a2-step b { font-size: 19px; }
+  .a2-step span { font-size: 13.5px; line-height: 1.4; }
+
+  .a3-head { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .a3-h { font-size: clamp(34px, 10vw, 48px); }
+  .a3-lead { font-size: 16px; max-width: 42ch; }
+  .a3-body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    padding: 22px 0 26px;
+    align-content: start;
+  }
+  .a3-shot { aspect-ratio: 3 / 2; }
+  .a3-piece { font-size: clamp(24px, 7vw, 32px); }
+  .a3-price { margin-top: 12px; font-size: clamp(28px, 8.4vw, 38px); }
+  .a3-note { margin-top: 14px; font-size: 15px; max-width: 44ch; }
+  .a3-loop { display: none; }
+  .a3-loop-facts { display: block; font-size: 12px; }
+  .a3-samples { gap: 10px; }
+  .act3 { padding-bottom: clamp(56px, 8vh, 96px); }
+  .smp-swatch { max-width: 100%; outline-offset: 4px; }
+  .smp-name { margin-top: 9px; font-size: 14px; }
+
+  .fin-plate {
+    left: var(--pad);
+    right: var(--pad);
+    top: 74px;
+    width: auto;
+    padding: 20px;
+  }
+  .fin-adress { font-size: 18px; }
+  .btn-lg { min-height: 54px; font-size: 17px; padding: 0 22px; }
+  .foot { gap: 6px 20px; font-size: 14px; }
+}
+
+@media (max-width: 560px) {
+  .head { padding: 10px var(--pad); }
+  .head-logo img { width: 108px; height: 31px; }
+  .head-tel { display: none; }
+  .head-tel-ico {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    margin-right: -6px;
+    color: var(--ink);
+  }
+  .btn-long { display: none; }
+  .btn-short { display: inline; }
+  .a1-copy { padding-top: 74px; }
+  .a1-plate { flex-direction: column; align-items: stretch; }
+  .a1-plate .btn { width: 100%; }
+  .fin-word { letter-spacing: -.035em; }
+}
+
+/* ============ Меньше движения ============ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .preload .mask > span,
+  .preload .a1-plate,
+  .preload .a1-lead,
+  .preload .a1-city { visibility: visible; }
+  .a1-fiber { opacity: .4; }
+  .a3-loop, .a2-side { display: none; }
+  .curtain { display: none !important; }
+  .a1-band, .a1-copy, .a1-word, .a1-platecap,
+  .a2-frame, .a2-bg, .a2-draw, .a2-cap, .a2-end, .a2-h,
+  .fin-plate, .fin-word, .a3-samples, .a3-shot, .fin-photo { transform: none !important; opacity: 1 !important; }
+  .a2-photo { clip-path: inset(0) !important; }
+  .a2-bg { opacity: 0 !important; }
+  .a2-draw { color: rgba(239, 233, 223, .8) !important; }
+  .a2-draw .dw-num, .a2-cap { color: rgba(239, 233, 223, .92) !important; }
+}
+
+/* длинные слова в узких колонках */
+h1, h2, h3, p, li, a, span, b {
+  overflow-wrap: break-word;
+}
