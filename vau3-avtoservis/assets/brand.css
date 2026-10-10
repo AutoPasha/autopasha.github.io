@@ -1,0 +1,40 @@
+@import url("fonts/unbounded/fonts.css");
+@import url("fonts/ibm-plex-mono/fonts.css");
+@import url("fonts/geologica/fonts.css");
+
+/* ПАЛИТРА ПОДЪЁМНИКА. Меняется целиком на ребрандинге (см. REBRAND.md). */
+:root {
+  --pd-bg: #15171a;        /* цех */
+  --pd-graphite: #1b1e23;  /* чертёжный лист */
+  --pd-deep: #0d0f11;      /* плашки, табло, подвал */
+  --pd-ink: #ecebe6;       /* текст */
+  --pd-ink-dim: #8b8e93;   /* подписи */
+  --pd-accent: #f2c230;    /* сигнальный жёлтый: ленты, точки, кнопка */
+  --pd-ink-on-accent: #14161a;
+
+  --pd-line: rgba(236, 235, 230, 0.16);
+  --pd-line-soft: rgba(236, 235, 230, 0.08);
+  --pd-grid: rgba(236, 235, 230, 0.08);
+  --pd-grid-bold: rgba(236, 235, 230, 0.17);
+
+  --pd-photo-tone: #20242a; /* фон, пока нет фото */
+
+  /* Шрифты */
+  --pd-display: "Unbounded", system-ui, sans-serif;
+  --pd-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --pd-text: "Geologica", system-ui, sans-serif;
+
+  /* Радиусы и ритм */
+  --pd-r: 2px;
+  --pd-r-photo: 3px;
+  --pd-pill: 999px;
+  --pd-gutter: 20px;
+  --pd-max: 1440px;
+}
+
+@media (min-width: 768px) {
+  :root { --pd-gutter: 32px; }
+}
+@media (min-width: 1200px) {
+  :root { --pd-gutter: 44px; }
+}
