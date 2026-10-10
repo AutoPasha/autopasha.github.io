@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Салон красоты «Шёлк», Екатеринбург: стрижка, окрашивание, маникюр</title>
+<meta name="description" content="Салон красоты «Шёлк» на Малышева, 51, Екатеринбург. Стрижка от 2 400 ₽, окрашивание от 5 900 ₽, маникюр 2 300 ₽. Ежедневно с 9:00 до 21:00. Запись в Telegram и по телефону.">
+<link rel="stylesheet" href="assets/brand.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script src="assets/lib/gsap.min.js" defer></script>
+<script src="assets/lib/ScrollTrigger.min.js" defer></script>
+<script src="assets/lib/lenis.min.js" defer></script>
+<script src="assets/js/site.js" defer></script>
+</head>
+<body>
+
+<div class="intro" aria-hidden="true"><div class="intro-count">0</div></div>
+
+<header class="site-head">
+  <a class="logo" href="#top"><img src="assets/img/logo.svg" width="300" height="120" alt="Шёлк, салон красоты"></a>
+  <a class="head-tel" href="tel:+73432881740" aria-label="Позвонить: +7 (343) 288-17-40"><img src="assets/img/icons/phone.svg" width="20" height="20" alt=""><span>+7 (343) 288-17-40</span></a>
+  <a class="btn" href="https://t.me/shelk_ekb">Записаться</a>
+</header>
+
+<main>
+
+<section class="hero" id="top">
+  <h1 class="visually-hidden">Салон красоты «Шёлк», Екатеринбург</h1>
+  <div class="hero-window">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/video/hero.jpg">
+      <source src="assets/video/hero.mp4" type="video/mp4">
+    </video>
+  </div>
+  <svg class="hero-svg" aria-hidden="true" focusable="false">
+    <defs>
+      <clipPath id="win-clip" clipPathUnits="userSpaceOnUse">
+        <text id="win-word" font-family="Cormorant Garamond, Georgia, serif" font-weight="500" text-anchor="middle" font-size="200">Шёлк</text>
+        <rect id="win-fill" x="0" y="0" width="0" height="0"></rect>
+      </clipPath>
+    </defs>
+  </svg>
+  <span class="hero-measure" aria-hidden="true">Шёлк</span>
+  <div class="hero-plate">
+    <p class="plate-kicker">Стрижка женская</p>
+    <strong>от 2 400 ₽</strong>
+    <p>Выберите мастера и удобное время, мы ответим в Telegram и подтвердим запись.</p>
+    <a class="btn" href="https://t.me/shelk_ekb">Записаться</a>
+  </div>
+</section>
+
+<section class="fan" id="uslugi">
+  <div class="fan-stage">
+    <h2 class="fan-title">Услуги и цены</h2>
+    <p class="fan-hint is-on">Нажмите на полоску, она выйдет вперёд</p>
+    <div class="fan-info" aria-live="polite">
+      <h3 class="info-name"></h3>
+      <p class="info-desc"></p>
+      <p class="info-price"></p>
+      <a class="btn info-book" href="https://t.me/shelk_ekb">Записаться на это</a>
+    </div>
+
+    <button class="swatch" type="button" style="--c: var(--swatch-1); --fg: var(--paper)" data-name="Стрижка женская" data-price="от 2 400 ₽" data-desc="Консультация, мытьё и стрижка. Стрижку делает Дарья, стаж 6 лет.">
+      <img src="assets/img/cut.jpg" width="600" height="800" alt="Мастер делает стрижку женщине у зеркала" loading="lazy">
+      <span class="swatch-txt"><b>Стрижка женская</b><span>от 2 400 ₽</span></span>
+    </button>
+    <button class="swatch" type="button" style="--c: var(--swatch-2); --fg: var(--paper)" data-name="Окрашивание в один тон" data-price="от 5 900 ₽" data-desc="Один цвет по всей длине. Работает Алина, колорист, стаж 9 лет.">
+      <img src="assets/img/color.jpg" width="600" height="800" alt="Руки колориста наносят краску на прядь" loading="lazy">
+      <span class="swatch-txt"><b>Окрашивание в один тон</b><span>от 5 900 ₽</span></span>
+    </button>
+    <button class="swatch" type="button" style="--c: var(--swatch-3); --fg: var(--ink)" data-name="Сложное окрашивание" data-price="от 9 500 ₽" data-desc="Несколько оттенков и плавные переходы. Цвет подбираем вместе с колористом Алиной.">
+      <img src="assets/img/color-complex.jpg" width="600" height="800" alt="Пряди разного тона на кисти колориста" loading="lazy">
+      <span class="swatch-txt"><b>Сложное окрашивание</b><span>от 9 500 ₽</span></span>
+    </button>
+    <button class="swatch" type="button" style="--c: var(--swatch-4); --fg: var(--paper)" data-name="Укладка" data-price="1 800 ₽" data-desc="Укладка на волосы любой длины, после стрижки или отдельно.">
+      <img src="assets/img/styling.jpg" width="600" height="800" alt="Укладка волос феном и круглой щёткой" loading="lazy">
+      <span class="swatch-txt"><b>Укладка</b><span>1 800 ₽</span></span>
+    </button>
+    <button class="swatch" type="button" style="--c: var(--swatch-5); --fg: var(--ink)" data-name="Маникюр с покрытием" data-price="2 300 ₽" data-desc="Покрытие в нейтральном тоне. Делает Ника, маникюр, стаж 7 лет.">
+      <img src="assets/img/nails.jpg" width="600" height="800" alt="Ухоженные руки с нейтральным покрытием ногтей" loading="lazy">
+      <span class="swatch-txt"><b>Маникюр с покрытием</b><span>2 300 ₽</span></span>
+    </button>
+    <button class="swatch" type="button" style="--c: var(--swatch-6); --fg: var(--paper)" data-name="Брови: коррекция и окрашивание" data-price="1 400 ₽" data-desc="Коррекция формы и окрашивание. Делает Вера, стаж 5 лет.">
+      <img src="assets/img/brows.jpg" width="600" height="800" alt="Мастер корректирует форму бровей" loading="lazy">
+      <span class="swatch-txt"><b>Брови</b><span>1 400 ₽</span></span>
+    </button>
+  </div>
+</section>
+
+<section class="film" id="mastera">
+  <div class="film-stage">
+    <div class="film-head">
+      <h2>Мастера</h2>
+    </div>
+    <div class="film-strip">
+      <div class="film-track">
+        <figure class="frame">
+          <img src="assets/img/master-1.jpg" width="600" height="800" alt="Алина, колорист салона" loading="lazy">
+          <figcaption><h3>Алина</h3><span class="role">Колорист, стаж 9 лет</span></figcaption>
+        </figure>
+        <figure class="frame">
+          <img src="assets/img/master-2.jpg" width="600" height="800" alt="Дарья, мастер по стрижкам" loading="lazy">
+          <figcaption><h3>Дарья</h3><span class="role">Стрижки, стаж 6 лет</span></figcaption>
+        </figure>
+        <figure class="frame">
+          <img src="assets/img/master-3.jpg" width="600" height="800" alt="Ника, мастер маникюра" loading="lazy">
+          <figcaption><h3>Ника</h3><span class="role">Маникюр, стаж 7 лет</span></figcaption>
+        </figure>
+        <figure class="frame">
+          <img src="assets/img/master-4.jpg" width="600" height="800" alt="Вера, мастер бровей" loading="lazy">
+          <figcaption><h3>Вера</h3><span class="role">Брови, стаж 5 лет</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="finale" id="kontakty">
+  <img src="assets/img/interior.jpg" width="1600" height="900" alt="Зал салона с большим окном, зеркалами и светлым деревом" loading="lazy">
+  <div class="finale-plate">
+    <h2>Приходите в «Шёлк»</h2>
+    <dl>
+      <div><dt>Адрес</dt><dd>Екатеринбург, ул. Малышева, 51, вход со двора</dd></div>
+      <div><dt>Часы работы</dt><dd>Ежедневно, 9:00-21:00</dd></div>
+      <div><dt>Телефон</dt><dd><a href="tel:+73432881740">+7 (343) 288-17-40</a></dd></div>
+      <div><dt>Telegram</dt><dd><a href="https://t.me/shelk_ekb">@shelk_ekb</a></dd></div>
+    </dl>
+    <a class="btn" href="https://t.me/shelk_ekb">Записаться</a>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <span class="foot-word">Шёлк</span>
+  <div class="foot-line">
+    <span>Салон красоты, Екатеринбург</span>
+    <a href="tel:+73432881740">+7 (343) 288-17-40</a>
+    <span>ул. Малышева, 51, вход со двора</span>
+    <span>9:00-21:00 без выходных</span>
+  </div>
+</footer>
+
+</body>
+</html>

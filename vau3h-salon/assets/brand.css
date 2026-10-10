@@ -1,0 +1,24 @@
+@import url("fonts/cormorant-garamond/fonts.css");
+@import url("fonts/manrope/fonts.css");
+
+:root {
+  --paper: #f3eee6;
+  --ink: #23201c;
+  --wine: #7a2e3a;
+  --sand: #c9b79c;
+  --oak: #6e4f36;
+  --plum: #5e3b35;
+  --tint: #e6dccd;
+  --swatch-1: #7a2e3a;
+  --swatch-2: #a4573f;
+  --swatch-3: #c9b79c;
+  --swatch-4: #7d5b40;
+  --swatch-5: #d8c3a6;
+  --swatch-6: #5e3b35;
+
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-text: "Manrope", system-ui, sans-serif;
+
+  --radius: 0;
+  --gutter: clamp(20px, 3.4vw, 48px);
+}
