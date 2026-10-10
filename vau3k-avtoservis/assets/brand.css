@@ -1,0 +1,58 @@
+/* Подъёмник: все данные бренда в одном файле.
+   Цвета, шрифты, радиусы, тени - только отсюда. Меняешь ради другого
+   автосервиса той же ниши - меняешь только этот файл и assets/img/logo.svg. */
+
+@import url("fonts/unbounded/fonts.css");
+@import url("fonts/ibm-plex-mono/fonts.css");
+@import url("fonts/geologica/fonts.css");
+
+:root {
+  /* ---- мир: тёмный цех ---- */
+  --fon: #2b2b2d;          /* фон страницы = цвет фона кадров превращения */
+  --fon-glub: #232325;     /* подложки, поля, плашки на фоне цеха */
+  --fon-line: #202022;     /* разделы, где нужен шаг тона */
+  --ink: #ecebe6;          /* текст */
+  --ink-dim: #9ba0a6;      /* вторичный текст, описания */
+  --ink-faint: #8d9196;    /* линии, неактивные подписи */
+  --accent: #f2c230;       /* сигнальный жёлтый: полосы, узлы, кнопка */
+  --accent-ink: #201d12;   /* текст на жёлтом */
+
+  /* ---- шрифты ---- */
+  --display: "Unbounded", "Geologica", system-ui, sans-serif;
+  --text: "Geologica", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* ---- форма и ритм ---- */
+  --r-s: 2px;
+  --r-m: 4px;
+  --r-l: 8px;
+  --pad: clamp(20px, 5vw, 72px);       /* поля страницы */
+  --line: 1px solid rgba(236, 235, 230, .14);
+  --line-s: 1px solid rgba(236, 235, 230, .26);
+  --ease: cubic-bezier(.16, 1, .3, 1); /* пружина expo.out */
+
+  /* ---- переменные каркасов (karkasy) ---- */
+  --k-display: var(--display);
+  --k-text: var(--text);
+  --k-mono: var(--mono);
+  --k-ink: var(--ink);
+  --k-dim: var(--ink-dim);
+  --k-line: rgba(236, 235, 230, .18);
+  --k-accent: var(--accent);
+  --k-accent-ink: var(--accent-ink);
+  --k-plashka: var(--fon-glub);
+  --k-plashka-ink: var(--ink);
+  --k-fon: var(--fon);
+  --k-ink-svet: var(--ink);
+}
+
+::selection { background: var(--accent); color: var(--accent-ink); }
+
+html {
+  scrollbar-color: #4a4a4d var(--fon);
+  scrollbar-width: thin;
+}
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--fon); }
+::-webkit-scrollbar-thumb { background: #4a4a4d; border: 3px solid var(--fon); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #6a6a6e; }
