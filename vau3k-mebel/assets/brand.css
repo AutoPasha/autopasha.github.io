@@ -1,0 +1,32 @@
+/* Бренд «Ясень»: все цвета, шрифты и радиусы только здесь.
+   Правка этого файла перекрашивает весь сайт: для ребрандинга меняются
+   переменные ниже, ничего больше трогать не нужно. */
+
+@import url("fonts/literata/fonts.css");
+@import url("fonts/onest/fonts.css");
+@import url("fonts/ibm-plex-mono/fonts.css");
+
+:root {
+  /* бумага: цвет взят пипеткой с угла кадра превращения (assets/kino/poster-d.jpg) */
+  --fon: #e4ddcd;
+  --fon-2: #dcd4c1;      /* бумага на тон темнее, для полей и плашек */
+  --fon-3: #d2c9b4;      /* бумага для вдавленных плашек */
+
+  --ink: #2a251f;        /* основной текст */
+  --ink-2: #5f4f3d;      /* второстепенный текст */
+  --line: #8a7a66;       /* линии чертежа */
+  --line-soft: rgba(138, 122, 102, .38);
+  --oreh: #5a3a22;       /* акцент, тёмный орех */
+
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --text: "Onest", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --r-s: 4px;
+  --r-m: 12px;
+  --r-l: 0px;
+
+  --gut: clamp(20px, 4.2vw, 40px);
+  --maxw: 1440px;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+}
