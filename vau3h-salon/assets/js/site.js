@@ -73,7 +73,7 @@
   function fitFoot() {
     foot.style.fontSize = '100px';
     const emWidth = textWidth(foot) / 100;
-    foot.style.fontSize = `${((footWrap.clientWidth * 0.97) / emWidth).toFixed(1)}px`;
+    foot.style.fontSize = `${((footWrap.clientWidth * 0.94) / emWidth).toFixed(1)}px`;
   }
 
   video.muted = true;
@@ -206,9 +206,8 @@
       });
       ScrollTrigger.create({
         trigger: fanStage.parentElement,
-        start: 'top top',
-        end: () => `+=${1.0 * innerHeight}`,
-        pin: fanStage,
+        start: 'top 95%',
+        end: 'top 25%',
         scrub: 0.6,
         invalidateOnRefresh: true,
         onUpdate: s => renderFan(s.progress)

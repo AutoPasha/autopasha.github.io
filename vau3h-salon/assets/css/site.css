@@ -297,6 +297,7 @@ p { margin: 0; }
 @media (max-width: 899px) {
   .hero-plate { left: var(--gutter); right: var(--gutter); width: auto; }
   .fan-hint { display: none; }
+  .fan-title { left: var(--gutter); right: var(--gutter); text-align: left; }
   .swatch { width: 88vw; left: 6vw; bottom: 16svh; height: clamp(60px, 9svh, 80px); }
   .frame { width: 74vw; }
   .film-strip { padding-left: 0; padding-right: 0; }
@@ -304,7 +305,7 @@ p { margin: 0; }
   .film-track::-webkit-scrollbar { display: none; }
   .frame { scroll-snap-align: center; }
   .film-stage { height: auto; padding: 14svh 0; }
-  .finale { height: auto; min-height: 100svh; padding: 0; display: flex; align-items: flex-end; }
+  .finale { height: auto; min-height: 0; padding: 30svh 0 0; display: flex; align-items: flex-end; }
   .finale > img { position: absolute; }
   .finale-plate { position: relative; right: auto; top: auto; margin: var(--gutter); width: auto; }
 }
@@ -312,3 +313,6 @@ p { margin: 0; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+
+/* картинки шапки не ловят точку: текст под закреплённой шапкой не считается закрытым фото */
+.site-head .logo img, .head-tel img { pointer-events: none; }
