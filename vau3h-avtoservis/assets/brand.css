@@ -1,0 +1,21 @@
+@import url("fonts/unbounded/fonts.css");
+@import url("fonts/geologica/fonts.css");
+@import url("fonts/ibm-plex-mono/fonts.css");
+
+:root {
+  --bg: #15171a;
+  --bg-2: #1c1f23;
+  --ink: #ecebe6;
+  --mute: #8b8e93;
+  --line: #2a2d32;
+  --line-2: #3a3e44;
+  --accent: #f2c230;
+  --accent-ink: #15171a;
+
+  --f-display: "Unbounded", "Geologica", sans-serif;
+  --f-text: "Geologica", "Unbounded", sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --r: 2px;
+  --gutter: clamp(20px, 4vw, 48px);
+}
