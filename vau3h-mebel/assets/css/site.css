@@ -350,7 +350,9 @@ img { display: block; max-width: 100%; height: auto; }
   height: 100%;
   object-fit: cover;
 }
-.swatch[aria-pressed="true"] .sw-img { outline: 1px solid currentColor; outline-offset: 8px; }
+/* выбранный образец становится спилом: фото в круг, надпись бежит кольцом вокруг, а не по фото */
+.sw-img img { clip-path: circle(71% at 50% 50%); transition: clip-path 0.6s ease; }
+.swatch[aria-pressed="true"] .sw-img img { clip-path: circle(35% at 50% 50%); }
 .sw-name {
   display: block;
   margin-top: 14px;
@@ -358,11 +360,8 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .ring {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 260px;
-  height: 260px;
-  margin: -130px 0 0 -130px;
+  inset: 0;
+  z-index: 2;
   overflow: hidden;
   pointer-events: none;
   opacity: 0;
@@ -467,7 +466,6 @@ img { display: block; max-width: 100%; height: auto; }
   .piece { grid-template-columns: 1fr; gap: 18px; }
   .piece-price { font-size: 44px; }
   .swatches { grid-template-columns: repeat(2, 1fr); gap: 44px 22px; margin-top: 6svh; }
-  .ring { left: 0; top: 0; width: 100%; height: 100%; margin: 0; }
   .ring text { font-size: 19px; }
 
   .final-media { min-height: 0; padding: 60svh 5vw 6svh; }
@@ -482,3 +480,6 @@ img { display: block; max-width: 100%; height: auto; }
   }
   .intro { display: none; }
 }
+
+/* логотип в шапке не считается фото над текстом при прокрутке; клик ловит ссылка вокруг */
+.brand img { pointer-events: none; }

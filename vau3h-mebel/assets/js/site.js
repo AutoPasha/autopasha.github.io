@@ -173,24 +173,27 @@
       onUpdate: (self) => { heroP = self.progress; },
     });
 
+    // экран не пустой с первого кадра: чертёж наполовину начерчен, низ фото и шаги уже видны
     gsap.timeline({
       scrollTrigger: { trigger: '.act-blue', start: 'top top', end: pct(desk ? 200 : 140), pin: true, scrub: true },
     })
-      .fromTo('.drawing .ln', { strokeDashoffset: 1 }, { strokeDashoffset: 0, duration: 0.4, stagger: 0.03, ease: 'none' }, 0)
-      .fromTo('.wardrobe', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.5, ease: 'none' }, 0.4)
+      .fromTo('.drawing .ln', { strokeDashoffset: 0.55 }, { strokeDashoffset: 0, duration: 0.4, stagger: 0.03, ease: 'none' }, 0)
+      .fromTo('.wardrobe', { clipPath: 'inset(55% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 0.5, ease: 'none' }, 0.4)
       .to('.dim-w', { y: -18, opacity: 0, duration: 0.4, ease: 'none' }, 0.55)
       .to('.dim-h', { x: -14, opacity: 0, duration: 0.4, ease: 'none' }, 0.55)
       .to('.dim-d', { y: 18, opacity: 0, duration: 0.4, ease: 'none' }, 0.55)
-      .fromTo('.steps li', { opacity: 0, x: 36 }, { opacity: 1, x: 0, stagger: 0.07, duration: 0.3, ease: 'none' }, 0.6)
-      .fromTo('.steps-note', { opacity: 0 }, { opacity: 1, duration: 0.2, ease: 'none' }, 0.9)
+      .fromTo('.steps li', { opacity: 0.4, x: 18 }, { opacity: 1, x: 0, stagger: 0.07, duration: 0.3, ease: 'none' }, 0.6)
+      .fromTo('.steps-note', { opacity: 0.4 }, { opacity: 1, duration: 0.2, ease: 'none' }, 0.9)
       .to('.drawing', { opacity: 0, duration: 0.25, ease: 'none' }, 0.85);
 
-    gsap.fromTo('.words .w', { opacity: 0.14 }, {
+    ScrollTrigger.create({ trigger: '.words-scene', start: 'top top', end: pct(desk ? 100 : 80), pin: true });
+    // слова начинают проявляться ещё на подходе, пока сцена въезжает
+    gsap.fromTo('.words .w', { opacity: 0.3 }, {
       opacity: 1,
       duration: 0.6,
       stagger: 0.05,
       ease: 'none',
-      scrollTrigger: { trigger: '.words-scene', start: 'top top', end: pct(desk ? 100 : 80), pin: true, scrub: true },
+      scrollTrigger: { trigger: '.words-scene', start: 'top 70%', end: pct(desk ? 130 : 100), scrub: true },
     });
   });
 
