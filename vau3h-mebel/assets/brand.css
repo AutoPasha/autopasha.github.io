@@ -1,0 +1,23 @@
+@import url("fonts/literata/fonts.css");
+@import url("fonts/onest/fonts.css");
+@import url("fonts/ibm-plex-mono/fonts.css");
+
+:root {
+  --paper: #efe9df;
+  --ink: #2a251f;
+  --line: #8a7a66;
+  --accent: #5a3a22;
+  --cream: #f7f2e9;
+
+  --oak: #d9bf98;
+  --ash: #e3ddd0;
+  --walnut: #5a3a22;
+  --birch: #f2eee6;
+
+  --font-display: "Literata", Georgia, "Times New Roman", serif;
+  --font-text: "Onest", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+
+  --radius: 0;
+  --hair: 1px;
+}
