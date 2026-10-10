@@ -502,7 +502,9 @@ a:hover { color: var(--pd-accent); }
   margin: clamp(26px, 3.6vw, 56px) auto 0;
 }
 .bp-top-view { max-width: 340px; margin-inline: auto; }
-.bp-up { width: 100%; height: auto; overflow: visible; pointer-events: none; }
+/* в потоке, а не абсолютом: иначе блок нулевой высоты и силуэт ложится на список работ */
+.bp-top-view { max-width: min(260px, 66vw); }
+.bp-up { position: relative; inset: auto; display: block; width: 100%; height: auto; overflow: visible; pointer-events: none; }
 .bp-up .bp-draw { stroke-width: 1.5; }
 
 .bp-list {
@@ -676,10 +678,13 @@ a:hover { color: var(--pd-accent); }
   backface-visibility: hidden;
   transition: transform .13s linear;
 }
-.t-top { top: 0; padding-bottom: .06em; transform-origin: 50% 100%; }
-.t-bot { bottom: 0; padding-top: .06em; transform-origin: 50% 0%; transform: rotateX(90deg); background: #2b323b; }
+/* у каждой половины своя половина буквы: строка во всю плитку, лишнее срезано.
+   Без этого на перещёлке буква видна дважды и строки табло налезают друг на друга */
+.t-top, .t-bot { overflow: hidden; line-height: 1.72; }
+.t-top { top: 0; align-items: flex-start; transform-origin: 50% 100%; }
+.t-bot { bottom: 0; align-items: flex-end; transform-origin: 50% 0%; background: #2b323b; }
 .tile.is-flip .t-top { transform: rotateX(-90deg); }
-.tile.is-flip .t-bot { transform: rotateX(0deg); }
+
 .board-note {
   margin: 18px 0 0;
   font-family: var(--pd-mono);
@@ -851,6 +856,12 @@ a:hover { color: var(--pd-accent); }
   .bp-row-price { order: 3; }
   .act1-cta .btn { flex: 1 1 auto; }
   .final-plate { padding: 20px; }
+}
+
+/* финал на телефоне: фото полосой над плашкой, а не тёмный экран целиком */
+@media (max-width: 899px) {
+  .final { min-height: 0; padding-top: 30svh; }
+  .final-shade { background: linear-gradient(180deg, rgba(13, 15, 17, .18) 0%, rgba(13, 15, 17, .3) 30%, rgba(13, 15, 17, .93) 78%); }
 }
 
 /* ---------- меньше движения ---------- */

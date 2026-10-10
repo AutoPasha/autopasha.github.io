@@ -405,7 +405,7 @@
       var tl = gsap.timeline({
         scrollTrigger: desk
           ? { trigger: '.bp-stage', start: 'top 76%', end: 'bottom 26%', scrub: .5 }
-          : { trigger: '.bp-top-view', start: 'top 74%', end: 'bottom 45%', scrub: .5 }
+          : { trigger: '.bp-top-view', start: 'top 88%', end: 'top 34%', scrub: .5 }  /* точки стоят, пока машина целиком в экране */
       });
       tl.to(sheets, { opacity: 1, duration: .8, ease: 'none' }, 0)
         .to(draws, { strokeDashoffset: 0, duration: 1.5, stagger: .09, ease: 'none' }, 0)
@@ -459,7 +459,8 @@
     tile.__top.textContent = ch;
     tile.classList.add('is-flip');
     window.setTimeout(function () { tile.__bot.textContent = ch; }, 62);
-    window.setTimeout(function () { if (settle) tile.classList.remove('is-flip'); }, 150);
+    /* верхняя половина складывается и встаёт с новой буквой на каждом шаге */
+    window.setTimeout(function () { tile.classList.remove('is-flip'); }, 70);
   }
 
   function flipRow(i, delay) {
