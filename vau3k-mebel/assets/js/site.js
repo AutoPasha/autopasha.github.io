@@ -104,7 +104,7 @@
     if (!im.naturalWidth) return;
 
     var iw = im.naturalWidth, ih = im.naturalHeight;
-    var k = (pw / ph < 1.2) ? Math.max(pw / iw, ph / ih) : Math.min(pw / iw, ph / ih);
+    var k = Math.max(pw / iw, ph / ih);   /* кадр всегда заполняет окно: края видео не видны */
     var dw = iw * k, dh = ih * k;
     ctx.drawImage(im, Math.round((pw - dw) / 2), Math.round((ph - dh) / 2), Math.round(dw), Math.round(dh));
   }
@@ -266,7 +266,7 @@
       var mm2 = gsap.matchMedia();
       mm2.add('(min-width: 900px)', function () {
         /* лента едет только если не помещается: на широких экранах все шаги видны сразу */
-        var nuzhno = function () { return track.scrollWidth - window.innerWidth; };
+        var nuzhno = function () { return track.scrollWidth + track.parentElement.getBoundingClientRect().left - window.innerWidth;   /* лента начинается не от края окна: докручиваем до последней карточки целиком */ };
         if (nuzhno() < 24) { gsap.set(track, { x: 0 }); return; }
         gsap.to(track, {
           x: function () { return -nuzhno(); },
