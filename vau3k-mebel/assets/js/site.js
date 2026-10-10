@@ -104,7 +104,7 @@
     if (!im.naturalWidth) return;
 
     var iw = im.naturalWidth, ih = im.naturalHeight;
-    var k = Math.min(pw / iw, ph / ih);
+    var k = (pw / ph < 1.2) ? Math.max(pw / iw, ph / ih) : Math.min(pw / iw, ph / ih);
     var dw = iw * k, dh = ih * k;
     ctx.drawImage(im, Math.round((pw - dw) / 2), Math.round((ph - dh) / 2), Math.round(dw), Math.round(dh));
   }

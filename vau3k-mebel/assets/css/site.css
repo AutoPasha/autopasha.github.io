@@ -340,7 +340,8 @@ html { scrollbar-color: var(--line) var(--fon); scrollbar-width: thin; }
 
   .kino { height: 380vh; }
   .kino-cv-center { align-items: start; padding-top: 6vh; }
-  .kino-cv-wrap { width: 94vw; }
+  .kino-cv-wrap { width: 100vw; aspect-ratio: 4 / 5; max-height: 46svh; -webkit-mask-image: radial-gradient(ellipse 70% 66% at 50% 50%, #000 62%, rgba(0,0,0,0) 100%); mask-image: radial-gradient(ellipse 70% 66% at 50% 50%, #000 62%, rgba(0,0,0,0) 100%); }
+  .kino-cv-center { padding-top: 64px; }
   .shkala {
     left: auto; right: 9px; top: 8vh; transform: none;
     height: 26vh;
@@ -352,6 +353,8 @@ html { scrollbar-color: var(--line) var(--fon); scrollbar-width: thin; }
     gap: 10px;
   }
   .scena-h, .scena-h2, .scena-podl { position: relative; z-index: 5; }
+  .scena-vnutri { position: relative; z-index: 6; }
+  .scena-h, .scena-h2 { background: var(--fon); box-shadow: 0 -22px 24px -6px var(--fon); }
   .scena-niz {
     background: var(--fon); padding-top: 12px; max-width: none;
     box-shadow: 0 -18px 26px -14px var(--fon);
@@ -359,7 +362,7 @@ html { scrollbar-color: var(--line) var(--fon); scrollbar-width: thin; }
   .scena-text { max-width: 40ch; }
   .scena-h { font-size: clamp(58px, 20vw, 104px); }
   .scena-h2 { font-size: clamp(36px, 11.5vw, 62px); }
-  .s2 .scena-vnutri { padding-top: 0; }
+  .s2 .scena-vnutri { padding-top: 0; justify-content: flex-end; align-items: flex-start; }
   .s3 .scena-vnutri { justify-content: flex-end; }
   .s3 .scena-niz { grid-template-columns: 1fr; gap: 12px; }
   .s3 .ceny-mini, .s3 .scena-text, .s3 .btn-linia { grid-column: 1; grid-row: auto; }
