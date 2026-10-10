@@ -238,6 +238,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+.strip__unit span::before { content: attr(data-t); }
 .strip__unit i {
   width: 9px;
   height: 9px;
@@ -608,3 +609,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .intro { display: none !important; }
   .strip__track { transform: none !important; }
 }
+
+/* логотип в шапке не считается фото над текстом при прокрутке; клик ловит ссылка вокруг */
+.top__logo img { pointer-events: none; }
