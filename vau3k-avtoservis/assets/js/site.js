@@ -187,9 +187,9 @@
       var x = x1 + (x2 - x1) * t;
       box.style.transform = 'translate3d(' + x.toFixed(1) + 'px,0,0)';
       if (paneli[0] && paneli[1]) {
-        paneli[0].style.opacity = (1 - t).toFixed(3);
+        paneli[0].style.opacity = Math.max(0, 1 - 2 * t).toFixed(3);   /* сначала уходит старый текст, потом входит новый: не налезают */
         paneli[0].style.transform = 'translate3d(0,' + (-36 * t).toFixed(1) + 'px,0)';
-        paneli[1].style.opacity = t.toFixed(3);
+        paneli[1].style.opacity = Math.max(0, 2 * t - 1).toFixed(3);
         paneli[1].style.transform = 'translate3d(0,' + (36 * (1 - t)).toFixed(1) + 'px,0)';
         paneli[1].style.pointerEvents = t > .6 ? 'auto' : 'none';
         paneli[0].style.pointerEvents = t > .4 ? 'none' : 'auto';
