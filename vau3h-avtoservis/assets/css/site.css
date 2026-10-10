@@ -596,7 +596,13 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
   .detail__figs { grid-template-columns: 1fr; }
 
   .final__plate { top: auto; bottom: calc(var(--gutter) + 15vw); }
-  .final__word { font-size: 13.4vw; }
+  .final__word { font-size: 12.6vw; line-height: 1; padding-bottom: 0.14em; }
+  .final__plate { bottom: calc(var(--gutter) + 18vw); }
+  /* лента идёт над плашкой, а не торчит из-под неё обрывками */
+  .strip--a { top: 15%; }
+  /* «ЗАВТРА 09:00 СВОБОДНО» в одну строку и на 360 */
+  .flap { font-size: clamp(11px, 3.5vw, 15px); flex-wrap: nowrap; }
+  .board { padding: 16px; }
 }
 
 @media (min-width: 900px) {
