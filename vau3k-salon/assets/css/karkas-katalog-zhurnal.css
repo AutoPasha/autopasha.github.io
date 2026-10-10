@@ -1,0 +1,144 @@
+/* Каркас «каталог журналом»: меню, цены, услуги, продукция.
+   Вместо ленты одинаковых карточек и сплита 50/50 — строки во всю ширину
+   крупным шрифтом, метка группы слева, между группами «разворот»: одно фото
+   крупно, подпись наезжает на край. Цвета и шрифты — через --k-* (README). */
+
+.kz {
+  --kz-ink: var(--k-ink, #17120f);
+  --kz-dim: var(--k-dim, rgba(23, 18, 15, .62));
+  --kz-line: var(--k-line, rgba(23, 18, 15, .2));
+  --kz-accent: var(--k-accent, #b23a18);
+  --kz-plashka: var(--k-plashka, #ede3d1);
+  color: var(--kz-ink);
+  padding: clamp(72px, 12vh, 160px) clamp(16px, 5vw, 88px);
+  position: relative;
+}
+
+.kz-h {
+  font-family: var(--k-display, Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(44px, 9vw, 168px);
+  line-height: .9;
+  letter-spacing: -.02em;
+  margin: 0 0 clamp(40px, 8vh, 120px);
+  max-width: 12ch;
+}
+.kz-h em { font-style: italic; color: var(--kz-accent); }
+
+.kz-gruppa {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(12px, 2vw, 32px);
+  margin-bottom: clamp(56px, 10vh, 140px);
+}
+.kz-metka {
+  grid-column: 1 / 4;
+  align-self: start;
+  position: sticky;
+  top: 18vh;
+  margin: 0;
+  font-family: var(--k-mono, ui-monospace, monospace);
+  font-size: 13px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--kz-dim);
+}
+.kz-spisok { grid-column: 4 / 13; list-style: none; margin: 0; padding: 0; }
+
+.kz-stroka {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas: "imya cena" "opis cena";
+  column-gap: 24px;
+  align-items: baseline;
+  padding: clamp(16px, 2.4vh, 28px) 0;
+  border-top: 1px solid var(--kz-line);
+  transition: opacity .35s ease, transform .35s ease;
+}
+.kz-stroka:last-child { border-bottom: 1px solid var(--kz-line); }
+.kz-imya {
+  grid-area: imya;
+  font-family: var(--k-display, Georgia, serif);
+  font-size: clamp(26px, 3.4vw, 60px);
+  line-height: 1.02;
+  letter-spacing: -.01em;
+}
+.kz-opis { grid-area: opis; margin-top: 8px; font-size: 15px; line-height: 1.45; color: var(--kz-dim); max-width: 48ch; }
+.kz-cena {
+  grid-area: cena;
+  font-family: var(--k-mono, ui-monospace, monospace);
+  font-size: clamp(15px, 1.3vw, 20px);
+  white-space: nowrap;
+}
+.kz-mini { display: none; }
+
+/* разворот: одно фото крупно, подпись наезжает на край */
+.kz-razvorot { position: relative; margin: 0 0 clamp(56px, 10vh, 140px); width: 64%; }
+.kz-razvorot--r { margin-left: auto; width: 52%; }
+.kz-razvorot .kz-ramka { overflow: hidden; aspect-ratio: 16 / 10; }
+.kz-razvorot--r .kz-ramka { aspect-ratio: 4 / 5; }
+.kz-razvorot img { width: 100%; height: 118%; object-fit: cover; display: block; }
+.kz-razvorot figcaption {
+  position: absolute;
+  right: -30%;
+  bottom: 12%;
+  width: min(380px, 42%);
+  background: var(--kz-plashka);
+  color: var(--k-plashka-ink, #17120f);
+  padding: 22px 24px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.kz-razvorot--r figcaption { right: auto; left: -34%; bottom: 18%; }
+.kz-razvorot figcaption b {
+  display: block;
+  font-family: var(--k-display, Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(22px, 2vw, 32px);
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+.kz-razvorot figcaption .kz-cena { display: block; margin-top: 10px; }
+
+/* фото за курсором: одно на секцию, только мышь */
+.kz-sled {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 22vw;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 5;
+}
+
+@media (hover: hover) and (min-width: 900px) {
+  .kz-spisok:hover .kz-stroka { opacity: .35; }
+  .kz-spisok:hover .kz-stroka:hover { opacity: 1; transform: translateX(14px); }
+}
+
+@media (max-width: 899px) {
+  .kz-gruppa { display: block; }
+  .kz-metka { position: static; margin-bottom: 14px; }
+  .kz-stroka {
+    grid-template-columns: minmax(0, 1fr) 72px;
+    grid-template-areas: "imya mini" "opis mini" "cena mini";
+    column-gap: 16px;
+    align-items: start;
+  }
+  .kz-cena { margin-top: 8px; }
+  .kz-mini { display: block; grid-area: mini; width: 72px; height: 72px; object-fit: cover; }
+  .kz-razvorot, .kz-razvorot--r { width: auto; margin-left: calc(-1 * clamp(16px, 5vw, 88px)); margin-right: calc(-1 * clamp(16px, 5vw, 88px)); }
+  .kz-razvorot .kz-ramka, .kz-razvorot--r .kz-ramka { aspect-ratio: 4 / 3; }
+  .kz-razvorot figcaption, .kz-razvorot--r figcaption {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: auto;
+    margin: -44px 16px 0 clamp(16px, 5vw, 88px);
+  }
+  .kz-sled { display: none; }
+}

@@ -1,0 +1,74 @@
+/* Шёлк, салон красоты. Все цвета, шрифты и радиусы бренда здесь. */
+
+@import url("fonts/cormorant-garamond/fonts.css");
+@import url("fonts/manrope/fonts.css");
+
+:root {
+  /* бумага: цвет фона кадров превращения, пипетка с угла poster-d.jpg */
+  --bg: #e9e3d0;
+  --bg-2: #f3eee6;
+  --bg-3: #efe8da;
+
+  /* чернила */
+  --ink: #23201c;
+  --ink-dim: #5f584e;
+  --ink-faint: #665e51;
+
+  /* акцент и линии */
+  --wine: #7a2e3a;
+  --wine-deep: #5e222c;
+  --sand: #c9b79c;
+  --line: rgba(35, 32, 28, .17);
+  --line-soft: rgba(35, 32, 28, .09);
+
+  /* шрифты */
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* радиусы: мир бумажный, углы почти прямые */
+  --r-s: 2px;
+  --r-m: 5px;
+  --r-l: 12px;
+
+  /* ритм */
+  --pad: 40px;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+
+  /* глубина: смещение есть, размытие большое */
+  --shadow: 0 26px 60px -34px rgba(35, 32, 28, .55);
+
+  /* переменные каркаса каталога */
+  --k-display: var(--serif);
+  --k-text: var(--sans);
+  --k-mono: var(--sans);
+  --k-ink: var(--ink);
+  --k-dim: var(--ink-dim);
+  --k-line: var(--line);
+  --k-accent: var(--wine);
+  --k-plashka: var(--bg-2);
+  --k-plashka-ink: var(--ink);
+  --k-fon: var(--bg-2);
+  --k-ink-svet: var(--bg-2);
+}
+
+@media (max-width: 899px) {
+  :root { --pad: 20px; }
+}
+
+::selection { background: var(--wine); color: var(--bg-2); }
+
+:focus-visible {
+  outline: 2px solid var(--wine);
+  outline-offset: 3px;
+  border-radius: var(--r-s);
+}
+
+html {
+  scrollbar-color: var(--sand) var(--bg);
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--sand); border: 3px solid var(--bg); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--wine); }
