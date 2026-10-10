@@ -31,7 +31,7 @@
   var stick, wrap, cv, ctx, railI, railN;
   var TOTAL = 273;
   var SC0 = 91;
-  var POS_DESK = [{ x: 16, y: 0, s: 1 }, { x: -16, y: 1, s: 1.03 }, { x: 0, y: 11, s: 0.8 }];
+  var POS_DESK = [{ x: 0, y: 0, s: 1 }, { x: 0, y: 0, s: 1.04 }, { x: 0, y: 0, s: 1.08 }];   /* во весь экран: медленный наезд камеры вместо переезда кадра */
   var POS_MOB = [{ x: 0, y: 0, s: 1 }, { x: 0, y: -1.5, s: 0.97 }, { x: 0, y: -3, s: 0.93 }];
   var imgs = [], ok = [], lastIdx = -1, W = 0, H = 0, cur = 0, tgt = 0, inView = true, queue = [], busy = 0;
   var kinoTexts = [];
@@ -100,8 +100,8 @@
       if (k === si) {
         if (reduced) { o = 1; }
         else {
-          var inn = k === 0 ? 1 : smooth(clamp01(l / 0.15));
-          var outt = 1 - smooth(clamp01((l - (k === 2 ? 0.985 : 0.85)) / 0.15));
+          var inn = k === 0 ? 1 : smooth(clamp01(l / 0.08));
+          var outt = 1 - smooth(clamp01((l - (k === 2 ? 0.985 : 0.92)) / 0.08));
           o = inn * outt;
           ty = (1 - inn) * 52 - (1 - outt) * 52;
         }

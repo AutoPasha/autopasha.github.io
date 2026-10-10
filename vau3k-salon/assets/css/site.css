@@ -172,7 +172,7 @@ ul, ol { list-style: none; padding: 0; }
 .kino-canvas canvas { position: relative; z-index: 1; }
 
 .kino-text { position: absolute; inset: 0; z-index: 4; pointer-events: none; }
-.kino-text h2, .kino-text p, .kino-text a, .kino-text div { pointer-events: auto; }
+.kino-text h1, .kino-text h2, .kino-text p, .kino-text a, .kino-text div { pointer-events: auto; }
 
 .kino-h .stroka { display: block; overflow: hidden; padding-bottom: .08em; }
 .kino-h .stroka > span { display: inline-block; }
@@ -279,7 +279,7 @@ ul, ol { list-style: none; padding: 0; }
 .mast-stroka:hover b { font-style: italic; }
 
 /* ---------- запись ---------- */
-.zapis { padding: clamp(64px, 8vh, 120px) 0; }
+.zapis { padding-block: clamp(64px, 8vh, 120px); }
 .zapis-vn { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: clamp(36px, 6vw, 96px); align-items: start; }
 .zapis-h { font: 400 clamp(44px, 5.6vw, 92px)/.94 var(--serif); letter-spacing: -.025em; max-width: 10ch; }
 .zapis-shagi { margin-top: clamp(30px, 4vh, 54px); }
@@ -330,7 +330,7 @@ ul, ol { list-style: none; padding: 0; }
 .finale-rows a, .finale-rows p { font-size: 18px; line-height: 1.45; margin: 0; }
 .finale-logo { margin-top: clamp(28px, 5vh, 60px); }
 .finale-logo img { width: 100%; height: auto; }
-.finale-niz { display: flex; justify-content: space-between; align-items: baseline; gap: 16px 32px; flex-wrap: wrap; padding: 20px 0 26px; font-size: 14px; color: var(--ink-faint); }
+.finale-niz { display: flex; justify-content: space-between; align-items: baseline; gap: 16px 32px; flex-wrap: wrap; padding-block: 20px 26px; font-size: 14px; color: var(--ink-faint); }
 .finale-niz i { font: 400 clamp(19px, 2vw, 28px)/1.2 var(--serif); font-style: normal; color: var(--ink-dim); }/* ---------- окно: геометрия закрепления ---------- */
 @media (min-width: 900px) {
   .okno { height: 240vh; }
@@ -400,6 +400,7 @@ ul, ol { list-style: none; padding: 0; }
   .mast-stroka i { text-align: left; grid-column: 1 / -1; }
 
   .zapis-vn { grid-template-columns: minmax(0, 1fr); }
+  .finale { padding-top: 72px; min-height: 0; }
   .finale-rows { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 26px; }
   .finale-rows a, .finale-rows p { font-size: 16px; }
 }
@@ -443,3 +444,23 @@ ul, ol { list-style: none; padding: 0; }
 .hap-slovo { font: 400 34px/1 var(--serif); letter-spacing: -.02em; color: var(--ink); }
 @media (max-width: 899px) { .hap-slovo { font-size: 28px; } }
 .finale-slovo { font: 400 clamp(110px, 26vw, 420px)/.9 var(--serif); letter-spacing: -.04em; color: var(--ink); }
+
+/* ---------- компьютер: кино во весь экран (10.10, Павел: «видосы обрезаны, нет чувства кино») ----------
+   Видео занимает всё окно: края кадра совпадают с краями экрана, рамки и обреза не видно.
+   Текст лежит на мягкой подложке цвета страницы со своей стороны и не спорит с кадром. */
+@media (min-width: 900px) {
+  .kino-canvas { top: 0; left: 0; translate: none; width: 100%; height: 100svh; }
+  .kino-canvas canvas, .kino-canvas .kino-post {
+    width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover;
+    -webkit-mask-image: none; mask-image: none;
+  }
+  .kino-text::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .kino-t0::before { background: linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 82%, transparent) 30%, transparent 52%); }
+  .kino-t1::before { background: linear-gradient(270deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 82%, transparent) 32%, transparent 55%); }
+  .kino-t2::before { background: linear-gradient(180deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 60%, transparent) 15%, transparent 28%), linear-gradient(25deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 70%, transparent) 20%, transparent 36%); }
+  .kino-t0 .kino-b, .kino-t1 .kino-b { max-width: min(460px, 32vw); }
+}
+
+@media (min-width: 900px) { .men { display: none; } }   /* меню только для телефона: на компьютере кнопки нет */
+.hap img { pointer-events: none; }
+body.menu-open .men { visibility: visible; }   /* меню открывается по кнопке: раньше панель оставалась скрытой */
