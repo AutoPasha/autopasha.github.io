@@ -259,26 +259,61 @@
     });
   }
 
-  /* ---------------- лента шагов ---------------- */
+  /* ---------------- параллакс и наезды фото в новых разделах ---------------- */
   if (!reduced) {
-    var track = $('#shagiTrack');
-    if (track) {
-      var mm2 = gsap.matchMedia();
-      mm2.add('(min-width: 900px)', function () {
-        /* лента едет только если не помещается: на широких экранах все шаги видны сразу */
-        var nuzhno = function () { return track.scrollWidth + track.parentElement.getBoundingClientRect().left - window.innerWidth;   /* лента начинается не от края окна: докручиваем до последней карточки целиком */ };
-        if (nuzhno() < 24) { gsap.set(track, { x: 0 }); return; }
-        gsap.to(track, {
-          x: function () { return -nuzhno(); },
-          ease: 'none',
-          scrollTrigger: {
-            trigger: '.shagi', start: 'top top',
-            end: function () { return '+=' + nuzhno(); },
-            pin: '.shagi-stick', scrub: 0.6, invalidateOnRefresh: true, anticipatePin: 1
-          }
-        });
-      });
-    }
+    var mm2 = gsap.matchMedia();
+    mm2.add('(min-width: 900px)', function () {
+      /* Услуги */
+      var uslugiImg = $('.uslugi-foto-wrap img');
+      if (uslugiImg) {
+        gsap.fromTo(uslugiImg,
+          { scale: 1.05 },
+          {
+            scale: 1, ease: 'none',
+            scrollTrigger: { trigger: '#uslugi', start: 'top top', end: 'bottom bottom', scrub: 0.8 }
+          });
+      }
+      /* Массив */
+      var lesImg = $('.les-foto-wrap img');
+      if (lesImg) {
+        gsap.fromTo(lesImg,
+          { scale: 1.05 },
+          {
+            scale: 1, ease: 'none',
+            scrollTrigger: { trigger: '#les', start: 'top top', end: 'bottom bottom', scrub: 0.8 }
+          });
+      }
+      /* Шаги */
+      var shagiImg = $('.shagi-foto-wrap img');
+      if (shagiImg) {
+        gsap.fromTo(shagiImg,
+          { scale: 1.05 },
+          {
+            scale: 1, ease: 'none',
+            scrollTrigger: { trigger: '#kak', start: 'top top', end: 'bottom bottom', scrub: 0.8 }
+          });
+      }
+      /* Цены */
+      var cenyImg = $('.ceny-foto-wrap img');
+      if (cenyImg) {
+        gsap.fromTo(cenyImg,
+          { scale: 1.05 },
+          {
+            scale: 1, ease: 'none',
+            scrollTrigger: { trigger: '#ceny', start: 'top top', end: 'bottom bottom', scrub: 0.8 }
+          });
+      }
+      /* Запись */
+      var zapisImg = $('.zapis-foto-wrap img');
+      if (zapisImg) {
+        gsap.fromTo(zapisImg,
+          { scale: 1.05 },
+          {
+            scale: 1, ease: 'none',
+            scrollTrigger: { trigger: '#zapis', start: 'top top', end: 'bottom bottom', scrub: 0.8 }
+          });
+      }
+    });
   }
 
   /* ---------------- цены: цифры перелистываются ---------------- */
@@ -309,22 +344,105 @@
     });
   });
 
-  /* ---------------- появление блоков ---------------- */
+  /* ---------------- появление блоков в новых разделах ---------------- */
   if (!reduced) {
-    $$('.uslugi-tekst > *, .les-tekst > *, .ceny-golova > *, .zapis-forma > *, .otzyv > *, .podval-verh, .shagi-golovka').forEach(function (el) {
+    /* Заголовки и текст услуг */
+    $$('.uslugi-title, .uslugi-lead').forEach(function (el) {
+      gsap.set(el, { opacity: 0, y: 20 });
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%',
+        onEnter: function () {
+          gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', overwrite: 'auto' });
+        }
+      });
+    });
+    /* Элементы услуг */
+    $$('.uslugi-item').forEach(function (el, i) {
+      gsap.set(el, { opacity: 0, y: 20 });
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.8, ease: 'expo.out', delay: i * 0.08,
+        scrollTrigger: { trigger: '#uslugi', start: 'top 75%' }
+      });
+    });
+
+    /* Заголовки и текст массива */
+    $$('.les-title, .les-lead').forEach(function (el) {
+      gsap.set(el, { opacity: 0, y: 20 });
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%',
+        onEnter: function () {
+          gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', overwrite: 'auto' });
+        }
+      });
+    });
+    /* Порода дерева */
+    $$('.les-poroda').forEach(function (el, i) {
+      gsap.set(el, { opacity: 0, y: 16 });
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.75, ease: 'expo.out', delay: i * 0.06,
+        scrollTrigger: { trigger: '#les', start: 'top 75%' }
+      });
+    });
+
+    /* Заголовки и текст шагов */
+    $$('.shagi-title, .shagi-lead').forEach(function (el) {
+      gsap.set(el, { opacity: 0, y: 20 });
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%',
+        onEnter: function () {
+          gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', overwrite: 'auto' });
+        }
+      });
+    });
+    /* Шаги работы */
+    $$('.shagi-item').forEach(function (el, i) {
+      gsap.set(el, { opacity: 0, y: 16 });
+      gsap.to(el, {
+        opacity: 1, y: 0, duration: 0.75, ease: 'expo.out', delay: i * 0.06,
+        scrollTrigger: { trigger: '#kak', start: 'top 75%' }
+      });
+    });
+
+    /* Заголовки и текст цен */
+    $$('.ceny-title, .ceny-lead').forEach(function (el) {
+      gsap.set(el, { opacity: 0, y: 20 });
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%',
+        onEnter: function () {
+          gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', overwrite: 'auto' });
+        }
+      });
+    });
+
+    /* Заголовки и текст записи */
+    $$('.zapis-title, .zapis-lead').forEach(function (el) {
+      gsap.set(el, { opacity: 0, y: 20 });
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%',
+        onEnter: function () {
+          gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', overwrite: 'auto' });
+        }
+      });
+    });
+    /* Форма и отзыв */
+    $$('.zapis-forma, .otzyv').forEach(function (el) {
+      gsap.set(el, { opacity: 0, y: 20 });
+      ScrollTrigger.create({
+        trigger: el, start: 'top 85%',
+        onEnter: function () {
+          gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', overwrite: 'auto' });
+        }
+      });
+    });
+
+    /* Подвал */
+    $$('.podval-verh').forEach(function (el) {
       gsap.set(el, { opacity: 0, y: 20 });
       ScrollTrigger.create({
         trigger: el, start: 'top 90%',
         onEnter: function () {
           gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', overwrite: 'auto' });
         }
-      });
-    });
-    $$('.shagi-shag').forEach(function (el, i) {
-      gsap.set(el, { opacity: 0, y: 26 });
-      gsap.to(el, {
-        opacity: 1, y: 0, duration: 0.9, ease: 'expo.out', delay: i * 0.05,
-        scrollTrigger: { trigger: '.shagi-track', start: 'top 86%' }
       });
     });
   }
@@ -360,5 +478,31 @@
     document.fonts.ready.then(function () { ScrollTrigger.refresh(); });
   }
   window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+
+
+  /* ---------- анимация полноэкранных карточек ---------- */
+  if (!reduced) {
+    $$('.card-full').forEach(function (card) {
+      var bg = card.querySelector('.card-full-bg');
+      var overlay = card.querySelector('.card-full-overlay');
+      
+      if (bg) {
+        gsap.fromTo(bg, { scale: 1.04 }, {
+          scale: 1, ease: 'none',
+          scrollTrigger: { trigger: card, start: 'top top', end: 'bottom bottom', scrub: 0.8 }
+        });
+      }
+      
+      if (overlay) {
+        gsap.set(overlay, { opacity: 0, y: 30 });
+        ScrollTrigger.create({
+          trigger: card, start: 'top 85%',
+          onEnter: function () {
+            gsap.to(overlay, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', overwrite: 'auto' });
+          }
+        });
+      }
+    });
+  }
 
 })();

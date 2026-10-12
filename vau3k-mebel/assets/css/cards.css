@@ -1,0 +1,114 @@
+/* Полноэкранные карточки разделов */
+.card-full {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+.card-full-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+}
+
+.card-full-overlay {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: clamp(40px, 8vh, 80px) 0;
+  background: var(--fon);
+  margin-top: auto;
+}
+
+.card-full-overlay .wrap {
+  padding-left: var(--gut);
+  padding-right: var(--gut);
+  max-width: var(--maxw);
+  margin: 0 auto;
+  min-width: 0;
+}
+
+.card-full-overlay .wrap h2 {
+  font-family: var(--display);
+  font-size: clamp(56px, 10vw, 110px);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  margin: 0 0 clamp(16px, 2vh, 28px) 0;
+  font-weight: 400;
+}
+
+.card-full-overlay .wrap .price {
+  font-family: var(--mono);
+  font-size: clamp(20px, 3vw, 40px);
+  color: var(--oreh);
+  margin: 0 0 clamp(12px, 1.5vh, 20px) 0;
+  font-weight: 400;
+  display: block;
+}
+
+.card-full-overlay .wrap p:not(.price) {
+  font-size: clamp(14px, 1.1vw, 18px);
+  color: var(--ink-2);
+  max-width: 50ch;
+  line-height: 1.62;
+  margin: 0;
+}
+
+/* Десктоп: фото слева, текст справа */
+@media (min-width: 900px) {
+  .card-full {
+    align-items: center;
+    justify-content: flex-end;
+  }
+  
+  .card-full-bg {
+    width: 50%;
+  }
+  
+  .card-full-overlay {
+    width: 50%;
+    padding: clamp(60px, 10vh, 120px) clamp(40px, 6vw, 80px);
+    margin-top: 0;
+    background: var(--fon);
+  }
+}
+
+/* Телефон: фото сверху, текст снизу */
+@media (max-width: 899px) {
+  .card-full {
+    align-items: flex-end;
+  }
+  
+  .card-full-bg {
+    width: 100%;
+  }
+  
+  .card-full-overlay {
+    width: 100%;
+    padding: clamp(30px, 5vh, 50px) var(--gut);
+  }
+  
+  .card-full-overlay .wrap {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+/* prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .card-full {
+    scroll-snap-align: none;
+  }
+}
+
+/* на ноутбуке подложка в полэкрана: заголовок по её ширине, без обрезки краем */
+@media (min-width: 900px) {
+  .card-full-overlay .wrap h2 { font-size: clamp(48px, 5.6vw, 100px); text-wrap: balance; overflow-wrap: break-word; }
+}

@@ -176,76 +176,322 @@ html { scrollbar-color: var(--line) var(--fon); scrollbar-width: thin; }
 .lead { color: var(--ink-2); max-width: 46ch; font-size: clamp(16px, 1.2vw, 19px); }
 
 /* что делаем */
-.uslugi-in { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(30px, 5vw, 72px); }
-.uslugi-foto { margin: 0; }
-.uslugi-foto img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; background: var(--fon-2); }
-.uslugi-foto figcaption { margin-top: 12px; font-size: 14px; color: var(--ink-2); }
-.uslugi-tekst { display: grid; gap: 22px; align-content: start; }
-.stroki { display: grid; }
-.stroka {
-  display: grid; grid-template-columns: minmax(120px, 1fr) 1.6fr auto; gap: 18px; align-items: baseline;
-  padding: 20px 6px; border-bottom: 1px solid var(--line-soft);
-  transition: color .3s var(--ease), transform .55s var(--ease);
+.uslugi { padding: 0; }
+.uslugi-bg {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
-.stroka:first-child { border-top: 1px solid var(--line-soft); }
-.stroka:hover { transform: translateX(10px); }
-.stroka-n { font-family: var(--display); font-size: clamp(19px, 1.7vw, 26px); letter-spacing: -0.015em; }
-.stroka-t { font-size: 15px; color: var(--ink-2); }
-.stroka-c { font-family: var(--mono); font-size: 14px; color: var(--oreh); white-space: nowrap; }
-.uslugi-smek { font-size: 15px; color: var(--ink-2); max-width: 44ch; }
+.uslugi-foto-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.uslugi-foto-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.uslugi-tekst-wrap {
+  position: relative;
+  z-index: 2;
+  padding: clamp(40px, 8vh, 80px) 0;
+  background: var(--fon);
+}
+.uslugi-title {
+  font-size: clamp(48px, 6vw, 96px);
+  line-height: 1.04;
+  margin-bottom: clamp(20px, 3vh, 40px);
+}
+.uslugi-lead {
+  font-size: clamp(15px, 1.1vw, 18px);
+  max-width: 50ch;
+  margin-bottom: clamp(30px, 4vh, 50px);
+}
+.uslugi-items {
+  display: grid;
+  gap: clamp(24px, 3.5vh, 42px);
+  max-width: 540px;
+  margin-bottom: clamp(20px, 3vh, 40px);
+}
+.uslugi-item {
+  display: grid;
+  gap: 8px;
+}
+.uslugi-item-n {
+  font-family: var(--display);
+  font-size: clamp(26px, 2.8vw, 42px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.uslugi-item-t {
+  font-size: clamp(15px, 1.05vw, 17px);
+  color: var(--ink-2);
+  max-width: 48ch;
+}
+.uslugi-item-c {
+  font-family: var(--mono);
+  font-size: clamp(15px, 1.1vw, 18px);
+  color: var(--oreh);
+  margin-top: 2px;
+}
+.uslugi-smek {
+  font-size: 15px;
+  color: var(--ink-2);
+  max-width: 44ch;
+}
 
 /* массив и цех */
-.les { background: var(--fon-2); }
-.les-in { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(30px, 5vw, 64px); align-items: start; }
-.les-tekst { display: grid; gap: 20px; }
-.porody { display: grid; }
-.porody li {
-  display: grid; grid-template-columns: 1fr 1.5fr auto; gap: 14px; align-items: baseline;
-  padding: 14px 6px; border-bottom: 1px solid var(--line-soft);
+.les { padding: 0; }
+.les-bg {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
-.porody li:first-child { border-top: 1px solid var(--line-soft); }
-.poroda-n { font-family: var(--display); font-size: 22px; }
-.poroda-c { font-size: 14px; color: var(--ink-2); }
-.poroda-f { font-family: var(--mono); font-size: 13px; color: var(--oreh); white-space: nowrap; }
-.les-itog { font-size: 16px; color: var(--ink-2); max-width: 42ch; }
-.les-foto { margin: 0; width: 100%; }
-.les-foto img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: var(--fon-3); }
-.les-podpis { display: flex; justify-content: space-between; gap: 16px; margin-top: 12px; font-size: 12px; color: var(--ink-2); }
-.les-foto-c { color: var(--ink-2); }
+.les-foto-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.les-foto-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.les-tekst-wrap {
+  position: relative;
+  z-index: 2;
+  padding: clamp(40px, 8vh, 80px) 0;
+  background: var(--fon);
+  margin-left: auto;
+}
+.les-title {
+  font-size: clamp(48px, 6vw, 96px);
+  line-height: 1.04;
+  margin-bottom: clamp(20px, 3vh, 40px);
+}
+.les-lead {
+  font-size: clamp(15px, 1.1vw, 18px);
+  max-width: 50ch;
+  margin-bottom: clamp(30px, 4vh, 50px);
+}
+.les-porody {
+  display: grid;
+  gap: 0;
+  max-width: 540px;
+  margin-bottom: clamp(20px, 3vh, 40px);
+}
+.les-poroda {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: clamp(12px, 2vw, 24px);
+  align-items: baseline;
+  padding: clamp(12px, 2vh, 18px) 0;
+  border-bottom: 1px solid var(--line-soft);
+}
+.les-poroda:first-child { border-top: 1px solid var(--line-soft); }
+.les-poroda-n {
+  font-family: var(--display);
+  font-size: clamp(20px, 2vw, 28px);
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+.les-poroda-c {
+  font-size: clamp(14px, 1vw, 16px);
+  color: var(--ink-2);
+}
+.les-poroda-f {
+  font-family: var(--mono);
+  font-size: clamp(13px, 0.95vw, 16px);
+  color: var(--oreh);
+  white-space: nowrap;
+}
+.les-itog {
+  font-size: 15px;
+  color: var(--ink-2);
+  max-width: 42ch;
+}
 
 /* шаги */
-.shagi { padding-block: 0; background: var(--fon); }
-.shagi-stick { position: relative; overflow: hidden; }
-.shagi-golovka { padding-block: clamp(60px, 9vh, 110px) clamp(24px, 4vh, 44px); display: grid; gap: 16px; }
-.shagi-lead { max-width: 40ch; }
-.shagi-lenta { padding-bottom: clamp(60px, 9vh, 110px); }
-.shagi-track { display: grid; gap: 0; }
-.shagi-shag {
-  display: grid; gap: 14px; align-content: start;
-  padding: 26px 0; border-top: 1px solid var(--line-soft);
+.shagi { padding: 0; }
+.shagi-bg {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
-.shagi-n { font-family: var(--display); font-size: clamp(26px, 3vw, 46px); letter-spacing: -0.02em; }
-.shagi-shag p { color: var(--ink-2); max-width: 34ch; font-size: 15px; }
-.shagi-srok { font-size: 13px; color: var(--oreh); }
+.shagi-foto-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.shagi-foto-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.shagi-tekst-wrap {
+  position: relative;
+  z-index: 2;
+  padding: clamp(40px, 8vh, 80px) 0;
+  background: var(--fon);
+}
+.shagi-title {
+  font-size: clamp(48px, 6vw, 96px);
+  line-height: 1.04;
+  margin-bottom: clamp(20px, 3vh, 40px);
+}
+.shagi-lead {
+  font-size: clamp(15px, 1.1vw, 18px);
+  max-width: 50ch;
+  margin-bottom: clamp(30px, 4vh, 50px);
+}
+.shagi-items {
+  display: grid;
+  gap: 0;
+  max-width: 540px;
+}
+.shagi-item {
+  display: grid;
+  gap: 10px;
+  padding: clamp(20px, 3vh, 28px) 0;
+  border-top: 1px solid var(--line-soft);
+}
+.shagi-item:last-child { border-bottom: 1px solid var(--line-soft); }
+.shagi-item-n {
+  font-family: var(--display);
+  font-size: clamp(24px, 2.6vw, 40px);
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+.shagi-item p {
+  font-size: clamp(14px, 1vw, 16px);
+  color: var(--ink-2);
+  max-width: 48ch;
+}
+.shagi-item-srok {
+  font-size: clamp(12px, 0.95vw, 14px);
+  color: var(--oreh);
+}
 
 /* цены */
-.ceny-golova { display: grid; gap: 18px; margin-bottom: clamp(28px, 5vh, 56px); }
-.ceny-spisok { display: grid; }
+.ceny { padding: 0; }
+.ceny-bg {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.ceny-foto-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.ceny-foto-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.ceny-tekst-wrap {
+  position: relative;
+  z-index: 2;
+  padding: clamp(40px, 8vh, 80px) 0;
+  background: var(--fon);
+  margin-left: auto;
+}
+.ceny-title {
+  font-size: clamp(48px, 6vw, 96px);
+  line-height: 1.04;
+  margin-bottom: clamp(20px, 3vh, 40px);
+}
+.ceny-lead {
+  font-size: clamp(15px, 1.1vw, 18px);
+  max-width: 50ch;
+  margin-bottom: clamp(30px, 4vh, 50px);
+}
+.ceny-spisok {
+  display: grid;
+  gap: 0;
+  max-width: 540px;
+  margin-bottom: clamp(20px, 3vh, 40px);
+}
 .ceny-stroka {
-  display: grid; grid-template-columns: minmax(140px, 1fr) 1.4fr auto; gap: 18px; align-items: baseline;
-  padding: clamp(14px, 2vh, 22px) 6px; border-top: 1px solid var(--line-soft);
+  display: grid;
+  gap: clamp(8px, 1.2vw, 14px);
+  padding: clamp(16px, 2.2vh, 24px) 0;
+  border-top: 1px solid var(--line-soft);
 }
 .ceny-stroka:last-child { border-bottom: 1px solid var(--line-soft); }
-.ceny-n { font-family: var(--display); font-size: clamp(19px, 1.9vw, 30px); letter-spacing: -0.015em; }
-.ceny-sost { font-size: 15px; color: var(--ink-2); }
-.ceny-c { font-size: clamp(17px, 1.8vw, 26px); color: var(--oreh); white-space: nowrap; }
-.ceny-smek { margin-top: 22px; font-size: 15px; color: var(--ink-2); max-width: 48ch; }
+.ceny-n {
+  font-family: var(--display);
+  font-size: clamp(22px, 2.2vw, 36px);
+  letter-spacing: -0.015em;
+  line-height: 1.08;
+}
+.ceny-sost {
+  font-size: clamp(13px, 1vw, 15px);
+  color: var(--ink-2);
+}
+.ceny-c {
+  font-size: clamp(16px, 1.6vw, 24px);
+  color: var(--oreh);
+  white-space: nowrap;
+  margin-top: 2px;
+}
+.ceny-smek {
+  font-size: 15px;
+  color: var(--ink-2);
+  max-width: 48ch;
+}
 
 /* запись */
-.zapis { background: var(--fon-2); }
-.zapis-in { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(30px, 5vw, 72px); }
-.zapis-forma { display: grid; gap: 18px; align-content: start; }
-.forma { display: grid; gap: 16px; max-width: 520px; margin-top: 6px; }
+.zapis { padding: 0; }
+.zapis-bg {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+.zapis-foto-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.zapis-foto-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.zapis-tekst-wrap {
+  position: relative;
+  z-index: 2;
+  padding: clamp(40px, 8vh, 80px) 0;
+  background: var(--fon);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 6vh, 80px);
+}
+.zapis-title {
+  font-size: clamp(48px, 6vw, 96px);
+  line-height: 1.04;
+  margin-bottom: clamp(20px, 3vh, 40px);
+}
+.zapis-lead {
+  font-size: clamp(15px, 1.1vw, 18px);
+  max-width: 50ch;
+  margin-bottom: clamp(20px, 3vh, 30px);
+}
+.zapis-forma {
+  max-width: 480px;
+}
+.forma { display: grid; gap: 16px; margin-top: 0; }
 .pole { display: grid; gap: 6px; }
 .pole-name { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-2); }
 .pole input, .pole select {
@@ -261,25 +507,74 @@ html { scrollbar-color: var(--line) var(--fon); scrollbar-width: thin; }
 .forma-ili { font-size: 15px; color: var(--ink-2); }
 .forma-ili a { border-bottom: 1px solid var(--oreh); color: var(--oreh); }
 .forma-otvet { font-size: 15px; color: var(--oreh); }
-.otzyv { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; align-content: start; min-width: 0; }
-.otzyv img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; background: var(--fon-3); }
-.otzyv blockquote { margin: 0; }
-.otzyv p { font-family: var(--display); font-size: clamp(19px, 1.9vw, 28px); line-height: 1.28; letter-spacing: -0.015em; }
-.otzyv footer { margin-top: 14px; font-size: 14px; color: var(--ink-2); }
-.otzyv footer span { margin-left: 10px; font-size: 12px; color: var(--ink-2); }
+.otzyv {
+  max-width: 480px;
+}
+.otzyv-blockquote {
+  margin: 0;
+}
+.otzyv p {
+  font-family: var(--display);
+  font-size: clamp(18px, 1.8vw, 28px);
+  line-height: 1.28;
+  letter-spacing: -0.015em;
+}
+.otzyv footer {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+.otzyv footer span {
+  margin-left: 10px;
+  font-size: 12px;
+  color: var(--ink-2);
+}
 
 /* подвал */
-.podval { background: var(--fon); padding-top: clamp(40px, 7vh, 80px); overflow: hidden; }
-.podval-verh { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; padding-bottom: clamp(46px, 9vh, 110px); }
-.podval-metka { display: block; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--line); margin-bottom: 8px; }
-.podval-blok p { font-size: 16px; color: var(--ink-2); }
-.podval-tel { font-family: var(--mono); color: var(--ink); border-bottom: 1px solid var(--line); }
-.podval-tel:hover { color: var(--oreh); border-color: var(--oreh); }
-.podval-blok a:not(.podval-tel):hover { color: var(--oreh); }
+.podval {
+  background: var(--fon);
+  padding-top: clamp(40px, 7vh, 80px);
+  overflow: hidden;
+}
+.podval-verh {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 26px;
+  padding-bottom: clamp(46px, 9vh, 110px);
+}
+.podval-metka {
+  display: block;
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--line);
+  margin-bottom: 8px;
+}
+.podval-blok p {
+  font-size: 16px;
+  color: var(--ink-2);
+}
+.podval-tel {
+  font-family: var(--mono);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+.podval-tel:hover {
+  color: var(--oreh);
+  border-color: var(--oreh);
+}
+.podval-blok a:not(.podval-tel):hover {
+  color: var(--oreh);
+}
 .podval-slovo {
-  font-family: var(--display); font-size: clamp(72px, 17.5vw, 250px); line-height: .84;
-  letter-spacing: -0.04em; text-align: center; color: var(--ink);
-  padding-bottom: .06em; user-select: none;
+  font-family: var(--display);
+  font-size: clamp(72px, 17.5vw, 250px);
+  line-height: .84;
+  letter-spacing: -0.04em;
+  text-align: center;
+  color: var(--ink);
+  padding-bottom: .06em;
+  user-select: none;
 }
 
 /* фото за курсором */
@@ -297,6 +592,9 @@ html { scrollbar-color: var(--line) var(--fon); scrollbar-width: thin; }
 
 /* ---------- десктоп ---------- */
 @media (min-width: 900px) {
+  .uslugi-foto-wrap, .les-foto-wrap, .shagi-foto-wrap, .ceny-foto-wrap, .zapis-foto-wrap {
+    width: 50%;
+  }
   .btn-krug {
     display: inline-grid; place-items: center;
     width: 168px; height: 168px; border-radius: 50%;
@@ -311,26 +609,47 @@ html { scrollbar-color: var(--line) var(--fon); scrollbar-width: thin; }
   .btn-krug small { font-family: var(--mono); font-size: 11.5px; opacity: .78; margin-top: 6px; }
   .s1 .btn-linia { display: none; }
 
-  .uslugi-in { grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr); align-items: start; }
-  .uslugi-foto { position: sticky; top: 110px; }
-
-  .les-in { grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr); align-items: start; }
-  .les-foto { position: sticky; top: 96px; will-change: clip-path, transform; }
-  .les-foto img { aspect-ratio: 4 / 3; }
-
-  .shagi-stick { height: 100svh; display: flex; flex-direction: column; justify-content: center; }
-  .shagi-golovka { padding-block: 0 clamp(22px, 4vh, 40px); }
-  .shagi-lenta { padding-bottom: 0; overflow: hidden; }
-  .shagi-track { display: flex; gap: clamp(14px, 1.6vw, 24px); width: max-content; padding-inline: var(--gut); }
-  .shagi-shag {
-    width: clamp(220px, 17vw, 244px); border-top: 1px solid var(--line-soft);
-    padding: 20px 0 0; min-height: 46vh;
+  .uslugi-bg { height: 100svh; }
+  .uslugi-tekst-wrap {
+    width: 60%;
   }
-  .shagi-srok { margin-top: auto; }
+  .uslugi-tekst-wrap .wrap {
+    padding-inline: 0;
+  }
 
-  .zapis-in { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); }
+  .les-bg { height: 100svh; }
+  .les-tekst-wrap {
+    width: 60%;
+  }
+  .les-tekst-wrap .wrap {
+    padding-inline: 0;
+  }
+
+  .shagi-bg { height: 100svh; }
+  .shagi-tekst-wrap {
+    width: 60%;
+  }
+  .shagi-tekst-wrap .wrap {
+    padding-inline: 0;
+  }
+
+  .ceny-bg { height: 100svh; }
+  .ceny-tekst-wrap {
+    width: 60%;
+  }
+  .ceny-tekst-wrap .wrap {
+    padding-inline: 0;
+  }
+
+  .zapis-bg { height: 100svh; }
+  .zapis-tekst-wrap {
+    width: 60%;
+  }
+  .zapis-tekst-wrap .wrap {
+    padding-inline: 0;
+  }
+
   .podval-verh { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; }
-  .ceny-stroka, .stroka, .porody li { min-width: 0; }
 }
 
 /* ---------- телефон и планшет ---------- */
@@ -368,13 +687,41 @@ html { scrollbar-color: var(--line) var(--fon); scrollbar-width: thin; }
   .s3 .ceny-mini, .s3 .scena-text, .s3 .btn-linia { grid-column: 1; grid-row: auto; }
   .porody-mini { font-size: 19px; }
 
-  .stroka { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 14px; }
-  .stroka-t { grid-column: 1 / -1; }
-  .porody li { grid-template-columns: 1fr auto; gap: 4px 14px; }
-  .poroda-c { grid-column: 1 / -1; }
-  .ceny-stroka { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 14px; }
-  .ceny-sost { grid-column: 1 / -1; }
-  .shagi-shag { min-height: 0; }
+  /* новые разделы на мобильном */
+  .uslugi-bg, .les-bg, .shagi-bg, .ceny-bg, .zapis-bg {
+    min-height: auto;
+    display: block;
+  }
+  .uslugi-foto-wrap, .les-foto-wrap, .shagi-foto-wrap, .ceny-foto-wrap, .zapis-foto-wrap {
+    position: relative;
+    display: none;
+  }
+  .uslugi-tekst-wrap, .les-tekst-wrap, .shagi-tekst-wrap, .ceny-tekst-wrap, .zapis-tekst-wrap {
+    width: 100%;
+    background: var(--fon);
+    padding: clamp(40px, 6vh, 60px) 0;
+  }
+  .uslugi-title, .les-title, .shagi-title, .ceny-title, .zapis-title {
+    font-size: clamp(32px, 7vw, 48px);
+    margin-bottom: clamp(16px, 2.5vh, 28px);
+  }
+  .uslugi-lead, .les-lead, .shagi-lead, .ceny-lead, .zapis-lead {
+    margin-bottom: clamp(20px, 3vh, 32px);
+  }
+  .uslugi-items {
+    gap: clamp(20px, 3vh, 32px);
+    margin-bottom: clamp(16px, 2.5vh, 28px);
+  }
+  .les-porody {
+    margin-bottom: clamp(16px, 2.5vh, 28px);
+  }
+  .shagi-items {
+    gap: 0;
+  }
+  .zapis-tekst-wrap {
+    gap: clamp(30px, 4.5vh, 50px);
+  }
+
   .kursor-foto { display: none; }
 }
 
@@ -402,10 +749,24 @@ html { scrollbar-color: var(--line) var(--fon); scrollbar-width: thin; }
   .scena-vnutri { height: auto; padding: 28px var(--gut); }
   .s3 .scena-niz { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .shkala { display: none; }
-  .shagi-stick { height: auto; }
-  .shagi-track { width: auto; display: grid; }
-  .shagi-shag { width: auto; min-height: 0; }
   .zastavka { display: none; }
+
+  /* новые разделы без движения */
+  .uslugi-bg, .les-bg, .shagi-bg, .ceny-bg, .zapis-bg {
+    min-height: auto;
+    display: block;
+  }
+  .uslugi-tekst-wrap, .les-tekst-wrap, .shagi-tekst-wrap, .ceny-tekst-wrap, .zapis-tekst-wrap {
+    width: 100%;
+    background: var(--fon);
+    padding: clamp(40px, 6vh, 60px) 0;
+  }
+  .uslugi-foto-wrap, .les-foto-wrap, .shagi-foto-wrap, .ceny-foto-wrap, .zapis-foto-wrap {
+    position: static;
+    display: block;
+    height: 300px;
+    margin-bottom: 20px;
+  }
 }
 /* ---------- телефон: правки после просмотра глазами (10.10) ---------- */
 @media (max-width: 899px) {
@@ -433,3 +794,8 @@ html { scrollbar-color: var(--line) var(--fon); scrollbar-width: thin; }
 }
 
 .top img, .logo img { pointer-events: none; }   /* логотип в закреплённой шапке не считается фото поверх текста */
+
+/* запись на телефоне: поля от края */
+@media (max-width: 899px) {
+  .zapis-tekst-wrap { padding-left: 20px; padding-right: 20px; }
+}
