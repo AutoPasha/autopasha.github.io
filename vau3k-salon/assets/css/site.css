@@ -483,3 +483,10 @@ body.menu-open .men { visibility: visible; }   /* меню открываетс�
   .okno-foto-bg { width: 100%; }
   .okno-foto-bg img { height: 100%; }
 }
+
+/* сцена 3 на компьютере (12.10, глазами на 1024): заголовок не лежит на волосах, стоит слева над текстом */
+@media (min-width: 900px) {
+  .kino-t2 .kino-h { left: var(--pad); right: auto; top: auto; bottom: calc(8svh + 190px); text-align: left; font-size: clamp(44px, 5.4vw, 86px); max-width: 30vw; }
+}
+
+.kino-canvas.is-gotov .kino-post { visibility: hidden; }

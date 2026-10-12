@@ -79,6 +79,20 @@
     var w = im.naturalWidth * s, h = im.naturalHeight * s;
     ctx.clearRect(0, 0, W, H);
     ctx.drawImage(im, (W - w) / 2, (H - h) / 2, w, h);
+    /* кадр нарисован: постер под холстом больше не нужен, иначе он проступает сквозь растаявшие края */
+    if (cv.parentNode && !cv.parentNode.classList.contains('is-gotov')) cv.parentNode.classList.add('is-gotov');
+    if (h < H - 2) {
+      /* экран выше кадра: верх и низ кадра тают в фон страницы, без жёсткой кромки видео */
+      var y0 = (H - h) / 2, y1 = y0 + h, f = h * 0.14, g;
+      ctx.globalCompositeOperation = 'destination-out';
+      g = ctx.createLinearGradient(0, y0, 0, y0 + f);
+      g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, W, y0 + f);
+      g = ctx.createLinearGradient(0, y1 - f, 0, y1);
+      g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)');
+      ctx.fillStyle = g; ctx.fillRect(0, y1 - f, W, H - y1 + f);
+      ctx.globalCompositeOperation = 'source-over';
+    }
   }
 
   function paint() {
