@@ -367,7 +367,6 @@
     }
   }
 
-  /* ---------------- форма ---------------- */
   var forma = $('#zapis-form');
   if (forma) {
     forma.addEventListener('submit', function (e) {

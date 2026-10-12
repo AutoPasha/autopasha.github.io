@@ -235,81 +235,80 @@ ul, ol { list-style: none; padding: 0; }
   font-variant-numeric: tabular-nums;
 }
 
-/* ---------- цены (каркас каталога) ---------- */
-.ceny { background: var(--bg); }
-.ceny.kz { padding-block: clamp(58px, 8.5vh, 120px); }
-.ceny .kz-gruppa { margin-bottom: clamp(40px, 6vh, 84px); }
-.ceny .kz-razvorot { margin-bottom: clamp(40px, 6vh, 84px); }
-.ceny .kz-h { margin-bottom: clamp(34px, 5vh, 72px); }
-.ceny .kz-stroka { padding: 40px 0; }
-.ceny .kz-h em { font-style: normal; color: var(--wine); }
-.ceny .kz-cena { font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: .02em; }
-.ceny .kz-metka { color: var(--wine); }
-.ceny .kz-razvorot--l { width: 58%; }
-.ceny .kz-razvorot--r { width: 44%; }
+#ceny .ceny-scene { min-height: 100svh; background-size: cover; background-position: center; background-attachment: fixed; position: relative; display: flex; align-items: center; justify-content: flex-start; padding: clamp(20px, var(--pad), 40px); }
+#ceny .ceny-bg { position: absolute; inset: 0; background: var(--bg); z-index: 1; }
+#ceny .ceny-text { position: relative; z-index: 2; max-width: clamp(280px, 45vw, 520px); }
+#ceny h3 { font: 400 clamp(48px, 7vw, 90px)/.9 var(--serif); letter-spacing: -.02em; margin-bottom: clamp(20px, 2vh, 30px); margin-top: 0; }
+#ceny p { font-size: clamp(16px, 1.2vw, 18px); line-height: 1.5; color: var(--ink-dim); margin-bottom: clamp(20px, 2vh, 30px); }
+#ceny .ceny-price { font: 400 clamp(32px, 3.5vw, 48px)/1 var(--serif); color: var(--wine); }
+@media (max-width: 899px) { #ceny .ceny-scene { background-attachment: scroll; } #ceny h3 { font-size: clamp(36px, 10vw, 52px); } #ceny p { font-size: 15px; } #ceny .ceny-price { font-size: clamp(24px, 6vw, 36px); } }
 
-/* ---------- окно: закреплённый акт с фото ---------- */
-.okno { position: relative; background: var(--bg); }
-.okno-vn { max-width: 1600px; margin-inline: auto; padding: clamp(70px, 10vh, 130px) var(--pad) 0; }
-.okno-h { font: 400 clamp(46px, 6.6vw, 108px)/.92 var(--serif); letter-spacing: -.025em; max-width: 13ch; }
-.okno-text { margin-top: clamp(22px, 3vh, 40px); font: 400 clamp(20px, 2.1vw, 33px)/1.32 var(--serif); letter-spacing: -.01em; max-width: 24ch; color: var(--ink); }
-.okno-text w { display: inline-block; opacity: .13; }
-.okno-foto { margin-top: clamp(34px, 5vh, 70px); overflow: hidden; }
-.okno-foto-in { overflow: hidden; }
-.okno-foto img { width: 100%; height: 100%; object-fit: cover; }
-.okno-podpis { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding: 14px 0 0; font-size: 13.5px; color: var(--ink-dim); }
+/* ---------- окно: полноэкранная сцена с фото ---------- */
+.okno { position: relative; background: var(--bg); height: 200vh; }
+.okno-stick { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; justify-content: flex-start; overflow: hidden; }
+.okno-foto-bg { position: absolute; inset: 0; z-index: 1; }
+.okno-foto-bg img { width: 100%; height: 100%; object-fit: cover; }
+.okno-tekst { position: relative; z-index: 2; max-width: 520px; padding: clamp(40px, 8vh, 80px) var(--pad); }
+.okno-tekst::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, color-mix(in srgb, var(--bg) 85%, transparent) 70%, transparent 100%); z-index: -1; pointer-events: none; }
+.okno-h { font: 400 clamp(46px, 6.6vw, 108px)/.92 var(--serif); letter-spacing: -.025em; margin-bottom: clamp(20px, 3vh, 40px); }
+.okno-h i { color: var(--wine); font-style: italic; }
+.okno-text { font: 400 clamp(18px, 1.8vw, 26px)/1.4 var(--serif); letter-spacing: -.01em; color: var(--ink); }
 
-/* ---------- мастера ---------- */
-.mast { padding-top: clamp(70px, 9vh, 130px); padding-bottom: 0; }
-.mast-h { font: 400 clamp(46px, 6.6vw, 108px)/.92 var(--serif); letter-spacing: -.025em; max-width: 15ch; }
-.mast-lid { margin-top: 22px; max-width: 46ch; font-size: clamp(15px, 1.15vw, 17.5px); line-height: 1.55; color: var(--ink-dim); }
-.mast-spisok { margin-top: clamp(40px, 6vh, 80px); border-top: 1px solid var(--line); }
-.mast-spisok > li:first-child { padding-top: 40px; }
-.mast-stroka {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, .85fr);
-  gap: 24px;
-  align-items: baseline;
-  padding: 40px 0;
-  border-bottom: 1px solid var(--line);
+@media (max-width: 899px) {
+  .okno { height: auto; }
+  .okno-stick { position: static; height: auto; min-height: 70vh; }
+  .okno-foto-bg { position: relative; height: 60vh; }
+  .okno-tekst { position: static; max-width: none; background: var(--bg-2); padding: clamp(30px, 4vh, 50px) var(--pad); }
+  .okno-tekst::before { display: none; }
 }
-.mast-stroka b { font: 400 clamp(28px, 3.1vw, 52px)/1 var(--serif); letter-spacing: -.015em; }
-.mast-stroka span { font-size: 15px; line-height: 1.45; color: var(--ink-dim); }
-.mast-stroka i { font-style: normal; font-size: 14px; color: var(--ink-faint); text-align: right; }
-.mast-stroka:hover b { font-style: italic; }
 
-/* ---------- запись ---------- */
-.zapis { padding-block: clamp(64px, 8vh, 120px); }
-.zapis-vn { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: clamp(36px, 6vw, 96px); align-items: start; }
-.zapis-h { font: 400 clamp(44px, 5.6vw, 92px)/.94 var(--serif); letter-spacing: -.025em; max-width: 10ch; }
-.zapis-shagi { margin-top: clamp(30px, 4vh, 54px); }
+#mast .mast-scene { min-height: 100svh; background-size: cover; background-position: center; background-attachment: fixed; position: relative; display: flex; align-items: center; justify-content: flex-start; padding: clamp(20px, var(--pad), 40px); }
+#mast .mast-bg { position: absolute; inset: 0; background: var(--bg); z-index: 1; }
+#mast .mast-text { position: relative; z-index: 2; max-width: clamp(280px, 45vw, 520px); }
+#mast h3 { font: 400 clamp(56px, 8vw, 100px)/.9 var(--serif); letter-spacing: -.02em; margin-bottom: clamp(20px, 2vh, 30px); margin-top: 0; }
+#mast p { font-size: clamp(16px, 1.2vw, 18px); line-height: 1.5; color: var(--ink-dim); margin-bottom: clamp(16px, 1.5vh, 24px); }
+#mast .mast-dni { font-size: clamp(15px, 1.1vw, 17px); color: var(--ink-faint); }
+@media (max-width: 899px) { #mast .mast-scene { background-attachment: scroll; } #mast h3 { font-size: clamp(44px, 10vw, 60px); } #mast p { font-size: 15px; } #mast .mast-dni { font-size: 14px; } }
+.zapis { position: relative; background: var(--bg); height: 160vh; }
+.zapis-stick { position: sticky; top: 0; height: 100svh; display: flex; align-items: center; overflow: hidden; }
+.zapis-vn { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: clamp(36px, 6vw, 96px); width: 100%; }
+.zapis-levo { max-width: 520px; }
+.zapis-h { font: 400 clamp(44px, 5.6vw, 92px)/.94 var(--serif); letter-spacing: -.025em; max-width: 10ch; margin-bottom: clamp(30px, 4vh, 60px); }
+.zapis-shagi { margin-bottom: clamp(30px, 4vh, 54px); }
 .zapis-shagi div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 20px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: baseline; }
 .zapis-shagi div:first-child { border-top: 1px solid var(--line); }
 .zapis-shagi b { font: 400 clamp(20px, 1.9vw, 30px)/1.1 var(--serif); font-weight: 400; }
 .zapis-shagi small { font-size: 13px; color: var(--ink-faint); white-space: nowrap; }
-.zapis-kont { margin-top: 34px; display: grid; gap: 2px; }
+.zapis-kont { display: grid; gap: 2px; }
 .zapis-kont a, .zapis-kont p { font-size: 16px; padding: 7px 0; margin: 0; }
 .zapis-kont small { display: block; font-size: 13px; color: var(--ink-faint); }
 
-.zapis-form { display: grid; gap: 26px; }
+.zapis-form { display: grid; gap: 26px; padding: clamp(30px, 4vh, 50px); background: var(--bg-2); border-radius: var(--r-l); }
 .zapis-form label { display: grid; gap: 8px; }
 .zapis-form span { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-dim); }
 .zapis-form input, .zapis-form select, .zapis-form textarea {
   width: 100%;
   min-height: 52px;
   padding: 12px 16px;
-  background: var(--bg-2);
+  background: var(--bg);
   border: 1px solid var(--line);
   border-radius: var(--r-m);
   font-size: 16px;
 }
 .zapis-form input:focus-visible, .zapis-form select:focus-visible, .zapis-form textarea:focus-visible { border-color: var(--wine); }
-.zapis-form .knopka { justify-self: start; }
+.zapis-form .knopka { justify-self: start; margin-top: 10px; }
 .zapis-otvet { display: none; }
 .zapis-form.ok .zapis-polya { display: none; }
 .zapis-form.ok .zapis-otvet { display: block; font: 400 clamp(24px, 2.4vw, 36px)/1.15 var(--serif); }
 .zapis-legal { font-size: 12.5px; color: var(--ink-faint); }
 .finale-knop { display: flex; gap: 16px; flex-wrap: wrap; }
+
+@media (max-width: 899px) {
+  .zapis { height: auto; padding-block: clamp(50px, 8vh, 100px); }
+  .zapis-stick { position: static; height: auto; }
+  .zapis-vn { grid-template-columns: minmax(0, 1fr); gap: clamp(24px, 3vh, 40px); }
+  .zapis-form { margin-top: clamp(24px, 3vh, 40px); }
+}
 
 /* ---------- финал ---------- */
 .finale {
@@ -331,16 +330,7 @@ ul, ol { list-style: none; padding: 0; }
 .finale-logo { margin-top: clamp(28px, 5vh, 60px); }
 .finale-logo img { width: 100%; height: auto; }
 .finale-niz { display: flex; justify-content: space-between; align-items: baseline; gap: 16px 32px; flex-wrap: wrap; padding-block: 20px 26px; font-size: 14px; color: var(--ink-faint); }
-.finale-niz i { font: 400 clamp(19px, 2vw, 28px)/1.2 var(--serif); font-style: normal; color: var(--ink-dim); }/* ---------- окно: геометрия закрепления ---------- */
-@media (min-width: 900px) {
-  .okno { height: 240vh; }
-  .okno-sticky { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; overflow: hidden; }
-  .okno-vn { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
-  .okno-foto { margin-top: auto; }
-  .okno-foto-in { height: 42svh; }
-  .okno-foto-in { margin-inline: auto; }
-}
-
+.finale-niz i { font: 400 clamp(19px, 2vw, 28px)/1.2 var(--serif); font-style: normal; color: var(--ink-dim); }
 /* ---------- телефон ---------- */
 @media (max-width: 899px) {
   .ceny .kz-razvorot, .ceny .kz-razvorot--l, .ceny .kz-razvorot--r { width: auto; }
@@ -420,7 +410,21 @@ ul, ol { list-style: none; padding: 0; }
   .kino-rail { display: none; }
   .okno-text w { opacity: 1; }
   .zastavka, .men { display: none; }
-  .zastavka { display: none; }
+  .ceny { height: auto; }
+  .ceny-stick { position: static; height: auto; }
+  .ceny-vn { flex-direction: column-reverse; }
+  .ceny-items { height: auto; }
+  .ceny-item { position: static; opacity: 1; visibility: visible; margin-bottom: 20px; }
+  .okno { height: auto; }
+  .okno-stick { position: static; height: auto; min-height: 0; }
+  .okno-foto-bg { position: relative; height: 50vh; }
+  .okno-tekst { position: static; }
+  .mast { height: auto; }
+  .mast-stick { position: static; height: auto; }
+  .mast-list { height: auto; }
+  .mast-card { position: static; opacity: 1; visibility: visible; margin-bottom: 20px; }
+  .zapis { height: auto; }
+  .zapis-stick { position: static; height: auto; }
 }
 /* ---------- фото за курсором над строками цен ---------- */
 .m-sled {
@@ -464,3 +468,18 @@ ul, ol { list-style: none; padding: 0; }
 @media (min-width: 900px) { .men { display: none; } }   /* меню только для телефона: на компьютере кнопки нет */
 .hap img { pointer-events: none; }
 body.menu-open .men { visibility: visible; }   /* меню открывается по кнопке: раньше панель оставалась скрытой */
+
+/* сцены цен и мастеров: фото видно, бежевая подложка только под текстом */
+#ceny .ceny-bg, #mast .mast-bg { display: none; }
+#ceny .ceny-text, #mast .mast-text { background: var(--bg); padding: clamp(24px, 3vw, 48px); }
+@media (max-width: 899px) {
+  #ceny .ceny-scene, #mast .mast-scene { align-items: flex-end; padding: 45svh 20px 20px; }
+  #ceny .ceny-text, #mast .mast-text { max-width: none; width: 100%; }
+}
+
+/* окно на телефоне: фото над текстом во всю ширину, а не узкой полосой сбоку */
+@media (max-width: 899px) {
+  .okno-stick { flex-direction: column; align-items: stretch; }
+  .okno-foto-bg { width: 100%; }
+  .okno-foto-bg img { height: 100%; }
+}
