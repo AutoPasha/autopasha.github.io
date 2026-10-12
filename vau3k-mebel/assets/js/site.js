@@ -55,7 +55,8 @@
   var cv = $('#kinoCv');
   var ctx = cv.getContext('2d', { alpha: true });
   var shkalaRun = $('#shkalaRun');
-  var sety = { d: 'assets/kino/d/', m: 'assets/kino/m/' };
+  /* вертикальный ролик не доходит до готового стола: телефон берёт тот же ролик, что компьютер */
+  var sety = { d: 'assets/kino/d/', m: 'assets/kino/d/' };
   var isM = window.matchMedia('(max-width: 899px)').matches;
   var imgs = new Array(KADROV);
   var poster = new Image();
@@ -65,7 +66,7 @@
   gsap.set(shkalaRun, { scaleY: 0, transformOrigin: 'top center' });
   gsap.set(wrap, { x: 0, y: 0 });
 
-  poster.src = isM ? 'assets/kino/poster-m.jpg' : 'assets/kino/poster-d.jpg';
+  poster.src = isM ? 'assets/kino/poster-d.jpg' : 'assets/kino/poster-d.jpg';
 
   var zagruzka = 0;
   function kadr(i) {
@@ -104,9 +105,22 @@
     if (!im.naturalWidth) return;
 
     var iw = im.naturalWidth, ih = im.naturalHeight;
-    var k = Math.max(pw / iw, ph / ih);   /* кадр всегда заполняет окно: края видео не видны */
+    /* компьютер: кадр заполняет окно; телефон: широкий кадр вписан и чуть приближен, стол целиком с ножками */
+    var k = isM ? Math.min(pw / iw, ph / ih) * 1.35 : Math.max(pw / iw, ph / ih);
     var dw = iw * k, dh = ih * k;
     ctx.drawImage(im, Math.round((pw - dw) / 2), Math.round((ph - dh) / 2), Math.round(dw), Math.round(dh));
+    if (isM) {
+      /* телефон: верх и низ вписанного кадра тают в фон страницы, без среза по стружке */
+      var y0 = (ph - dh) / 2, y1 = y0 + dh, f = dh * 0.16;
+      ctx.globalCompositeOperation = 'destination-out';
+      var g = ctx.createLinearGradient(0, y0, 0, y0 + f);
+      g.addColorStop(0, 'rgba(0,0,0,1)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.fillRect(0, 0, pw, y0 + f);
+      g = ctx.createLinearGradient(0, y1 - f, 0, y1);
+      g.addColorStop(0, 'rgba(0,0,0,0)'); g.addColorStop(1, 'rgba(0,0,0,1)');
+      ctx.fillStyle = g; ctx.fillRect(0, y1 - f, pw, ph - y1 + f);
+      ctx.globalCompositeOperation = 'source-over';
+    }
   }
 
   function nomerSceny(p) {
@@ -156,7 +170,7 @@
 
   window.addEventListener('resize', function () {
     var b = window.matchMedia('(max-width: 899px)').matches;
-    if (b !== isM) { isM = b; imgs = new Array(KADROV); poster.src = isM ? 'assets/kino/poster-m.jpg' : 'assets/kino/poster-d.jpg'; poidi(); }
+    if (b !== isM) { isM = b; imgs = new Array(KADROV); poster.src = isM ? 'assets/kino/poster-d.jpg' : 'assets/kino/poster-d.jpg'; poidi(); }
   }, { passive: true });
 
   /* фото за курсором в строках услуг */

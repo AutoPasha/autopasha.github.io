@@ -112,3 +112,11 @@
 @media (min-width: 900px) {
   .card-full-overlay .wrap h2 { font-size: clamp(48px, 5.6vw, 100px); text-wrap: balance; overflow-wrap: break-word; }
 }
+
+/* 1024 (12.10, глазами): заголовок карточки не рвётся посреди слова («встроенны-й») */
+@media (min-width: 900px) {
+  .card-full-overlay .wrap h2.title { overflow-wrap: normal; }
+}
+@media (min-width: 900px) {
+  .card-full-overlay .wrap h2.title { font-size: min(72px, 4.4vw); }
+}

@@ -799,3 +799,16 @@ html { scrollbar-color: var(--line) var(--fon); scrollbar-width: thin; }
 @media (max-width: 899px) {
   .zapis-tekst-wrap { padding-left: 20px; padding-right: 20px; }
 }
+
+/* шкала хода не перечёркивает заголовки сцен: уходит в поле у края окна (12.10) */
+@media (min-width: 900px) {
+  .shkala { left: 16px; }
+}
+
+/* 1024 (12.10, глазами): заявка не вылезает на подвал и стоит с полем от края, фото справа;
+   заголовки карточек не рвутся посреди слова */
+@media (min-width: 900px) {
+  .zapis-bg { height: auto; min-height: 100svh; }
+  .zapis-foto-wrap { inset: 0 0 0 60%; width: auto; }
+  .zapis-tekst-wrap .wrap { padding-inline: clamp(24px, 4vw, 64px); }
+}
