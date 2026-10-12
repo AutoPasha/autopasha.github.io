@@ -242,6 +242,28 @@
     }
   }
 
+  /* ---------- работы и цены: каждая сцена анимирует заголовок и фото ---------- */
+  if (gsap && ST && !ТИХО) {
+    var cenyScenes = Array.prototype.slice.call(document.querySelectorAll('.ceny-scene'));
+    cenyScenes.forEach(function (scene, idx) {
+      var h = scene.querySelector('.ceny-h');
+      var fon = scene.querySelector('.ceny-fon');
+      /* первая сцена: заголовок анимируется с маской */
+      if (idx === 0 && h) {
+        var stroki = h.querySelectorAll('.stroka > span');
+        gsap.set(stroki, { yPercent: 40, opacity: 0 });
+        gsap.to(stroki, { yPercent: 0, opacity: 1, duration: 1.25, ease: 'expo.out', stagger: .1, delay: .25 });
+      }
+      /* параллакс фото в каждой сцене */
+      if (fon) {
+        gsap.to(fon, {
+          y: 80, ease: 'none',
+          scrollTrigger: { trigger: scene, start: 'top top', end: 'bottom top', scrub: true }
+        });
+      }
+    });
+  }
+
   /* ---------- отзыв: слова светлеют по мере чтения ---------- */
   var rep = document.getElementById('otzyvyRep');
   if (rep && gsap && ST && !ТИХО) {
@@ -256,14 +278,37 @@
     });
   }
 
-  /* ---------- жёлтая линия рисуется по ходу ---------- */
-  var nit = document.querySelector('.otzyvy-linia line');
-  if (nit && gsap && ST && !ТИХО) {
-    var dl = 600;
-    try { dl = nit.getTotalLength() || 600; } catch (e) {}
-    gsap.fromTo(nit, { strokeDasharray: dl, strokeDashoffset: dl }, {
-      strokeDashoffset: 0, ease: 'none',
-      scrollTrigger: { trigger: '.otzyvy-telo', start: 'top 85%', end: 'top 40%', scrub: true }
+  /* ---------- отзывы: параллакс фото ---------- */
+  var otzyvyStage = document.querySelector('.otzyvy-stage');
+  var otzyvyFon = otzyvyStage ? otzyvyStage.querySelector('.otzyvy-fon') : null;
+  if (otzyvyStage && otzyvyFon && gsap && ST && !ТИХО) {
+    /* заголовок собирается из маски */
+    var otzyvyZag = otzyvyStage.querySelector('.otzyvy-zag');
+    if (otzyvyZag) {
+      var strokirz = otzyvyZag.querySelectorAll('.stroka > span');
+      gsap.set(strokirz, { yPercent: 108 });
+      gsap.to(strokirz, { yPercent: 0, duration: 1.25, ease: 'expo.out', stagger: .1, delay: .25 });
+    }
+    gsap.to(otzyvyFon, {
+      y: 80, ease: 'none',
+      scrollTrigger: { trigger: '.otzyvy', start: 'top top', end: 'bottom top', scrub: true }
+    });
+  }
+
+  /* ---------- заявка: параллакс фото ---------- */
+  var zayavkaStage = document.querySelector('.zayavka-stage');
+  var zayavkaFon = zayavkaStage ? zayavkaStage.querySelector('.zayavka-fon') : null;
+  if (zayavkaStage && zayavkaFon && gsap && ST && !ТИХО) {
+    /* заголовок собирается из маски */
+    var zayavkaZag = zayavkaStage.querySelector('.zayavka-h');
+    if (zayavkaZag) {
+      var strokizf = zayavkaZag.querySelectorAll('.stroka > span');
+      gsap.set(strokizf, { yPercent: 108 });
+      gsap.to(strokizf, { yPercent: 0, duration: 1.25, ease: 'expo.out', stagger: .1, delay: .25 });
+    }
+    gsap.to(zayavkaFon, {
+      y: 60, ease: 'none',
+      scrollTrigger: { trigger: '.zayavka', start: 'top top', end: 'bottom top', scrub: true }
     });
   }
 

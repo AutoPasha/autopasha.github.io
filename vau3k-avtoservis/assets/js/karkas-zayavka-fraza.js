@@ -4,7 +4,7 @@
 (function () {
   document.querySelectorAll('[data-karkas="zayavka-fraza"]').forEach(function (корень) {
     var форма = корень.querySelector('form');
-    var ответ = корень.querySelector('.zf-otvet');
+    var ответ = корень.querySelector('.zf-otvet') || корень.querySelector('.zayavka-otvet');
     if (форма && !форма.getAttribute('action')) {
       форма.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -16,7 +16,7 @@
     gsap.context(function () {
       var mm = gsap.matchMedia();
       mm.add('(hover: hover) and (min-width: 900px) and (prefers-reduced-motion: no-preference)', function () {
-        var кнопка = корень.querySelector('.zf-knopka');
+        var кнопка = корень.querySelector('.zf-knopka') || корень.querySelector('.zayavka-knopka');
         if (!кнопка) return;
         var x = gsap.quickTo(кнопка, 'x', { duration: .4, ease: 'power3' });
         var y = gsap.quickTo(кнопка, 'y', { duration: .4, ease: 'power3' });

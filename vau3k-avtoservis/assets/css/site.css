@@ -179,55 +179,176 @@ ul { list-style: none; padding: 0; }
 .kino-sceny b.on { color: var(--accent); }
 .kino-kadr b { color: var(--ink); font-weight: 500; }
 
-/* ============ работы и цены: голос бренда на каркасе ============ */
-.kz { padding: clamp(72px, 12vh, 150px) var(--pad); background: var(--fon); }
-.kz-h {
-  font-family: var(--display); font-weight: 500;
-  font-size: clamp(36px, 6.4vw, 104px); line-height: .92; letter-spacing: -.03em;
-  max-width: 14ch; margin-bottom: clamp(36px, 7vh, 96px);
+/* ============ работы и цены: как кино, каждая сцена — экран ============ */
+.ceny {
+  background: var(--fon);
 }
-.kz-h em { font-style: normal; color: var(--accent); }
-.kz-stroka { padding: clamp(14px, 2vh, 24px) 0; }
-.kz-imya { font-family: var(--display); font-weight: 500; letter-spacing: -.02em; }
-.kz-cena { color: var(--accent); }
-.kz-metka { color: var(--ink-faint); }
-.kz-razvorot figcaption { border: 1px solid rgba(236, 235, 230, .12); }
-.kz-razvorot figcaption b { font-family: var(--display); font-weight: 500; }
-
-/* ============ отзывы ============ */
-.otzyvy {
-  display: grid; grid-template-columns: 1.02fr 1fr; align-items: stretch;
-  min-height: 92svh; background: var(--fon); border-top: 1px solid rgba(236, 235, 230, .10);
+.ceny-scene {
+  position: relative; height: 100svh; overflow: hidden;
+  display: flex; align-items: center; justify-content: flex-start;
 }
-.otzyvy-foto { position: relative; overflow: hidden; background: var(--fon-glub); min-height: 60svh; }
-.otzyvy-foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.otzyvy-telo {
-  display: flex; flex-direction: column; justify-content: center; gap: 26px;
-  padding: clamp(48px, 8vh, 110px) var(--pad) clamp(48px, 8vh, 110px) clamp(24px, 5vw, 70px);
+.ceny-fon {
+  position: absolute; inset: 0; z-index: 0;
+  opacity: .2; will-change: transform;
 }
-.otzyvy-linia { width: 100%; height: 2px; display: block; }
-.otzyvy-telo h2 {
-  font-family: var(--mono); font-weight: 400; font-size: 13px; letter-spacing: .14em;
+.ceny-fon img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.ceny-tekst {
+  position: relative; z-index: 1;
+  display: flex; flex-direction: column; justify-content: center; gap: clamp(16px, 3vh, 32px);
+  padding: calc(64px + 4vh) var(--pad) 4vh;
+  max-width: min(50ch, 90%);
+}
+.ceny-h {
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(44px, 11vw, 128px);
+  line-height: .88; letter-spacing: -0.035em;
+  margin: 0;
+}
+.ceny-h .stroka { display: block; overflow: hidden; }
+.ceny-h .stroka > span { display: block; will-change: transform; }
+.ceny-h em { font-style: normal; color: var(--accent); }
+.ceny-imya {
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(28px, 5vw, 64px);
+  line-height: 1.1; letter-spacing: -0.025em;
+  color: var(--ink);
+}
+.ceny-cena {
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(24px, 4vw, 56px);
+  letter-spacing: -0.025em;
+  color: var(--accent);
+}
+.ceny-opis {
+  font-size: clamp(16px, 2vw, 22px);
+  line-height: 1.55;
   color: var(--ink-dim);
+  max-width: 45ch;
 }
-.otzyvy-cita { max-width: 30ch; }
+
+/* ============ отзывы: как кино ============ */
+.otzyvy {
+  position: relative; height: 150svh; background: var(--fon);
+}
+.otzyvy-stage {
+  position: sticky; top: 0; height: 100svh; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.otzyvy-fon {
+  position: absolute; inset: 0; z-index: 0;
+  will-change: transform;
+}
+.otzyvy-fon img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.otzyvy-tekst {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: calc(64px + 2vh) var(--pad);
+  background: linear-gradient(90deg, rgba(43, 43, 45, .95) 0%, rgba(43, 43, 45, .85) 50%, rgba(43, 43, 45, .3) 100%);
+}
+.otzyvy-zag {
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(44px, 11vw, 144px);
+  line-height: .88; letter-spacing: -0.035em;
+  margin: 0 0 clamp(40px, 8vh, 120px) 0;
+}
+.otzyvy-zag .stroka { display: block; overflow: hidden; }
+.otzyvy-zag .stroka > span { display: block; will-change: transform; }
+.otzyvy-cita { max-width: 52ch; }
 .otzyvy-rep {
-  font-family: var(--display); font-weight: 500;
-  font-size: clamp(23px, 2.5vw, 40px); line-height: 1.32; letter-spacing: -0.025em;
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(24px, 3.5vw, 56px);
+  line-height: 1.15; letter-spacing: -0.025em;
+  margin: 0 0 clamp(20px, 3vh, 40px) 0;
 }
 .otzyvy-cita footer {
-  margin-top: 24px; font-family: var(--mono); font-size: 12.5px; letter-spacing: .05em;
+  font-family: var(--mono); font-size: 12.5px; letter-spacing: .05em;
   text-transform: uppercase; color: var(--ink-dim);
+  margin-top: clamp(16px, 2vh, 28px);
 }
-.otzyvy-fakt { max-width: 46ch; font-size: 15.5px; line-height: 1.6; color: var(--ink-dim); }
+.otzyvy-fakt {
+  max-width: 52ch; font-size: clamp(15px, 1.8vw, 20px);
+  line-height: 1.55; color: var(--ink-dim);
+  margin-top: clamp(20px, 3vh, 40px);
+}
 
-/* ============ заявка: переопределение под тёмный цех ============ */
-.zf { background: #1d1d1f; }
-.zf-h { font-family: var(--display); font-weight: 600; letter-spacing: -0.035em; font-size: clamp(38px, 7vw, 128px); }
-.zf-h em { font-style: normal; color: var(--accent); }
-.zf-fraza { font-family: var(--text); font-weight: 300; font-size: clamp(21px, 2.4vw, 38px); line-height: 1.42; max-width: 24ch; }
-.zf-knopka { background: var(--accent); color: var(--accent-ink); }
-.zf-pole select option { background: var(--fon-glub); color: var(--ink); }
+/* ============ заявка: как кино ============ */
+.zayavka {
+  position: relative; height: 200svh; background: var(--fon);
+}
+.zayavka-stage {
+  position: sticky; top: 0; height: 100svh; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.zayavka-fon {
+  position: absolute; inset: 0; z-index: 0;
+  opacity: .15; will-change: transform;
+}
+.zayavka-fon img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.zayavka-forma {
+  position: absolute; inset: 0; z-index: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: calc(64px + 2vh) var(--pad);
+  max-width: 100%;
+}
+.zayavka-h {
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(44px, 11vw, 144px);
+  line-height: .88; letter-spacing: -0.035em;
+  margin: 0 0 clamp(40px, 8vh, 120px) 0;
+}
+.zayavka-h .stroka { display: block; overflow: hidden; }
+.zayavka-h .stroka > span { display: block; will-change: transform; }
+.zayavka-h em { font-style: normal; color: var(--accent); }
+.zayavka-fraza {
+  font-family: var(--text); font-weight: 300;
+  font-size: clamp(18px, 2.2vw, 32px);
+  line-height: 1.42; max-width: 40ch;
+  margin-bottom: clamp(30px, 5vh, 60px);
+}
+.zayavka-pole {
+  display: inline; cursor: pointer;
+}
+.zayavka-pole select,
+.zayavka-pole input {
+  background: transparent; border: none; border-bottom: 2px solid var(--accent);
+  padding: 4px 0; margin: 0 4px; font-size: 1em;
+  color: var(--accent); font-weight: 600;
+  appearance: none;
+}
+.zayavka-pole select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23f2c230' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0;
+  padding-right: 18px;
+}
+.zayavka-pole select option { background: var(--fon-glub); color: var(--ink); }
+.zayavka-pole input::placeholder { color: var(--ink-dim); }
+.zayavka-knopka {
+  display: inline-flex; align-items: center; gap: 14px;
+  min-height: 56px; padding: 0 26px; margin-top: clamp(20px, 3vh, 40px);
+  background: var(--accent); color: var(--accent-ink);
+  border: 1px solid var(--accent); border-radius: var(--r-m);
+  font-family: var(--mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase;
+  cursor: pointer;
+  transition: background .3s, color .3s, transform .5s var(--ease);
+}
+.zayavka-knopka:hover { background: #ffd451; transform: translateY(-2px); }
+.zayavka-otvet {
+  margin-top: clamp(16px, 2vh, 28px);
+  font-family: var(--mono); font-size: 13px; letter-spacing: .02em;
+  color: var(--accent);
+}
+.zayavka-melko {
+  margin-top: clamp(12px, 2vh, 20px);
+  font-size: 14px; line-height: 1.5; color: var(--ink-dim);
+  max-width: 40ch;
+}
 
 /* ============ подвал ============ */
 .podval { background: var(--fon); padding: clamp(56px, 9vh, 110px) var(--pad) 0; border-top: 1px solid rgba(236, 235, 230, .12); }
@@ -286,12 +407,14 @@ ul { list-style: none; padding: 0; }
   .kino-hod { bottom: 3svh; }
   .kino-tablo { font-size: 11px; letter-spacing: .1em; }
 
-  .otzyvy { grid-template-columns: 1fr; min-height: 0; }
-  .otzyvy-foto { min-height: 52svh; aspect-ratio: 4 / 5; }
-  .otzyvy-telo { padding: 34px var(--pad) 56px; gap: 20px; }
-  .otzyvy-cita { max-width: 34ch; }
-  .otzyvy-rep { font-size: clamp(20px, 5.4vw, 28px); }
-  .otzyvy-fakt { max-width: 40ch; font-size: 14.5px; }
+  .ceny-scene { height: 100svh; }
+  .ceny-tekst { padding: calc(56px + 3vh) var(--pad) 3vh; }
+
+  .otzyvy { height: 120svh; }
+  .otzyvy-tekst { padding: 56px var(--pad); }
+
+  .zayavka { height: 150svh; }
+  .zayavka-forma { padding: 56px var(--pad); }
 
   .podval { padding-top: 48px; }
   .podval-kontakty { grid-template-columns: 1fr; gap: 26px; }
@@ -324,6 +447,11 @@ ul { list-style: none; padding: 0; }
   .zastavka { display: none; }
   .kino { height: 100svh; }
   .kino-holst { top: 30svh; }
+  .ceny-scene { height: 100svh; }
+  .otzyvy { height: 100svh; }
+  .zayavka { height: 100svh; }
+  .ceny-fon, .otzyvy-fon, .zayavka-fon { opacity: 0 !important; }
+  .otzyvy-tekst { background: var(--fon); }
   .knopka:hover { transform: none; }
   * { animation-duration: .001ms !important; transition-duration: .001ms !important; }
 }
@@ -331,3 +459,7 @@ ul { list-style: none; padding: 0; }
   .shapka-tel { white-space: nowrap; font-size: 13px; }
   .shapka-tel svg { display: none; }
 }
+
+/* маска строки не режет буквы сверху и снизу */
+.ceny-h .stroka { padding: .08em 0 .1em; margin: -.08em 0 -.1em; }
+.ceny-h .stroka { overflow: visible; }
