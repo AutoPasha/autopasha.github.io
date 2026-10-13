@@ -439,7 +439,7 @@
       });
     });
     /* Форма и отзыв */
-    $$('.zapis-forma, .otzyv').forEach(function (el) {
+    $$('.blank, .otzyv').forEach(function (el) {
       gsap.set(el, { opacity: 0, y: 20 });
       ScrollTrigger.create({
         trigger: el, start: 'top 85%',
@@ -494,29 +494,126 @@
   window.addEventListener('load', function () { ScrollTrigger.refresh(); });
 
 
-  /* ---------- анимация полноэкранных карточек ---------- */
-  if (!reduced) {
-    $$('.card-full').forEach(function (card) {
-      var bg = card.querySelector('.card-full-bg');
-      var overlay = card.querySelector('.card-full-overlay');
-      
-      if (bg) {
-        gsap.fromTo(bg, { scale: 1.04 }, {
-          scale: 1, ease: 'none',
-          scrollTrigger: { trigger: card, start: 'top top', end: 'bottom bottom', scrub: 0.8 }
-        });
-      }
-      
-      if (overlay) {
-        gsap.set(overlay, { opacity: 0, y: 30 });
-        ScrollTrigger.create({
-          trigger: card, start: 'top 85%',
-          onEnter: function () {
-            gsap.to(overlay, { opacity: 1, y: 0, duration: 1, ease: 'expo.out', overwrite: 'auto' });
-          }
-        });
-      }
+  /* ---------- низ витрины: маски текста, шторки плашек, рамки и линия хода ---------- */
+  var desk = window.matchMedia('(min-width: 761px)');
+
+  /* текст выходит из-под нижней кромки своей обёртки, один раз на входе; без JS остаётся видимым */
+  function maska(el) {
+    if (!el || el.classList.contains('mk')) return null;
+    var vnutri = document.createElement('span');
+    vnutri.className = 'mk-in';
+    while (el.firstChild) vnutri.appendChild(el.firstChild);
+    el.appendChild(vnutri);
+    el.classList.add('mk');
+    if (reduced) return vnutri;
+    gsap.set(vnutri, { yPercent: 110 });
+    ScrollTrigger.create({
+      trigger: el, start: 'top 96%', once: true,
+      onEnter: function () { gsap.to(vnutri, { yPercent: 0, duration: 1, ease: 'expo.out' }); }
     });
+    return vnutri;
+  }
+
+  /* плашка открывается шторкой сверху вниз на входе */
+  function shtorka(el) {
+    if (reduced) return;
+    gsap.set(el, { clipPath: 'inset(0% 0% 100% 0%)' });
+    ScrollTrigger.create({
+      trigger: el, start: 'top 96%', once: true,
+      onEnter: function () { gsap.to(el, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.1, ease: 'expo.out' }); }
+    });
+  }
+
+  $$('.glava-metka, .poroda-h, .poroda-opis, .pasport dd, .shag-h, .shag-srok, .shag-tekst, .cena-nazvanie, .cena-tekst').forEach(maska);
+  $$('.cena-summa').forEach(function (el) { if (!el.hasAttribute('data-schet')) maska(el); });
+  $$('.plashka, .poroda-text, .shag-plashka, .cena-plashka, .cena-mid, .cena-blok').forEach(shtorka);
+
+  if (!reduced) {
+    $$('.ekran-foto, .shag-foto, .finale-foto').forEach(function (img) {
+      var sekciya = img.closest('section, article');
+      gsap.fromTo(img, { scale: 1.06 }, {
+        scale: 1, ease: 'none',
+        scrollTrigger: { trigger: sekciya, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
+      });
+    });
+
+    $$('.ekran-poroda').forEach(function (art) {
+      var h = art.querySelector('.poroda-h');
+      var big = art.querySelector('.poroda-big');
+      var img = big.querySelector('img');
+      var vrez = art.querySelector('.poroda-vrez');
+      gsap.fromTo(h, { x: '6vw' }, {
+        x: '-6vw', ease: 'none',
+        scrollTrigger: { trigger: art, start: 'top bottom', end: 'bottom top', scrub: 0.6 }
+      });
+      gsap.fromTo(big, { clipPath: 'inset(46% 0% 46% 0%)' }, {
+        clipPath: 'inset(0% 0% 0% 0%)', ease: 'none',
+        scrollTrigger: { trigger: art, start: 'top 85%', end: 'top 25%', scrub: 0.6 }
+      });
+      gsap.fromTo(img, { yPercent: 8 }, {
+        yPercent: -8, ease: 'none',
+        scrollTrigger: { trigger: art, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
+      });
+      gsap.fromTo(vrez, { yPercent: 14 }, {
+        yPercent: -14, ease: 'none',
+        scrollTrigger: { trigger: art, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
+      });
+    });
+
+    $$('.cena-big').forEach(function (box) {
+      var img = box.querySelector('img');
+      var art = box.closest('article');
+      gsap.fromTo(box, { clipPath: 'inset(46% 0% 46% 0%)' }, {
+        clipPath: 'inset(0% 0% 0% 0%)', ease: 'none',
+        scrollTrigger: { trigger: art, start: 'top 85%', end: 'top 25%', scrub: 0.6 }
+      });
+      gsap.fromTo(img, { yPercent: 8 }, {
+        yPercent: -8, ease: 'none',
+        scrollTrigger: { trigger: art, start: 'top bottom', end: 'bottom top', scrub: 0.8 }
+      });
+    });
+
+    $$('.shag-cifra').forEach(function (c) {
+      gsap.fromTo(c, { x: '6vw' }, {
+        x: '-6vw', ease: 'none',
+        scrollTrigger: { trigger: c.closest('article'), start: 'top bottom', end: 'bottom top', scrub: 0.6 }
+      });
+    });
+
+    gsap.set('.kak-linia i', { scaleY: 0 });
+    gsap.to('.kak-linia i', {
+      scaleY: 1, ease: 'none',
+      scrollTrigger: { trigger: '#kak', start: 'top 60%', end: 'bottom 85%', scrub: 0.4 }
+    });
+
+    if (desk.matches) {
+      gsap.fromTo('.cena-b .cena-plashka', { x: '-12vw' }, {
+        x: '0vw', ease: 'none',
+        scrollTrigger: { trigger: '.cena-b', start: 'top bottom', end: 'top 20%', scrub: 0.6 }
+      });
+      gsap.fromTo('.cena-d .cena-blok', { x: '12vw' }, {
+        x: '0vw', ease: 'none',
+        scrollTrigger: { trigger: '.cena-d', start: 'top bottom', end: 'top 20%', scrub: 0.6 }
+      });
+    }
+
+    var schet = $('[data-schet]');
+    if (schet && desk.matches) {
+      var cel = +schet.getAttribute('data-schet');
+      var st = { n: 0 };
+      schet.textContent = 'от 0 ₽';
+      ScrollTrigger.create({
+        trigger: schet, start: 'top 80%', once: true,
+        onEnter: function () {
+          gsap.to(st, {
+            n: cel, duration: 1.8, ease: 'power2.out',
+            onUpdate: function () {
+              schet.textContent = 'от ' + String(Math.round(st.n)).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+            }
+          });
+        }
+      });
+    }
   }
 
 })();

@@ -1,14 +1,57 @@
-/* Полноэкранные карточки разделов */
-.card-full {
-  position: relative;
-  min-height: 100svh;
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  scroll-snap-align: start;
+/* Низ витрины: четыре главы, у каждой своя грамматика кадра. Текст всегда на сплошной подложке. */
+
+.glava-metka {
+  background: var(--fon);
+  padding: 104px var(--gut) 18px;
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
 }
 
-.card-full-bg {
+.ekran-h, .poroda-h, .shag-h, .cena-nazvanie {
+  font-family: var(--display);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: .98;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: manual;
+  margin: 0;
+}
+
+.ekran-cena, .cena-summa {
+  font-family: var(--mono);
+  font-weight: 400;
+  color: var(--oreh);
+  white-space: nowrap;
+  margin: 0;
+}
+
+.ekran-tekst, .shag-tekst, .cena-tekst, .poroda-opis {
+  font-size: clamp(15px, 1.1vw, 18px);
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 46ch;
+  margin: 0;
+}
+
+.plashka {
+  background: var(--fon);
+  padding: clamp(40px, 6vh, 72px) clamp(28px, 3.6vw, 56px);
+  display: grid;
+  gap: clamp(14px, 2vh, 22px);
+  align-content: center;
+}
+
+/* ---------- Глава 1: кино во весь кадр ---------- */
+.ekran-kino {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--fon);
+}
+.ekran-foto {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -17,106 +60,477 @@
   object-position: center;
   z-index: 0;
 }
+.ekran-kino .plashka { position: absolute; z-index: 2; }
+.ekran-kino .ekran-h { font-size: clamp(64px, 9vw, 168px); }
 
-.card-full-overlay {
+.plashka-niz-levo { left: 0; bottom: 0; width: min(880px, 66vw); }
+.plashka-vysokaya-pravo { right: 0; top: 0; bottom: 0; width: min(760px, 52vw); align-content: center; }
+.plashka-verh-pravo { right: 0; top: 0; width: min(700px, 56vw); padding-top: 104px; align-content: start; }
+
+/* ---------- Глава 2: журнальный разворот породы ---------- */
+.glava-les { background: var(--fon); }
+.ekran-poroda {
+  --nm: clamp(96px, 13vw, 232px);
+  --bl: calc(100svh - 96px - var(--nm) * 1.02 - 96px);
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--poroda-fon);
+  color: var(--poroda-ink);
+}
+.poroda-h {
+  position: absolute;
+  top: 96px;
+  z-index: 3;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: var(--nm);
+  line-height: .9;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+  color: var(--poroda-ink);
+  margin: 0;
+  padding-bottom: .14em;
+}
+.poroda-l .poroda-h { left: 12vw; }
+.poroda-r .poroda-h { right: 12vw; }
+
+.poroda-kadr {
+  position: absolute;
+  z-index: 1;
+  bottom: 56px;
+  width: min(44vw, calc(var(--bl) * var(--r)));
+  aspect-ratio: var(--r);
+}
+.poroda-l .poroda-kadr { left: var(--gut); }
+.poroda-r .poroda-kadr { right: var(--gut); }
+.poroda-big { position: absolute; inset: 0; overflow: hidden; }
+.poroda-big img {
+  position: absolute; left: 0; top: -10%;
+  width: 100%; height: 120%; object-fit: cover;
+}
+.poroda-vrez {
+  position: absolute;
+  z-index: 2;
+  width: 42%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: var(--poroda-fon);
+}
+.poroda-vrez img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: var(--vx) var(--vy);
+  transform: scale(1.8);
+  transform-origin: var(--vx) var(--vy);
+}
+.poroda-l .poroda-vrez { right: -12%; top: -10%; }
+.poroda-r .poroda-vrez { left: -12%; top: -10%; }
+
+.poroda-text {
+  position: absolute;
+  z-index: 2;
+  bottom: 56px;
+  width: min(600px, 40vw);
+  display: grid;
+  gap: clamp(18px, 2.6vh, 28px);
+}
+.poroda-l .poroda-text { right: var(--gut); }
+.poroda-r .poroda-text { left: var(--gut); }
+.poroda-opis { font-size: clamp(15px, 1.1vw, 18px); line-height: 1.6; max-width: 46ch; color: var(--poroda-ink); }
+.pasport { margin: 0; display: grid; grid-template-columns: repeat(3, auto); justify-content: space-between; gap: 20px; }
+.pasport div { display: grid; gap: 8px; }
+.pasport dt { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; }
+.pasport dd {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(26px, 2.6vw, 44px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* маска для текста: строка выходит из-под нижней кромки, один раз на входе */
+.mk { overflow: hidden; padding-bottom: .14em; margin-bottom: -.14em; }
+.mk-in { display: block; }
+
+/* ---------- Глава 3: журнал работ ---------- */
+.glava-kak { background: var(--fon); }
+.shag {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--fon);
+}
+.shag:nth-of-type(even) { background: var(--fon-2); }
+.shag-cifra {
+  position: absolute;
+  z-index: 0;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 38vh;
+  line-height: .8;
+  letter-spacing: -0.05em;
+  color: var(--oreh);
+  pointer-events: none;
+}
+.shag-foto { position: absolute; z-index: 1; object-fit: cover; }
+.shag-plashka {
+  position: absolute;
+  z-index: 2;
+  background: inherit;
+  padding: clamp(40px, 6vh, 72px) clamp(28px, 3.6vw, 56px);
+  display: grid;
+  gap: clamp(12px, 2vh, 20px);
+  align-content: center;
+}
+.shag-h { font-size: clamp(56px, 7vw, 120px); }
+.shag-srok { font-size: clamp(18px, 1.8vw, 28px); color: var(--oreh); margin: 0; }
+.glava-kak { position: relative; }
+.kak-linia {
+  position: absolute;
+  z-index: 5;
+  left: 16px;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: var(--line-soft);
+  pointer-events: none;
+}
+.kak-linia i { display: block; width: 100%; height: 100%; background: var(--oreh); transform-origin: top center; }
+
+.shag-1 .shag-cifra { left: 3vw; bottom: 2vh; }
+.shag-1 .shag-foto { top: 104px; right: var(--gut); width: min(30vw, 440px); height: min(36vh, 320px); }
+.shag-1 .shag-plashka { left: 36vw; top: 50%; transform: translateY(-50%); width: min(480px, 40vw); }
+
+.shag-2 .shag-foto { left: 0; right: 0; bottom: 0; width: 100%; height: 58vh; }
+.shag-2 .shag-cifra { right: 3vw; top: 4vh; }
+.shag-2 .shag-plashka { left: var(--gut); top: 104px; width: min(560px, 50vw); }
+
+.shag-3 .shag-foto { top: 0; right: 0; bottom: 0; width: 40%; height: 100%; }
+.shag-3 .shag-cifra { left: 0; top: 6vh; }
+.shag-3 .shag-plashka { left: var(--gut); bottom: 8vh; width: min(520px, 52vw); }
+
+.shag-4 .shag-foto { inset: 0; width: 100%; height: 100%; }
+.shag-4 .shag-plashka { left: 0; top: 0; bottom: 0; width: min(640px, 50vw); padding-top: 104px; align-content: start; }
+.shag-4 .shag-cifra { position: relative; inset: auto; font-size: min(38vh, 36vw); }
+
+.shag-5 .shag-foto { left: var(--gut); top: calc(104px + 40vh); width: min(44vh, 40vw); height: min(44vh, 40vw); }
+.shag-5 .shag-cifra { left: var(--gut); top: 104px; }
+.shag-5 .shag-plashka { right: var(--gut); top: 50%; transform: translateY(-50%); width: min(500px, 46vw); }
+
+/* ---------- Глава 4: ценник, шесть композиций подряд, ни одна не повторяется ---------- */
+.glava-ceny { background: var(--fon); }
+.cena-ekran {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--fon);
+}
+.cena-big { position: absolute; overflow: hidden; }
+.cena-big img {
+  position: absolute; left: 0; top: -10%;
+  width: 100%; height: 120%; object-fit: cover;
+}
+.cena-vrez { position: absolute; z-index: 3; overflow: hidden; }
+.cena-vrez img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.cena-blok {
   position: relative;
   z-index: 2;
-  width: 100%;
-  padding: clamp(40px, 8vh, 80px) 0;
+  display: grid;
+  gap: clamp(12px, 2vh, 20px);
+  padding: 104px var(--gut) clamp(40px, 6vh, 72px);
+  width: min(560px, 46vw);
+}
+.cena-plashka, .cena-mid {
+  position: absolute;
+  z-index: 3;
   background: var(--fon);
-  margin-top: auto;
+  display: grid;
+  gap: clamp(12px, 2vh, 20px);
+  padding: clamp(40px, 6vh, 64px) clamp(32px, 3.6vw, 56px);
+}
+.cena-summa { font-size: clamp(48px, 4.6vw, 96px); line-height: .95; letter-spacing: -0.02em; }
+.cena-nazvanie { font-size: clamp(24px, 2.4vw, 40px); }
+
+/* (а) огромная цена через весь экран, фото полосой под ней, врез маленьким */
+.cena-a { display: flex; flex-direction: column; }
+.cena-a > .cena-summa {
+  padding: 104px var(--gut) 0;
+  font-size: min(13.6vw, 300px);
+  white-space: nowrap;
+}
+.cena-a .cena-strip { position: relative; margin: 28px var(--gut) 0; height: 36vh; }
+.cena-a .cena-big { inset: 0; }
+.cena-a .cena-vrez { left: 6vw; bottom: -8%; width: 17vw; height: 26vh; }
+.cena-a .cena-blok { width: min(620px, 50vw); padding: 36px var(--gut) 48px; }
+
+/* (б) фото во весь экран открывается щелью, плашка с ценой заходит на фото слева */
+.cena-b .cena-big { inset: 0; }
+.cena-b .cena-plashka {
+  left: var(--gut); top: 50%;
+  transform: translateY(-50%);
+  width: min(640px, 48vw);
+  padding: 56px 52px;
 }
 
-.card-full-overlay .wrap {
-  padding-left: var(--gut);
-  padding-right: var(--gut);
-  max-width: var(--maxw);
-  margin: 0 auto;
+/* (в) два фото разной высоты лесенкой, цена между ними */
+.cena-v .cena-big { left: var(--gut); top: 104px; width: 36vw; height: 56vh; }
+.cena-v .cena-mid { left: 40vw; top: 34vh; width: min(640px, 46vw); }
+.cena-v .cena-vrez { right: var(--gut); bottom: 0; width: 26vw; height: 40vh; }
+
+/* (г) тёмный орех: цена набирается счётчиком при входе */
+.cena-g { background: var(--oreh); color: #fbf7ef; }
+.cena-g .cena-big { right: 0; top: 0; bottom: 0; width: 46%; }
+.cena-g .cena-blok { position: absolute; left: 0; top: 0; bottom: 0; align-content: center; padding-top: 0; width: min(620px, 50vw); }
+.cena-g .cena-summa { color: #fbf7ef; }
+.cena-g .cena-nazvanie { color: #fbf7ef; }
+.cena-g .cena-tekst { color: #e8dcc6; }
+
+/* (д) фото колонкой на всю высоту слева, плашка с ценой заходит на неё */
+.cena-d .cena-big { left: 0; top: 0; bottom: 0; width: 42vw; }
+.cena-d .cena-blok {
+  position: absolute; left: 34vw; top: 50%;
+  transform: translateY(-50%);
+  width: min(700px, 56vw);
+  background: var(--fon);
+  padding: 56px 52px;
+}
+
+/* финал: замер, фото на весь кадр, плашка в правом низу */
+.cena-finish .cena-big { inset: 0; }
+.cena-finish .cena-plashka { right: var(--gut); bottom: 56px; width: min(600px, 44vw); padding: 48px 44px; }
+.cena-finish .btn-linia { margin-top: 8px; }
+
+/* ---------- Финал: бланк заказа на столе ---------- */
+.finale {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: var(--fon);
+}
+.finale-foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.finale-sloi {
+  position: relative;
+  z-index: 2;
+  min-height: 100svh;
+  padding: 104px var(--gut) 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(28px, 4vh, 48px);
+}
+.blank {
+  width: min(760px, 56vw);
   min-width: 0;
+  background: var(--fon);
+  box-shadow: 0 30px 60px -24px rgba(42, 37, 31, .45);
+  padding: clamp(24px, 3vw, 48px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(18px, 2.6vh, 28px);
 }
-
-.card-full-overlay .wrap h2 {
+.blank-zagolovok {
   font-family: var(--display);
-  font-size: clamp(56px, 10vw, 110px);
-  line-height: 0.95;
-  letter-spacing: -0.035em;
-  margin: 0 0 clamp(16px, 2vh, 28px) 0;
   font-weight: 400;
-}
-
-.card-full-overlay .wrap .price {
-  font-family: var(--mono);
-  font-size: clamp(20px, 3vw, 40px);
-  color: var(--oreh);
-  margin: 0 0 clamp(12px, 1.5vh, 20px) 0;
-  font-weight: 400;
-  display: block;
-}
-
-.card-full-overlay .wrap p:not(.price) {
-  font-size: clamp(14px, 1.1vw, 18px);
-  color: var(--ink-2);
-  max-width: 50ch;
-  line-height: 1.62;
+  font-size: clamp(32px, 3.6vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  overflow-wrap: normal;
+  hyphens: manual;
   margin: 0;
 }
-
-/* Десктоп: фото слева, текст справа */
-@media (min-width: 900px) {
-  .card-full {
-    align-items: center;
-    justify-content: flex-end;
-  }
-  
-  .card-full-bg {
-    width: 50%;
-  }
-  
-  .card-full-overlay {
-    width: 50%;
-    padding: clamp(60px, 10vh, 120px) clamp(40px, 6vw, 80px);
-    margin-top: 0;
-    background: var(--fon);
-  }
+.blank-shapka { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-2); margin: 0; }
+.blank-zveno { white-space: nowrap; }
+.blank-fraza {
+  font-family: var(--display);
+  font-size: clamp(22px, 2.5vw, 34px);
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  margin: 0;
 }
+.blank-prop { display: inline-block; max-width: 100%; vertical-align: baseline; }
+.blank-prop input, .blank-prop select {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.2;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--ink);
+  border-radius: 0;
+  padding: 0 4px 2px;
+  max-width: 100%;
+  color: var(--ink);
+}
+.blank-prop input { width: 9em; }
+.blank-prop input[name="tel"] { width: 12em; }
+.blank-prop-dlinnoe input { width: 16em; }
+.blank-prop select { padding-right: 24px; }
+.blank-prop input::placeholder { color: var(--ink-2); opacity: .7; }
+.blank-prop input:focus, .blank-prop select:focus { outline: 2px solid var(--oreh); outline-offset: 2px; }
+.blank-niz { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; }
+.blank-ili { font-size: 15px; color: var(--ink-2); margin: 0; }
+.blank-ili a { border-bottom: 1px solid var(--oreh); color: var(--oreh); }
+.blank-otvet { font-size: 15px; color: var(--oreh); margin: 0; }
+.otzyv { margin: 0; background: var(--fon); padding: clamp(24px, 3vw, 40px); width: min(380px, 100%); }
+.otzyv p {
+  font-family: var(--display);
+  font-size: clamp(18px, 1.6vw, 24px);
+  line-height: 1.32;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+.otzyv footer { margin-top: 14px; font-size: 14px; color: var(--ink-2); }
+.otzyv footer span { margin-left: 10px; font-size: 12px; }
 
-/* Телефон: фото сверху, текст снизу */
+/* ---------- телефон и планшет: без боковых колонок, фото сверху ---------- */
 @media (max-width: 899px) {
-  .card-full {
-    align-items: flex-end;
-  }
-  
-  .card-full-bg {
-    width: 100%;
-  }
-  
-  .card-full-overlay {
-    width: 100%;
-    padding: clamp(30px, 5vh, 50px) var(--gut);
-  }
-  
-  .card-full-overlay .wrap {
-    padding-left: 0;
-    padding-right: 0;
-  }
+  .ekran-kino { min-height: 100svh; display: flex; align-items: flex-end; }
+  .ekran-kino .plashka { position: relative; width: 100%; }
+  .plashka-niz-levo, .plashka-vysokaya-pravo, .plashka-verh-pravo { left: auto; right: auto; top: auto; bottom: auto; width: 100%; }
+  .plashka-vysokaya-pravo { position: absolute; left: 0; right: 0; bottom: 0; top: auto; }
+  .plashka-verh-pravo { position: absolute; left: 0; right: 0; bottom: 0; top: auto; padding-top: clamp(40px, 6vh, 72px); }
+
+  .finale { min-height: auto; }
+  .finale-foto { height: 50svh; inset: 0 0 auto 0; }
+  .finale-sloi { min-height: auto; padding: calc(50svh - 48px) 20px 56px; align-items: stretch; }
+  .blank { width: 100%; padding: 22px 20px; }
+  .blank-prop input { width: 7em; }
+  .blank-prop input[name="tel"] { width: 10em; }
+  .blank-prop-dlinnoe input { width: 12em; }
+  .blank-prop { display: inline-block; }
+  .otzyv { width: 100%; }
+  .glava-metka { padding-top: 96px; }
 }
 
-/* prefers-reduced-motion */
+/* ---------- ноутбук 900–1100: тексты в своих полосах, без перекрытий ---------- */
+@media (min-width: 900px) and (max-width: 1100px) {
+  .ekran-kino .ekran-h { font-size: clamp(64px, 7.4vw, 120px); }
+  .plashka-vysokaya-pravo { width: min(560px, 58vw); }
+  .plashka-verh-pravo { width: min(540px, 62vw); }
+  .plashka-niz-levo { width: min(620px, 70vw); }
+  .shag-h { font-size: clamp(48px, 6vw, 96px); }
+  .blank { width: min(620px, 60vw); }
+}
+
+/* ---------- компьютер: бланк справа, отзыв сбоку от него ---------- */
+@media (min-width: 900px) {
+  .finale-sloi {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) min(760px, 56vw);
+    align-items: center;
+    align-content: center;
+  }
+  .blank { width: 100%; grid-column: 2; grid-row: 1; }
+  .otzyv { grid-column: 1; grid-row: 1; justify-self: start; align-self: end; width: min(380px, 100%); }
+}
+@media (min-width: 900px) and (max-width: 1100px) {
+  .finale-sloi { grid-template-columns: minmax(0, 1fr) min(620px, 60vw); }
+}
+
+/* ---------- планшет и ноутбук 761–1100: журнальная раскладка сжата, текст не лезет на фото ---------- */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .poroda-h { font-size: clamp(88px, 13vw, 150px); }
+  .poroda-kadr { width: min(40vw, calc(var(--bl) * var(--r))); }
+  .poroda-text { width: min(380px, 40vw); }
+  .pasport dd { font-size: clamp(22px, 2.6vw, 30px); }
+  .cena-b .cena-plashka { width: min(520px, 56vw); padding: 44px 40px; }
+  .cena-v .cena-big { width: 40vw; }
+  .cena-v .cena-mid { left: 46vw; width: min(540px, 52vw); }
+  .cena-v .cena-vrez { width: 28vw; }
+  .cena-d .cena-blok { left: 36vw; width: min(520px, 58vw); }
+  .cena-finish .cena-plashka { width: min(520px, 56vw); }
+  .cena-g .cena-blok { width: min(480px, 54vw); }
+  .cena-blok { width: min(480px, 54vw); }
+  .shag-1 .shag-plashka { width: min(400px, 46vw); left: 42vw; }
+  .shag-2 .shag-plashka { width: min(460px, 52vw); }
+  .shag-3 .shag-plashka { width: min(440px, 52vw); }
+  .shag-5 .shag-plashka { width: min(420px, 48vw); }
+}
+
+/* ---------- телефон до 760: фото 60–70% высоты, плашка заходит на фото снизу, стороны чередуются ---------- */
+@media (max-width: 760px) {
+  .glava-metka { padding-top: 96px; }
+
+  .ekran-poroda { min-height: 100svh; display: flex; flex-direction: column; padding-bottom: 40px; }
+  .poroda-h { position: relative; top: auto; margin: 104px 0 0; font-size: clamp(64px, 22vw, 104px); }
+  .poroda-l .poroda-h { margin-left: 12vw; }
+  .poroda-r .poroda-h { margin-left: auto; margin-right: 12vw; text-align: right; }
+  .poroda-kadr { position: relative; left: auto; right: auto; bottom: auto; width: 84vw; height: 60svh; aspect-ratio: auto; margin-top: 24px; }
+  .poroda-l .poroda-kadr { margin-left: var(--gut); }
+  .poroda-r .poroda-kadr { margin-left: auto; margin-right: var(--gut); }
+  .poroda-vrez { width: 38%; top: -6%; }
+  .poroda-l .poroda-vrez { right: -10%; }
+  .poroda-r .poroda-vrez { left: -10%; }
+  .poroda-text { position: relative; left: auto; right: auto; bottom: auto; width: 88vw; margin-top: -10svh; padding: 26px 22px; background: var(--poroda-fon); z-index: 3; }
+  .poroda-l .poroda-text { margin-left: 6vw; }
+  .poroda-r .poroda-text { margin-left: auto; margin-right: 6vw; }
+  .pasport { gap: 12px; }
+  .pasport dd { font-size: clamp(16px, 4.6vw, 22px); }
+
+  .shag { min-height: 100svh; display: flex; flex-direction: column; padding-bottom: 40px; }
+  .shag .shag-cifra { position: relative; left: auto; right: auto; top: auto; bottom: auto; font-size: 30vw; padding: 96px var(--gut) 0; }
+  .shag .shag-foto { position: relative; left: auto; right: auto; top: auto; bottom: auto; width: 84vw; height: 56svh; margin-top: 16px; }
+  .shag-1 .shag-foto, .shag-3 .shag-foto, .shag-5 .shag-foto { margin-left: var(--gut); }
+  .shag-2 .shag-foto, .shag-4 .shag-foto { margin-left: auto; margin-right: var(--gut); }
+  .shag .shag-plashka { position: relative; left: auto; right: auto; top: auto; bottom: auto; transform: none; width: 88vw; margin-top: -10svh; padding: 26px 22px 32px; align-content: start; }
+  .shag-1 .shag-plashka, .shag-3 .shag-plashka, .shag-5 .shag-plashka { margin-left: 6vw; }
+  .shag-2 .shag-plashka, .shag-4 .shag-plashka { margin-left: auto; margin-right: 6vw; }
+  .shag-4 .shag-cifra { font-size: 26vw; padding: 0; }
+  .shag-4 .shag-plashka { padding-top: 96px; }
+  .shag-h { font-size: clamp(34px, 10vw, 48px); }
+
+  .cena-ekran { min-height: 100svh; display: flex; flex-direction: column; padding: 0 0 36px; }
+  .cena-ekran > .cena-big { position: relative; inset: auto; width: 84vw; height: 58svh; margin-top: 96px; }
+  .cena-ekran:nth-of-type(odd) > .cena-big { margin-left: 16vw; }
+  .cena-ekran:nth-of-type(even) > .cena-big { margin-left: 0; }
+  .cena-ekran > .cena-plashka, .cena-ekran > .cena-mid, .cena-ekran > .cena-blok {
+    position: relative; left: auto; right: auto; top: auto; bottom: auto; transform: none;
+    width: 88vw; margin-top: -10svh; padding: 26px 22px 32px; z-index: 3; background: var(--fon);
+  }
+  .cena-ekran:nth-of-type(odd) > .cena-plashka, .cena-ekran:nth-of-type(odd) > .cena-mid, .cena-ekran:nth-of-type(odd) > .cena-blok { margin-left: 6vw; margin-right: auto; }
+  .cena-ekran:nth-of-type(even) > .cena-plashka, .cena-ekran:nth-of-type(even) > .cena-mid, .cena-ekran:nth-of-type(even) > .cena-blok { margin-left: auto; margin-right: 6vw; }
+  .cena-summa { font-size: clamp(32px, 9.6vw, 56px); }
+  .cena-a > .cena-summa { font-size: 12.5vw; padding: 96px var(--gut) 0; white-space: nowrap; }
+  .cena-a .cena-strip { position: relative; width: 84vw; height: 52svh; margin: 20px 0 0 16vw; }
+  .cena-a .cena-big { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; }
+  .cena-a .cena-blok { padding-top: 26px; }
+  .cena-a .cena-vrez { left: auto; right: 4vw; bottom: -12%; width: 34vw; height: 22svh; }
+  .cena-v > .cena-vrez { position: relative; right: auto; bottom: auto; width: 40vw; height: 22svh; margin: -12svh 0 0 6vw; z-index: 4; }
+  .cena-g { flex-direction: column; }
+  .cena-g > .cena-blok { background: var(--oreh); margin-top: 96px; }
+  .cena-g > .cena-big { order: 1; margin-top: -10svh; }
+  .cena-g .cena-summa { color: #fbf7ef; }
+}
+
+/* ---------- телефон: правки после третьего прохода ---------- */
+@media (max-width: 760px) {
+  .ekran-poroda .poroda-h { order: -1; }
+  .ekran-poroda .poroda-text { margin-top: -8svh; }
+  .ekran-poroda .poroda-vrez { top: 10%; }
+  .cena-v > .cena-big { order: 0; }
+  .cena-v > .cena-vrez { order: 1; margin: -14svh 0 0 auto; margin-right: 4vw; }
+  .cena-v > .cena-mid { order: 2; margin-top: 20px; }
+}
+
+/* ---------- планшет 761-1100: узкие высокие рамки показывали пятую часть кадра ---------- */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .shag-3 .shag-foto { top: 14%; bottom: auto; width: 48%; height: 62%; }
+  .cena-g .cena-big { top: 14%; bottom: auto; width: 52%; height: 62%; }
+  .cena-d .cena-big { top: 14%; bottom: auto; width: 46vw; height: 62%; }
+  .cena-v .cena-summa { white-space: nowrap; font-size: clamp(36px, 5.2vw, 52px); }
+  .cena-v .cena-mid { left: 38vw; width: min(540px, 58vw); }
+}
+
+/* ---------- заголовки на телефоне не рвутся посреди слова ---------- */
+@media (max-width: 599px) {
+  .ekran-kino .ekran-h, .shag-h, .cena-nazvanie, .ekran-h { font-size: clamp(34px, 10vw, 48px); }
+  .poroda-h { font-size: clamp(60px, 20vw, 96px); }
+}
+
+/* ---------- без движения ---------- */
 @media (prefers-reduced-motion: reduce) {
-  .card-full {
-    scroll-snap-align: none;
-  }
-}
-
-/* на ноутбуке подложка в полэкрана: заголовок по её ширине, без обрезки краем */
-@media (min-width: 900px) {
-  .card-full-overlay .wrap h2 { font-size: clamp(48px, 5.6vw, 100px); text-wrap: balance; overflow-wrap: break-word; }
-}
-
-/* 1024 (12.10, глазами): заголовок карточки не рвётся посреди слова («встроенны-й») */
-@media (min-width: 900px) {
-  .card-full-overlay .wrap h2.title { overflow-wrap: normal; }
-}
-@media (min-width: 900px) {
-  .card-full-overlay .wrap h2.title { font-size: min(72px, 4.4vw); }
+  .ekran-foto, .poroda-big img, .shag-foto, .cena-big img, .cena-vrez img, .finale-foto { transform: none !important; }
+  .poroda-big img, .cena-big img { top: 0; height: 100%; }
+  .kak-linia i { transform: none !important; }
 }
