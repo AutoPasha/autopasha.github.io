@@ -100,14 +100,14 @@ const PAPER = '#e6e9e8', NIGHT = '#0e1215';
 const SC = {
   hero(p, st) {
     const ph = phone();
-    Object.assign(st, { dark: 0, bg: PAPER, shadow: 0.16, gridA: 0.15, beam: 0, fit: null, zoom: 1, tint: null, pad: ph ? [2.6, 0.3, 0.3, 2.6] : [3.4, 0.3, 0.3, 7.2] });
+    Object.assign(st, { dark: 0, bg: PAPER, shadow: 0.16, gridA: 0.15, beam: 0, fit: null, zoom: 1, tint: null, pad: ph ? [0.3, 0.3, 0.3, 0.3] : [3.4, 0.3, 0.3, 7.2] });
     st.build = intro.b;
-    st.az = (ph ? 50 : 38) - 16 * p + intro.az + dAz('hero'); st.el = (ph ? 21 : 19) + 8 * p;
+    st.az = (ph ? 60 : 38) - 16 * p + intro.az + dAz('hero'); st.el = (ph ? 23 : 19) + 8 * p;
     if (ph) {
       // телефон: каркас во всю ширину между заголовком и цифрами
       const top = heroTop.getBoundingClientRect().bottom + scrollY;
       const bot = heroBot.getBoundingClientRect().top + scrollY;
-      st.rect = [0.05, top / vh() + 0.015, 0.97, bot / vh() - 0.015];
+      st.rect = [-0.1, top / vh() + 0.01, 1.1, bot / vh() - 0.01];
     } else {
       // компьютер: текст узкой колонкой слева, каркас крупно справа и уходит за край
       const x0 = (heroTop.getBoundingClientRect().right + 40) / innerWidth;
@@ -184,7 +184,8 @@ function dimList(g, withLen) {
 }
 function placeHero() {
   const off = $('.hero').getBoundingClientRect().top;
-  const g = dimsSvg($('.dims', heroOv), dimList(k.geo(), false), off);
+  // на телефоне каркас уходит за края — оставляем только пролёт, высота легла бы за край экрана
+  const g = dimsSvg($('.dims', heroOv), phone() ? dimList(k.geo(), false).slice(0, 1) : dimList(k.geo(), false), off);
   if (phone()) return;
   const pts = g.xs.map((x, i) => [String(i + 1), x, 0, g.span / 2 + 6.2]);
   if (marksEl.children.length !== pts.length) marksEl.innerHTML = pts.map(p => `<span>${p[0]}</span>`).join('');
