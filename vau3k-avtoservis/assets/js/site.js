@@ -242,26 +242,59 @@
     }
   }
 
-  /* ---------- работы и цены: каждая сцена анимирует заголовок и фото ---------- */
+  /* ---------- работы и цены: у каждой сцены своё движение ---------- */
   if (gsap && ST && !ТИХО) {
-    var cenyScenes = Array.prototype.slice.call(document.querySelectorAll('.ceny-scene'));
-    cenyScenes.forEach(function (scene, idx) {
-      var h = scene.querySelector('.ceny-h');
-      var fon = scene.querySelector('.ceny-fon');
-      /* первая сцена: заголовок анимируется с маской */
-      if (idx === 0 && h) {
-        var stroki = h.querySelectorAll('.stroka > span');
-        gsap.set(stroki, { yPercent: 40, opacity: 0 });
-        gsap.to(stroki, { yPercent: 0, opacity: 1, duration: 1.25, ease: 'expo.out', stagger: .1, delay: .25 });
-      }
-      /* параллакс фото в каждой сцене */
-      if (fon) {
-        gsap.to(fon, {
-          y: 80, ease: 'none',
-          scrollTrigger: { trigger: scene, start: 'top top', end: 'bottom top', scrub: true }
-        });
-      }
+    var ceny = function (k) { return document.querySelector('.ceny-scene--' + k); };
+    var prokrutka = function (el, start, end) {
+      return { trigger: el, start: start || 'top bottom', end: end || 'bottom top', scrub: true };
+    };
+
+    var scenaA = ceny('a');
+    if (scenaA) {
+      var strokiCen = scenaA.querySelectorAll('.ceny-h .stroka > span');
+      gsap.set(strokiCen, { yPercent: 40, opacity: 0 });
+      gsap.to(strokiCen, { yPercent: 0, opacity: 1, duration: 1.25, ease: 'expo.out', stagger: .1, delay: .25 });
+    }
+    var scenaB = ceny('b');
+    if (scenaB) {
+      gsap.fromTo(scenaB.querySelector('.ceny-fon'), { scale: 1.12 }, { scale: 1, ease: 'none', scrollTrigger: prokrutka(scenaB) });
+    }
+    var scenaC = ceny('c');
+    if (scenaC) {
+      gsap.fromTo(scenaC.querySelector('.ceny-fon'), { clipPath: 'inset(0% 100% 0% 0%)' },
+        { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none', scrollTrigger: prokrutka(scenaC, 'top 85%', 'top 25%') });
+    }
+    var scenaD = ceny('d');
+    if (scenaD) {
+      gsap.fromTo(scenaD.querySelector('.ceny-tekst'), { yPercent: 100 }, { yPercent: 0, ease: 'none', scrollTrigger: prokrutka(scenaD, 'top 75%', 'top 15%') });
+    }
+    var scenaE = ceny('e');
+    if (scenaE) {
+      gsap.matchMedia().add('(min-width: 900px)', function () {
+        gsap.fromTo(scenaE.querySelector('.ceny-fon'), { y: 60 }, { y: -60, ease: 'none', scrollTrigger: prokrutka(scenaE) });
+      });
+    }
+    var scenaF = ceny('f');
+    if (scenaF) {
+      var panelF = scenaF.querySelector('.ceny-tekst');
+      gsap.matchMedia().add('(min-width: 900px)', function () {
+        gsap.fromTo(panelF, { xPercent: 100 }, { xPercent: 0, ease: 'none', scrollTrigger: prokrutka(scenaF, 'top 75%', 'top 15%') });
+      });
+      gsap.matchMedia().add('(max-width: 899px)', function () {
+        gsap.fromTo(panelF, { yPercent: 100 }, { yPercent: 0, ease: 'none', scrollTrigger: prokrutka(scenaF, 'top 75%', 'top 15%') });
+      });
+    }
+    /* деталь разворота едет навстречу большому кадру; на телефоне сдвиг заходил бы на текст */
+    gsap.matchMedia().add('(min-width: 900px)', function () {
+      document.querySelectorAll('.ceny-razvorot .ceny-det').forEach(function (det, i) {
+        gsap.fromTo(det, { y: i % 2 ? -50 : 70 }, { y: i % 2 ? 50 : -70, ease: 'none', scrollTrigger: prokrutka(det.closest('.ceny-scene')) });
+      });
+      gsap.fromTo('.ceny-progress span', { scaleY: 0 }, { scaleY: 1, ease: 'none', scrollTrigger: { trigger: '.ceny', start: 'top top', end: 'bottom bottom', scrub: true } });
     });
+    var scenaG = ceny('g');
+    if (scenaG) {
+      gsap.fromTo(scenaG.querySelector('.ceny-fon'), { scale: 1.25 }, { scale: 1, ease: 'none', scrollTrigger: prokrutka(scenaG) });
+    }
   }
 
   /* ---------- отзыв: слова светлеют по мере чтения ---------- */
@@ -278,37 +311,26 @@
     });
   }
 
-  /* ---------- отзывы: параллакс фото ---------- */
-  var otzyvyStage = document.querySelector('.otzyvy-stage');
-  var otzyvyFon = otzyvyStage ? otzyvyStage.querySelector('.otzyvy-fon') : null;
-  if (otzyvyStage && otzyvyFon && gsap && ST && !ТИХО) {
-    /* заголовок собирается из маски */
-    var otzyvyZag = otzyvyStage.querySelector('.otzyvy-zag');
-    if (otzyvyZag) {
-      var strokirz = otzyvyZag.querySelectorAll('.stroka > span');
-      gsap.set(strokirz, { yPercent: 108 });
-      gsap.to(strokirz, { yPercent: 0, duration: 1.25, ease: 'expo.out', stagger: .1, delay: .25 });
-    }
-    gsap.to(otzyvyFon, {
-      y: 80, ease: 'none',
-      scrollTrigger: { trigger: '.otzyvy', start: 'top top', end: 'bottom top', scrub: true }
-    });
+  /* ---------- отзывы: заголовок собирается из маски ---------- */
+  var otzyvyZag = document.querySelector('.otzyvy-zag');
+  if (otzyvyZag && gsap && !ТИХО) {
+    var strokirz = otzyvyZag.querySelectorAll('.stroka > span');
+    gsap.set(strokirz, { yPercent: 108 });
+    gsap.to(strokirz, { yPercent: 0, duration: 1.25, ease: 'expo.out', stagger: .1, delay: .25 });
   }
 
-  /* ---------- заявка: параллакс фото ---------- */
-  var zayavkaStage = document.querySelector('.zayavka-stage');
-  var zayavkaFon = zayavkaStage ? zayavkaStage.querySelector('.zayavka-fon') : null;
-  if (zayavkaStage && zayavkaFon && gsap && ST && !ТИХО) {
-    /* заголовок собирается из маски */
-    var zayavkaZag = zayavkaStage.querySelector('.zayavka-h');
-    if (zayavkaZag) {
-      var strokizf = zayavkaZag.querySelectorAll('.stroka > span');
-      gsap.set(strokizf, { yPercent: 108 });
-      gsap.to(strokizf, { yPercent: 0, duration: 1.25, ease: 'expo.out', stagger: .1, delay: .25 });
-    }
-    gsap.to(zayavkaFon, {
-      y: 60, ease: 'none',
-      scrollTrigger: { trigger: '.zayavka', start: 'top top', end: 'bottom top', scrub: true }
+  /* ---------- заявка: заголовок из маски, колесо въезжает при входе секции ---------- */
+  var zayavkaZag = document.querySelector('.zayavka-h');
+  if (zayavkaZag && gsap && !ТИХО) {
+    var strokizf = zayavkaZag.querySelectorAll('.stroka > span');
+    gsap.set(strokizf, { yPercent: 108 });
+    gsap.to(strokizf, { yPercent: 0, duration: 1.25, ease: 'expo.out', stagger: .1, delay: .25 });
+  }
+  var koleso = document.querySelector('.zayavka-koleso');
+  if (koleso && gsap && ST && !ТИХО) {
+    gsap.fromTo(koleso, { xPercent: 12, scale: .9 }, {
+      xPercent: 0, scale: 1, ease: 'none',
+      scrollTrigger: { trigger: '.zayavka', start: 'top bottom', end: 'top top', scrub: true }
     });
   }
 

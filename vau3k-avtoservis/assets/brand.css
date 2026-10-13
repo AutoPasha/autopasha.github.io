@@ -5,6 +5,7 @@
 @import url("fonts/unbounded/fonts.css");
 @import url("fonts/ibm-plex-mono/fonts.css");
 @import url("fonts/geologica/fonts.css");
+@import url("fonts/playfair-display/fonts.css");
 
 :root {
   /* ---- мир: тёмный цех ---- */
@@ -21,6 +22,7 @@
   --display: "Unbounded", "Geologica", system-ui, sans-serif;
   --text: "Geologica", system-ui, sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --serif: "Playfair Display", Georgia, serif;
 
   /* ---- форма и ритм ---- */
   --r-s: 2px;

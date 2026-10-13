@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="assets/brand.css">
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/karkas-katalog-zhurnal.css">
-<link rel="stylesheet" href="assets/css/karkas-zayavka-fraza.css">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://design.autopasha.ru/vau3k-avtoservis/">
 <meta property="og:title" content="Подъёмник, Пермь: ремонт и обслуживание легковых автомобилей">
@@ -82,9 +81,11 @@
       <div class="kino-paneli">
         <!-- сцена 1 -->
         <div class="kino-panel" data-panel="1">
-          <h1 class="kino-zag"><span class="stroka"><span>Подъёмник</span></span></h1>
+          <div class="kino-head">
+            <p class="kino-kicker">Подъёмник · автосервис в Перми</p>
+            <h1 class="kino-zag kino-zag--1"><span class="stroka"><span>Разберём</span></span><span class="stroka"><span>и соберём как надо</span></span></h1>
+          </div>
           <div class="kino-telo">
-            <p class="kino-lid">Разберём и соберём как надо</p>
             <p class="kino-lid kino-lid--melko">Ремонт и обслуживание легковых автомобилей, шесть постов в Перми.</p>
             <a class="knopka" href="index.html#zayavka">
               Записаться
@@ -100,7 +101,7 @@
 
         <!-- сцена 2 -->
         <div class="kino-panel" data-panel="2">
-          <h2 class="kino-zag kino-zag--2"><span class="stroka"><span>Гарантия</span></span><span class="stroka"><span>12 месяцев</span></span></h2>
+          <h2 class="kino-zag kino-zag--2"><span class="stroka"><span>Гарантия</span></span><span class="stroka"><span><em>12 месяцев</em></span></span></h2>
           <div class="kino-telo kino-telo--2">
             <ul class="kino-ceni">
               <li><span>Компьютерная диагностика</span><b>1 200 ₽</b></li>
@@ -132,73 +133,107 @@
 
   <!-- ============ акты после превращения ============ -->
 
-  <!-- работы и цены: как кино, каждая работа — свой кадр -->
+  <!-- работы и цены: как кино, каждая работа — свой разворот из двух кадров -->
   <section class="ceny" id="ceny">
-    <div class="ceny-scene">
-      <div class="ceny-fon"><img src="assets/img/s01.jpg" alt="" loading="lazy" width="1200" height="1500"></div>
+    <div class="ceny-progress" aria-hidden="true"><span></span></div>
+    <div class="ceny-scene ceny-scene--a" id="ceny-vstuplenie">
+      <div class="ceny-fon"><img src="assets/img/s01.jpg" alt="" loading="lazy" width="1280" height="720"></div>
       <div class="ceny-tekst">
         <h2 class="ceny-h"><span class="stroka"><span>Работы</span></span><span class="stroka"><span><em>и цены</em></span></span></h2>
+        <ol class="ceny-oglav">
+          <li><a href="#rabota-1"><span class="ceny-oglav-n">01</span><span class="ceny-oglav-imya">Компьютерная диагностика</span><span class="ceny-oglav-cena">1 200 ₽</span></a></li>
+          <li><a href="#rabota-2"><span class="ceny-oglav-n">02</span><span class="ceny-oglav-imya">Ремонт подвески</span><span class="ceny-oglav-cena">по осмотру</span></a></li>
+          <li><a href="#rabota-3"><span class="ceny-oglav-n">03</span><span class="ceny-oglav-imya">Развал-схождение</span><span class="ceny-oglav-cena">2 400 ₽</span></a></li>
+          <li><a href="#rabota-4"><span class="ceny-oglav-n">04</span><span class="ceny-oglav-imya">Замена тормозных колодок</span><span class="ceny-oglav-cena">от 1 500 ₽</span></a></li>
+          <li><a href="#rabota-5"><span class="ceny-oglav-n">05</span><span class="ceny-oglav-imya">Шиномонтаж R15-R17</span><span class="ceny-oglav-cena">от 2 200 ₽</span></a></li>
+          <li><a href="#rabota-6"><span class="ceny-oglav-n">06</span><span class="ceny-oglav-imya">Заправка кондиционера</span><span class="ceny-oglav-cena">2 800 ₽</span></a></li>
+        </ol>
       </div>
     </div>
-    <div class="ceny-scene">
-      <div class="ceny-fon"><img src="assets/img/s02.jpg" alt="" loading="lazy" width="1200" height="1500"></div>
+    <div class="ceny-scene ceny-razvorot ceny-scene--b" id="rabota-1">
+      <div class="ceny-kadry">
+        <div class="ceny-fon"><img src="assets/img/s02.jpg" alt="" loading="lazy" width="1280" height="720"></div>
+        <div class="ceny-det"><img src="assets/img/d02.jpg" alt="" loading="lazy" width="1024" height="1024"></div>
+      </div>
       <div class="ceny-tekst">
+        <div class="ceny-n">01 / 06</div>
         <div class="ceny-imya">Компьютерная диагностика</div>
         <div class="ceny-cena">1 200 ₽</div>
         <div class="ceny-opis">Дилерский сканер, протокол с кодами ошибок отдаём в PDF и показываем на экране</div>
       </div>
     </div>
-    <div class="ceny-scene">
-      <div class="ceny-fon"><img src="assets/img/s03.jpg" alt="" loading="lazy" width="1200" height="1500"></div>
+    <div class="ceny-scene ceny-razvorot ceny-scene--c" id="rabota-2">
+      <div class="ceny-kadry">
+        <div class="ceny-fon"><img src="assets/img/s03.jpg" alt="" loading="lazy" width="1280" height="720"></div>
+        <div class="ceny-det"><img src="assets/img/d03.jpg" alt="" loading="lazy" width="1024" height="1024"></div>
+      </div>
       <div class="ceny-tekst">
+        <div class="ceny-n">02 / 06</div>
         <div class="ceny-imya">Ремонт подвески</div>
         <div class="ceny-cena">по осмотру</div>
         <div class="ceny-opis">Рычаги, стойки, шаровые и сайлентблоки. Смета собирается по фото до начала работ</div>
       </div>
     </div>
-    <div class="ceny-scene">
-      <div class="ceny-fon"><img src="assets/img/s04.jpg" alt="" loading="lazy" width="1200" height="1500"></div>
+    <div class="ceny-scene ceny-razvorot ceny-scene--d" id="rabota-3">
+      <div class="ceny-kadry">
+        <div class="ceny-fon"><img src="assets/img/s04.jpg" alt="" loading="lazy" width="1280" height="720"></div>
+        <div class="ceny-det"><img src="assets/img/d04.jpg" alt="" loading="lazy" width="1024" height="1024"></div>
+      </div>
       <div class="ceny-tekst">
+        <div class="ceny-n">03 / 06</div>
         <div class="ceny-imya">Развал-схождение</div>
         <div class="ceny-cena">2 400 ₽</div>
         <div class="ceny-opis">3D-стенд, регулировка передней оси с протоколом замера до и после</div>
       </div>
     </div>
-    <div class="ceny-scene">
-      <div class="ceny-fon"><img src="assets/img/s05.jpg" alt="" loading="lazy" width="1200" height="1500"></div>
+    <div class="ceny-scene ceny-razvorot ceny-scene--e" id="rabota-4">
+      <div class="ceny-kadry">
+        <div class="ceny-fon"><img src="assets/img/s05.jpg" alt="" loading="lazy" width="1280" height="720"></div>
+        <div class="ceny-det"><img src="assets/img/d05.jpg" alt="" loading="lazy" width="1024" height="1024"></div>
+      </div>
       <div class="ceny-tekst">
-        <div class="ceny-imya">Замена тормозных колодок</div>
+        <div class="ceny-n">04 / 06</div>
         <div class="ceny-cena">от 1 500 ₽</div>
+        <div class="ceny-imya">Замена тормозных колодок</div>
         <div class="ceny-opis">Меняем комплектом по оси, диски трём только если зазор уже на пределе</div>
       </div>
     </div>
-    <div class="ceny-scene">
-      <div class="ceny-fon"><img src="assets/img/s06.jpg" alt="" loading="lazy" width="1200" height="1500"></div>
+    <div class="ceny-scene ceny-razvorot ceny-scene--f" id="rabota-5">
+      <div class="ceny-kadry">
+        <div class="ceny-fon"><img src="assets/img/s06.jpg" alt="" loading="lazy" width="1280" height="720"></div>
+        <div class="ceny-det"><img src="assets/img/d06.jpg" alt="" loading="lazy" width="1024" height="1024"></div>
+      </div>
       <div class="ceny-tekst">
+        <div class="ceny-n">05 / 06</div>
         <div class="ceny-imya">Шиномонтаж R15-R17</div>
         <div class="ceny-cena">от 2 200 ₽</div>
         <div class="ceny-opis">Без грыж, плюс балансировка. Старые шины сдаём на утилизацию сами</div>
       </div>
     </div>
-    <div class="ceny-scene">
-      <div class="ceny-fon"><img src="assets/img/s07.jpg" alt="" loading="lazy" width="1200" height="1500"></div>
+    <div class="ceny-scene ceny-razvorot ceny-scene--g" id="rabota-6">
+      <div class="ceny-kadry">
+        <div class="ceny-fon"><img src="assets/img/s07.jpg" alt="" loading="lazy" width="1280" height="720"></div>
+        <div class="ceny-det"><img src="assets/img/d07.jpg" alt="" loading="lazy" width="1024" height="1024"></div>
+      </div>
       <div class="ceny-tekst">
-        <div class="ceny-imya">Заправка кондиционера</div>
+        <div class="ceny-n">06 / 06</div>
         <div class="ceny-cena">2 800 ₽</div>
+        <div class="ceny-imya">Заправка кондиционера</div>
         <div class="ceny-opis">Вакуумируем систему, ищем утечку, проверяем давление под нагрузкой</div>
       </div>
     </div>
   </section>
 
-  <!-- отзывы: как кино -->
+  <!-- отзывы: журнальная цитата -->
   <section class="otzyvy" id="otzyvy" aria-labelledby="otzyvy-h">
     <div class="otzyvy-stage">
       <div class="otzyvy-fon">
-        <img src="assets/img/master.jpg" alt="Мастер в комбинезоне проверяет затяжку болтов колеса на подъёмнике" loading="lazy" width="1200" height="1500">
+        <img src="assets/img/master.jpg" alt="Мастер в комбинезоне проверяет затяжку болтов колеса на подъёмнике" loading="lazy" width="864" height="1152">
       </div>
       <div class="otzyvy-tekst">
-        <h2 class="otzyvy-zag" id="otzyvy-h"><span class="stroka"><span>Отзывы</span></span><span class="stroka"><span>клиентов</span></span></h2>
+        <h2 class="otzyvy-zag" id="otzyvy-h"><span class="stroka"><span>Отзыв клиента</span></span></h2>
         <blockquote class="otzyvy-cita">
+          <span class="otzyvy-kav" aria-hidden="true">«</span>
           <p class="otzyvy-rep" id="otzyvyRep">Приехал с чужой разметкой на диске и стуком в колесе. Нашли подшипник ступицы и болт, который кто-то вкрутил на семь с половиной оборотов. Показали на экране, где именно, и дали старые детали в руки.</p>
           <footer>Артём Климов, Solaris, Пермь</footer>
         </blockquote>
@@ -207,14 +242,18 @@
     </div>
   </section>
 
-  <!-- запись: как кино -->
+  <!-- запись: финал превращения, колесо собрано -->
   <section class="zayavka" id="zayavka" data-karkas="zayavka-fraza" aria-labelledby="zayavka-h">
     <div class="zayavka-stage">
-      <div class="zayavka-fon">
-        <img src="assets/img/zal.jpg" alt="" loading="lazy" width="1280" height="853">
+      <div class="zayavka-koleso">
+        <img src="assets/img/koleso.jpg" alt="" loading="lazy" width="1024" height="1024">
       </div>
       <form class="zayavka-forma" data-otvet="Записали. Перезвоним в течение 15 минут и подтвердим пост.">
-        <h2 class="zayavka-h" id="zayavka-h"><span class="stroka"><span>Запись</span></span><span class="stroka"><span><em>на пост</em></span></span></h2>
+        <div class="zayavka-tablo">
+          <span class="zayavka-sceny"><b>разбор</b><b>сборка</b><b class="on">запись</b></span>
+          <span class="zayavka-kadr">кадр <b>243</b> из 243</span>
+        </div>
+        <h2 class="zayavka-h" id="zayavka-h"><span class="stroka"><span>Колесо собрано.</span></span><span class="stroka"><span><em>Ваша очередь.</em></span></span></h2>
         <p class="zayavka-fraza">
           Нужен
           <label class="zayavka-pole"><select aria-label="Что нужно сделать" name="rabota"><option>ремонт подвески</option><option>замену колодок</option><option>шиномонтаж</option><option>диагностику</option><option>замену масла</option></select></label>,
@@ -227,7 +266,10 @@
           телефон
           <label class="zayavka-pole"><input aria-label="Телефон" name="telefon" type="tel" placeholder="+7 900 000-00-00" autocomplete="tel" required></label>.
         </p>
-        <button class="zayavka-knopka" type="submit">Записать</button>
+        <button class="knopka zayavka-knopka" type="submit">
+          Записать на пост
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7l-7 7"/></svg>
+        </button>
         <p class="zayavka-otvet" role="status" aria-live="polite"></p>
         <p class="zayavka-melko">Перезвоним с 8 до 20. Номер нужен только для подтверждения записи, в мессенджеры не пишем.</p>
       </form>
