@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Окрашивание · студия «Тон», Нижний Новгород</title>
+<meta name="description" content="Подбираем оттенок и переход на живой пряди до окрашивания. Тонирование, балаяж и сложное окрашивание, бесплатная поправка оттенка в течение семи дней.">
+<meta name="theme-color" content="#f3efe9">
+<link rel="stylesheet" href="assets/fonts/wix-madefor-display/fonts.css">
+<link rel="stylesheet" href="assets/css/site.css">
+<script type="importmap">{"imports":{"three":"./assets/lib/three.module.min.js"}}</script>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://design.autopasha.ru/ton-salon/">
+<meta property="og:title" content="Окрашивание · студия «Тон», Нижний Новгород">
+<meta property="og:description" content="Подбираем оттенок и переход на живой пряди до окрашивания. Тонирование, балаяж и сложное окрашивание, бесплатная поправка оттенка в течение семи дней.">
+<meta property="og:image" content="https://design.autopasha.ru/ton-salon/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://design.autopasha.ru/ton-salon/og.jpg">
+</head>
+<body>
+
+<canvas id="pryad" aria-hidden="true"></canvas>
+
+<header class="gnav">
+  <div class="gnav-in">
+    <a class="logo" href="#top">Тон</a>
+    <nav class="gnav-links" aria-label="Разделы">
+      <a href="#ottenki">Оттенки</a>
+      <a href="#perehod">Переход</a>
+      <a href="#ceny">Цены</a>
+      <a href="#zapis">Запись</a>
+    </nav>
+    <a class="gnav-tel" href="tel:+78312801746">+7 831 280-17-46</a>
+  </div>
+</header>
+
+<nav class="lnav" aria-label="Окрашивание">
+  <div class="lnav-in">
+    <span class="lnav-name">Окрашивание</span>
+    <div class="lnav-links">
+      <a href="#ottenki">Оттенки</a>
+      <a href="#perehod">Переход</a>
+      <a href="#ceny">Цены</a>
+      <a class="pill pill-s" href="#zapis">Записаться</a>
+    </div>
+  </div>
+</nav>
+
+<main id="top">
+
+  <section class="hero s3d" data-scene="hero">
+    <div class="hero-text">
+      <p class="eyebrow rise">Студия окрашивания «Тон»</p>
+      <h1 class="hero-name rise">Ваш цвет.</h1>
+      <p class="hero-lead rise">Подбираем оттенок и переход на живой пряди. Вы видите результат до того, как сели в кресло.</p>
+      <div class="hero-cta rise">
+        <a class="pill" href="#zapis">Записаться</a>
+        <a class="more" href="#ottenki">Подобрать оттенок</a>
+      </div>
+      <p class="hero-price rise">от 4 500 ₽ · консультация бесплатно</p>
+    </div>
+  </section>
+
+  <section class="manifest" aria-label="Как мы работаем">
+    <p class="manifest-text" data-words>Сначала смотрим ваш натуральный цвет, прошлые окрашивания и свет, в котором вы чаще всего бываете. Потом подбираем оттенок вместе с вами. Красим так, чтобы цвет красиво отрастал.</p>
+  </section>
+
+  <section class="ottenki s3d" id="ottenki" data-scene="ottenki">
+    <div class="stage">
+      <div class="ott-head">
+        <p class="eyebrow">Оттенки</p>
+        <h2 class="display">Пять оттенков,<br>с которых начинают.</h2>
+      </div>
+      <div class="ott-pick">
+        <div class="swatches" role="radiogroup" aria-label="Оттенок">
+          <button class="sw" data-ton="pesok" role="radio" aria-checked="false" aria-label="Песочный блонд"></button>
+          <button class="sw" data-ton="karamel" role="radio" aria-checked="true" aria-label="Карамель"></button>
+          <button class="sw" data-ton="kashtan" role="radio" aria-checked="false" aria-label="Каштан"></button>
+          <button class="sw" data-ton="med" role="radio" aria-checked="false" aria-label="Медь"></button>
+          <button class="sw" data-ton="pepel" role="radio" aria-checked="false" aria-label="Пепельный"></button>
+        </div>
+        <div class="ton-info" aria-live="polite">
+          <p class="ton-name">Карамель</p>
+          <p class="ton-text">Самый частый выбор осенью. Добавляет волосам глубины.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="perehod s3d" id="perehod" data-scene="perehod">
+    <div class="stage">
+      <div class="per-text">
+        <p class="eyebrow">Переход</p>
+        <h2 class="display">Решите, где<br>начнётся цвет.</h2>
+        <p class="per-lead">Высокий переход ярче и смелее. Низкий отрастает незаметно, обновлять его можно раз в три месяца.</p>
+        <div class="per-ctl">
+          <label class="rng"><span class="rng-k">Где начинается переход</span>
+            <input type="range" id="blend" min="20" max="80" value="55" aria-label="Где начинается переход">
+          </label>
+          <div class="rng-scale" aria-hidden="true"><span>У корней</span><span>Ниже плеч</span></div>
+          <div class="seg" role="radiogroup" aria-label="Граница">
+            <button role="radio" aria-checked="true" data-s="0.35">Мягкая граница</button>
+            <button role="radio" aria-checked="false" data-s="0.12">Чёткая граница</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="kadr" aria-label="Окрашивание через два месяца">
+    <div class="stage">
+      <div class="kadr-frame"><img src="assets/img/volosy.jpg" alt="Длинные волосы с мягким карамельным балаяжем" loading="lazy" width="1920" height="1080"></div>
+      <div class="kadr-text">
+        <h2 class="display">Отрастает<br>красиво.</h2>
+        <p>Корни подбираем под ваш натуральный цвет, поэтому через два месяца граница почти не видна.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bento" aria-labelledby="bento-h">
+    <div class="wrap">
+      <h2 class="display center" id="bento-h">Мелочи, которые решают.</h2>
+      <div class="tiles">
+        <figure class="tile t-big light">
+          <img src="assets/img/smes.jpg" alt="Колорист смешивает краску на весах" loading="lazy" width="864" height="1152">
+          <figcaption><span class="t-k">Формула</span><b>Смешиваем на весах.</b> Формулу записываем, и в следующий раз цвет будет тем же.</figcaption>
+        </figure>
+        <div class="tile t-num"><span class="t-k">Мастер</span><span class="num">1<small>на визит</small></span><p>Один человек от консультации до укладки.</p></div>
+        <div class="tile t-num"><span class="t-k">Поправка оттенка</span><span class="num">7<small>дней</small></span><p>Если оттенок не тот, поправим бесплатно.</p></div>
+        <figure class="tile t-wide light">
+          <img src="assets/img/studiya.jpg" alt="Студия с креслами у больших зеркал" loading="lazy" width="1920" height="1080">
+          <figcaption><span class="t-k">Свет</span><b>Окна во всю стену.</b> Цвет подбираем при дневном свете, в нём видно настоящий оттенок.</figcaption>
+        </figure>
+        <figure class="tile t-obr light">
+          <img src="assets/img/obrazcy.jpg" alt="Образцы прядей разных оттенков" loading="lazy" width="864" height="1152">
+          <figcaption><span class="t-k">Образцы</span><b>Сорок живых прядей.</b> Выбираем на ощупь и при свете, а не по экрану.</figcaption>
+        </figure>
+        <div class="tile t-num t-time"><span class="t-k">Балаяж</span><span class="num">3<small>часа</small></span><p>Средний визит. Кофе, плед и тишина.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ceny" id="ceny" aria-labelledby="ceny-h">
+    <div class="wrap">
+      <h2 class="display center" id="ceny-h">Что выбрать.</h2>
+      <div class="cols">
+        <article class="col">
+          <div class="col-sw" style="--a:#b08a5c;--b:#e6cfa2"></div>
+          <h3>Тонирование</h3>
+          <p class="col-d">Освежить цвет и вернуть блеск.</p>
+          <p class="col-p">от 4 500 ₽</p>
+          <ul><li>1,5 часа</li><li>Держится 6–8 недель</li><li>Уход в подарок</li></ul>
+          <a class="pill" href="#zapis" data-usl="Тонирование">Выбрать</a>
+        </article>
+        <article class="col">
+          <div class="col-sw" style="--a:#5a3a22;--b:#c08a52"></div>
+          <h3>Балаяж</h3>
+          <p class="col-d">Мягкий переход от корней к концам.</p>
+          <p class="col-p">от 9 800 ₽</p>
+          <ul><li>3–4 часа</li><li>Обновлять раз в 3 месяца</li><li>Тонирование входит</li></ul>
+          <a class="pill" href="#zapis" data-usl="Балаяж">Выбрать</a>
+        </article>
+        <article class="col">
+          <div class="col-sw" style="--a:#2e1a10;--b:#c8622e"></div>
+          <h3>Сложное окрашивание</h3>
+          <p class="col-d">Смена цвета, исправление прошлых окрашиваний.</p>
+          <p class="col-p">от 14 500 ₽</p>
+          <ul><li>5–6 часов</li><li>План по визитам</li><li>Консультация заранее</li></ul>
+          <a class="pill" href="#zapis" data-usl="Сложное окрашивание">Выбрать</a>
+        </article>
+      </div>
+      <p class="ceny-fine">Цены для длины до лопаток. Для длинных волос плюс 20%.</p>
+    </div>
+  </section>
+
+  <section class="zapis" id="zapis" aria-labelledby="zapis-h">
+    <div class="wrap zapis-in">
+      <div>
+        <p class="eyebrow">Запись</p>
+        <h2 class="display" id="zapis-h">Выберите<br>мастера и время.</h2>
+        <p class="zapis-sum">Вы выбрали: <b class="z-sum">Балаяж · Карамель</b></p>
+      </div>
+      <form class="form" onsubmit="event.preventDefault(); this.classList.add('sent');">
+        <div class="masters" role="radiogroup" aria-label="Мастер">
+          <button type="button" role="radio" aria-checked="true"><i>А</i><b>Алина</b><small>колорист, 9 лет</small></button>
+          <button type="button" role="radio" aria-checked="false"><i>В</i><b>Вера</b><small>балаяж, 6 лет</small></button>
+          <button type="button" role="radio" aria-checked="false"><i>М</i><b>Марк</b><small>сложные случаи</small></button>
+        </div>
+        <div class="days" role="radiogroup" aria-label="День"></div>
+        <div class="slots" role="radiogroup" aria-label="Время"></div>
+        <label><span>Как к вам обращаться</span><input name="imya" autocomplete="name" placeholder="Имя"></label>
+        <label><span>Телефон</span><input name="tel" type="tel" autocomplete="tel" placeholder="+7 900 000-00-00" required></label>
+        <button class="pill pill-wide" type="submit">Записаться</button>
+        <p class="form-ok">Записали. Мастер напишет накануне и попросит фото волос при дневном свете.</p>
+        <p class="fine">Консультация перед окрашиванием бесплатная, даже если вы передумаете.</p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-cols">
+      <div><p class="foot-k">Студия</p><p>Нижний Новгород, ул. Ильинская, 64<br>Второй этаж, вход с Ильинской</p></div>
+      <div><p class="foot-k">Часы</p><p>Каждый день, 10:00–21:00</p></div>
+      <div><p class="foot-k">Связь</p><p><a href="tel:+78312801746">+7 831 280-17-46</a><br><a href="https://t.me/ton_nn">Telegram @ton_nn</a></p></div>
+    </div>
+    <p class="foot-fine">© 2026 Тон. Студия окрашивания, Нижний Новгород.</p>
+  </div>
+</footer>
+
+<script src="assets/lib/gsap.min.js"></script>
+<script type="module" src="assets/js/main.js"></script>
+<script src="/ap/badge.js" defer data-ap="ton-salon"></script>
+</body>
+</html>
