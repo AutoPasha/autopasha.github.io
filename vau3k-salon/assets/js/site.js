@@ -300,42 +300,31 @@
 
   /* ---------------- окно: закрепление и слова ---------------- */
   if (hasGSAP && window.ScrollTrigger) {
-    var oknoText = $('#okno-text');
-    if (oknoText && !reduced) {
-      var words = oknoText.textContent.trim().split(/\s+/);
-      oknoText.textContent = '';
-      words.forEach(function (w, i) {
-        var s = doc.createElement('w');
-        s.textContent = w;
-        oknoText.appendChild(s);
-        if (i < words.length - 1) oknoText.appendChild(doc.createTextNode(' '));
+    var mm = gsap.matchMedia();
+    if (!reduced) {
+      $$('[data-par] img').forEach(function (img) {
+        gsap.fromTo(img, { yPercent: 0 }, {
+          yPercent: -5, ease: 'none',
+          scrollTrigger: { trigger: img.parentNode, start: 'top bottom', end: 'bottom top', scrub: true }
+        });
       });
-      gsap.to(oknoText.querySelectorAll('w'), {
-        opacity: 1, ease: 'none',
-        scrollTrigger: { trigger: '#okno', start: 'top 70%', end: 'top top', scrub: true },
-        stagger: 0.02
+
+      $$('#ceny .ph').forEach(function (f) {
+        gsap.fromTo(f, { clipPath: 'inset(0% 0% 100% 0%)' }, {
+          clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3, ease: 'expo.inOut',
+          scrollTrigger: { trigger: f, start: 'top 85%', once: true }
+        });
+      });
+
+      $$('#ceny .u1-band span, #ceny .u4-slovo').forEach(function (el) {
+        gsap.fromTo(el, { xPercent: 0 }, {
+          xPercent: -12, ease: 'none',
+          scrollTrigger: { trigger: el.closest('.u'), start: 'top bottom', end: 'bottom top', scrub: true }
+        });
       });
     }
 
-    var mm = gsap.matchMedia();
-    mm.add('(min-width: 900px)', function () {
-      gsap.timeline({
-        scrollTrigger: { trigger: '#okno', start: 'top top', end: 'bottom bottom', scrub: true }
-      })
-        .fromTo('.okno-foto-in', { clipPath: 'inset(0 27% 0 27%)' }, { clipPath: 'inset(0% 0% 0% 0%)', ease: 'none' }, 0)
-        .fromTo('.okno-foto-in img', { scale: 1.3 }, { scale: 1, ease: 'none' }, 0);
-    });
-
-    ScrollTrigger.batch('.mast-stroka', {
-      start: 'top 94%',
-      once: true,
-      onEnter: function (rows) {
-        gsap.fromTo(rows, { y: 26, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 0.8, stagger: 0.06, ease: 'power3.out', overwrite: true });
-      }
-    });
-
-    var knopkas = $$('.kino-t0 .knopka, .finale-knop .knopka');
+    var knopkas = $$('.kino-t0 .knopka');
     if (window.matchMedia('(hover: hover) and (min-width: 900px)').matches && !reduced) {
       knopkas.forEach(function (b) {
         b.addEventListener('mousemove', function (e) {
@@ -353,44 +342,73 @@
     }
   }
 
-  /* ---------------- фото за курсором над строками цен ---------------- */
-  if (hasGSAP && window.matchMedia('(hover: hover) and (min-width: 900px)').matches && !reduced) {
-    var stroki = $$('.kz-stroka[data-foto]');
-    if (stroki.length) {
-      var sled = doc.createElement('div');
-      sled.className = 'm-sled';
-      sled.setAttribute('aria-hidden', 'true');
-      var sledImg = doc.createElement('img');
-      sledImg.alt = '';
-      sled.appendChild(sledImg);
-      doc.body.appendChild(sled);
-      var sx = gsap.quickTo(sled, 'x', { duration: .55, ease: 'power3' });
-      var sy = gsap.quickTo(sled, 'y', { duration: .55, ease: 'power3' });
-      var sledHide = function () { sled.classList.remove('on'); };
-      doc.addEventListener('mousemove', function (e) {
-        if (sled.classList.contains('on')) { sx(e.clientX); sy(e.clientY); }
-      }, { passive: true });
-      window.addEventListener('scroll', sledHide, { passive: true });
-      stroki.forEach(function (s) {
-        s.addEventListener('mouseenter', function () {
-          sledImg.src = s.getAttribute('data-foto');
-          sled.classList.add('on');
-        });
-        s.addEventListener('mouseleave', sledHide);
-      });
+  /* ---------------- запись: пучок доигрывает последние кадры кино ---------------- */
+  var zapisSec = $('#zapis');
+  var pucok = $('#zapis-pucok');
+  if (zapisSec && pucok && !reduced) {
+    var zCv = $('#zapis-cv');
+    var zCtx = zCv.getContext('2d');
+    var zKad = $('#zapis-kad');
+    var zMq = window.matchMedia('(max-width: 899px)');
+    var Z0 = 229, Z1 = 273;
+    var zImgs = [], zDirNow = '', zDrawn = -1, zRaf = 0, zStarted = false;
+
+    var zPaint = function () {
+      zRaf = 0;
+      if (!zImgs.length) return;
+      var r = zapisSec.getBoundingClientRect();
+      var p = clamp01((window.innerHeight - r.top) / zapisSec.offsetHeight);
+      var k = Math.round(p * (Z1 - Z0));
+      var near = -1;
+      for (var d = 0; d <= Z1 - Z0 && near < 0; d++) {
+        if (k - d >= 0 && zImgs[k - d] && zImgs[k - d].__ok) near = k - d;
+        else if (k + d <= Z1 - Z0 && zImgs[k + d] && zImgs[k + d].__ok) near = k + d;
+      }
+      if (near < 0 || near === zDrawn) return;
+      zCtx.drawImage(zImgs[near], 0, 0, zCv.width, zCv.height);
+      zDrawn = near;
+      if (zKad) zKad.textContent = 'кадр ' + (Z0 + near) + ' из ' + Z1;
+      pucok.classList.add('on');
+    };
+    var zSchedule = function () { if (!zRaf) zRaf = requestAnimationFrame(zPaint); };
+
+    var zLoad = function () {
+      var dir = zMq.matches ? 'm' : 'd';
+      if (dir === zDirNow) return;
+      zStarted = true;
+      zDirNow = dir; zImgs = []; zDrawn = -1;
+      zCv.width = zMq.matches ? 720 : 1280;
+      zCv.height = zMq.matches ? 1280 : 720;
+      pucok.classList.remove('on');
+      for (var n = Z0; n <= Z1; n++) {
+        var im = new Image();
+        im.__ok = 0;
+        im.onload = function () { this.__ok = 1; zDrawn = -1; zSchedule(); };
+        im.src = 'assets/kino/' + dir + '/0' + n + '.webp';
+        zImgs.push(im);
+      }
+    };
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (es) { if (es[0].isIntersecting) zLoad(); }, { rootMargin: '150% 0px' }).observe(zapisSec);
+    } else {
+      zLoad();
     }
+    zMq.addEventListener('change', function () { if (zStarted) zLoad(); });
+    window.addEventListener('scroll', zSchedule, { passive: true });
+    window.addEventListener('resize', zSchedule, { passive: true });
   }
 
   var forma = $('#zapis-form');
   if (forma) {
     forma.addEventListener('submit', function (e) {
       e.preventDefault();
-      var need = ['imya', 'telefon'];
       var okAll = true;
-      need.forEach(function (n) {
+      ['imya', 'telefon'].forEach(function (n) {
         var f = forma.elements[n];
-        if (!f || !f.value.trim()) { okAll = false; f.style.borderColor = 'var(--wine)'; }
-        else f.style.borderColor = '';
+        var bad = !f.value.trim();
+        if (bad) okAll = false;
+        f.parentNode.classList.toggle('err', bad);
       });
       if (!okAll) return;
       forma.classList.add('ok');
