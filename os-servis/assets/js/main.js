@@ -191,7 +191,7 @@ function placeNotes() {
   });
 }
 
-const LIGHT = $$('.manifest, .smeta, .bento, .zapis, .foot');
+const LIGHT = $$('.smeta, .hod, .bento, .zapis, .foot');
 let dirty = true, lastKey = '', active = null;
 function frame() {
   manStep(); hodStep();

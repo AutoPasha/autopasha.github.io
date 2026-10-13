@@ -21,7 +21,7 @@ export function createKoleso(canvas) {
 
   const scene = new THREE.Scene();
   const bg = new THREE.Color(0x0a0a0b);
-  scene.background = bg;
+  scene.background = null;   // фон — цвет очистки: колесо рисуется дважды, с отражением в полу
   const pmrem = new THREE.PMREMGenerator(renderer);
   // Студия: чёрная комната и софтбоксы — на металле ложатся чистые градиентные блики
   scene.environment = (() => {
@@ -224,6 +224,33 @@ export function createKoleso(canvas) {
     for (const m of all) m.color.copy(base.get(m)).multiplyScalar(!st.focus || (GROUPS[st.focus] || []).includes(m) ? 1 : 0.3);
   }
   function project(name) { const v = anchors[name]().project(camera); return { x: (v.x + 1) / 2 * W, y: (1 - v.y) / 2 * H }; }
-  function render() { bg.set(st.bg); pose(); focus(); fit(); renderer.render(scene, camera); }
+  // Отражение в глянцевом тёмном полу: то же колесо вверх ногами под полом и
+  // полупрозрачный пол поверх, который гасит отражение к краям — как в студии
+  const FLOOR = -0.336;
+  const floorScene = new THREE.Scene();
+  const fadeTex = (() => {
+    const c = document.createElement('canvas'); c.width = c.height = 256;
+    const g = c.getContext('2d'), gr = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    gr.addColorStop(0, 'rgba(0,0,0,0.86)'); gr.addColorStop(0.5, 'rgba(0,0,0,0.94)'); gr.addColorStop(1, 'rgba(0,0,0,1)');
+    g.fillStyle = gr; g.fillRect(0, 0, 256, 256);
+    return new THREE.CanvasTexture(c);
+  })();
+  const floorMat = new THREE.MeshBasicMaterial({ color: 0x0a0a0b, alphaMap: fadeTex, transparent: true, depthWrite: false, toneMapped: false });
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(3, 3), floorMat);
+  floor.rotation.x = -Math.PI / 2; floor.position.y = FLOOR; floorScene.add(floor);
+  renderer.autoClear = false;
+  function render() {
+    bg.set(st.bg); pose(); focus(); fit();
+    renderer.setClearColor(bg, 1); renderer.clear();
+    if (st.mirror !== false) {
+      wheel.scale.y = -1; wheel.position.y = 2 * FLOOR;
+      renderer.render(scene, camera);
+      wheel.scale.y = 1; wheel.position.y = 0;
+      floorMat.color.copy(bg);
+      renderer.clearDepth();
+      renderer.render(floorScene, camera);
+    }
+    renderer.render(scene, camera);
+  }
   return { st, render, resize, project };
 }
