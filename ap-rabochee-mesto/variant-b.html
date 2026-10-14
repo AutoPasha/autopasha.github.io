@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="bumaga">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Рабочее место, вариант Б «по местам» — макет</title>
+<link rel="stylesheet" href="css/s0.css"><link rel="stylesheet" href="css/s1.css"><link rel="stylesheet" href="css/s2.css"><link rel="stylesheet" href="css/s3.css"><link rel="stylesheet" href="css/s4.css"><link rel="stylesheet" href="css/s5.css"><link rel="stylesheet" href="css/s6.css"><link rel="stylesheet" href="css/s7.css">
+<link rel="stylesheet" href="css/mock.css">
+<script src="icons.js"></script><script src="mock.js"></script>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://design.autopasha.ru/ap-rabochee-mesto/variant-b.html">
+<meta property="og:title" content="Рабочее место, вариант Б «по местам» — макет">
+<meta property="og:image" content="https://design.autopasha.ru/ap-rabochee-mesto/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://design.autopasha.ru/ap-rabochee-mesto/og.jpg">
+</head>
+<body class="min-h-dvh antialiased">
+<div class="m-shell">
+<main class="m-main">
+  <header class="v9-head"><div class="v9-head-row"><a class="v9-back" aria-label="назад" href="index.html"></a><div class="min-w-0"><h1 class="v9-title">рабочее место</h1><p class="v9-head-sub">3 места · 13 чатов · 6 человек</p></div></div></header>
+
+  <!-- карта: где сидит и кто там -->
+  <section class="m-card" style="margin-top:14px;overflow:hidden">
+    <div class="m-map" id="map">
+      <svg class="lines" id="lines" aria-hidden="true"></svg>
+      <div class="m-map-grid">
+        <div class="m-map-col" id="mapL"></div>
+        <div class="m-core" id="core"><img src="" alt="Паша" id="coreImg"></div>
+        <div class="m-map-col r" id="mapR"></div>
+      </div>
+    </div>
+    <div class="m-sum" id="sum"></div>
+  </section>
+
+  <!-- новые чаты решаются прямо здесь -->
+  <section class="m-ask" style="margin-top:12px" id="ask"></section>
+
+  <!-- по умолчанию -->
+  <section class="m-card m-pad" style="margin-top:12px">
+    <div class="m-row" style="flex-wrap:wrap">
+      <div class="m-grow" style="min-width:220px"><p class="m-t">Как он отвечает, если не сказано иначе</p><p class="m-s">Простое сам, сложное и всё про деньги — черновиком вам. В новых чатах сначала спрашивает вас.</p></div>
+      <span class="m-seg" data-mode="self" role="group"><i class="pill"></i><button data-k="self" aria-pressed="true">простое сам</button><button data-k="draft" aria-pressed="false">всё через вас</button></span>
+    </div>
+  </section>
+
+  <div id="places"></div>
+
+  <div class="m-card m-pad" style="margin-top:12px;border-style:dashed;background:transparent">
+    <p class="m-t">Ещё мессенджер</p><p class="m-s" style="margin-bottom:12px">Подключается в «Доступах» — отсюда та же шторка.</p>
+    <div id="add"></div>
+  </div>
+
+  <h2 class="m-h2" id="people">кто есть кто <span class="n">6 и ещё 17 из чатов</span></h2>
+  <p class="m-h2-sub">Один человек в двух мессенджерах — одна карточка. По ней он понимает, кого слушать, у кого спрашивать и кого не дёргать.</p>
+  <div class="m-card m-pad" id="roles"></div>
+  <div class="m-list" style="margin-top:12px" id="plist"></div>
+  <button class="m-btn" style="margin-top:12px">добавить человека</button>
+</main>
+</div>
+<script>
+shell('вариант Б · по местам');
+document.getElementById('coreImg').src = FACE;
+
+const places = ['pachca', 'telegram', 'mail'];
+const L = document.getElementById('mapL');
+L.innerHTML = places.map((k) => {
+  const n = CHATS.filter((c) => c.ch === k && c.mode !== 'off').length;
+  return `<a class="m-node" href="#ch-${k}" data-node>${logo(k, 'sm', 'ok')}<span>${CH[k].name}<small>${k === 'mail' ? 'ящик' : n + ' чатов'}</small></span></a>`;
+}).join('') + `<span class="m-node add" data-sheet="sh-ym" data-node>${logo('other', 'sm')}<span>ещё</span></span>`;
+const R = document.getElementById('mapR');
+R.innerHTML = PEOPLE.slice(0, 3).map((p) => `<a class="m-node" href="#people" data-node><span class="m-ava sm" style="background:${p.c}">${p.a}</span><span>${p.n.split(' ')[0]}<small>${p.tags[0] || p.r}</small></span></a>`).join('') + `<a class="m-node add" href="#people" data-node><span>ещё 20</span></a>`;
+
+function drawLines() {
+  const svg = document.getElementById('lines');
+  const box = document.getElementById('map').getBoundingClientRect();
+  const core = document.getElementById('core').getBoundingClientRect();
+  const cx = core.left + core.width / 2 - box.left, cy = core.top + core.height / 2 - box.top;
+  let d = '';
+  let sparks = '';
+  document.querySelectorAll('[data-node]').forEach((n, i) => {
+    const r = n.getBoundingClientRect();
+    const left = r.left < core.left;
+    const x = (left ? r.right : r.left) - box.left, y = r.top + r.height / 2 - box.top;
+    const ex = left ? cx - core.width / 2 : cx + core.width / 2;
+    const mx = (x + ex) / 2;
+    const path = `M${x},${y} C${mx},${y} ${mx},${cy} ${ex},${cy}`;
+    d += `<path class="m-flow" d="${path}" ${n.classList.contains('add') ? 'stroke-dasharray="3 4"' : ''}/>`;
+    if (!n.classList.contains('add')) {
+      const dur = 2.6 + (i % 3) * 0.7;
+      const kp = left ? '0;1' : '1;0';
+      sparks += `<circle class="m-spark" r="2.6"><animateMotion dur="${dur}s" repeatCount="indefinite" keyPoints="${kp}" keyTimes="0;1" calcMode="linear" path="${path}" begin="${(i * 0.45).toFixed(2)}s"/></circle>`;
+    }
+  });
+  svg.setAttribute('viewBox', `0 0 ${box.width} ${box.height}`);
+  svg.innerHTML = d + (matchMedia('(prefers-reduced-motion: reduce)').matches ? '' : sparks);
+}
+
+function summary() {
+  const all = CHATS;
+  const c = (m) => all.filter((x) => x.mode === m).length;
+  document.getElementById('sum').innerHTML = `<div><b>${c('self')}</b><span>отвечает сам</span></div><div><b>${c('draft')}</b><span>черновиком вам</span></div><div><b>${c('silent')}</b><span>читает молча</span></div><div><b>${c('off')}</b><span>не читает</span></div>`;
+}
+
+document.getElementById('ask').innerHTML = `<p class="m-ask-h">его позвали в новые чаты <span>${NEW_CHATS.length}</span></p><p class="m-ask-q">Работа это или нет? Пока вы не решили, он туда не смотрит.</p>` +
+  NEW_CHATS.map((c) => `<div class="m-ask-row">${logo(c.ch, 'sm')}<div class="m-grow"><p class="m-t" style="font-size:14.5px">${c.t}</p><p class="m-s">${c.who} · ${c.n} человек</p></div><span class="verdict"></span><div class="m-ask-acts"><button class="yes" data-v="работа ✓">работа</button><button data-v="читает молча">молча</button><button data-v="не его">не его</button></div></div>`).join('');
+
+function placeCard(k) {
+  const c = CH[k];
+  const list = CHATS.filter((x) => x.ch === k);
+  const groups = list.filter((x) => x.type !== 'dm');
+  const dms = list.filter((x) => x.type === 'dm');
+  const row = (x) => `<div class="m-chat ${x.mode === 'off' ? 'off' : ''}">${chatIcon(x)}<div class="m-grow"><p class="m-t m-trunc">${x.t}</p><p class="m-s">${chatSub(x)}${x.th ? ` · <a class="m-link" data-th="${x.id}">треды как в чате</a>` : ''}</p></div>${seg(x.mode, x.id)}</div>` +
+    (x.th ? `<div class="m-threads" id="th-${x.id}">${Array.from({ length: Math.min(x.th, 3) }, (_, i) => `<div><span>${['Доставка в Колпино', 'Новый тариф СДЭК', 'Фото для карточек'][i]}</span><span>как в чате</span></div>`).join('')}${x.th > 3 ? `<div><span>и ещё ${x.th - 3}</span></div>` : ''}</div>` : '');
+  const removed = REMOVED.filter((r) => r.ch === k);
+  return `<section class="m-card" style="margin-top:12px" id="ch-${k}">
+    <div class="m-pad m-row" style="border-bottom:1px solid var(--v9-hair)">${logo(k, '', c.state)}<div class="m-grow"><p class="m-t">${c.name}</p><p class="m-s m-trunc">${c.acc} · ${c.kind}</p></div><span class="m-state">${c.stateText}</span><a class="m-chev" data-sheet="sh-pachca" title="подключение">${GLYPH.chev}</a></div>
+    ${groups.length ? `<p class="m-group-h">${k === 'mail' ? 'ящики' : 'группы'}</p>${groups.map(row).join('')}` : ''}
+    ${dms.length ? `<p class="m-group-h">лички</p>${dms.map(row).join('')}` : ''}
+    <div class="m-pad m-row" style="border-top:1px solid var(--v9-hair);padding-top:12px;padding-bottom:12px;flex-wrap:wrap;gap:8px">
+      ${k === 'mail' ? '<span class="m-s">Письмо, где он в копии, читает молча</span>' : '<a class="m-link">+ чат по нику</a>'}
+      ${removed.length ? `<span class="m-s" style="margin-left:auto">архив: «${removed[0].t}», его оттуда убрали</span>` : ''}
+    </div>
+  </section>`;
+}
+document.getElementById('places').innerHTML = `<h2 class="m-h2">где и как отвечает</h2><p class="m-h2-sub">Режим у каждого чата: <b>сам</b> — отвечает, сложное присылает вам; <b>черновик</b> — каждое сообщение сначала видите вы; <b>молча</b> — читает и в курсе, но не пишет; <b>нет</b> — не читает вовсе. Треды живут как их чат.</p>` + places.map(placeCard).join('');
+document.getElementById('add').innerHTML = addTiles(false);
+
+document.addEventListener('click', (e) => {
+  const t = e.target.closest('[data-th]');
+  if (t) document.getElementById('th-' + t.dataset.th).classList.toggle('open');
+});
+document.addEventListener('modechange', () => {
+  document.querySelectorAll('.m-seg[data-id]').forEach((s) => {
+    const c = CHATS.find((x) => String(x.id) === s.dataset.id);
+    if (c) { c.mode = s.dataset.mode; s.closest('.m-chat').classList.toggle('off', c.mode === 'off'); }
+  });
+  summary();
+});
+
+const roleRow = (title, filter, hint) => {
+  const ps = PEOPLE.filter(filter);
+  return `<div class="m-row" style="padding:8px 0;flex-wrap:wrap"><span class="m-grow" style="min-width:160px"><span class="m-t" style="font-size:14px">${title}</span><span class="m-s" style="display:block">${hint}</span></span><span class="m-row" style="gap:6px;flex-wrap:wrap">${ps.map((p) => `<span class="m-tag" style="padding:2px 10px 2px 2px"><span class="m-ava sm" style="background:${p.c};width:22px;height:22px;font-size:10px">${p.a}</span>${p.n.split(' ')[0]}</span>`).join('')}<span class="m-tag" style="background:transparent;border:1px dashed var(--color-line)">+</span></span></div>`;
+};
+document.getElementById('roles').innerHTML =
+  roleRow('ставят задачи', (p) => p.tags.includes('ставит задачи'), 'их просьбы — работа, остальных он уточняет') +
+  roleRow('принимают работу', (p) => p.tags.includes('принимает работу'), 'у них он спрашивает «готово?»') +
+  roleRow('не дёргать', (p) => p.tags.includes('не дёргать'), 'пишет им только по их вопросу');
+
+document.getElementById('plist').innerHTML = PEOPLE.map((p) => `<div class="m-li"><span class="m-ava" style="background:${p.c}">${p.a}</span><div class="m-grow"><p class="m-t">${p.n} <span class="m-dim" style="font-weight:500">· ${p.r}</span></p><div class="m-tags">${p.where.map((w) => logo(w, 'xs')).join('')}${p.tags.map((t) => `<span class="m-tag ${t === 'не дёргать' ? 'bad' : t === 'снаружи' ? '' : 'ok'}">${t}</span>`).join('')}${p.note ? `<span class="m-s" style="margin:0">${p.note}</span>` : ''}</div></div><span class="m-chev">${GLYPH.chev}</span></div>`).join('') +
+  `<div class="m-li"><span class="m-ava" style="background:var(--v9-fill);color:var(--color-dim)">17</span><div class="m-grow"><p class="m-t">ещё 17 человек из чатов</p><p class="m-s">роль не задана: что можно, он спросит у Марины</p></div><span class="m-chev">${GLYPH.chev}</span></div>`;
+
+summary();
+window.addEventListener('load', () => { placePills(); drawLines(); });
+window.addEventListener('resize', drawLines);
+</script>
+<script src="/ap/badge.js" defer data-ap="ap-rabochee-mesto"></script>
+</body>
+</html>
