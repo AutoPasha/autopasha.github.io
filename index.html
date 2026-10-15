@@ -45,6 +45,7 @@
 <header class="top" data-top>
   <div class="wrap top__in">
     <a class="brand" href="/" aria-label="Студия макетов АвтоПаши">авто<em>паша</em><small>студия макетов</small></a>
+    <a class="top__link" href="#raboty">работы</a>
     <a class="top__link" href="https://autopasha.ru/kak-eto-rabotaet">как он работает</a>
     <a class="pill pill--glass" href="https://autopasha.ru/apply" data-magnet>нанять</a>
   </div>
@@ -162,7 +163,7 @@
         <li class="tile" data-rise>
           <span class="tile__n">04</span>
           <h3>ссылка только ваша</h3>
-          <p>макет закрыт от поисковиков, и списка макетов нигде нет. его увидит только тот, кому вы перешлёте ссылку.</p>
+          <p>макет закрыт от поисковиков и в общий список не попадает. его увидит только тот, кому вы перешлёте ссылку.</p>
           <div class="tile__vis v-find" data-v="find" aria-hidden="true">
             <div class="v-find__box"><svg viewBox="0 0 20 20"><use href="#i-search"/></svg><span class="v-find__q" data-v-q>макет сайта пекарни колос</span></div>
             <p class="v-find__res is-on" data-v-res>по запросу <b>ничего не нашлось</b></p>
@@ -239,6 +240,69 @@
         <input class="ba__range" type="range" min="0" max="100" value="50" step="1" aria-label="Сравнить старый и новый сайт: сдвиньте ручку" data-ba-range>
         <span class="ba__knob" aria-hidden="true"><svg viewBox="0 0 20 20"><use href="#i-drag"/></svg></span>
       </div>
+    </div>
+  </section>
+
+  <!-- ═══ 3б. витрина: макеты, которые принял Павел ═══════════════════
+       Только из sales/studio/vitriny-prinyaty.txt. Компании выдуманные,
+       превью — og.jpg самих макетов. -->
+  <section class="works" id="raboty" aria-labelledby="works-h">
+    <div class="wrap">
+      <div class="works__head">
+        <h2 class="h2" id="works-h" data-rise>что паша <em>уже нарисовал</em></h2>
+        <p class="lede lede--dark" data-rise>семь макетов для выдуманных компаний разных ниш. каждый открывается целиком: листайте, жмите кнопки, смотрите с телефона.</p>
+      </div>
+      <ul class="works__grid">
+        <li class="work" data-rise>
+          <a class="work__a" href="/med-kofe/">
+            <span class="work__img"><img src="/med-kofe/og.jpg" width="1200" height="630" loading="lazy" decoding="async" alt="Первый экран макета «Медь»"></span>
+            <span class="work__meta"><span class="work__kind">кофейня</span><b class="work__name">Медь</b><span class="work__about">обжарочная, Нижний Новгород</span></span>
+            <span class="work__go" aria-hidden="true"><svg viewBox="0 0 20 20"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+        <li class="work" data-rise>
+          <a class="work__a" href="/ugli-restoran/">
+            <span class="work__img"><img src="/ugli-restoran/og.jpg" width="1200" height="630" loading="lazy" decoding="async" alt="Первый экран макета «Угли»"></span>
+            <span class="work__meta"><span class="work__kind">ресторан</span><b class="work__name">Угли</b><span class="work__about">открытый огонь, Нижний Новгород</span></span>
+            <span class="work__go" aria-hidden="true"><svg viewBox="0 0 20 20"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+        <li class="work" data-rise>
+          <a class="work__a" href="/emal-klinika/">
+            <span class="work__img"><img src="/emal-klinika/og.jpg" width="1200" height="630" loading="lazy" decoding="async" alt="Первый экран макета «Эмаль»"></span>
+            <span class="work__meta"><span class="work__kind">стоматология</span><b class="work__name">Эмаль</b><span class="work__about">имплант под ключ, Новосибирск</span></span>
+            <span class="work__go" aria-hidden="true"><svg viewBox="0 0 20 20"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+        <li class="work" data-rise>
+          <a class="work__a" href="/balka-zavod/">
+            <span class="work__img"><img src="/balka-zavod/og.jpg" width="1200" height="630" loading="lazy" decoding="async" alt="Первый экран макета «Балка»"></span>
+            <span class="work__meta"><span class="work__kind">завод</span><b class="work__name">Балка</b><span class="work__about">металлоконструкции, Череповец</span></span>
+            <span class="work__go" aria-hidden="true"><svg viewBox="0 0 20 20"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+        <li class="work" data-rise>
+          <a class="work__a" href="/kromka/">
+            <span class="work__img"><img src="/kromka/og.jpg" width="1200" height="630" loading="lazy" decoding="async" alt="Первый экран макета «Кромка»"></span>
+            <span class="work__meta"><span class="work__kind">мебель</span><b class="work__name">Кромка</b><span class="work__about">массив на заказ, Ярославль</span></span>
+            <span class="work__go" aria-hidden="true"><svg viewBox="0 0 20 20"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+        <li class="work" data-rise>
+          <a class="work__a" href="/os-servis/">
+            <span class="work__img"><img src="/os-servis/og.jpg" width="1200" height="630" loading="lazy" decoding="async" alt="Первый экран макета «Ось»"></span>
+            <span class="work__meta"><span class="work__kind">автосервис</span><b class="work__name">Ось</b><span class="work__about">тормоза за два часа, Казань</span></span>
+            <span class="work__go" aria-hidden="true"><svg viewBox="0 0 20 20"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+        <li class="work" data-rise>
+          <a class="work__a" href="/ton-salon/">
+            <span class="work__img"><img src="/ton-salon/og.jpg" width="1200" height="630" loading="lazy" decoding="async" alt="Первый экран макета «Тон»"></span>
+            <span class="work__meta"><span class="work__kind">салон красоты</span><b class="work__name">Тон</b><span class="work__about">окрашивание, Нижний Новгород</span></span>
+            <span class="work__go" aria-hidden="true"><svg viewBox="0 0 20 20"><use href="#i-arrow"/></svg></span>
+          </a>
+        </li>
+      </ul>
     </div>
   </section>
 
