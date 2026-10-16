@@ -433,11 +433,15 @@ main, .podval { position: relative; z-index: 1; }
   .bron { grid-template-columns: minmax(0, 1.25fr) minmax(320px, 1fr); }
   .bron-pick.glow { padding: 18px; }
 }
-@media (max-width: 380px), (min-width: 761px) and (max-width: 1100px) and (min-aspect-ratio: 9/10) {
+@media (max-width: 380px), (min-width: 761px) and (max-width: 900px) and (min-aspect-ratio: 9/10) {
   .vremya { gap: 4px; }
   .vremya button { padding: 8px 5px; }
   .vremya button b { font-size: 13px; }
-  .vremya button small { font-size: 10px; }
+}
+@media (max-width: 340px) {
+  .vremya { gap: 3px; }
+  .vremya button { padding: 7px 2px; align-items: center; text-align: center; }
+  .vremya button small { white-space: nowrap; }
 }
 
 @media (prefers-reduced-motion: reduce) {
