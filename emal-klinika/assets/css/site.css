@@ -289,6 +289,7 @@ body.go .hero .hero-text > :nth-child(5) { transition-delay: .65s; }
   .track::before, .track::after { display: none; }
   .zapis-in { grid-template-columns: 1fr; gap: 50px; }
   .ticket { position: static; max-width: 520px; }
+  .ot-text .h2, .ot-lead, .ot-name { max-width: min(470px, 44vw); }
 }
 
 /* ---------- телефон и планшет стоя: одна колонка, предмет под текстом ---------- */

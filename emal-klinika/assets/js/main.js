@@ -195,6 +195,7 @@ const PARTS = ['krona', 'vint', 'abat', 'implant'];
 const layers = $$('.layers li'), razborEl = $('.razbor');
 const leader = $('.leader'), lLine = $('line', leader), lDots = $$('circle', leader);
 let spinT = 0;
+const otEdge = $$('.ot-text .h2, .ot-lead, .sws, .ot-name'), otRange = document.createRange();
 
 const SC = {
   hero(p, st) {
@@ -238,7 +239,11 @@ const SC = {
       const a = ($('.ot-lead').getBoundingClientRect().bottom - stg) / vh() + 0.03;
       const b = ($('.sws').getBoundingClientRect().top - stg) / vh() - 0.03;
       st.rect = [0.14, a, 0.86, Math.max(a + 0.12, b)];
-    } else st.rect = [0.5, 0.16, 0.94, 0.86];
+    } else {
+      // на планшете колонка текста шире половины экрана: коронка встаёт правее самой длинной строки
+      const edge = Math.max(...otEdge.map(el => { otRange.selectNodeContents(el); return otRange.getBoundingClientRect().right; })) + 24;
+      st.rect = [Math.max(0.5, edge / innerWidth), 0.16, 0.94, 0.86];
+    }
     const ids = ['B1', 'A1', 'A2', 'A3', 'D2', 'C2'];
     const id = ids[Math.min(5, Math.floor(p * 6))];
     if (!userChose && id !== shownShade) showShade(id);
