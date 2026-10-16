@@ -225,7 +225,7 @@ main, .podval { position: relative; z-index: 1; }
 .dni button b { font: 500 18px/1 var(--mono); }
 .dni button[aria-checked="true"] { background: var(--kost); color: var(--zola); border-color: var(--kost); }
 .dni button[aria-checked="true"] small { color: #4b4f53; }
-.vremya { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.vremya { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
 .vremya button { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 10px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--sloy); text-align: left; transition: background .25s, border-color .25s, color .25s; }
 .vremya button b { font: 500 15px/1 var(--mono); }
 .vremya button small { font: 400 11px/1.2 var(--sans); color: var(--pepel); }
@@ -425,6 +425,19 @@ main, .podval { position: relative; z-index: 1; }
   .podval-cols { grid-template-columns: 1fr; gap: 30px; padding-bottom: 6vh; }
   .podval-line { flex-direction: column; gap: 6px; }
   .podval-slovo { font-size: 50vw; padding-bottom: 16vh; margin-top: 6vh; }
+}
+
+/* Узкая колонка выбора: телефон 360 и уже (284px внутри) и планшет лёжа 761–900 (249px).
+   Пять столбцов времени по 61–67px туда не влезали, «19:30» и «22:00» уезжали за край */
+@media (min-width: 761px) and (max-width: 1100px) and (min-aspect-ratio: 9/10) {
+  .bron { grid-template-columns: minmax(0, 1.25fr) minmax(320px, 1fr); }
+  .bron-pick.glow { padding: 18px; }
+}
+@media (max-width: 380px), (min-width: 761px) and (max-width: 1100px) and (min-aspect-ratio: 9/10) {
+  .vremya { gap: 4px; }
+  .vremya button { padding: 8px 5px; }
+  .vremya button b { font-size: 13px; }
+  .vremya button small { font-size: 10px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
