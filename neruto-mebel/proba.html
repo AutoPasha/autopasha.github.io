@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta name="robots" content="noindex, nofollow, noarchive"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>html,body{margin:0;height:100%;background:#f4f3f0}canvas{position:fixed;inset:0;width:100%;height:100%;display:block}</style>
+<script type="importmap">{"imports":{"three":"./assets/lib/three.module.min.js"}}</script>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://design.autopasha.ru/neruto-mebel/proba.html">
+<meta property="og:image" content="https://design.autopasha.ru/neruto-mebel/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://design.autopasha.ru/neruto-mebel/og.jpg">
+</head><body><canvas id="c"></canvas>
+<script src="assets/lib/gsap.min.js"></script>
+<script type="module">
+import { createStol } from './assets/js/stol.js';
+const q = new URLSearchParams(location.search);
+const s = createStol(document.getElementById('c'));
+window.S = s;
+await s.ready;
+const p = JSON.parse(q.get('st') || '{}');
+Object.assign(s.st, p);
+if (q.get('wood')) await s.setWood(q.get('wood'), { instant: true });
+if (q.get('L')) s.setSize(+q.get('L'));
+s.render();
+document.body.dataset.ok = '1';
+</script><script src="/ap/badge.js" defer data-ap="neruto-mebel"></script>
+</body></html>
