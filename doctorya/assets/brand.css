@@ -1,0 +1,35 @@
+/* Акцент бренда: Медицинский центр «Доктор» (Ярославль).
+   Цвет взят из ADRESAT.md: #502820 (цвет бренда), #684038 (второй тон знака).
+   Фон, шрифты, сетка и движение остались витринными — здесь только цвет и знак. */
+
+:root {
+  --green: #502820;   /* кнопки, плашки, линии, акцентные заголовки */
+  --green2: #684038;  /* надписи над заголовками */
+  --mint: #ecdfd8;    /* светлая подложка акцента */
+}
+
+/* тёмная кнопка бренда: тёмный фон — светлый текст (контраст 11:1) */
+.pill:hover { background: #3b1d17; }
+
+/* знак без фона: у картинки нет подложки, чтобы не вставал светлый прямоугольник */
+.glogo { background: none; display: block; }
+
+/* шапка: знак на светлой плашке, чтобы читался и на тёмной закреплённой полосе */
+.logo { display: inline-flex; align-items: center; }
+.logo-chip {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: var(--paper); border-radius: 14px; padding: 8px 12px;
+}
+.logo-chip img { height: 32px; width: auto; }
+
+/* подвал: тот же знак крупной плашкой вместо прежнего названия */
+.foot-logo { margin: 90px 0 30px; display: flex; justify-content: center; }
+.foot-logo .logo-chip { padding: 26px 34px; border-radius: 26px; }
+.foot-logo img { height: clamp(56px, 8vw, 104px); }
+
+@media (max-width: 760px), (max-width: 1100px) and (max-aspect-ratio: 9/10) {
+  .foot-logo { margin: 50px 0 24px; }
+}
+
+/* одна строка вместо карусели отзывов */
+.q figcaption a { text-decoration: none; border-bottom: 1px solid var(--line); }
