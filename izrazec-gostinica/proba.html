@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="ru"><head>
+<meta name="robots" content="noindex, nofollow, noarchive"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>html,body{margin:0;height:100%;background:#120f0d}canvas{position:fixed;inset:0;width:100%;height:100%;display:block}</style>
+<script type="importmap">{"imports":{"three":"./assets/lib/three.module.min.js"}}</script>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://design.autopasha.ru/izrazec-gostinica/proba.html">
+<meta property="og:image" content="https://design.autopasha.ru/izrazec-gostinica/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://design.autopasha.ru/izrazec-gostinica/og.jpg">
+</head><body><canvas id="c"></canvas>
+<script type="module">
+import { createKomnata } from './assets/js/komnata.js';
+const q = new URLSearchParams(location.search);
+const t = createKomnata(document.getElementById('c'));
+Object.assign(t.st, JSON.parse(q.get('st') || '{}'));
+t.render();
+document.body.dataset.ok = '1';
+</script><script src="/ap/badge.js" defer data-ap="izrazec-gostinica"></script>
+</body></html>
