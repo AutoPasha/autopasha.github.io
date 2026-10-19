@@ -55,6 +55,9 @@ h3 { font-weight: 600; letter-spacing: -.02em; }
 .top-tel { font-family: var(--m); font-size: 13.5px; }
 body.on-dark .top { background: rgba(14, 18, 21, .82); color: var(--night-ink); border-color: var(--night-line); }
 body.on-dark .top-nav { color: var(--night-2ink); }
+.logo-light { display: none; }
+body.on-dark .logo-ink { display: none; }
+body.on-dark .logo-light { display: block; }
 body.on-dark .top-nav a:hover { color: #fff; }
 
 /* ---------- первый экран ---------- */
@@ -119,7 +122,7 @@ body.on-dark .top-nav a:hover { color: #fff; }
 .step-n { font-family: var(--m); font-size: 12px; color: var(--night-3); padding-top: 4px; grid-row: span 2; }
 .step.on .step-n { color: var(--signal); }
 .step h3 { font-size: 20px; }
-.step p { font-size: 15px; color: var(--night-2ink); margin-top: 4px; max-height: 0; overflow: hidden; visibility: hidden; transition: max-height .6s var(--ease), visibility 0s .6s; }
+.step p { font-size: 15px; color: var(--night-2ink); margin-top: 4px; max-height: 0; overflow: hidden; visibility: hidden; transition: max-height .6s var(--ease), visibility 0s; }
 .step.on p { max-height: 120px; visibility: visible; transition: max-height .6s var(--ease), visibility 0s; }
 .step b { font-family: var(--m); font-weight: 500; color: var(--night-ink); }
 .sb-read { position: absolute; right: var(--edge); bottom: 8vh; display: flex; gap: 40px; z-index: 2; font-family: var(--m); }
