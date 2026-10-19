@@ -1,0 +1,842 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>автопаша — ИИ-сотрудник, которого можно нанять</title>
+<meta name="description" content="Паша сидит в вашем рабочем чате, сам берёт задачи, делает и приходит с готовым. Неделя 25 000 ₽, в первые 3 дня вернём деньги.">
+<style>
+@font-face{font-family:"Unbounded";font-weight:400;font-display:swap;src:url("fonts/Unbounded-400-cyrillic.woff2") format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Unbounded";font-weight:400;font-display:swap;src:url("fonts/Unbounded-400-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212}
+@font-face{font-family:"Unbounded";font-weight:700;font-display:swap;src:url("fonts/Unbounded-700-cyrillic.woff2") format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Unbounded";font-weight:700;font-display:swap;src:url("fonts/Unbounded-700-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212}
+@font-face{font-family:"Onest";font-weight:300;font-display:swap;src:url("fonts/Onest-300-cyrillic.woff2") format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Onest";font-weight:300;font-display:swap;src:url("fonts/Onest-300-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122}
+@font-face{font-family:"Onest";font-weight:400;font-display:swap;src:url("fonts/Onest-400-cyrillic.woff2") format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Onest";font-weight:400;font-display:swap;src:url("fonts/Onest-400-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122}
+@font-face{font-family:"Onest";font-weight:500;font-display:swap;src:url("fonts/Onest-500-cyrillic.woff2") format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Onest";font-weight:500;font-display:swap;src:url("fonts/Onest-500-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122}
+@font-face{font-family:"Onest";font-weight:700;font-display:swap;src:url("fonts/Onest-700-cyrillic.woff2") format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"Onest";font-weight:700;font-display:swap;src:url("fonts/Onest-700-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122}
+@font-face{font-family:"JetBrains Mono";font-weight:400;font-display:swap;src:url("fonts/JetBrainsMono-normal-400-cyrillic.woff2") format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"JetBrains Mono";font-weight:400;font-display:swap;src:url("fonts/JetBrainsMono-normal-400-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122}
+@font-face{font-family:"JetBrains Mono";font-weight:600;font-display:swap;src:url("fonts/JetBrainsMono-normal-600-cyrillic.woff2") format("woff2");unicode-range:U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:"JetBrains Mono";font-weight:600;font-display:swap;src:url("fonts/JetBrainsMono-normal-600-latin.woff2") format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+2000-206F,U+20AC,U+2122}
+
+:root{
+  --bg:#141110; --s1:#1f1a17; --s2:#2a2420; --line:#3a322c;
+  --ink:#efe8df; --mut:#b5aca3; --or:#fe6e16; --or-txt:#c2410c;
+  --light:#efe8df; --light-ink:#1d1916;
+  --ok:#8fbf7a; --wait:#fe6e16; --work:#d9b26a;
+  --head:"Unbounded",system-ui,sans-serif;
+  --body:"Onest",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.5;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.sec{padding:80px 0;border-top:1px solid var(--line)}
+.eyebrow{font-family:var(--mono);font-size:13px;color:var(--mut);letter-spacing:.02em;display:flex;gap:10px;align-items:center}
+.eyebrow b{color:var(--or);font-weight:600}
+h1,h2,h3{font-family:var(--head);font-weight:700;letter-spacing:-.02em;line-height:1.08}
+h2{font-size:clamp(34px,4vw,52px);margin:18px 0 20px;max-width:18ch}
+h2 em,h1 em{font-style:normal;color:var(--or)}
+.lead{color:var(--mut);max-width:58ch;font-size:18px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:10px;background:var(--or);color:#1d1916;font-weight:600;font-size:16px;text-decoration:none;border:0;cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{background:#ff8238;transform:translateY(-1px)}
+.btn:focus-visible,.tab:focus-visible,.tcard:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{background:var(--s1)}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:14px}
+.tag{font-family:var(--mono);font-size:13px;color:var(--mut);background:var(--s2);border-radius:6px;padding:3px 8px;white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mut);display:inline-block;flex:none}
+.dot.ok{background:var(--ok)} .dot.wait{background:var(--wait)} .dot.work{background:var(--work);animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.35}}
+
+/* header */
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.logo{font-family:var(--head);font-weight:800;font-size:20px;text-decoration:none;display:flex;align-items:center;gap:2px}
+.plate{background:var(--or);color:#1d1916;border-radius:6px;padding:1px 7px;margin-left:4px}
+nav.top{display:flex;gap:26px;font-size:15px;color:var(--mut)}
+nav.top a{text-decoration:none}
+nav.top a:hover{color:var(--ink)}
+header .btn{min-height:40px;padding:0 18px;font-size:15px}
+
+/* hero */
+.hero{padding:72px 0 80px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:56px;align-items:start}
+.hero h1{font-size:clamp(40px,4.6vw,68px);margin:22px 0 36px;max-width:none}
+.hero .lead{max-width:44ch}
+.price{margin:32px 0 0;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.price .now{font-family:var(--head);font-weight:700;font-size:34px}
+.price .old{color:var(--mut);text-decoration:line-through;font-size:20px}
+.price small{width:100%;color:var(--mut);font-size:15px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.askbox{margin-top:12px;display:grid;gap:10px}
+.askbox label{font-family:var(--mono);font-size:13px;color:var(--mut)}
+.askrow{display:flex;gap:8px;background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:6px}
+.askrow input{flex:1;min-width:0;background:transparent;border:0;padding:0 12px;min-height:44px;font-size:16px}
+.askrow input::placeholder{color:#7d746c}
+.askrow .btn{min-height:44px;padding:0 18px;font-size:15px}
+
+.stage{display:grid;gap:14px}
+.counter{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:13px;color:var(--mut);padding:0 2px}
+.counter b{font-family:var(--head);font-size:24px;color:var(--ink);font-weight:700;display:inline-block}
+.counter b.up{animation:up .45s ease both}
+@keyframes up{from{transform:translateY(8px);opacity:.3}to{transform:none;opacity:1}}
+.tasks{display:grid;gap:10px}
+.tcard{background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:16px 18px;cursor:default;transition:border-color .2s}
+.tcard:hover,.tcard.open{border-color:#5a4a3c}
+.trow{display:flex;align-items:center;gap:12px;justify-content:space-between}
+.trow .name{font-size:17px;font-weight:500;display:flex;gap:10px;align-items:center;min-width:0}
+.trow .name .t{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.stat{font-family:var(--mono);font-size:13px;color:var(--mut);white-space:nowrap}
+.tmeta{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:13px;color:var(--mut);margin-top:8px}
+.steps{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.tcard:hover .steps,.tcard.open .steps{grid-template-rows:1fr}
+.steps>div{min-height:0;overflow:hidden}
+.steps-in{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);font-family:var(--mono);font-size:13px;color:var(--mut);line-height:1.7}
+.steps-in span{display:block}
+.steps-in span::before{content:"› ";color:var(--or)}
+
+/* sections */
+.works-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:48px}
+.job{padding:24px;display:flex;flex-direction:column;gap:14px;min-height:260px}
+.job .cat{font-family:var(--mono);font-size:13px;color:var(--or);text-transform:uppercase;letter-spacing:.06em}
+.job q{font-size:18px;line-height:1.4;font-weight:500;quotes:"«" "»"}
+.job .did{font-size:16px;color:var(--mut)}
+.job .did b{color:var(--ink);font-weight:500}
+.job .sys{margin-top:auto;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+
+.where{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:40px;align-items:center;margin-top:48px}
+.where-note{display:grid;gap:14px}
+.where-note p{color:var(--mut)}
+.platforms{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.screen{position:relative;background:var(--s1);border:1px solid var(--line);border-radius:18px;padding:16px;min-width:0}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tab{background:transparent;border:1px solid var(--line);color:var(--mut);border-radius:8px;padding:8px 12px;font-size:15px;cursor:pointer;transition:all .2s}
+.tab[aria-selected="true"]{background:var(--or);border-color:var(--or);color:#1d1916;font-weight:600}
+.panel{min-height:400px;background:var(--bg);border-radius:12px;padding:18px;display:none;flex-direction:column;gap:10px}
+.panel.on{display:flex;animation:in .4s ease both}
+.panel.chatp{padding:0;gap:0}
+.panel .msg{max-width:90%}
+.panel .msg.bot{background:var(--s2)}
+.chat-h{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--s2);border-radius:12px 12px 0 0}
+.chat-h img{width:36px;height:36px;border-radius:10px;background:var(--s1)}
+.chat-h .who{font-weight:600;font-size:15px}
+.chat-h .who span{display:block;font-family:var(--mono);font-size:13px;color:var(--ok);font-weight:400}
+.chat-b{padding:18px;display:flex;flex-direction:column;gap:12px;min-height:340px}
+.msg{max-width:84%;padding:10px 14px;border-radius:12px;font-size:15px;line-height:1.45;background:var(--s2);animation:in .45s ease both}
+.msg.me{align-self:flex-end;background:#3a2c20;border:1px solid #5a3f2a}
+.msg .t{display:block;font-family:var(--mono);font-size:13px;color:var(--mut);margin-top:4px}
+.msg.voice{display:grid;gap:8px;min-width:260px}
+.voice-bar{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:13px}
+.voice-bar i{flex:1;height:4px;background:var(--line);border-radius:2px;position:relative;overflow:hidden}
+.voice-bar i::after{content:"";position:absolute;inset:0;width:40%;background:var(--or)}
+.voice-tx{font-size:14px;color:var(--mut);border-top:1px dashed var(--line);padding-top:8px}
+.typing{align-self:flex-start;font-family:var(--mono);font-size:13px;color:var(--mut);padding:4px 2px;animation:in .3s ease both}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ask-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.ask-buttons span{font-size:15px;border-radius:8px;padding:8px 12px;border:1px solid var(--line);color:var(--ink)}
+.ask-buttons span:first-child{background:var(--or);border-color:var(--or);color:#1d1916;font-weight:600}
+.board{display:grid;gap:8px}
+.board div{background:var(--s1);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:15px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.board small{font-family:var(--mono);color:var(--mut);font-size:13px;white-space:nowrap}
+
+/* comparison */
+.light{background:var(--light);color:var(--light-ink);border-top:0}
+.light .lead,.light .muted{color:#5b5149}
+.light .eyebrow{color:#5b5149}
+.light .eyebrow b{color:var(--or-txt)}
+.cmp{margin-top:40px;background:#fbf8f3;border:1px solid #d9cfc3;border-radius:16px;overflow:hidden;padding-top:14px;display:grid;grid-template-columns:minmax(150px,1.25fr) repeat(4,minmax(0,1fr))}
+.cmp>*{padding:16px 18px;font-size:16px;min-width:0;border-top:1px solid #e3dad0}
+.cmp>.h{border-top:0;background:#f3ede4;box-shadow:0 -14px 0 #f3ede4;font-family:var(--mono);font-size:13px;color:#5b5149;text-transform:uppercase;letter-spacing:.04em;align-self:stretch}
+.cmp>.k{font-weight:500}
+.cmp>.pz{background:var(--or);color:#1d1916;font-weight:600;position:relative;top:-14px;border-top-color:rgba(29,25,22,.18)}
+.cmp>.h.pz{box-shadow:none;text-transform:uppercase;font-weight:600;font-size:13px;letter-spacing:.04em}
+.cmp>.pz:last-child{box-shadow:0 14px 0 var(--or)}
+.cmp>.pz b{color:#1d1916}
+.cmp>[data-l]::before{content:none}
+.bar{height:6px;border-radius:3px;background:#e3dad0;margin-top:8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:#8a7f75;transition:width 1.2s cubic-bezier(.2,.7,.2,1)}
+.bar.p i{background:#1d1916}
+.cmp-foot{margin-top:18px;color:#5b5149;font-size:16px}
+
+/* permissions */
+.perm-wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:48px;align-items:start;margin-top:48px}
+.who-card{display:flex;align-items:center;gap:16px;background:var(--s1);border:1px solid var(--line);border-radius:16px;padding:18px}
+.who-card img{width:64px;height:64px;border-radius:16px;background:var(--s2);padding:6px}
+.who-card b{font-family:var(--head);font-size:20px}
+.who-card span{display:block;color:var(--mut);font-size:14px}
+.menu{margin-top:12px;background:var(--s2);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.menu-i{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.menu-i:last-child{border-bottom:0}
+.menu-i b{font-weight:500;font-size:17px}
+.menu-i .mode{font-family:var(--mono);font-size:13px;color:var(--or);white-space:nowrap;text-align:right}
+.menu-i.no{color:var(--mut)}
+.menu-i.no b{text-decoration:line-through}
+.menu-i.no .mode{color:var(--mut)}
+.perm-list{display:grid;gap:14px;padding-top:6px}
+.perm-list div{display:flex;gap:14px;align-items:flex-start;padding:4px 0}
+.perm-list .n{font-family:var(--mono);color:var(--or);font-size:14px;padding-top:3px}
+.perm-list p{color:var(--mut);font-size:16px}
+.perm-list p b{color:var(--ink);font-weight:500}
+
+/* activity */
+.act-wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px;margin-top:48px;align-items:start}
+.feed{background:var(--s1);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.feed-h{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:13px;color:var(--mut)}
+.feed-list{list-style:none;max-height:440px;overflow:hidden;position:relative}
+.feed-list li{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:14px 18px;border-bottom:1px solid var(--line);font-size:16px;animation:slide .5s ease both}
+.feed-list li:last-child{border-bottom:0}
+.ico{width:24px;height:24px;border-radius:6px;display:grid;place-items:center;font-family:var(--mono);font-size:13px;font-weight:600;flex:none;background:var(--s2);color:var(--mut)}
+.ico.ok{background:#25321f;color:#b9e0a5}
+.ico.wait{background:#3d2715;color:#ffb27a}
+.ico.work{background:#3a3016;color:#f1d28e}
+.feed-list .what{flex:1 1 200px;min-width:0}
+.feed-list .what span{display:block;font-family:var(--mono);font-size:13px;color:var(--mut)}
+.feed-list .meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-left:auto}
+.feed-list .when{font-family:var(--mono);font-size:13px;color:var(--mut);white-space:nowrap}
+.st{font-family:var(--mono);font-size:13px;padding:3px 8px;border-radius:6px;white-space:nowrap}
+.st.ok{background:#25321f;color:#b9e0a5}
+.st.wait{background:#3d2715;color:#ffb27a}
+.st.work{background:#3a3016;color:#f1d28e}
+@keyframes slide{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.side{display:grid;gap:16px}
+.file{padding:22px}
+.file h3{font-size:20px;margin-bottom:12px}
+.file dl{display:grid;gap:14px}
+.file dt{font-family:var(--mono);font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+.file dd{font-size:16px;margin-top:2px}
+.file .big{font-family:var(--head);font-weight:700;font-size:28px;letter-spacing:-.02em}
+
+/* pricing */
+.price-wrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:16px;margin-top:48px}
+.plan{padding:32px;display:flex;flex-direction:column;gap:14px}
+.plan .lbl{font-family:var(--mono);font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+.plan .amt{font-family:var(--head);font-weight:700;font-size:clamp(36px,3.4vw,50px);letter-spacing:-.02em;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.plan .amt s{font-size:20px;color:var(--mut);font-weight:400;font-family:var(--body)}
+.plan.hot{border-color:var(--or)}
+.plan.hot .amt{font-size:clamp(56px,6.7vw,96px);line-height:1}
+.plan.hot .amt s{font-size:20px}
+.plan .note{color:var(--mut);font-size:16px}
+.plan .btn{margin-top:auto}
+.disc{margin-top:14px;padding:12px 18px;border-color:rgba(254,110,22,.4);border-radius:10px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.disc b{font-family:var(--head);font-size:17px}
+.disc span{color:var(--mut);font-size:15px}
+.incl{margin-top:16px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border-top:1px solid var(--line)}
+.incl li{list-style:none;padding:16px 0;border-bottom:1px solid var(--line);display:flex;gap:12px;font-size:16px}
+.incl li::before{content:"✓";color:var(--or);font-family:var(--mono)}
+.guar{margin-top:20px;color:var(--mut);font-size:16px;max-width:70ch}
+.guar b{color:var(--ink);font-weight:500}
+.autopay{margin-top:14px;font-size:14px;color:var(--mut);max-width:80ch}
+
+/* first week */
+.week{margin-top:48px;position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.week .win{grid-column:1/-1;position:relative;height:44px;margin-top:4px}
+.week .win i{position:absolute;top:0;height:100%;left:33.33%;width:33.33%;background:rgba(254,110,22,.14);border:1px dashed var(--or);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;color:var(--or);white-space:nowrap}
+.day{padding:24px;display:grid;gap:10px}
+.day .d{font-family:var(--mono);font-size:13px;color:var(--or)}
+.day h3{font-size:22px}
+.day p{color:var(--mut);font-size:16px}
+
+/* faq */
+.faq{margin-top:40px;display:grid;gap:10px;max-width:880px}
+details{background:var(--s1);border:1px solid var(--line);border-radius:12px;padding:0 20px}
+summary{list-style:none;cursor:pointer;padding:18px 0;font-size:17px;font-weight:500;display:flex;justify-content:space-between;gap:16px;align-items:center}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--mono);color:var(--or);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{color:var(--mut);padding:0 0 20px;max-width:70ch}
+
+/* final */
+.final{padding:80px 0 96px;border-top:1px solid var(--line)}
+.final h2{font-size:clamp(40px,5.4vw,76px);max-width:16ch;margin:0 0 36px}
+.final .btn{min-height:60px;font-size:18px;padding:0 32px}
+footer{border-top:1px solid var(--line);padding:48px 0 60px;color:var(--mut);font-size:14px}
+footer .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end}
+footer .logo{color:var(--ink);font-size:22px}
+footer .req{margin-top:14px;font-family:var(--mono);font-size:13px;line-height:1.7}
+footer a{color:var(--ink)}
+
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+
+@media (max-width:1080px){
+  .works-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero-grid,.where,.perm-wrap,.act-wrap{grid-template-columns:minmax(0,1fr)}
+  nav.top{display:none}
+}
+@media (max-width:760px){
+  body{font-size:16px}
+  .sec{padding:72px 0}
+  .hero{padding:44px 0 64px}
+  .works-grid,.price-wrap,.incl,.week{grid-template-columns:minmax(0,1fr)}
+  .cmp{grid-template-columns:minmax(0,1fr) minmax(0,1fr);padding-top:0}
+  .cmp>.h,.cmp>.f,.cmp>.n{display:none}
+  .cmp>.k{grid-column:1/-1;padding-bottom:6px;font-size:15px}
+  .cmp>[data-l]{display:grid;gap:8px;align-content:start}
+  .cmp>[data-l]::before{content:attr(data-l);font-family:var(--mono);font-size:13px;color:#5b5149;text-transform:uppercase;letter-spacing:.04em}
+  .cmp>.pz{top:0;background:var(--or)}
+  .cmp>.pz:last-child{box-shadow:none}
+  .cmp>.pz b{font-size:26px;font-family:var(--head)}
+  .cmp>[data-l]:not(.pz) b{font-size:26px;font-family:var(--head)}
+  .msg{max-width:94%}
+  .chat-b{padding:14px;min-height:320px}
+  footer .wrap{grid-template-columns:minmax(0,1fr)}
+  .askrow{flex-direction:column}
+  .askrow .btn{width:100%}
+  .plan{padding:24px}
+  .plan.hot .amt{font-size:56px}
+  .menu-i{padding:16px}
+  .week .win i{font-size:13px;left:0;width:100%}
+  .feed-list .meta{margin-left:0}
+}
+@media (max-width:420px){
+  .wrap{padding:0 18px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .rv{opacity:1;transform:none}
+  .bar i{transition:none}
+  .steps{transition:none}
+}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://design.autopasha.ru/ap-glavnaya-b/_haiku-otkaz/index.html">
+<meta property="og:title" content="автопаша — ИИ-сотрудник, которого можно нанять">
+<meta property="og:description" content="Паша сидит в вашем рабочем чате, сам берёт задачи, делает и приходит с готовым. Неделя 25 000 ₽, в первые 3 дня вернём деньги.">
+<meta property="og:image" content="https://design.autopasha.ru/ap-glavnaya-b/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://design.autopasha.ru/ap-glavnaya-b/og.jpg">
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="автопаша">авто<span class="plate">паша</span></a>
+    <nav class="top" aria-label="разделы">
+      <a href="#работает">как работает</a>
+      <a href="#поручают">задачи</a>
+      <a href="#цена">цена</a>
+      <a href="#вопросы">вопросы</a>
+    </nav>
+    <a class="btn" href="#нанять">нанять</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 1. первый экран: живые карточки дел -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow"><b>●</b> первый в мире ИИ-сотрудник на неделю</div>
+      <h1>ии-сотрудник, которого <em>можно нанять</em></h1>
+      <p class="lead">Он сидит в вашем рабочем чате, сам берёт задачи, делает и сдаёт готовое. Без отпусков, больничных и выходных.</p>
+      <div class="price">
+        <span class="now">25 000 ₽</span>
+        <span class="old">50 000 ₽</span>
+        <small>в неделю · вернём в первые 3 дня</small>
+      </div>
+      <div class="cta">
+        <a class="btn" href="#нанять">нанять на неделю</a>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="counter"><span>сделано сегодня</span><b id="done-count">7</b></div>
+      <div class="tasks" id="tasks">
+        <div class="tcard" tabindex="0">
+          <div class="trow"><div class="name"><span class="dot work" data-dot></span><span class="t">собираю выгрузку продаж</span></div><span class="stat" data-st>в работе</span></div>
+          <div class="tmeta"><span>сайт · 1С · почта</span><span>3 мин назад</span></div>
+          <div class="steps"><div><div class="steps-in"><span>взял выгрузку из 1С</span><span>свёл продажи по магазинам</span><span>сверил суммы — сошлись</span><span>отправляю таблицу на почту</span></div></div></div>
+        </div>
+        <div class="tcard" tabindex="0">
+          <div class="trow"><div class="name"><span class="dot wait" data-dot></span><span class="t">витрина акции</span></div><span class="stat" data-st>ждёт вашей кнопки</span></div>
+          <div class="tmeta"><span>сайт · почта</span><span>12 мин назад</span></div>
+          <div class="steps"><div><div class="steps-in"><span>сверстал страницу на копии</span><span>проверил ссылки и цену</span><span>жду «разрешить» от вас</span></div></div></div>
+        </div>
+        <div class="tcard" tabindex="0">
+          <div class="trow"><div class="name"><span class="dot ok" data-dot></span><span class="t">остатки по магазинам</span></div><span class="stat" data-st>готово</span></div>
+          <div class="tmeta"><span>сайт · склад</span><span>вчера</span></div>
+          <div class="steps"><div><div class="steps-in"><span>нашёл: склад отдаёт остатки в новом виде</span><span>починил на копии</span><span>сверил по трём магазинам</span><span>на живое пока не вносил</span></div></div></div>
+        </div>
+        <div class="tcard" tabindex="0">
+          <div class="trow"><div class="name"><span class="dot ok" data-dot></span><span class="t">проверка сайта и заказов</span></div><span class="stat" data-st>готово</span></div>
+          <div class="tmeta"><span>сайт · заказы · Mattermost</span><span>20 мин назад</span></div>
+          <div class="steps"><div><div class="steps-in"><span>открыл сайт и оформил тестовый заказ</span><span>заказ дошёл до CRM</span><span>сбоев нет, в чат ничего не нужно</span></div></div></div>
+        </div>
+      </div>
+      <form class="askbox" action="https://autopasha.ru/zadacha" method="get">
+        <label for="task">поставьте задачу своими словами</label>
+        <div class="askrow">
+          <input id="task" name="task" type="text" placeholder="например: поменяй цены по новому прайсу" autocomplete="off">
+          <button class="btn" type="submit">поставить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- 2. что ему поручают -->
+<section class="sec" id="поручают">
+  <div class="wrap">
+    <div class="eyebrow"><b>02</b> что ему поручают</div>
+    <h2 class="rv">всё, что сейчас висит на фрилансере, <em>на вас по вечерам</em></h2>
+    <div class="works-grid">
+      <article class="card job rv">
+        <div class="cat">01 · сайт и магазин</div>
+        <q>поменяй цены по новому прайсу и поставь плашку «хит» на десять позиций</q>
+        <div class="did"><b>сделал:</b> цены обновил, плашки стоят на десяти позициях, витрину проверил</div>
+        <div class="sys"><span class="tag">сайт</span><span class="tag">1С</span><span class="tag">почта</span></div>
+      </article>
+      <article class="card job rv">
+        <div class="cat">02 · отчёты и таблицы</div>
+        <q>каждый понедельник присылай продажи по магазинам за неделю</q>
+        <div class="did"><b>сделал:</b> настроил сбор, таблица уходит по понедельникам</div>
+        <div class="sys"><span class="tag">1С</span><span class="tag">таблицы</span><span class="tag">почта</span></div>
+      </article>
+      <article class="card job rv">
+        <div class="cat">03 · склад и crm</div>
+        <q>пусть заявки с сайта сами падают в CRM с телефоном и суммой</q>
+        <div class="did"><b>сделал:</b> заявки с сайта попадают в CRM с телефоном и суммой</div>
+        <div class="sys"><span class="tag">сайт</span><span class="tag">склад</span><span class="tag">CRM</span></div>
+      </article>
+      <article class="card job rv">
+        <div class="cat">04 · страницы и акции</div>
+        <q>нужна страница акции к пятнице, тексты выше в чате</q>
+        <div class="did"><b>сделал:</b> страница и заявка в три шага собраны, ждут вашей проверки</div>
+        <div class="sys"><span class="tag">сайт</span><span class="tag">МояКоманда</span></div>
+      </article>
+      <article class="card job rv">
+        <div class="cat">05 · поломки</div>
+        <q>клиенты пишут, что не проходит оплата. разберись</q>
+        <div class="did"><b>сделал:</b> нашёл причину, починил на копии, на живое ждёт вашей кнопки</div>
+        <div class="sys"><span class="tag">сайт</span><span class="tag">оплата</span><span class="tag">Пачка</span></div>
+      </article>
+      <article class="card job rv">
+        <div class="cat">06 · рутина, которую никто не любит</div>
+        <q>каждое утро проверяй, что сайт открывается и заказы доходят</q>
+        <div class="did"><b>сделал:</b> ежедневная проверка идёт, сбои пишет в чат</div>
+        <div class="sys"><span class="tag">сайт</span><span class="tag">заказы</span><span class="tag">Mattermost</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 3. где он работает -->
+<section class="sec" id="работает">
+  <div class="wrap">
+    <div class="eyebrow"><b>03</b> где он работает</div>
+    <h2 class="rv">он приходит в чат, где вы уже <em>работаете</em></h2>
+    <div class="where">
+      <div class="where-note rv">
+        <p>Переезжать никуда не нужно: это просто новый коллега. Переключайте вкладки — переписка меняется в одном окне.</p>
+        <div class="platforms">
+          <span class="tag">Битрикс24</span><span class="tag">Mattermost</span><span class="tag">Яндекс Трекер</span><span class="tag">Kaiten</span><span class="tag">почта</span>
+        </div>
+      </div>
+      <div class="screen rv" id="where">
+        <div class="tabs" role="tablist" aria-label="мессенджеры">
+          <button class="tab" role="tab" aria-selected="true" aria-controls="p-tg" data-tab="tg">Telegram</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-pachka" data-tab="pachka">Пачка</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-ya" data-tab="ya">Яндекс Мессенджер</button>
+          <button class="tab" role="tab" aria-selected="false" aria-controls="p-mk" data-tab="mk">МояКоманда</button>
+        </div>
+        <div class="panel chatp on" role="tabpanel" id="p-tg" data-p="tg">
+          <div class="chat-h">
+            <img src="pasha.svg" alt="">
+            <div class="who">Паша<span id="presence">в сети</span></div>
+          </div>
+          <div class="chat-b" id="chat" aria-label="переписка с Пашей"></div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-pachka" data-p="pachka">
+          <div class="msg me">не проходит оплата, глянь<span class="t">сегодня</span></div>
+          <div class="msg">смотрю. позову Лену, без склада тут не разобраться</div>
+          <div class="msg">нашёл. починил, но включать не буду, пока не решим по счетам. тред ниже<span class="t">сегодня</span></div>
+          <div class="msg" style="font-family:var(--mono);font-size:13px;color:var(--mut)">Паша добавил Лену Орлову в беседу</div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-ya" data-p="ya">
+          <div class="msg bot">на сайт правка готова, на живое уходит после вашего ответа. выкладываем?</div>
+          <div class="ask-buttons"><span>разрешить</span><span>пока нет</span></div>
+          <div class="msg" style="opacity:.7">вопрос приходит с кнопкой. нажать, а не сочинять ответ</div>
+        </div>
+        <div class="panel" role="tabpanel" id="p-mk" data-p="mk">
+          <div class="board">
+            <div><span>Остатки: сайт не понимает новый формат склада</span><small>5 из 5 · закрыл</small></div>
+            <div><span>Страница акции и заявка в три шага</span><small>4 из 7 · в работе</small></div>
+            <div><span>Разобрать девять новых заявок с портала</span><small>15 из 24 · в работе</small></div>
+            <div><span>Сверка счетов за август</span><small>в работе</small></div>
+          </div>
+          <div class="msg" style="font-size:14px;color:var(--mut)">задачи берёт с доски сам. чужую закрыть не может, и не пытается</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. сравнение -->
+<section class="sec light" id="сравнение">
+  <div class="wrap">
+    <div class="eyebrow"><b>04</b> сравнение</div>
+    <h2 class="rv">заменяет человека целиком</h2>
+    <div class="cmp rv" id="cmp">
+      <div class="h"></div><div class="h">сотрудник в штате</div><div class="h f">фрилансер</div><div class="h n">ничего не делать</div><div class="h pz">Паша</div>
+
+      <div class="k">часов в неделю на связи</div>
+      <div data-l="в штате"><b>40</b><div class="bar" data-w="40"><i></i></div></div>
+      <div class="f">по договорённости</div>
+      <div class="n">0, всё висит на вас</div>
+      <div class="pz" data-l="паша"><b>168</b><div class="bar p" data-w="100"><i></i></div></div>
+
+      <div class="k">дней отпуска в году</div>
+      <div data-l="в штате"><b>28</b></div>
+      <div class="f">свой график</div>
+      <div class="n">—</div>
+      <div class="pz" data-l="паша"><b>0</b></div>
+
+      <div class="k">больничные</div>
+      <div data-l="в штате">случаются</div>
+      <div class="f">свой график</div>
+      <div class="n">—</div>
+      <div class="pz" data-l="паша">не бывает</div>
+
+      <div class="k">выход на работу</div>
+      <div data-l="в штате">после недель поиска</div>
+      <div class="f">после поиска и договора</div>
+      <div class="n">не начнётся</div>
+      <div class="pz" data-l="паша">сегодня</div>
+
+      <div class="k">уйдёт посреди проекта</div>
+      <div data-l="в штате">может</div>
+      <div class="f">может</div>
+      <div class="n">—</div>
+      <div class="pz" data-l="паша">только если решите вы</div>
+    </div>
+    <p class="cmp-foot">Если ничего не делать, задачи так и висят на вас по вечерам.</p>
+  </div>
+</section>
+
+<!-- 5. разрешения -->
+<section class="sec" id="разрешения">
+  <div class="wrap">
+    <div class="eyebrow"><b>05</b> без вас он не сможет</div>
+    <h2 class="rv">так он устроен. <em>переключить это можете только вы</em></h2>
+    <div class="perm-wrap">
+      <div class="rv">
+        <div class="who-card">
+          <img src="pasha.svg" alt="">
+          <div><b>Паша</b><span>права в вашем кабинете</span></div>
+        </div>
+        <div class="menu">
+          <div class="menu-i"><b>выкладывать на сайт</b><span class="mode">после вашей кнопки</span></div>
+          <div class="menu-i"><b>читать пароли</b><span class="mode">не видит</span></div>
+          <div class="menu-i"><b>писать клиентам</b><span class="mode">черновиком</span></div>
+          <div class="menu-i no"><b>сам, без вас</b><span class="mode">сверяет</span></div>
+        </div>
+      </div>
+      <div class="perm-list rv">
+        <div><span class="n">01</span><p><b>выложить на живой сайт.</b> правка сначала проходит на копии. на живое уходит только после вашей кнопки «разрешить».</p></div>
+        <div><span class="n">02</span><p><b>прочитать ваши пароли.</b> доступы запечатываются прямо в вашем браузере. он ими пользуется, но в руки их не получает.</p></div>
+        <div><span class="n">03</span><p><b>написать людям от себя.</b> первую неделю каждое его сообщение команде и клиентам проходит через вашу кнопку.</p></div>
+        <div><span class="n">04</span><p><b>сказать «готово» наугад.</b> каждое «сделал» и «выложил» он сверяет с тем, что правда случилось, и только потом пишет вам.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. всё видно -->
+<section class="sec" id="лента">
+  <div class="wrap">
+    <div class="eyebrow"><b>06</b> всё, что он делает, видно</div>
+    <h2 class="rv">то же самое, что у клиентов в кабинете</h2>
+    <div class="act-wrap">
+      <div class="feed rv">
+        <div class="feed-h"><span>лента дел</span><span>сделано / ждёт вас / в работе</span></div>
+        <ul class="feed-list" id="feed">
+          <li><span class="ico ok">✓</span><div class="what">остатки на сайте починены, сошлись по всем магазинам<span>склад → сайт</span></div><div class="meta"><span class="st ok">в работе → готово</span><span class="when">12 мин назад</span></div></li>
+          <li><span class="ico wait">!</span><div class="what">страница акции: выложить на сайт?<span>ждёт вашего «разрешить»</span></div><div class="meta"><span class="st wait">в работе → ждёт вас</span><span class="when">20 мин назад</span></div></li>
+          <li><span class="ico work">…</span><div class="what">разобрать девять новых заявок с портала<span>15 из 24 шагов</span></div><div class="meta"><span class="st work">в работе</span><span class="when">1 ч назад</span></div></li>
+          <li><span class="ico ok">✓</span><div class="what">отчёт по продажам ушёл на почту<span>по трём магазинам</span></div><div class="meta"><span class="st ok">в работе → готово</span><span class="when">3 мин назад</span></div></li>
+          <li><span class="ico ok">✓</span><div class="what">проверка: сайт открывается, заказы доходят<span>ежедневно</span></div><div class="meta"><span class="st ok">в работе → готово</span><span class="when">вчера</span></div></li>
+        </ul>
+      </div>
+      <div class="side">
+        <div class="card file rv">
+          <h3>личное дело</h3>
+          <dl>
+            <div><dt>в штате</dt><dd>с понедельника</dd></div>
+            <div><dt>задач закрыто за неделю</dt><dd class="big">23</dd></div>
+            <div><dt>принимает работу</dt><dd>владелец</dd></div>
+            <div><dt>нельзя трогать</dt><dd>старый сайт и кассу</dd></div>
+          </dl>
+        </div>
+        <p class="rv" style="color:var(--mut);font-size:14px">интерфейс настоящий, данные придуманы: лавка «Зерно» и её сотрудник вымышленные.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. цена -->
+<section class="sec" id="цена">
+  <div class="wrap">
+    <div class="eyebrow"><b>07</b> цена</div>
+    <h2 class="rv">неделя за 25 000 ₽, <em>вернём в первые 3 дня</em></h2>
+    <div class="price-wrap">
+      <div class="card plan hot rv">
+        <div class="lbl">неделя</div>
+        <div class="amt">25 000 ₽ <s>50 000 ₽</s></div>
+        <div class="note">первая неделя. не подошёл — дальше не платите</div>
+        <a class="btn" href="#нанять">нанять на неделю</a>
+      </div>
+      <div class="card plan rv">
+        <div class="lbl">месяц</div>
+        <div class="amt">100 000 ₽ <s>199 000 ₽</s></div>
+        <div class="note">остались — перейдите на месяц: одно списание вместо четырёх</div>
+        <a class="btn ghost" href="#нанять">выбрать месяц</a>
+      </div>
+    </div>
+    <div class="card disc rv">
+      <div><b>скидка на первый месяц — половина цены</b></div>
+      <span>действует четыре недели от первой оплаты, потом обычная цена</span>
+    </div>
+    <ul class="incl rv">
+      <li>сам сотрудник — круглосуточно, включая выходные</li>
+      <li>его сервер и всё, на чём он работает</li>
+      <li>кабинет: видно, чем занят и что сделано</li>
+      <li>еженедельный отчёт и разбор спорного</li>
+      <li>наша поддержка, если он встал</li>
+    </ul>
+    <p class="guar rv"><b>не зайдёт — вернём деньги.</b> пишете нам в первые три дня, и мы возвращаем первый платёж целиком. Без разбирательств: сотрудник либо показывает себя сразу, либо он вам не нужен.</p>
+    <p class="autopay">списывается автоматически с привязанной карты раз в 7 дней (на месячном тарифе — раз в 30), пока вы не отмените — отмена в один клик в кабинете, без звонков и писем. первый платёж возвращается полностью по вашему требованию в первые 3 дня. условия автоплатежа · help@autopasha.ru</p>
+  </div>
+</section>
+
+<!-- 8. первая неделя -->
+<section class="sec" id="неделя">
+  <div class="wrap">
+    <div class="eyebrow"><b>08</b> первая неделя по шагам</div>
+    <h2 class="rv">от знакомства до первого отчёта</h2>
+    <div class="week">
+      <div class="win rv"><i>дни 1–3: можно вернуть деньги</i></div>
+      <div class="card day rv"><span class="d">день 0</span><h3>знакомится с делом</h3><p>расспрашивает, кто ставит задачи, кто принимает работу, что горит. по одному вопросу за раз.</p></div>
+      <div class="card day rv"><span class="d">день 1</span><h3>выходит в ваш чат</h3><p>берёт первые задачи. каждое его сообщение людям пока проходит через вашу кнопку.</p></div>
+      <div class="card day rv"><span class="d">пятница</span><h3>отчитывается</h3><p>что сделал, что уже работает, где ждёт вашего ответа. вы решаете, продлевать ли.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. вопросы -->
+<section class="sec" id="вопросы">
+  <div class="wrap">
+    <div class="eyebrow"><b>09</b> вопросы</div>
+    <h2 class="rv">частые вопросы</h2>
+    <div class="faq rv">
+      <details>
+        <summary>а если он что-то сломает?</summary>
+        <p>Правка сначала проходит на копии. На живое сайт или письма клиентам уходят только после вашей кнопки «разрешить».</p>
+      </details>
+      <details>
+        <summary>задачи у нас не про код. подойдёт?</summary>
+        <p>Да. Чаще всего это сайт, таблицы, склад, страницы и рутина, а не разработка.</p>
+      </details>
+      <details>
+        <summary>где хранятся наши данные?</summary>
+        <p>Пароли он не видит: доступы запечатываются в вашем браузере. Подробности про обработку данных — в условиях на сайте.</p>
+      </details>
+      <details>
+        <summary>можно голосом?</summary>
+        <p>Да. Голосовое он разбирает у себя, звук не уходит ни к нам, ни в облако.</p>
+      </details>
+      <details>
+        <summary>чего он не умеет?</summary>
+        <p>Не выкладывает на живой сайт без вашей кнопки, не читает ваши пароли и первую неделю не пишет людям от себя без вашего одобрения.</p>
+      </details>
+      <details>
+        <summary>сколько задач тянет?</summary>
+        <p>В тексте точного числа нет: объём зависит от задач. Ставьте по одной, и он покажет в ленте, что в работе, а что ждёт вас.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- 10. финал -->
+<section class="final" id="нанять">
+  <div class="wrap">
+    <div class="eyebrow"><b>10</b> начните с одной задачи</div>
+    <h2 class="rv">поставьте первую задачу сегодня</h2>
+    <a class="btn rv" href="#цена">нанять · 25 000 ₽ · неделя</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#top">авто<span class="plate">паша</span></a>
+      <div class="req">ИП Барышников Павел Александрович · ИНН 503405884484</div>
+    </div>
+    <div style="display:grid;gap:8px;justify-items:end">
+      <a href="mailto:help@autopasha.ru">help@autopasha.ru</a>
+      <span>оферта · обработка данных · реквизиты</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var script = [
+    {who:'me', text:'паш, доброе. глянешь одну штуку?', t:'сегодня'},
+    {who:'bot', text:'на связи. что там?', t:'сейчас'},
+    {who:'me', voice:true, tx:'паш, тут по складу: витрина не отдаёт остатки по трём магазинам, кажется со вчерашнего вечера. глянь пожалуйста, я номера скину', dur:'0:14'},
+    {who:'typing'},
+    {who:'bot', text:'взял остатки на сайте. пока смотрю, напишу как найду', t:'сейчас'},
+    {who:'bot', text:'причину нашёл и починил. проверил — остатки сходятся по всем магазинам. дальше нужны вы', t:'только что'}
+  ];
+
+  var chat = document.getElementById('chat');
+  var presence = document.getElementById('presence');
+
+  function node(m){
+    var d = document.createElement('div');
+    if (m.who === 'typing') { d.className = 'typing'; d.textContent = 'Паша печатает…'; return d; }
+    if (m.voice) {
+      d.className = 'msg me voice';
+      d.innerHTML = '<div class="voice-bar"><span>▶</span><i></i><span>' + m.dur + '</span></div><div class="voice-tx">Расшифровка: ' + m.tx + '</div>';
+      return d;
+    }
+    d.className = 'msg' + (m.who === 'me' ? ' me' : '');
+    d.textContent = m.text;
+    if (m.t) { var s = document.createElement('span'); s.className = 't'; s.textContent = m.t; d.appendChild(s); }
+    return d;
+  }
+
+  var chatStarted = false;
+  function startChat(){
+    if (chatStarted) return;
+    chatStarted = true;
+    if (reduce) {
+      script.forEach(function(m){ if (m.who !== 'typing') chat.appendChild(node(m)); });
+      return;
+    }
+    var i = 0;
+    (function next(){
+      if (i >= script.length) { presence.textContent = 'в сети'; return; }
+      var m = script[i++];
+      if (m.who === 'typing') {
+        var t = node(m); chat.appendChild(t); presence.textContent = 'печатает…';
+        setTimeout(function(){ t.remove(); presence.textContent = 'в сети'; next(); }, 1600);
+        return;
+      }
+      chat.appendChild(node(m));
+      setTimeout(next, m.voice ? 2400 : 1100);
+    })();
+  }
+
+  var LABEL = {work:'в работе', wait:'ждёт вашей кнопки', ok:'готово'};
+  var DOT = {work:'dot work', wait:'dot wait', ok:'dot ok'};
+  var SEQ = [
+    ['work','ok','work','ok'],
+    ['wait','ok','wait','ok'],
+    ['ok','work','ok','work'],
+    ['ok','work','ok','work']
+  ];
+  var pos = [0,0,0,0];
+  var cards = document.querySelectorAll('#tasks .tcard');
+  var counter = document.getElementById('done-count');
+  var done = 7;
+  var tick = 0;
+
+  function paint(i){
+    var s = SEQ[i][pos[i]];
+    cards[i].querySelector('[data-st]').textContent = LABEL[s];
+    cards[i].querySelector('[data-dot]').className = DOT[s];
+  }
+  function step(){
+    var i = tick++ % cards.length;
+    pos[i] = (pos[i] + 1) % 4;
+    paint(i);
+    if (SEQ[i][pos[i]] === 'ok') {
+      done++;
+      counter.textContent = done;
+      counter.classList.remove('up');
+      void counter.offsetWidth;
+      counter.classList.add('up');
+    }
+  }
+  if (!reduce) setInterval(step, 3600);
+
+  cards.forEach(function(c){
+    c.addEventListener('click', function(){ c.classList.toggle('open'); });
+  });
+
+  var tabs = document.querySelectorAll('.tab');
+  tabs.forEach(function(tb){
+    tb.addEventListener('click', function(){
+      tabs.forEach(function(x){ x.setAttribute('aria-selected', 'false'); });
+      tb.setAttribute('aria-selected', 'true');
+      var key = tb.getAttribute('data-tab');
+      document.querySelectorAll('[data-p]').forEach(function(p){
+        p.classList.toggle('on', p.getAttribute('data-p') === key);
+      });
+    });
+  });
+
+  var feed = document.getElementById('feed');
+  var extra = [
+    {t:'собрал отчёт по складу', m:'склад → почта', k:'ok', st:'в работе → готово', w:'только что'},
+    {t:'сверка счетов: жду данные от бухгалтерии', m:'бухгалтерия', k:'work', st:'в работе', w:'сейчас'},
+    {t:'витрина акции: готова, выложу после вашей кнопки', m:'ждёт вашего «разрешить»', k:'wait', st:'в работе → ждёт вас', w:'только что'}
+  ];
+  var ICON = {ok:'✓', wait:'!', work:'…'};
+  var ei = 0;
+  if (!reduce) {
+    setInterval(function(){
+      var r = extra[ei++ % extra.length];
+      var li = document.createElement('li');
+      li.innerHTML = '<span class="ico ' + r.k + '">' + ICON[r.k] + '</span><div class="what">' + r.t + '<span>' + r.m + '</span></div><div class="meta"><span class="st ' + r.k + '">' + r.st + '</span><span class="when">' + r.w + '</span></div>';
+      feed.insertBefore(li, feed.firstChild);
+      if (feed.children.length > 5) feed.removeChild(feed.lastChild);
+    }, 4500);
+  }
+
+  function fillBars(){
+    document.querySelectorAll('#cmp .bar i').forEach(function(b){ b.style.width = b.parentNode.getAttribute('data-w') + '%'; });
+  }
+
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      e.target.classList.add('in');
+      if (e.target.id === 'cmp') fillBars();
+      if (e.target.id === 'where') startChat();
+      io.unobserve(e.target);
+    });
+  }, {threshold: 0.2}) : null;
+
+  if (io) {
+    document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+    io.observe(document.getElementById('cmp'));
+    io.observe(document.getElementById('where'));
+  } else {
+    document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); });
+    fillBars();
+    startChat();
+  }
+})();
+</script>
+<script src="/ap/badge.js" defer data-ap="ap-glavnaya-b"></script>
+</body>
+</html>
