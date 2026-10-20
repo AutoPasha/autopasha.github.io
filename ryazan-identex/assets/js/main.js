@@ -223,9 +223,9 @@ const SC = {
       st.rect = [0.16, y0, 0.84, Math.max(y0 + 0.15, y1)];
     } else st.rect = [0.5, 0.06, 0.92, 0.97];
     layers.forEach(li => li.classList.toggle('on', li.dataset.part === st.focus));
-    razborEl.classList.toggle('show-layers', p > 0.13 && p < 0.84);
+    razborEl.classList.toggle('show-layers', p > 0.13 && p < 0.835);
     razborEl.classList.toggle('show-leader', !ph && !!st.focus);
-    $('.razbor-end').classList.toggle('on', p > 0.83);
+    $('.razbor-end').classList.toggle('on', p > 0.84);
     $('.razbor-head').style.opacity = 1 - smooth(0.09, 0.13, p);
   },
   ottenok(p, st) {
