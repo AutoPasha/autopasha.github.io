@@ -410,6 +410,33 @@ void main(){
     }
   }
 
+  /* ── кино: ролик играет, пока виден, без звука; звук включается кнопкой,
+        и звучит только один ролик. При «меньше движения» — обычный плеер ── */
+  const films = $$('[data-film]');
+  if (films.length) {
+    const snds = $$('[data-film-snd]');
+    if (still || og || !('IntersectionObserver' in window)) films.forEach((v) => { v.controls = !og; v.preload = 'metadata'; });
+    else {
+      const io = new IntersectionObserver((ents) => ents.forEach((en) => {
+        if (en.isIntersecting) en.target.play().catch(() => {});
+        else en.target.pause();
+      }), { threshold: 0.35 });
+      films.forEach((v) => io.observe(v));
+    }
+    snds.forEach((b) => b.addEventListener('click', () => {
+      const v = b.parentElement.querySelector('video');
+      const on = v.muted;
+      films.forEach((o) => { o.muted = true; });
+      snds.forEach((x) => { x.setAttribute('aria-pressed', 'false'); x.setAttribute('aria-label', 'Включить звук'); });
+      if (!on) return;
+      v.muted = false;
+      v.currentTime = 0;
+      v.play().catch(() => {});
+      b.setAttribute('aria-pressed', 'true');
+      b.setAttribute('aria-label', 'Выключить звук');
+    }));
+  }
+
   /* ── липкая пилюля на телефоне: когда кнопки первого экрана не видно ── */
   const dock = $('[data-dock]'), heroCta = $('[data-hero-cta]');
   if (dock && heroCta && 'IntersectionObserver' in window) {

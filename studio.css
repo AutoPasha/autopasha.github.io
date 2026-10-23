@@ -534,3 +534,34 @@ html{scroll-padding-top:clamp(70px,9vw,96px)}
   .work__a:hover .work__go{background:var(--hot);color:var(--void);transform:translateX(3px)}
 }
 @media (prefers-reduced-motion:reduce){.work__a,.work__img img,.work__go{transition:none}}
+
+/* ── кино: ролики про макеты, вертикальные, как в рилсах ── */
+.kino{padding-block:clamp(48px,7vw,110px) clamp(8px,2vw,24px)}
+.kino__in{display:grid;gap:clamp(28px,4vw,56px)}
+.kino__head .lede{max-width:40ch}
+.kino__row{display:flex;gap:clamp(14px,1.8vw,24px)}
+.film{flex:0 0 auto;width:min(340px,42vw)}
+.film__frame{position:relative;aspect-ratio:9/16;border-radius:var(--r-tile);overflow:hidden;background:var(--coal-2);
+  box-shadow:inset 0 0 0 1px oklch(1 0 0/.08),0 30px 80px oklch(0 0 0/.45);transform:translateZ(0);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.film__v{display:block;width:100%;height:100%;object-fit:cover}
+.film__snd{position:absolute;right:14px;bottom:14px;display:grid;place-items:center;width:44px;height:44px;padding:0;
+  border:1px solid oklch(1 0 0/.2);border-radius:50%;background:oklch(0.155 0.010 60/.55);color:var(--white);cursor:pointer;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:background .3s var(--ease),color .3s var(--ease),transform .3s var(--ease)}
+.film__snd svg{width:20px;height:20px}
+.film__snd[aria-pressed="true"]{background:var(--hot);color:var(--void);border-color:transparent;--snd-x:0;--snd-w:1}
+.film__meta{display:grid;gap:2px;padding:16px 4px 0}
+@media (hover:hover){
+  .film__frame:hover{transform:translateY(-4px)}
+  .film__snd:hover{transform:scale(1.06)}
+}
+@media (min-width:1080px){
+  .kino__in{grid-template-columns:minmax(0,1fr) auto;align-items:center}
+}
+@media (max-width:699.98px){
+  .kino__row{margin-inline:calc(var(--pad)*-1);padding-inline:var(--pad);overflow-x:auto;scroll-snap-type:x mandatory;
+    scroll-padding-inline:var(--pad);scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .kino__row::-webkit-scrollbar{display:none}
+  .film{width:72vw;scroll-snap-align:start}
+}
+@media (prefers-reduced-motion:reduce){.film__frame,.film__snd{transition:none}.film__snd{display:none}}
