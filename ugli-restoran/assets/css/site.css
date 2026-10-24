@@ -292,7 +292,7 @@ main, .podval { position: relative; z-index: 1; }
 .b-err:empty { display: none; }
 .b-send { grid-column: 1 / -1; width: 100%; margin-top: 6px; }
 .b-small { grid-column: 1 / -1; color: var(--pepel); font-size: 13px; }
-.b-ok[hidden] { display: none; }
+.b-form[hidden], .b-itog[hidden], .b-ok[hidden] { display: none; }
 .ok-h { font: 400 58px/1 var(--serif); color: var(--zhar); }
 .ok-detal { margin-top: 12px; color: var(--kost-2); }
 .ok-act { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 24px; }
