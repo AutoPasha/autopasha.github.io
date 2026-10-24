@@ -268,6 +268,8 @@ body.no3d #okno { display: none; }
   .note { left: 20px !important; right: 20px; top: auto !important; bottom: 7vh; width: auto; }
   .razbor-end { top: auto; left: 20px; right: 20px; bottom: 10vh; font-size: 32px; }
   .cena, .zamer { padding: 96px 0; }
+  /* переход от чёрного короче, чем на десктопе: кикер «Цена» встаёт на бумагу, а не на серую середину */
+  .cena { padding-top: 160px; background: linear-gradient(180deg, var(--black) 0, #262b2e 40px, #d6d6d2 110px, var(--paper) 150px); }
   .range { grid-template-columns: 64px 1fr 76px; gap: 10px; }
   .chek { padding: 22px 20px 24px; }
   .chek-sum { font-size: 34px; }
