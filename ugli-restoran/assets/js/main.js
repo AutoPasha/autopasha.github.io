@@ -390,6 +390,8 @@ function heroSlots() {
   });
 }
 
+// поздно вечером на сегодня свободного уже нет: схема открывается на завтра, как и карточка первого экрана
+if (!TIMES.some((t) => zoneOf(0, t, st.g))) st.di = 1;
 renderDni();
 ensureTime();
 render();
