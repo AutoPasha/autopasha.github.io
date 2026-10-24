@@ -301,7 +301,8 @@ body.no3d #komnata { display: none; }
   .note h3 { font-size: 26px; }
   .razbor-end { top: auto; left: 20px; right: 20px; bottom: 9vh; font-size: 36px; }
   .cena, .zamer { padding: 96px 0; }
-  .cena { padding-top: 160px; }
+  /* переход от чёрного короче, чем на десктопе: кикер «Цены» встаёт на бумагу, а не на середину перехода */
+  .cena { padding-top: 160px; background: linear-gradient(180deg, var(--black) 0, #2b2520 40px, #ddd5c8 110px, var(--paper) 150px); }
   .cal { max-width: none; }
   .cal button { height: 44px; }
   .chek { padding: 22px 20px 24px; }
