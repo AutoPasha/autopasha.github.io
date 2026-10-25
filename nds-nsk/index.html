@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Окна, двери, балконы в Новосибирске · НовоДомСтрой</title>
+<meta name="description" content="Пластиковые окна, входные и межкомнатные двери, остекление и обшивка балконов в Новосибирске. Прямые поставки от производителя, доставка и монтаж в течение дня. Ул. Тайгинская, 19.">
+<link rel="stylesheet" href="assets/fonts/inter-tight/fonts.css">
+<style>
+:root{
+  --bg:#f2f0eb; --ink:#14161a; --mute:#6b6e75; --line:#dcd8cf;
+  --navy:#183080; --navy-2:#22409e; --pink:#df2e63; --card:#fbfaf7;
+  --r:22px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter Tight',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.45;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1320px,100% - 48px);margin:0 auto}
+
+/* шапка */
+.top{position:fixed;inset:0 0 auto;z-index:20;transition:background .35s,box-shadow .35s}
+.top.solid{background:rgba(242,240,235,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line)}
+.top .wrap{display:flex;align-items:center;gap:32px;height:72px}
+.top .logo img{height:38px;width:auto;background:none}
+.top nav{display:flex;gap:26px;font-size:15px;margin-left:auto}
+.top nav a{opacity:.8}.top nav a:hover{opacity:1}
+.top .tel{font-weight:600;font-size:15px;white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:#fff;border-radius:999px;padding:12px 22px;font-weight:600;font-size:15px;white-space:nowrap;transition:background .2s,transform .2s}
+.pill:hover{background:var(--navy-2);transform:translateY(-1px)}
+
+/* первый экран */
+.hero{padding:118px 0 0;position:relative}
+.hero .head{display:grid;grid-template-columns:1fr 1fr;align-items:end;gap:18px 28px}
+.hero h1{grid-column:1/-1;order:-1}
+.hero h1{font-weight:300;font-size:clamp(64px,16.4vw,250px);line-height:.84;letter-spacing:-.06em;text-align:center;overflow:hidden;padding-bottom:.04em}
+.hero h1 .w{display:inline-block}
+.hero .l,.hero .r{font-size:17px;color:var(--mute);max-width:420px}
+.hero .r{justify-self:end;text-align:right}
+.hero .r b,.hero .l b{color:var(--ink);font-weight:600}
+.hero .frame{position:relative;margin-top:34px;border-radius:28px;overflow:hidden;height:min(74vh,760px);min-height:420px;background:#dcd8cf}
+.hero .ph{position:absolute;inset:-6% 0;background:url(assets/img/gen-hero.jpg) center 48%/cover;transform:scale(1.08)}
+.hero .chip{position:absolute;left:24px;bottom:24px;z-index:2;display:flex;gap:10px;flex-wrap:wrap}
+.hero .chip span{background:rgba(255,255,255,.86);backdrop-filter:blur(8px);border-radius:999px;padding:10px 16px;font-size:14px;font-weight:500}
+.hero .cta{position:absolute;right:24px;bottom:24px;z-index:2}
+
+/* направления */
+.sec{padding:120px 0}
+.kick{font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:18px}
+.h2{font-weight:300;font-size:clamp(38px,5.2vw,76px);line-height:.98;letter-spacing:-.04em;max-width:15ch}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+.tile{border-radius:var(--r);overflow:hidden;background:#fff;color:var(--ink);display:flex;flex-direction:column;gap:14px;padding:20px;aspect-ratio:3/4.3;transition:transform .5s cubic-bezier(.2,.7,.2,1),box-shadow .5s}
+.tile:hover{transform:translateY(-4px);box-shadow:0 22px 50px -24px rgba(20,22,26,.35)}
+.tile .bg{flex:1;border-radius:14px;background-size:cover;background-position:center;background-color:#f1efe9;transition:background-size .9s;min-height:0}
+.tile .bg.c{background-size:contain;background-repeat:no-repeat;background-color:#fff}
+.tile b{font-size:21px;font-weight:600;letter-spacing:-.01em;display:block}
+.tile small{font-size:14px;color:var(--mute)}
+.tile .pr{display:flex;align-items:baseline;justify-content:space-between;font-size:14px;color:var(--mute)}
+.tile .pr strong{white-space:nowrap;font-size:30px;font-weight:400;letter-spacing:-.03em;color:var(--ink)}
+.tile .pr i{font-style:normal;width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;align-self:center;transition:transform .3s}
+.tile:hover .pr i{transform:translateX(4px)}
+
+/* подбор: фото комнаты + яркая плитка */
+.pick{display:grid;grid-template-columns:1.55fr 1fr;gap:14px}
+.pick .room{position:relative;border-radius:var(--r);overflow:hidden;min-height:620px;background:url(assets/img/foto-14.jpg) center/cover}
+.pick .room:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,14,6,.5),rgba(20,14,6,0) 38%)}
+.pick .room span{z-index:1;position:absolute;left:24px;top:22px;color:#fff;font-size:15px;text-shadow:0 1px 12px rgba(0,0,0,.4)}
+.pick .room span b{display:block;font-size:26px;font-weight:600}
+.pick .col{display:grid;grid-template-rows:1fr auto;gap:14px}
+.go{border-radius:var(--r);background:var(--navy);color:#fff;padding:34px;display:flex;flex-direction:column;justify-content:space-between;transition:background .25s}
+.go:hover{background:var(--navy-2)}
+.go p{font-size:clamp(28px,2.6vw,38px);line-height:1.08;letter-spacing:-.03em;font-weight:400}
+.go .arr{display:flex;justify-content:space-between;align-items:center;font-weight:600}
+.go .arr i{font-style:normal;width:58px;height:58px;border-radius:50%;background:#fff;color:var(--navy);display:grid;place-items:center;font-size:24px;transition:transform .3s}
+.go:hover .arr i{transform:translateX(6px)}
+.mini{border-radius:var(--r);background:var(--card);border:1px solid var(--line);padding:24px 26px;display:flex;gap:18px;align-items:center}
+.mini img{width:86px;height:86px;border-radius:16px;object-fit:cover;object-position:top}
+.mini b{display:block;font-size:19px}
+.mini span{color:var(--mute);font-size:15px}
+
+/* расчёт балкона */
+.calc{display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start}
+.calc .lead{color:var(--mute);max-width:44ch;margin-top:22px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:34px}
+.lbl{font-size:14px;color:var(--mute);margin-bottom:12px}
+.seg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.seg button{font:inherit;font-size:15px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:11px 18px;cursor:pointer;transition:all .2s}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.seg button:disabled{opacity:.35;cursor:default}
+.res{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;border-top:1px solid var(--line);padding-top:26px;flex-wrap:wrap}
+.res .sum{font-size:clamp(52px,6vw,84px);font-weight:300;letter-spacing:-.05em;line-height:.9}
+.res .sum small{font-size:.38em;letter-spacing:-.02em}
+.res ul{list-style:none;font-size:15px;color:var(--mute)}
+.res ul li{padding:3px 0}
+.note{font-size:14px;color:var(--mute);margin-top:18px}
+
+/* цены */
+.cat{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:56px}
+.cat article{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.cat .im{aspect-ratio:4/3;background:#e8e4dc center/cover no-repeat}
+.cat .im.c{background-size:contain}
+.cat .bd{padding:22px 22px 26px}
+.cat h3{font-size:21px;font-weight:600;letter-spacing:-.01em;margin-bottom:14px}
+.cat dl{display:grid;grid-template-columns:1fr auto;gap:8px 14px;font-size:15px}
+.cat dt{color:var(--mute)}
+.cat dd{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* условия */
+.terms{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.terms .ph{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:url(assets/img/gen-zamer.jpg) center/cover}
+.list{display:grid;gap:0;margin-top:40px}
+.list div{display:grid;grid-template-columns:64px 1fr;gap:10px;padding:22px 0;border-top:1px solid var(--line)}
+.list div:last-child{border-bottom:1px solid var(--line)}
+.list em{font-style:normal;color:var(--mute);font-variant-numeric:tabular-nums}
+.list b{display:block;font-size:20px;font-weight:600;margin-bottom:4px}
+.list span{color:var(--mute);font-size:16px}
+
+/* рассрочка */
+.band{background:var(--ink);color:#fff;border-radius:var(--r);padding:56px;display:flex;justify-content:space-between;align-items:center;gap:40px;flex-wrap:wrap}
+.band p{font-size:clamp(30px,3.6vw,54px);font-weight:300;letter-spacing:-.04em;line-height:1;max-width:18ch}
+.band .pill{background:#fff;color:var(--ink)}
+
+/* подвал */
+.foot{padding:110px 0 40px}
+.foot .g{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px}
+.foot .big{font-size:clamp(34px,4vw,58px);font-weight:300;letter-spacing:-.04em;line-height:1}
+.foot h4{font-size:14px;color:var(--mute);font-weight:500;margin-bottom:12px;text-transform:uppercase;letter-spacing:.08em}
+.foot p,.foot a{font-size:16px;line-height:1.7}
+.foot a:hover{color:var(--navy)}
+.foot .legal{margin-top:80px;display:flex;justify-content:space-between;gap:20px;color:var(--mute);font-size:14px;border-top:1px solid var(--line);padding-top:24px;flex-wrap:wrap}
+.foot .legal img{height:34px;width:auto;background:none}
+
+.rv{opacity:0;transform:translateY(28px)}
+.no-js .rv{opacity:1;transform:none}
+
+@media (max-width:1100px){
+  .hero .chip{right:24px;bottom:88px}
+  .hero .head{grid-template-columns:1fr 1fr}.hero h1{grid-column:1/-1;order:-1}
+  .top nav{display:none}
+  .tiles,.cat{grid-template-columns:repeat(2,1fr)}
+  .pick{grid-template-columns:1fr}.pick .room{min-height:440px}
+  .calc,.terms{grid-template-columns:1fr;gap:40px}
+  .foot .g{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .wrap{width:calc(100% - 32px)}
+  .top .wrap{height:62px;gap:12px}
+  .top .logo img{height:32px}
+  .top .tel{display:none}
+  .top .pill{padding:10px 16px;font-size:14px;margin-left:auto}
+  .hero{padding-top:88px}
+  .hero .head{grid-template-columns:1fr;gap:14px}
+  .hero h1{order:-1;text-align:left;font-size:clamp(56px,17.5vw,84px)}
+  .hero .l,.hero .r{padding-bottom:0;max-width:none}
+  .hero .r{justify-self:start;text-align:left}
+  .hero .frame{height:62vh;min-height:380px;margin-top:22px;border-radius:20px}
+  .hero .chip{left:14px;right:14px;bottom:76px;gap:6px}.hero .chip span{font-size:13px;padding:8px 12px}
+  .hero .cta{left:14px;right:14px;bottom:14px;justify-content:center}
+  .sec{padding:80px 0}
+  .tiles{grid-template-columns:1fr 1fr;gap:10px}
+  .tile{padding:14px;gap:10px;aspect-ratio:auto;min-height:330px}
+  .tile b{font-size:16px}.tile small{font-size:12px}
+  .tile .pr strong{font-size:20px;display:block}
+  .tile .pr span{display:block}.tile .pr i{display:none}.tile .pr{font-size:12px}
+  .cat{grid-template-columns:1fr}
+  .box{padding:24px}
+  .go{padding:26px;min-height:260px}
+  .band{padding:34px 26px}
+  .foot .g{grid-template-columns:1fr}
+  .terms .ph{aspect-ratio:1/1}
+}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.hero .ph{transform:none}}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://design.autopasha.ru/nds-nsk/">
+<meta property="og:title" content="Окна, двери, балконы в Новосибирске · НовоДомСтрой">
+<meta property="og:description" content="Пластиковые окна, входные и межкомнатные двери, остекление и обшивка балконов в Новосибирске. Прямые поставки от производителя, доставка и монтаж в течение дня. Ул. Тайгинская, 19.">
+<meta property="og:image" content="https://design.autopasha.ru/nds-nsk/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://design.autopasha.ru/nds-nsk/og.jpg">
+</head>
+<body class="no-js">
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="logo" href="#"><img src="assets/img/logo.png" alt="НовоДомСтрой" width="85" height="38"></a>
+    <nav>
+      <a href="#napravleniya">Двери</a>
+      <a href="#napravleniya">Окна</a>
+      <a href="#balkon">Балконы</a>
+      <a href="#ceny">Цены</a>
+      <a href="#oplata">Оплата</a>
+    </nav>
+    <a class="tel" href="tel:+73832139909">+7 (383) 213-99-09</a>
+    <a class="pill" href="tel:+73832139909">Заказать замер</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="head">
+      <p class="l rv"><b>Свою квартиру обустрой</b> с компанией НовоДомСтрой. Прямые поставки от производителя.</p>
+      <h1><span class="w">Окна, двери</span></h1>
+      <p class="r rv"><b>Новосибирск, Тайгинская, 19</b><br>ежедневно с 9:00 до 21:00</p>
+    </div>
+    <div class="frame">
+      <div class="ph" id="heroPh"></div>
+      <div class="chip rv"><span>Окна от 2 390 ₽</span><span>Двери от 7 500 ₽</span><span>Балконы с монтажом от 14 850 ₽</span></div>
+      <a class="pill cta" href="#podbor">Подобрать за 15 минут <span>→</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="napravleniya">
+  <div class="wrap">
+    <div class="kick rv">Что делаем</div>
+    <h2 class="h2 rv">Всё, что открывается и закрывается в доме</h2>
+    <div class="tiles">
+      <a class="tile rv" href="#ceny">
+        <div><b>Межкомнатные двери</b><small>10+ фактур, 30+ цветов</small></div>
+        <div class="bg c" style="background-image:url(assets/img/foto-01.jpg)"></div>
+        <div class="pr"><span>от <strong>8 750 ₽</strong></span><i>→</i></div>
+      </a>
+      <a class="tile rv" href="#ceny">
+        <div><b>Входные двери</b><small>в том числе с терморазрывом</small></div>
+        <div class="bg c" style="background-image:url(assets/img/foto-08.jpg)"></div>
+        <div class="pr"><span>от <strong>7 500 ₽</strong></span><i>→</i></div>
+      </a>
+      <a class="tile rv" href="#ceny">
+        <div><b>Пластиковые окна</b><small>глухие, поворотные, поворотно-откидные</small></div>
+        <div class="bg" style="background-image:url(assets/img/gen-okno.jpg)"></div>
+        <div class="pr"><span>от <strong>2 390 ₽</strong></span><i>→</i></div>
+      </a>
+      <a class="tile rv" href="#balkon">
+        <div><b>Балконы и лоджии</b><small>остекление и обшивка</small></div>
+        <div class="bg" style="background-image:url(assets/img/gen-balkon.jpg)"></div>
+        <div class="pr"><span>с монтажом от <strong>14 850 ₽</strong></span><i>→</i></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="podbor" style="padding-top:0">
+  <div class="wrap pick">
+    <div class="room rv"><span><b>Двери и фурнитура</b>от эконом до премиум-класса</span></div>
+    <div class="col">
+      <a class="go rv" href="tel:+73832139909">
+        <p>Подберём несколько вариантов под ваши пожелания и бюджет за 10–15 минут</p>
+        <div class="arr">Запросить предложение <i>→</i></div>
+      </a>
+      <div class="mini rv">
+        <img src="assets/img/foto-27.jpg" alt="Коридор с межкомнатными дверями" loading="lazy">
+        <div><b>5 систем фурнитуры</b><span>и больше 500 видов ручек</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="balkon" style="padding-top:20px">
+  <div class="wrap calc">
+    <div>
+      <div class="kick rv">Остекление балкона</div>
+      <h2 class="h2 rv">Сколько стоит ваш балкон</h2>
+      <p class="lead rv">Цены изделий из прайса на остекление балконов и лоджий. Выберите профиль и размер, итог посчитается сразу. Остекление с доставкой и монтажом по Новосибирску: алюминием от 14 850 ₽, пластиком от 17 150 ₽.</p>
+    </div>
+    <div class="box rv">
+      <div class="lbl">Профиль</div>
+      <div class="seg" id="prof">
+        <button type="button" data-p="al" aria-pressed="true">Алюминий, 60 мм</button>
+        <button type="button" data-p="pvh" aria-pressed="false">ПВХ, 3 камеры, 58 мм</button>
+      </div>
+      <div class="lbl">Размер, мм</div>
+      <div class="seg" id="size"></div>
+      <div class="lbl">Москитная сетка</div>
+      <div class="seg" id="net">
+        <button type="button" data-n="0" aria-pressed="true">Без сетки</button>
+        <button type="button" data-n="1" aria-pressed="false">С сеткой</button>
+      </div>
+      <div class="res">
+        <div class="sum"><span id="sum">14 040</span> <small>₽</small></div>
+        <ul id="spec"></ul>
+      </div>
+      <p class="note">Точную сумму с монтажом назовёт замерщик: она зависит от вашего балкона.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="ceny" style="padding-top:20px">
+  <div class="wrap">
+    <div class="kick rv">Цены</div>
+    <h2 class="h2 rv">Цены из каталога, без «уточняйте по телефону»</h2>
+    <div class="cat">
+      <article class="rv">
+        <div class="im c" style="background-image:url(assets/img/foto-02.jpg)"></div>
+        <div class="bd"><h3>Межкомнатные двери</h3>
+          <dl><dt>ФЛЭТ H1, кромка чёрная</dt><dd>8 750 ₽</dd><dt>ФЛЭТ М2, кромка белая</dt><dd>8 750 ₽</dd><dt>ФЛЭТ Z1, кромка чёрная</dt><dd>8 950 ₽</dd><dt>ФЛЭТ М1, кромка чёрная</dt><dd>9 500 ₽</dd></dl>
+        </div>
+      </article>
+      <article class="rv">
+        <div class="im" style="background-image:url(assets/img/foto-26.jpg)"></div>
+        <div class="bd"><h3>Входные двери</h3>
+          <dl><dt>Форпост-42</dt><dd>7 500 ₽</dd><dt>ФорПост-72</dt><dd>8 100 ₽</dd><dt>Квадро, металл/металл</dt><dd>18 000 ₽</dd></dl>
+        </div>
+      </article>
+      <article class="rv">
+        <div class="im" style="background-image:url(assets/img/gen-okno.jpg);background-position:center 30%"></div>
+        <div class="bd"><h3>Окна</h3>
+          <dl><dt>Глухое</dt><dd>2 390 ₽</dd><dt>Глухое ламинированное</dt><dd>3 550 ₽</dd><dt>С поворотной фурнитурой</dt><dd>от 4 940 ₽</dd><dt>Раздвижное, алюминий</dt><dd>8 990 ₽</dd><dt>Поворотно-откидное</dt><dd>10 990 ₽</dd></dl>
+        </div>
+      </article>
+      <article class="rv">
+        <div class="im" style="background-image:url(assets/img/gen-balkon.jpg)"></div>
+        <div class="bd"><h3>Балконы</h3>
+          <dl><dt>Остекление алюминием</dt><dd>от 14 850 ₽</dd><dt>Остекление ПВХ</dt><dd>от 17 150 ₽</dd><dt>Обшивка панелями ПВХ</dt><dd>от 650 ₽</dd><dt>Обшивка евровагонкой</dt><dd>от 850 ₽</dd><dt>Подоконник</dt><dd>100 ₽</dd></dl>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="oplata" style="padding-top:20px">
+  <div class="wrap terms">
+    <div class="ph rv" role="img" aria-label="Замер оконного проёма"></div>
+    <div>
+      <div class="kick rv">Как работаем</div>
+      <h2 class="h2 rv">Привезём и поставим за один день</h2>
+      <div class="list">
+        <div class="rv"><em>01</em><p><b>Доставка и монтаж</b><span>В течение дня по Новосибирску, бесплатно для заказов от 50 000 ₽</span></p></div>
+        <div class="rv"><em>02</em><p><b>Оплата как удобно</b><span>Наличными и картой в офисе и на дому, по счёту с НДС, в кредит</span></p></div>
+        <div class="rv"><em>03</em><p><b>Петли в подарок</b><span>Действующая акция магазина</span></p></div>
+        <div class="rv"><em>04</em><p><b>Скидка за повторный заказ</b><span>3% на второй, 5% на третий, 7% на четвёртый, дальше 10%</span></p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-bottom:20px">
+  <div class="wrap">
+    <div class="band rv">
+      <p>Рассрочка до четырёх месяцев без первого взноса и переплаты</p>
+      <a class="pill" href="tel:+73832139909">Позвонить в офис</a>
+    </div>
+  </div>
+</section>
+
+<footer class="foot" id="kontakty">
+  <div class="wrap">
+    <div class="g">
+      <div><div class="big rv">Офис на Тайгинской, 19</div></div>
+      <div class="rv"><h4>Адрес</h4><p>Новосибирск, ул. Тайгинская, 19, офис 5</p><a href="http://2gis.ru/novosibirsk/firm/141265769364864" target="_blank" rel="noopener">Маршрут в 2ГИС →</a></div>
+      <div class="rv"><h4>Телефоны</h4><a href="tel:+73832139909">+7 (383) 213-99-09</a><br><a href="tel:+73833809909">+7 (383) 380-99-09</a><br><a href="mailto:nds-nsk2016@yandex.ru">nds-nsk2016@yandex.ru</a></div>
+      <div class="rv"><h4>Часы и соцсети</h4><p>Ежедневно с 9:00 до 21:00</p><a href="https://vk.com/ndsnsk" target="_blank" rel="noopener">ВКонтакте</a> · <a href="https://t.me/NovoDomStroy" target="_blank" rel="noopener">Telegram</a></div>
+    </div>
+    <div class="legal"><img src="assets/img/logo.png" alt="НовоДомСтрой" width="64" height="34"><span>ООО «НовоДомСтрой-НСК» · окна, двери, балконы в Новосибирске</span></div>
+  </div>
+</footer>
+
+<script src="assets/gsap.min.js"></script>
+<script>
+document.body.classList.remove('no-js');
+const top_=document.getElementById('top');
+const onScroll=()=>top_.classList.toggle('solid',scrollY>20);
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+// расчёт балкона: цены изделий и сеток из прайса nds-nsk.ru
+const P={
+  al:[{s:'2100×800×1500',p:14040,n:1200},{s:'2500×1600',p:10275,n:1400},{s:'3000×1600',p:12600,n:1400},{s:'3100×800×1500',p:14800,n:1650}],
+  pvh:[{s:'2100×800×1500',p:17530,n:650},{s:'2600×1600',p:13590,n:630},{s:'3000×1600',p:18800,n:650},{s:'3100×800×1500',p:23920,n:650}]
+};
+const SPEC={al:['Алюминиевый профиль 60 мм','Стекло 4 мм, без стеклопакета','Уплотнитель чёрный'],pvh:['Пластиковый профиль, 3 камеры, 58 мм','Двухкамерный стеклопакет 32 мм','Фурнитура из Германии']};
+let st={p:'al',i:0,n:0},shown=14040;
+const fmt=v=>Math.round(v).toLocaleString('ru-RU');
+const sizeBox=document.getElementById('size'),sum=document.getElementById('sum'),spec=document.getElementById('spec');
+function draw(){
+  sizeBox.innerHTML=P[st.p].map((r,i)=>`<button type="button" data-i="${i}" aria-pressed="${i===st.i}">${r.s}</button>`).join('');
+  const r=P[st.p][st.i],total=r.p+(st.n?r.n:0);
+  spec.innerHTML=SPEC[st.p].map(t=>`<li>${t}</li>`).join('')+`<li>Сетка ${fmt(r.n)} ₽</li>`;
+  const o={v:shown};
+  if(window.gsap){gsap.to(o,{v:total,duration:.6,ease:'power2.out',onUpdate:()=>sum.textContent=fmt(o.v)})}else sum.textContent=fmt(total);
+  shown=total;
+}
+document.getElementById('prof').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.p=b.dataset.p;st.i=Math.min(st.i,P[st.p].length-1);[...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed',x===b));draw()});
+sizeBox.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.i=+b.dataset.i;draw()});
+document.getElementById('net').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.n=+b.dataset.n;[...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed',x===b));draw()});
+draw();
+
+// движение: первый экран и появление блоков
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(window.gsap&&!reduce){
+  gsap.to('#heroPh',{scale:1,duration:2.4,ease:'power3.out'});
+  gsap.from('.hero h1 .w',{yPercent:100,duration:1.3,ease:'power4.out',delay:.1});
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){gsap.to(en.target,{opacity:1,y:0,duration:.9,ease:'power3.out'});io.unobserve(en.target)}}),{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+  // фото первого экрана уходит медленнее страницы
+  addEventListener('scroll',()=>{const y=scrollY;if(y<innerHeight*1.5)gsap.set('#heroPh',{yPercent:y/innerHeight*6})},{passive:true});
+}else{document.querySelectorAll('.rv').forEach(el=>{el.style.opacity=1;el.style.transform='none'})}
+</script>
+<script src="/ap/badge.js" defer data-ap="nds-nsk"></script>
+</body>
+</html>
