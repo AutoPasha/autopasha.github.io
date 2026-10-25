@@ -13,7 +13,7 @@
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fonts/bedstead-sc.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/literata-normal-400-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/stix-normal-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/models/tv.glb" as="fetch" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='6' width='26' height='20' rx='5' fill='%2307060a'/%3E%3Crect x='6' y='9' width='20' height='14' rx='3' fill='%23f2ead8'/%3E%3Crect x='6' y='13' width='20' height='2' fill='%23e04a3a'/%3E%3Crect x='6' y='16' width='20' height='2' fill='%233fb34a'/%3E%3Crect x='6' y='19' width='20' height='2' fill='%232d3fc9'/%3E%3C/svg%3E">
@@ -22,14 +22,13 @@
 <!-- 3D-модели техники: Poly Haven (CC0). Телефон и сцены собраны в three.js. -->
 <canvas id="gl" aria-hidden="true"></canvas>
 
-<div class="boot" aria-hidden="true">
+<div class="boot" aria-hidden="true" data-gl="off">
   <div class="boot__card">
     <span class="boot__name">КИНЕСКОП</span>
     <span class="boot__line">НАСТРОЙКА КАНАЛА</span>
   </div>
 </div>
-<div class="crt" aria-hidden="true"></div>
-<div class="grain" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true" data-gl="off"></div>
 
 <header class="top">
   <a class="logo" href="#efir" data-go="efir" aria-label="Кинескоп, наверх">
@@ -79,19 +78,19 @@
         <p class="chan__drag">Устройство можно покрутить мышкой или пальцем</p>
       </div>
       <nav class="remote" aria-label="Каналы">
-        <button class="remote__up" data-ch="prev" aria-label="Предыдущий канал">CH ▲</button>
+        <button class="remote__up" data-ch="prev" aria-label="Предыдущий канал"><span class="m-hide">CH </span>▲</button>
         <div class="remote__keys">
           <button data-ch="0">1</button><button data-ch="1">2</button><button data-ch="2">3</button>
           <button data-ch="3">4</button><button data-ch="4">5</button><button data-ch="5">6</button>
         </div>
-        <button class="remote__down" data-ch="next" aria-label="Следующий канал">CH ▼</button>
+        <button class="remote__down" data-ch="next" aria-label="Следующий канал"><span class="m-hide">CH </span>▼</button>
       </nav>
     </div>
   </section>
 
   <!-- 3. Телетекст: цены -->
-  <section id="ceny" class="tt" aria-label="Цены">
-    <div class="tt__screen">
+  <section id="ceny" class="tt" aria-label="Цены" data-gl-bg="off">
+    <div class="tt__screen" data-gl-bg="off">
       <i class="tt__flash" aria-hidden="true"></i>
       <div class="tt__row tt__head"><span>P<span data-tt="pg">101</span></span><span>КИНЕСКОП ТЕЛЕТЕКСТ</span><span data-tt="clock">24.10 21:04:12</span></div>
       <div class="tt__title"><span class="tt__block">ЦЕНЫ</span><span class="tt__title2">НА РЕМОНТ</span></div>
@@ -154,7 +153,7 @@
   <!-- 4. Мастерская: плата под лампой, потом лист заворачивается -->
   <section id="masterskaya" class="master" aria-label="Мастерская">
     <div class="stage stage--paper">
-      <div class="paper paper--cover">
+      <div class="paper paper--cover" data-layer="paper" data-gl-bg="off">
         <div class="mast">
           <p class="mast__top"><span>выпуск 412</span><span>выходит, пока горит паяльник</span><span>бесплатно</span></p>
           <p class="mast__name">Вестник Кинескопа</p>
@@ -168,23 +167,23 @@
     <div class="stage stage--title">
       <div class="master__title">
         <p class="kicker">с 2010 года на Белинского</p>
-        <h2 class="glow glow--warm">Мастерская</h2>
+        <h2 class="glow glow--warm" data-gl="off">Мастерская</h2>
         <p class="lead">Трое мастеров, три стола, микроскоп и шкаф запчастей до&nbsp;потолка.</p>
       </div>
     </div>
   </section>
 
   <!-- 5. Вестник: как чиним, люди, отзывы, купон -->
-  <section id="vestnik" class="paper paper--body" aria-label="Как мы работаем">
+  <section id="vestnik" class="paper paper--body" aria-label="Как мы работаем" data-layer="paper" data-gl-bg="off">
     <div class="cols">
       <article class="col col--wide">
         <h3 class="paper__kicker">Как проходит ремонт</h3>
         <ol class="steps">
-          <li><b>Приносите или вызывайте курьера.</b> Заберём технику по городу за 300 рублей и привезём обратно.</li>
-          <li><b>Смотрим при вас 20 минут.</b> Диагностика бесплатная, даже если чинить не станете.</li>
-          <li><b>Называем цену и срок.</b> Пишем их в квитанцию. Без вашего согласия цена не растёт.</li>
-          <li><b>Чиним и проверяем при вас.</b> Старую деталь отдаём, если попросите.</li>
-          <li><b>Даём гарантию полгода.</b> Сломается то же самое, переделаем бесплатно.</li>
+          <li><span class="steps__n" aria-hidden="true">1</span><b>Приносите или вызывайте курьера.</b> Заберём технику по городу за 300 рублей и привезём обратно.</li>
+          <li><span class="steps__n" aria-hidden="true">2</span><b>Смотрим при вас 20 минут.</b> Диагностика бесплатная, даже если чинить не станете.</li>
+          <li><span class="steps__n" aria-hidden="true">3</span><b>Называем цену и срок.</b> Пишем их в квитанцию. Без вашего согласия цена не растёт.</li>
+          <li><span class="steps__n" aria-hidden="true">4</span><b>Чиним и проверяем при вас.</b> Старую деталь отдаём, если попросите.</li>
+          <li><span class="steps__n" aria-hidden="true">5</span><b>Даём гарантию полгода.</b> Сломается то же самое, переделаем бесплатно.</li>
         </ol>
       </article>
       <aside class="col col--facts">
@@ -212,15 +211,19 @@
       <blockquote class="call-card"><p>«Принесла папин магнитофон, думала, это музейный экспонат. Теперь он снова крутит его кассеты».</p><cite>Наталья, Автозавод · магнитофон</cite></blockquote>
     </div>
 
-    <div class="coupon-wrap">
-      <div class="coupon">
-        <svg class="coupon__cut" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3a3 3 0 1 0 2.4 4.8L11 10.4 8.4 13A3 3 0 1 0 9.8 14.4l2.6-2.6 7.2 7.2H22L13.8 10.8 22 2.6h-2.4l-7.2 7.2-2.6-2.6A3 3 0 0 0 6 3Zm0 1.6a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8Zm0 10.2a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8Z" fill="currentColor"/></svg>
-        <p class="coupon__kicker">Купон · вырежьте по пунктиру</p>
-        <p class="coupon__title">Минус 10% на работу</p>
-        <p>Принесите купон или покажите его с телефона. Диагностика бесплатная в&nbsp;любом случае. Действует до 31 декабря.</p>
-        <p class="coupon__line">Имя <span></span></p>
-        <p class="coupon__line">Что сломалось <span></span></p>
-        <a class="btn btn--dark" href="#svyaz" data-go="svyaz">Или запишитесь онлайн</a>
+    <div id="shred" class="shred">
+      <div class="shred__stage">
+        <div class="coupon-wrap">
+          <div class="coupon">
+            <svg class="coupon__cut" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3a3 3 0 1 0 2.4 4.8L11 10.4 8.4 13A3 3 0 1 0 9.8 14.4l2.6-2.6 7.2 7.2H22L13.8 10.8 22 2.6h-2.4l-7.2 7.2-2.6-2.6A3 3 0 0 0 6 3Zm0 1.6a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8Zm0 10.2a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8Z" fill="currentColor"/></svg>
+            <p class="coupon__kicker">Купон · вырежьте по пунктиру</p>
+            <p class="coupon__title">Минус 10% на работу</p>
+            <p>Принесите купон или покажите его с телефона. Диагностика бесплатная в&nbsp;любом случае. Действует до 31 декабря.</p>
+            <p class="coupon__line">Имя <span></span></p>
+            <p class="coupon__line">Что сломалось <span></span></p>
+            <a class="btn btn--dark" href="#svyaz" data-go="svyaz">Или запишитесь онлайн</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
