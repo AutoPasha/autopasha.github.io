@@ -555,8 +555,12 @@ html{scroll-padding-top:clamp(70px,9vw,96px)}
   .film__frame:hover{transform:translateY(-4px)}
   .film__snd:hover{transform:scale(1.06)}
 }
+/* три ролика: заголовок над рядом, ряд делит ширину поровну, не шире 340 на ролик */
+@media (min-width:700px){
+  .film{flex:1 1 0;width:auto;max-width:340px}
+}
 @media (min-width:1080px){
-  .kino__in{grid-template-columns:minmax(0,1fr) auto;align-items:center}
+  .kino__head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,40ch);gap:clamp(24px,4vw,64px);align-items:end}
 }
 @media (max-width:699.98px){
   .kino__row{margin-inline:calc(var(--pad)*-1);padding-inline:var(--pad);overflow-x:auto;scroll-snap-type:x mandatory;
