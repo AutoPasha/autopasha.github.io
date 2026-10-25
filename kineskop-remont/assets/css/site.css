@@ -141,8 +141,12 @@ section { position: relative; }
 .tt__screen::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 90% at 50% 50%, rgba(0,0,0,0) 60%, rgba(0,0,0,.55) 100%); z-index: 1; }
 .tt__screen > * { position: relative; text-shadow: 0 0 6px currentColor; }
 .roll .tt__page.is-on { animation: ttroll .45s steps(6); }
-.tt-on { animation: ttpower .55s cubic-bezier(.2, .8, .2, 1); }
-@keyframes ttpower { 0% { transform: scale(.02, .006); filter: brightness(4); } 35% { transform: scale(1, .006); filter: brightness(3); } 100% { transform: none; filter: none; } }
+/* включение: светящаяся полоса раскрывается поверх экрана, сам текст не схлопывается */
+.tt__screen > .tt__flash { position: absolute; inset: 0; z-index: 3; pointer-events: none; background: #fff; opacity: 0; transform: scale(.02, .006); text-shadow: none; }
+.tt-on { animation: ttpower .55s ease-out; }
+.tt-on > .tt__flash { animation: ttflash .55s cubic-bezier(.2, .8, .2, 1); }
+@keyframes ttpower { 0% { filter: brightness(2.2); } 100% { filter: none; } }
+@keyframes ttflash { 0% { transform: scale(.02, .006); opacity: 1; } 35% { transform: scale(1, .006); opacity: 1; } 60% { transform: scale(1, 1); opacity: 0; } 100% { transform: scale(1, 1); opacity: 0; } }
 @keyframes ttroll { 0% { clip-path: inset(0 0 100% 0); } 100% { clip-path: inset(0 0 0 0); } }
 .tt__row { display: flex; justify-content: space-between; gap: 1ch; white-space: nowrap; }
 .tt__head { color: #fff; }
@@ -181,6 +185,8 @@ section { position: relative; }
 .master__title { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; opacity: var(--ws-in); pointer-events: none; padding: 0 var(--pad); }
 .master__title h2 { font-weight: 500; font-size: clamp(64px, 14vw, 230px); line-height: .9; letter-spacing: -.035em; margin: 0; font-variation-settings: "opsz" 72; }
 .master__title .lead { text-align: center; }
+/* текст лежит над холстом и бумагой: ловит указатель сам, а не отдаёт его слою под собой */
+.master__title h2, .master__title .kicker, .master__title .lead { pointer-events: auto; }
 .master__title::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(60% 42% at 50% 52%, rgba(6, 4, 3, .78), rgba(6, 4, 3, 0) 100%); }
 
 .paper { background-color: var(--paper); color: var(--paper-ink); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.6' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .18 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
