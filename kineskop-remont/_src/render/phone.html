@@ -1,0 +1,26 @@
+<!doctype html><html><head>
+<meta name="robots" content="noindex, nofollow, noarchive"><meta charset="utf-8"><style>
+html,body{margin:0;width:600px;height:1300px;overflow:hidden;background:#000}
+.s{position:absolute;inset:0;background:radial-gradient(120% 70% at 30% 85%,#3b2a5c 0%,#1c1830 40%,#07070c 75%),#000;font-family:"DejaVu Sans",sans-serif;color:#f2ede4}
+.t{position:absolute;top:210px;width:100%;text-align:center;font-size:150px;font-weight:200;letter-spacing:-4px}
+.d{position:absolute;top:175px;width:100%;text-align:center;font-size:30px;opacity:.85}
+.b{position:absolute;bottom:60px;left:50%;width:200px;height:8px;margin-left:-100px;border-radius:5px;background:#fff;opacity:.7}
+.n{position:absolute;top:470px;left:40px;right:40px;height:120px;border-radius:30px;background:rgba(255,255,255,.12)}
+.n b{position:absolute;left:30px;top:26px;font-size:26px}.n i{position:absolute;left:30px;top:66px;font-size:24px;font-style:normal;opacity:.75}
+svg{position:absolute;inset:0}
+</style></head><body><div class="s">
+<div class="d">суббота, 25 октября</div><div class="t">21:04</div>
+<div class="n"><b>Кинескоп</b><i>Экран заменим за 40 минут</i></div><div class="b"></div>
+<svg id="c" width="600" height="1300"></svg></div>
+<script>
+// трещины от удара в правом нижнем углу: ветвящиеся ломаные + паутина
+let seed=7;const r=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+const svg=document.getElementById('c');const ns='http://www.w3.org/2000/svg';
+function line(pts,w,o){const p=document.createElementNS(ns,'polyline');p.setAttribute('points',pts.map(q=>q.join(',')).join(' '));p.setAttribute('fill','none');p.setAttribute('stroke','#fff');p.setAttribute('stroke-width',w);p.setAttribute('stroke-opacity',o*.45);p.setAttribute('stroke-linejoin','round');svg.appendChild(p)}
+const cx=430,cy=1010;
+function crack(x,y,a,len,w,depth){const pts=[[x,y]];let l=0;while(l<len){const s=8+r()*22;a+=(r()-.5)*.55;x+=Math.cos(a)*s;y+=Math.sin(a)*s;l+=s;pts.push([x,y]);if(depth<3&&r()<.06)crack(x,y,a+(r()-.5)*1.6,len*.5*r(),w*.6,depth+1)}line(pts,w,.55+.3*r())}
+for(let i=0;i<14;i++){const a=i/14*Math.PI*2+r()*.3;crack(cx,cy,a,250+r()*700,2.2,0)}
+for(let k=1;k<6;k++){const R=k*k*14+r()*10;const pts=[];for(let i=0;i<=14;i++){const a=i/14*Math.PI*2;const rr=R*(.8+r()*.4);pts.push([cx+Math.cos(a)*rr,cy+Math.sin(a)*rr])}line(pts,1.2,.35)}
+const g=document.createElementNS(ns,'circle');g.setAttribute('cx',cx);g.setAttribute('cy',cy);g.setAttribute('r',16);g.setAttribute('fill','#fff');g.setAttribute('fill-opacity','.5');svg.appendChild(g);
+</script><script src="/ap/badge.js" defer data-ap="kineskop-remont"></script>
+</body></html>

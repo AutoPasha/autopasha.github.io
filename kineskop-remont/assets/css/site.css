@@ -97,11 +97,12 @@ html:not(.gl-live).ui-paper .top { background: rgba(236, 226, 204, .92); }
 .gl-ui input::placeholder { -webkit-text-fill-color: transparent; }
 .gl-ui select { appearance: none; }
 .gl-ui ::selection { -webkit-text-fill-color: var(--ink); }
-/* слово «Мастерская» в WebGL стоит в самой сцене; DOM-заголовок остаётся для чтения с экрана */
-.gl-live .master__title h2 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.gl-live .master__title { justify-content: flex-start; padding-top: calc(var(--vh) * 0.16); }
+.gl-live .master__title h2 { font-size: clamp(56px, 15vw, 150px); }
 @media (min-width: 761px) and (min-aspect-ratio: 21/20) {
   .gl-live .master__title { align-items: flex-start; justify-content: flex-start; text-align: left; padding-top: calc(var(--vh) * 0.25); padding-left: calc(var(--pad) + 2vw); }
-  .gl-live .master__title .lead { text-align: left; max-width: 26em; margin-top: 10px; }
+  .gl-live .master__title .lead { text-align: left; max-width: 21em; margin-top: 10px; }
+  .gl-live .master__title h2 { font-size: clamp(60px, 7vw, 124px); }
   .gl-live .master__title::before { background: radial-gradient(40% 40% at 22% 32%, rgba(6, 4, 3, .62), rgba(6, 4, 3, 0) 100%); }
 }
 
@@ -231,6 +232,9 @@ section { position: relative; }
 .facts dd { margin: 6px 0 0; font: 400 14px/1.4 var(--mono); }
 .cols--people, .cols--calls { grid-template-columns: repeat(3, 1fr); }
 .person p { margin: 0; font-size: 17px; }
+.team-photo { grid-column: 1 / -1; margin: 0 0 6px; }
+.team-photo img { display: block; width: 100%; height: auto; aspect-ratio: 1196 / 798; object-fit: cover; border: 1px solid #2a241c; }
+.team-photo figcaption { margin-top: 10px; font-size: 14px; font-style: italic; color: #5a5044; }
 .person__name { font: 600 28px/1.1 var(--serif) !important; }
 .person__role { font: 500 12px/1.4 var(--mono) !important; letter-spacing: .14em; text-transform: uppercase; margin: 8px 0 12px !important; color: #7a3a2c; }
 .call-card { margin: 0; padding: 0 0 0 18px; border-left: 3px solid #b5402f; }
