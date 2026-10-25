@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ru" class="booting" data-base="assets/">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Кинескоп: ремонт телефонов, ноутбуков и телевизоров в Нижнем Новгороде</title>
+<meta name="description" content="Мастерская «Кинескоп» на Белинского: чиним телефоны, ноутбуки, телевизоры, приставки и звук. Диагностика бесплатно за 20 минут, гарантия полгода.">
+<meta name="theme-color" content="#07060a">
+<meta property="og:title" content="Кинескоп: мастерская, где техника снова ловит сигнал">
+<meta property="og:description" content="Ремонт телефонов, ноутбуков, телевизоров и звука в Нижнем Новгороде. Диагностика бесплатно за 20 минут, гарантия полгода.">
+<meta property="og:image" content="https://design.autopasha.ru/kineskop-remont/assets/img/og.jpg">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preload" href="assets/fonts/bedstead-sc.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/literata-normal-400-700-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/models/tv.glb" as="fetch" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='6' width='26' height='20' rx='5' fill='%2307060a'/%3E%3Crect x='6' y='9' width='20' height='14' rx='3' fill='%23f2ead8'/%3E%3Crect x='6' y='13' width='20' height='2' fill='%23e04a3a'/%3E%3Crect x='6' y='16' width='20' height='2' fill='%233fb34a'/%3E%3Crect x='6' y='19' width='20' height='2' fill='%232d3fc9'/%3E%3C/svg%3E">
+</head>
+<body>
+<!-- 3D-модели техники: Poly Haven (CC0). Телефон и сцены собраны в three.js. -->
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<div class="boot" aria-hidden="true">
+  <div class="boot__card">
+    <span class="boot__name">КИНЕСКОП</span>
+    <span class="boot__line">НАСТРОЙКА КАНАЛА</span>
+  </div>
+</div>
+<div class="crt" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<header class="top">
+  <a class="logo" href="#efir" data-go="efir" aria-label="Кинескоп, наверх">
+    <svg viewBox="0 0 40 28" aria-hidden="true"><rect x="1" y="1" width="38" height="26" rx="7" fill="none" stroke="currentColor" stroke-width="2"/><rect x="7" y="8" width="26" height="3" rx="1.5" fill="#e0533f"/><rect x="7" y="13" width="26" height="3" rx="1.5" fill="#46b85a"/><rect x="7" y="18" width="26" height="3" rx="1.5" fill="#4a64ff"/></svg>
+    <span>Кинескоп</span>
+  </a>
+  <nav class="nav" aria-label="Разделы">
+    <a href="#kanaly" data-go="kanaly">Что чиним</a>
+    <a href="#ceny" data-go="ceny">Цены</a>
+    <a href="#masterskaya" data-go="masterskaya">Мастерская</a>
+    <a href="#svyaz" data-go="svyaz">Связь</a>
+  </nav>
+  <a class="call" href="tel:+78312140735"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9c0-2 2-4 8-4s8 2 8 4v1.5c0 .8-.7 1.5-1.5 1.5h-2c-.8 0-1.5-.7-1.5-1.5V9.3c-1-.3-2-.4-3-.4s-2 .1-3 .4v1.2c0 .8-.7 1.5-1.5 1.5h-2C4.7 12 4 11.3 4 10.5V9Zm3 5h10l2 6H5l2-6Zm5 1.5a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" fill="currentColor"/></svg><span>8 831 214-07-35</span></a>
+</header>
+
+<main>
+  <!-- 1. Эфир: телевизор в дыму -->
+  <section id="efir" class="efir" aria-label="Мастерская Кинескоп">
+    <div class="stage">
+      <div class="hero">
+        <p class="kicker">Мастерская ремонта техники · Нижний Новгород<span class="m-hide">, Белинского, 61</span></p>
+        <h1 class="glow">Мастерская, где техника снова ловит сигнал</h1>
+        <p class="lead">Чиним телефоны, ноутбуки, телевизоры, приставки и&nbsp;звук. Смотрим бесплатно за&nbsp;20&nbsp;минут и&nbsp;называем цену до&nbsp;начала работы.</p>
+        <div class="hero__cta">
+          <a class="btn btn--light" href="#svyaz" data-go="svyaz">Записаться<span class="m-hide">&nbsp;на диагностику</span></a>
+          <a class="btn btn--ghost" href="tel:+78312140735">Позвонить</a>
+        </div>
+      </div>
+      <p class="hint"><span>Крутите колёсико, переключим канал</span> <i aria-hidden="true">☟</i></p>
+    </div>
+  </section>
+
+  <!-- 2. Каналы: что чиним -->
+  <section id="kanaly" class="kanaly" aria-label="Что чиним">
+    <div class="stage">
+      <div class="osd" aria-live="polite">
+        <p class="osd__num"><span class="osd__ch">КАНАЛ</span> <b data-osd="num">01</b></p>
+        <p class="osd__name" data-osd="name">ТЕЛЕФОНЫ</p>
+      </div>
+      <div class="chan">
+        <h2 class="glow" data-osd="title">Разбили экран, сел аккумулятор, не&nbsp;заряжается</h2>
+        <p data-osd="text">Экран меняем при вас за 40 минут. Ставим оригинал или хорошую копию, разницу покажем на&nbsp;столе.</p>
+        <dl class="chan__facts">
+          <div><dt>цена</dt><dd data-osd="price">от 1 200 ₽</dd></div>
+          <div><dt>срок</dt><dd data-osd="time">от 30 минут</dd></div>
+        </dl>
+        <p class="chan__drag">Устройство можно покрутить мышкой или пальцем</p>
+      </div>
+      <nav class="remote" aria-label="Каналы">
+        <button class="remote__up" data-ch="prev" aria-label="Предыдущий канал">CH ▲</button>
+        <div class="remote__keys">
+          <button data-ch="0">1</button><button data-ch="1">2</button><button data-ch="2">3</button>
+          <button data-ch="3">4</button><button data-ch="4">5</button><button data-ch="5">6</button>
+        </div>
+        <button class="remote__down" data-ch="next" aria-label="Следующий канал">CH ▼</button>
+      </nav>
+    </div>
+  </section>
+
+  <!-- 3. Телетекст: цены -->
+  <section id="ceny" class="tt" aria-label="Цены">
+    <div class="tt__screen">
+      <div class="tt__row tt__head"><span>P<span data-tt="pg">101</span></span><span>КИНЕСКОП ТЕЛЕТЕКСТ</span><span data-tt="clock">24.10 21:04:12</span></div>
+      <div class="tt__title"><span class="tt__block">ЦЕНЫ</span><span class="tt__title2">НА РЕМОНТ</span></div>
+      <p class="tt__sub">Цена окончательная после диагностики. Диагностика бесплатно, если чиним у нас.</p>
+
+      <div class="tt__page is-on" data-page="101">
+        <p class="tt__cat tt--red">101 ТЕЛЕФОНЫ</p>
+        <ul class="tt__list">
+          <li><span>Диагностика</span><i></i><b>0 руб.</b><em>20 мин</em></li>
+          <li><span>Замена экрана</span><i></i><b>от 2500 руб.</b><em>40 мин</em></li>
+          <li><span>Замена аккумулятора</span><i></i><b>от 1500 руб.</b><em>30 мин</em></li>
+          <li><span>Разъём зарядки</span><i></i><b>от 1200 руб.</b><em>1 час</em></li>
+          <li><span>Стекло камеры</span><i></i><b>от 900 руб.</b><em>30 мин</em></li>
+          <li><span>Чистка платы после воды</span><i></i><b>от 2000 руб.</b><em>1 день</em></li>
+        </ul>
+      </div>
+      <div class="tt__page" data-page="102">
+        <p class="tt__cat tt--green">102 НОУТБУКИ</p>
+        <ul class="tt__list">
+          <li><span>Чистка и термопаста</span><i></i><b>1900 руб.</b><em>1 день</em></li>
+          <li><span>Замена матрицы</span><i></i><b>от 4500 руб.</b><em>2 часа</em></li>
+          <li><span>Замена клавиатуры</span><i></i><b>от 2200 руб.</b><em>2 часа</em></li>
+          <li><span>Ремонт после залития</span><i></i><b>от 3500 руб.</b><em>2-3 дня</em></li>
+          <li><span>SSD и перенос данных</span><i></i><b>1500 руб.</b><em>2 часа</em></li>
+        </ul>
+      </div>
+      <div class="tt__page" data-page="103">
+        <p class="tt__cat tt--yellow">103 ТЕЛЕВИЗОРЫ</p>
+        <ul class="tt__list">
+          <li><span>Замена подсветки</span><i></i><b>от 3800 руб.</b><em>1 день</em></li>
+          <li><span>Блок питания</span><i></i><b>от 2400 руб.</b><em>1 день</em></li>
+          <li><span>Прошивка и настройка</span><i></i><b>1200 руб.</b><em>1 час</em></li>
+          <li><span>Выезд мастера по городу</span><i></i><b>700 руб.</b><em>в день звонка</em></li>
+          <li><span>Забрать большой экран</span><i></i><b>900 руб.</b><em>на машине</em></li>
+        </ul>
+      </div>
+      <div class="tt__page" data-page="104">
+        <p class="tt__cat tt--cyan">104 ЗВУК, ПРИСТАВКИ, ФОТО</p>
+        <ul class="tt__list">
+          <li><span>Колонки и усилители</span><i></i><b>от 1200 руб.</b><em>2-5 дней</em></li>
+          <li><span>Пассик в магнитофоне</span><i></i><b>900 руб.</b><em>1 день</em></li>
+          <li><span>Чистка приставки</span><i></i><b>1500 руб.</b><em>1 день</em></li>
+          <li><span>Замена стика</span><i></i><b>от 1300 руб.</b><em>1 час</em></li>
+          <li><span>Разъём HDMI</span><i></i><b>от 2600 руб.</b><em>1 день</em></li>
+          <li><span>Фотоаппараты</span><i></i><b>от 1800 руб.</b><em>3 дня</em></li>
+          <li><span>Пульт или зарядка</span><i></i><b>от 800 руб.</b><em>при вас</em></li>
+        </ul>
+      </div>
+
+      <p class="tt__note">Гарантия на любой ремонт 6 месяцев. Курьер по городу 300 руб.</p>
+      <div class="tt__fast" role="tablist" aria-label="Страницы телетекста">
+        <button class="tt--red is-on" data-go-page="101" role="tab" aria-selected="true">Телефоны</button>
+        <button class="tt--green" data-go-page="102" role="tab" aria-selected="false">Ноутбуки</button>
+        <button class="tt--yellow" data-go-page="103" role="tab" aria-selected="false">Телевизоры</button>
+        <button class="tt--cyan" data-go-page="104" role="tab" aria-selected="false">Звук и прочее</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Мастерская: плата под лампой, потом лист заворачивается -->
+  <section id="masterskaya" class="master" aria-label="Мастерская">
+    <div class="stage stage--paper">
+      <div class="paper paper--cover">
+        <div class="mast">
+          <p class="mast__top"><span>выпуск 412</span><span>выходит, пока горит паяльник</span><span>бесплатно</span></p>
+          <p class="mast__name">Вестник Кинескопа</p>
+          <p class="mast__bottom"><span>Нижний Новгород</span><span>Белинского, 61, вход со двора</span><span>каждый день с 10 до 21</span></p>
+        </div>
+        <h2 class="paper__h">Пятнадцать лет чиним то, что другие советуют выбросить</h2>
+        <p class="paper__lede">В 2010 году мы сняли бывшее ателье «Рубин» на Белинского и повесили на дверь табличку «Ремонт». С тех пор через три наших стола прошло 23 тысячи телефонов, ноутбуков и телевизоров. Ниже рассказываем, как чиним, кто чинит и что говорят люди.</p>
+        <p class="paper__more">читать дальше ↓</p>
+      </div>
+    </div>
+    <div class="stage stage--title">
+      <div class="master__title">
+        <p class="kicker">с 2010 года на Белинского</p>
+        <h2 class="glow glow--warm">Мастерская</h2>
+        <p class="lead">Трое мастеров, три стола, микроскоп и шкаф запчастей до&nbsp;потолка.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Вестник: как чиним, люди, отзывы, купон -->
+  <section id="vestnik" class="paper paper--body" aria-label="Как мы работаем">
+    <div class="cols">
+      <article class="col col--wide">
+        <h3 class="paper__kicker">Как проходит ремонт</h3>
+        <ol class="steps">
+          <li><b>Приносите или вызывайте курьера.</b> Заберём технику по городу за 300 рублей и привезём обратно.</li>
+          <li><b>Смотрим при вас 20 минут.</b> Диагностика бесплатная, даже если чинить не станете.</li>
+          <li><b>Называем цену и срок.</b> Пишем их в квитанцию. Без вашего согласия цена не растёт.</li>
+          <li><b>Чиним и проверяем при вас.</b> Старую деталь отдаём, если попросите.</li>
+          <li><b>Даём гарантию полгода.</b> Сломается то же самое, переделаем бесплатно.</li>
+        </ol>
+      </article>
+      <aside class="col col--facts">
+        <h3 class="paper__kicker">В цифрах</h3>
+        <dl class="facts">
+          <div><dt>23 000</dt><dd>ремонтов с 2010 года</dd></div>
+          <div><dt>4,9</dt><dd>на Яндекс Картах, 612 отзывов</dd></div>
+          <div><dt>20 мин</dt><dd>диагностика, при вас</dd></div>
+          <div><dt>6 мес.</dt><dd>гарантия на любой ремонт</dd></div>
+        </dl>
+      </aside>
+    </div>
+
+    <div class="cols cols--people">
+      <h3 class="paper__kicker paper__kicker--full">Кто чинит</h3>
+      <article class="person"><p class="person__name">Игорь</p><p class="person__role">телефоны и платы</p><p>Паяет под микроскопом. Оригинальный экран отличает от копии на ощупь, но всё равно проверяет прибором.</p></article>
+      <article class="person"><p class="person__name">Света</p><p class="person__role">ноутбуки</p><p>Ведёт журнал каждого ремонта. В Телеграме отвечает быстрее всех, даже когда держит паяльник.</p></article>
+      <article class="person"><p class="person__name">Михаил Петрович</p><p class="person__role">телевизоры и звук</p><p>Чинит технику с 1987 года. Схему «Рубина» помнит наизусть и иногда рассказывает её клиентам.</p></article>
+    </div>
+
+    <div class="cols cols--calls">
+      <h3 class="paper__kicker paper__kicker--full">Звонки в студию</h3>
+      <blockquote class="call-card"><p>«Ноутбук залил чаем в пятницу вечером. В субботу днём он уже работал, и все дипломные файлы на месте».</p><cite>Артём, Нижегородский район · ноутбук</cite></blockquote>
+      <blockquote class="call-card"><p>«В двух сервисах сказали менять плату за 18 тысяч. Здесь нашли отвалившийся разъём и взяли 1 900».</p><cite>Ольга, Сормово · телевизор</cite></blockquote>
+      <blockquote class="call-card"><p>«Принесла папин магнитофон, думала, это музейный экспонат. Теперь он снова крутит его кассеты».</p><cite>Наталья, Автозавод · магнитофон</cite></blockquote>
+    </div>
+
+    <div class="coupon-wrap">
+      <div class="coupon">
+        <svg class="coupon__cut" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3a3 3 0 1 0 2.4 4.8L11 10.4 8.4 13A3 3 0 1 0 9.8 14.4l2.6-2.6 7.2 7.2H22L13.8 10.8 22 2.6h-2.4l-7.2 7.2-2.6-2.6A3 3 0 0 0 6 3Zm0 1.6a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8Zm0 10.2a1.4 1.4 0 1 1 0 2.8 1.4 1.4 0 0 1 0-2.8Z" fill="currentColor"/></svg>
+        <p class="coupon__kicker">Купон · вырежьте по пунктиру</p>
+        <p class="coupon__title">Минус 10% на работу</p>
+        <p>Принесите купон или покажите его с телефона. Диагностика бесплатная в&nbsp;любом случае. Действует до 31 декабря.</p>
+        <p class="coupon__line">Имя <span></span></p>
+        <p class="coupon__line">Что сломалось <span></span></p>
+        <a class="btn btn--dark" href="#svyaz" data-go="svyaz">Или запишитесь онлайн</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Гарантия: золотые часы -->
+  <section id="garantiya" class="garant" aria-label="Гарантия">
+    <div class="stage">
+      <div class="garant__text">
+        <p class="kicker">гарантия</p>
+        <h2 class="glow glow--gold">Полгода, и часы уже идут</h2>
+        <p class="lead">Отсчёт начинается, когда вы забрали технику. Сломается то же самое за 180 дней, переделаем бесплатно и без споров. Срок пишем в квитанцию.</p>
+        <p class="garant__small">Часы на экране золотые для красоты. Гарантия у нас самая обычная, бумажная.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Связь: рация -->
+  <section id="svyaz" class="svyaz" aria-label="Связь">
+    <div class="stage">
+      <div class="svyaz__text">
+        <p class="kicker">приём</p>
+        <h2 class="glow">Выходите на связь</h2>
+        <p class="lead">Позвоните, напишите в Телеграм или приходите. Факс тоже примем, но вряд ли найдём, куда его включить.</p>
+        <ul class="contacts">
+          <li><span>телефон</span><a href="tel:+78312140735">8 831 214-07-35</a></li>
+          <li><span>телеграм</span><a href="https://t.me/kineskop_nn" rel="noopener">@kineskop_nn</a></li>
+          <li><span>адрес</span><p>Белинского, 61, вход со двора, 5 минут от «Горьковской»</p></li>
+          <li><span>часы</span><p>каждый день с 10 до 21</p></li>
+        </ul>
+        <form class="form" novalidate>
+          <p class="form__title">Записаться на диагностику</p>
+          <label><span>Имя</span><input name="name" autocomplete="name" required></label>
+          <label><span>Телефон</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="+7"></label>
+          <label><span>Что сломалось</span>
+            <select name="what">
+              <option>Телефон</option><option>Ноутбук</option><option>Телевизор</option><option>Приставка</option><option>Звук</option><option>Другое</option>
+            </select>
+          </label>
+          <button class="btn btn--light" type="submit">Жду звонка</button>
+          <p class="form__ok" role="status">Заявка принята, перезвоним за 15 минут. Это витрина студии: на рабочем сайте заявка сразу придёт мастеру в Телеграм.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="end">
+  <div class="end__card" aria-hidden="true"><canvas width="320" height="256" data-endcard></canvas></div>
+  <p class="end__title glow">Конец эфира</p>
+  <p class="end__sub">Не забудьте выключить телевизор.</p>
+  <p class="end__meta">© Кинескоп, 2026 · ремонт техники в Нижнем Новгороде · <a href="#efir" data-go="efir">включить заново</a></p>
+</footer>
+
+<script type="module" src="assets/js/app.js"></script>
+<script src="/ap/badge.js" defer data-ap="kineskop-remont"></script>
+</body>
+</html>
