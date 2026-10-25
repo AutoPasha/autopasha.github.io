@@ -555,8 +555,10 @@ html{scroll-padding-top:clamp(70px,9vw,96px)}
   .film__frame:hover{transform:translateY(-4px)}
   .film__snd:hover{transform:scale(1.06)}
 }
-/* три ролика: заголовок над рядом, ряд делит ширину поровну, не шире 340 на ролик */
+/* три ролика: заголовок над рядом, ряд делит ширину поровну, не шире 340 на ролик;
+   на широком экране крайние ролики стоят по краям колонки, как заголовок и подводка */
 @media (min-width:700px){
+  .kino__row{justify-content:space-between}
   .film{flex:1 1 0;width:auto;max-width:340px}
 }
 @media (min-width:1080px){
