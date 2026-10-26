@@ -347,7 +347,7 @@ html.intro .zastavka {
 .zf { --k-accent: var(--accent-svet); background: var(--tma); }
 .zf .zf-h em { font-style: normal; }
 .zf .zf-pole select option { background: var(--fon); color: var(--ink); }
-.zf-pole input[type="date"] { color-scheme: dark; width: 6.6em; min-width: 0; field-sizing: fixed; }
+.zf-pole input[type="date"] { color-scheme: dark; width: 8.2em; min-width: 0; field-sizing: fixed; }
 .zf-pole input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(.8); cursor: pointer; }
 .zf-pole select { max-width: 100%; }
 .zf-knopka { font-weight: 500; transition: background-color .2s; }
@@ -356,7 +356,7 @@ html.intro .zastavka {
 .zf-summa { display: inline-block; font-family: var(--f-mono); font-weight: 500; color: var(--accent-svet); }
 .zf-mest { color: var(--svet-dim); }
 .zf-melko { font-size: 14px; }
-@media (max-width: 899px) { .zf-pole input[type="date"] { width: 7.2em; } }
+@media (max-width: 899px) { .zf-pole input[type="date"] { width: 7.8em; } }
 
 /* ---------- подвал ---------- */
 .podval { background: var(--tma); color: var(--svet); padding: clamp(64px, 10vh, 120px) var(--pole) 28px; overflow: hidden; }
