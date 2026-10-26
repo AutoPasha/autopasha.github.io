@@ -1,0 +1,95 @@
+/* Каркас «галерея журналом»: кейсы, объекты, работы, зал, интерьер.
+   Вместо вертикального списка одинаковых карточек — асимметричная полоса:
+   кадры трёх масштабов со сдвигом по высоте, подпись наезжает на кадр,
+   между кадрами крупная фраза. Глубина — разной скоростью кадров. */
+
+.gz {
+  --gz-ink: var(--k-ink, #f2efe8);
+  --gz-dim: var(--k-dim, rgba(242, 239, 232, .66));
+  --gz-accent: var(--k-accent, #ff5a1f);
+  --gz-fon: var(--k-fon, #0e1013);
+  color: var(--gz-ink);
+  padding: clamp(72px, 12vh, 160px) clamp(16px, 5vw, 88px) clamp(96px, 16vh, 200px);
+}
+
+.gz-shapka {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(12px, 2vw, 32px);
+  align-items: end;
+  margin-bottom: clamp(48px, 10vh, 140px);
+}
+.gz-h {
+  grid-column: 1 / 9;
+  margin: 0;
+  font-family: var(--k-display, Georgia, serif);
+  font-weight: 400;
+  font-size: clamp(44px, 8.4vw, 156px);
+  line-height: .9;
+  letter-spacing: -.02em;
+}
+.gz-h em { font-style: italic; color: var(--gz-accent); }
+.gz-lid { grid-column: 9 / 13; margin: 0; font-size: 16px; line-height: 1.5; color: var(--gz-dim); max-width: 34ch; }
+
+.gz-setka {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(12px, 2vw, 32px);
+  row-gap: clamp(40px, 8vh, 96px);
+  align-items: start;
+}
+.gz-kadr { margin: 0; position: relative; }
+.gz-ramka { overflow: hidden; }
+.gz-ramka img { display: block; width: 100%; height: 116%; object-fit: cover; }
+
+.gz-kadr--L { grid-column: 1 / 8; }
+.gz-kadr--L .gz-ramka { aspect-ratio: 4 / 5; }
+.gz-kadr--M { grid-column: 9 / 13; margin-top: 30vh; }
+.gz-kadr--M .gz-ramka { aspect-ratio: 3 / 4; }
+.gz-kadr--S { grid-column: 3 / 7; margin-top: -6vh; }
+.gz-kadr--S .gz-ramka { aspect-ratio: 1 / 1; }
+.gz-kadr--W { grid-column: 2 / 13; }
+.gz-kadr--W .gz-ramka { aspect-ratio: 21 / 9; }
+
+.gz-kadr figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  padding-top: 14px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+.gz-kadr--L figcaption {
+  position: relative;
+  margin: -64px 0 0 12%;
+  padding: 18px 22px;
+  width: min(420px, 76%);
+  background: var(--gz-fon);
+}
+.gz-imya { font-family: var(--k-display, Georgia, serif); font-size: clamp(20px, 1.7vw, 28px); line-height: 1.15; }
+.gz-fakt { font-family: var(--k-mono, ui-monospace, monospace); font-size: 13px; letter-spacing: .06em; color: var(--gz-dim); }
+
+.gz-vstavka {
+  grid-column: 7 / 13;
+  align-self: center;
+  margin: 0;
+  font-family: var(--k-display, Georgia, serif);
+  font-size: clamp(28px, 3.6vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -.01em;
+}
+.gz-vstavka em { font-style: italic; color: var(--gz-accent); }
+
+@media (max-width: 899px) {
+  .gz-shapka, .gz-setka { display: block; }
+  .gz-lid { margin-top: 18px; }
+  .gz-kadr, .gz-vstavka { margin: 0 0 48px; }
+  .gz-kadr--M { width: 78%; margin-left: auto; }
+  .gz-kadr--S { width: 62%; }
+  .gz-kadr--W { margin-left: calc(-1 * clamp(16px, 5vw, 88px)); margin-right: calc(-1 * clamp(16px, 5vw, 88px)); }
+  .gz-kadr--W .gz-ramka { aspect-ratio: 4 / 3; }
+  .gz-kadr--W figcaption { padding-left: clamp(16px, 5vw, 88px); padding-right: clamp(16px, 5vw, 88px); }
+  .gz-kadr--L figcaption { margin: -40px 0 0 8%; width: auto; }
+  .gz-vstavka { font-size: clamp(26px, 8vw, 40px); }
+}

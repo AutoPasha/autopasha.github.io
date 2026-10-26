@@ -1,0 +1,39 @@
+@import url("fonts/prata/fonts.css");
+@import url("fonts/onest/fonts.css");
+@import url("fonts/ibm-plex-mono/fonts.css");
+
+/* ТатарИнн: молочный фасад, тёмный чай, один янтарный цвет знака */
+:root {
+  --fon: #f3ece1;
+  --fon-2: #e9dfcf;
+  --tma: #17110c;
+  --tma-2: #231a13;
+  --ink: #1f1812;
+  --dim: #5f5348;
+  --line: rgba(31, 24, 18, .18);
+  --svet: #f3ece1;
+  --svet-dim: rgba(243, 236, 225, .74);
+  --svet-line: rgba(243, 236, 225, .22);
+  --accent: #9a4d0a;
+  --accent-svet: #e89808;
+
+  --f-display: "Prata", Georgia, serif;
+  --f-text: "Onest", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --pole: clamp(20px, 5vw, 88px);
+  --radius: 2px;
+
+  /* каркасы */
+  --k-display: var(--f-display);
+  --k-text: var(--f-text);
+  --k-mono: var(--f-mono);
+  --k-ink: var(--ink);
+  --k-dim: var(--dim);
+  --k-line: var(--line);
+  --k-accent: var(--accent);
+  --k-plashka: var(--fon);
+  --k-plashka-ink: var(--ink);
+  --k-ink-svet: var(--svet);
+  --k-accent-ink: var(--tma);
+}
