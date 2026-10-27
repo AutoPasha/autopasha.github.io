@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<title>Вариант Б · сначала ответ — макет заявки АвтоПаши</title>
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+body{display:flex;flex-direction:column;height:100dvh;overflow:hidden}
+.stage{position:relative;z-index:1;flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,72px);max-width:1240px;width:100%;margin:0 auto;padding:0 clamp(18px,4vw,48px) clamp(16px,3vh,32px)}
+.intro{align-self:center;padding-bottom:40px}
+.intro .pasha{--s:clamp(150px,15vw,210px);margin:0 0 18px -10px}
+.intro .h1{font-size:clamp(36px,4.4vw,58px)}
+.steps{display:flex;gap:8px;margin-top:28px;flex-wrap:wrap}
+.steps span{display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);font-size:13px;color:var(--dim-2);transition:all .4s var(--ease)}
+.steps span i{width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font:700 11px/1 var(--sans);font-style:normal;background:var(--coal-3);color:var(--dim)}
+.steps span.on{border-color:var(--hot);color:var(--white)}
+.steps span.on i{background:var(--hot);color:var(--on-hot)}
+.steps span.ok{color:var(--dim)}
+.steps span.ok i{background:var(--ok);color:var(--on-hot)}
+
+/* окно разговора */
+.chat{position:relative;display:flex;flex-direction:column;min-height:0;background:linear-gradient(180deg,oklch(0.235 0.012 60),oklch(0.205 0.011 60));border:1px solid var(--line);border-radius:28px;box-shadow:0 40px 100px -40px oklch(0 0 0/.7);overflow:hidden}
+.chat__head{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);background:oklch(0.235 0.012 60/.85);backdrop-filter:blur(10px)}
+.chat__head .pasha{--s:42px}
+.chat__who b{display:block;font:700 15px/1.1 var(--sans)}
+.chat__who span{font-size:12.5px;color:var(--ok);display:inline-flex;align-items:center;gap:6px}
+.chat__who span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
+.chat__who span.typing{color:var(--hot-soft)}
+.chat__who span.typing::before{background:var(--hot)}
+.bar{margin-left:auto;display:flex;gap:4px}
+.bar i{width:22px;height:4px;border-radius:2px;background:var(--coal-3);transition:background .4s}
+.bar i.on{background:var(--hot)}
+.feed{flex:1;min-height:0;overflow-y:auto;padding:22px 18px 10px;display:flex;flex-direction:column;gap:8px;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--coal-3) transparent}
+.msg{max-width:84%;padding:11px 15px;border-radius:20px;font-size:15.5px;line-height:1.45;animation:pop .45s var(--spring) both;transform-origin:0 100%}
+.msg--p{align-self:flex-start;background:var(--coal-2);border-bottom-left-radius:6px;color:var(--cream)}
+.msg--u{align-self:flex-end;background:var(--hot);color:var(--on-hot);border-bottom-right-radius:6px;transform-origin:100% 100%;font-weight:500}
+.msg + .msg--u,.msg--u + .msg--p{margin-top:8px}
+@keyframes pop{from{opacity:0;transform:translateY(8px) scale(.92)}to{opacity:1;transform:none}}
+.dots{display:inline-flex;gap:4px;padding:15px 16px}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--dim);animation:dot 1s infinite}
+.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,60%,100%{opacity:.3;transform:none}30%{opacity:1;transform:translateY(-3px)}}
+
+/* карточки внутри разговора */
+.kard{align-self:flex-start;width:min(440px,92%);background:var(--coal);border:1px solid var(--line);border-radius:20px;padding:16px 18px;animation:pop .5s var(--spring) both}
+.kard__k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim-2)}
+.plan{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:10px;counter-reset:s}
+.plan li{display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:14.5px;color:var(--cream);opacity:0;animation:rise .6s var(--ease-page) forwards}
+.plan li::before{counter-increment:s;content:counter(s);width:26px;height:26px;border-radius:8px;display:grid;place-items:center;background:var(--hot-deep);color:var(--hot-soft);font:700 12px/1 var(--sans)}
+.rep{margin-top:14px;padding:12px 14px;border-radius:14px;background:var(--coal-2);border-left:3px solid var(--ok)}
+.rep b{display:block;font-size:14px;font-weight:500}
+.rep span{display:block;font-size:13px;color:var(--dim);margin-top:3px}
+.rep small{display:block;font-size:11px;color:var(--dim-2);margin-top:6px}
+.kard .consents{margin-top:4px}
+.kard .btn{width:100%;margin-top:16px}
+.kard .next{margin-top:14px}
+.kard .next li{padding-bottom:14px}
+
+/* низ: быстрые ответы и строка ввода */
+.dock{border-top:1px solid var(--line);padding:10px 12px 12px;background:oklch(0.215 0.011 60)}
+.quick{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 10px;scrollbar-width:none}
+.quick::-webkit-scrollbar{display:none}
+.quick .chip{flex:none;white-space:nowrap;animation:pop .4s var(--spring) both}
+.quick .chip svg{align-self:center}
+.quick:empty{display:none}
+.composer{display:flex;align-items:flex-end;gap:8px;background:var(--coal);border:1px solid var(--line);border-radius:22px;padding:6px 6px 6px 16px;transition:border-color .25s,box-shadow .25s}
+.composer:focus-within{border-color:oklch(0.705 0.195 45/.8);box-shadow:0 0 0 4px oklch(0.705 0.195 45/.12)}
+.composer__ico{align-self:center;color:var(--dim-2);display:none}
+.composer.has-ico .composer__ico{display:block}
+.composer textarea{flex:1;background:transparent;border:0;outline:0;resize:none;padding:9px 0;font-size:16px;line-height:1.4;max-height:120px}
+.composer textarea::placeholder{color:var(--dim-2)}
+.go{flex:none;width:42px;height:42px;border-radius:50%;border:0;cursor:pointer;background:var(--coal-3);color:var(--dim);display:grid;place-items:center;transition:background .25s,color .25s,transform .3s var(--spring)}
+.go.ready{background:var(--hot);color:var(--on-hot)}
+.go.ready:hover{transform:scale(1.08)}
+.dock.closed .composer,.dock.closed .quick{display:none}
+.sent{display:none;text-align:center;font-size:14px;color:var(--dim);padding:8px}
+.sent.ok{color:var(--ok)}
+.dock.closed .sent{display:block}
+
+@media (max-width:900px){
+  .stage{grid-template-columns:1fr;padding:0 0 0}
+  .intro{display:none}
+  .chat{border-radius:0;border-left:0;border-right:0;border-bottom:0}
+  .top{padding:10px 16px}
+  .relief{display:none}
+  .msg{max-width:88%}
+}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://design.autopasha.ru/zayavka-korotko/b/index.html">
+<meta property="og:title" content="Вариант Б · сначала ответ — макет заявки АвтоПаши">
+<meta property="og:image" content="https://design.autopasha.ru/zayavka-korotko/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://design.autopasha.ru/zayavka-korotko/og.jpg">
+</head>
+<body>
+<div class="proto">макет · <b>вариант Б «сначала ответ»</b> · заявка никуда не уходит · <a href="../">все три варианта</a></div>
+<div class="relief" id="relief"></div>
+<div class="fx"><div class="glow" style="width:560px;height:560px;left:-160px;top:120px"></div></div>
+<header class="top"><a class="logo" href="https://autopasha.ru/">авто<i>паша</i></a><a class="top__back" href="https://autopasha.ru/">← на главную</a></header>
+
+<main class="stage">
+  <section class="intro">
+    <div id="bigPasha" class="rise" style="--i:0"></div>
+    <div class="kicker rise" style="--i:1">знакомство · <b>без анкеты</b></div>
+    <h1 class="h1 rise" style="--i:2">расскажите<br>задачу,<br><em>паша ответит</em></h1>
+    <p class="lead rise" style="--i:3">Сначала он покажет, как возьмётся за дело. Контакт спросит только потом, когда станет понятно, нужен ли он вам.</p>
+    <div class="steps rise" style="--i:4" id="steps"><span class="on"><i>1</i>задача</span><span><i>2</i>куда писать</span><span><i>3</i>готово</span></div>
+  </section>
+
+  <section class="chat rise" style="--i:2">
+    <div class="chat__head"><div id="miniPasha"></div><div class="chat__who"><b>паша</b><span id="status">на связи</span></div><div class="bar" id="bar"><i class="on"></i><i></i><i></i></div></div>
+    <div class="feed" id="feed"></div>
+    <div class="dock" id="dock">
+      <div class="quick" id="quick"></div>
+      <div class="composer" id="composer"><span class="composer__ico" id="cIco"></span><textarea id="input" rows="1" placeholder="напишите задачу…"></textarea><button class="go" id="go" aria-label="отправить"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="currentColor" d="M3.4 20.4 21 12 3.4 3.6 3.4 10l12.6 2-12.6 2z"/></svg></button></div>
+      <div class="sent">заявка отправлена</div>
+    </div>
+  </section>
+</main>
+
+<script src="../assets/kit.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+AP.relief($('relief'), 5);
+const big = AP.pasha($('bigPasha'));
+const mini = AP.pasha($('miniPasha'));
+const feed = $('feed'), input = $('input'), quick = $('quick');
+// низ разговора всегда виден: панель с быстрыми ответами меняет высоту ленты
+new ResizeObserver(() => { feed.scrollTop = feed.scrollHeight; }).observe(feed);
+let stage = 'task', kind = null, contact = null, role = null;
+
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+function add(html, who = 'p', cls = 'msg') {
+  const d = document.createElement('div');
+  d.className = cls + (cls === 'msg' ? ' msg--' + who : '');
+  d.innerHTML = html;
+  feed.appendChild(d);
+  feed.scrollTop = feed.scrollHeight;
+  return d;
+}
+async function say(lines, think = 700) {
+  for (const l of lines) {
+    $('status').textContent = 'печатает…'; $('status').classList.add('typing');
+    big.mood('think');
+    const t = add('<span class="dots"><i></i><i></i><i></i></span>', 'p');
+    t.style.padding = '0';
+    await wait(think + Math.min(900, (typeof l === 'string' ? l.length : 60) * 9));
+    t.remove();
+    if (typeof l === 'string') add(l, 'p'); else feed.appendChild(l), feed.scrollTop = feed.scrollHeight;
+    $('status').textContent = 'на связи'; $('status').classList.remove('typing');
+    big.mood(null);
+    await wait(250);
+  }
+}
+function setQuick(items) {
+  quick.innerHTML = items.map((it, i) => `<button type="button" class="chip" style="animation-delay:${i * 50}ms" data-v="${it.v}">${it.html}</button>`).join('');
+}
+function progress(n) {
+  [...$('bar').children].forEach((b, i) => b.classList.toggle('on', i < n));
+  [...$('steps').children].forEach((s, i) => { s.classList.toggle('on', i === n - 1); s.classList.toggle('ok', i < n - 1); if (i < n - 1) s.querySelector('i').innerHTML = '✓'; });
+}
+function ready() { $('go').classList.toggle('ready', input.value.trim().length > 1); }
+input.addEventListener('input', () => {
+  input.style.height = 'auto'; input.style.height = Math.min(120, input.scrollHeight) + 'px';
+  ready();
+  if (stage === 'contact') {
+    const c = AP.contact(input.value);
+    const k = c && c.kind !== 'bad' ? c.kind : kind;
+    $('cIco').innerHTML = AP.ICON[k || 'tg'];
+  }
+});
+input.addEventListener('keydown', (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); send(); } });
+$('go').addEventListener('click', () => send());
+
+const EX = ['sup', 'dev', 'mkt', 'an', 'des', 'sal'];
+quick.addEventListener('click', (e) => {
+  const b = e.target.closest('.chip'); if (!b) return;
+  const v = b.dataset.v;
+  if (stage === 'task') { send(AP.ROLES[v].ex[0]); return; }
+  if (stage === 'kind') { pickKind(v); }
+});
+
+async function send(text) {
+  const v = (text ?? input.value).trim();
+  if (v.length < 2) return;
+  if (stage === 'task') {
+    stage = 'busy'; quick.innerHTML = ''; input.value = ''; ready();
+    add(v.replace(/</g, '&lt;'), 'u');
+    role = AP.guess(v);
+    const r = role && AP.ROLES[role];
+    big.hop(); mini.hop();
+    await say([r ? `понял, это работа для ${r.gen}. вот как начну:` : 'понял. детали уточню в переписке, а начну так:']);
+    const card = document.createElement('div');
+    card.className = 'kard';
+    const plan = r ? r.plan : ['разберусь, как у вас всё устроено', 'предложу план на неделю, выберете сами', 'первый результат пришлю на одобрение'];
+    card.innerHTML = `<div class="kard__k">план на первые дни</div><ol class="plan">${plan.map((p, i) => `<li style="animation-delay:${200 + i * 260}ms">${p}</li>`).join('')}</ol>` +
+      (r ? `<div class="rep"><b>${r.report.title}</b><span>${r.report.text}</span><small>так выглядит отчёт · пример</small></div>` : '');
+    await say([card], 500);
+    await wait(900);
+    progress(2);
+    await say(['чтобы я начал по-настоящему, куда вам писать?']);
+    stage = 'kind';
+    setQuick([{ v: 'tg', html: AP.ICON.tg + ' Telegram' }, { v: 'phone', html: AP.ICON.phone + ' телефон' }, { v: 'email', html: AP.ICON.email + ' почта' }]);
+    input.placeholder = 'или сразу напишите ник, телефон или почту';
+    input.focus();
+    return;
+  }
+  if (stage === 'kind' || stage === 'contact') {
+    const c = AP.contact(v);
+    input.value = ''; ready();
+    add(v.replace(/</g, '&lt;'), 'u');
+    if (!c || c.kind === 'bad') { await say(['не похоже ни на ник, ни на телефон, ни на почту. попробуйте ещё раз?'], 300); return; }
+    contact = c; stage = 'busy'; quick.innerHTML = '';
+    $('composer').classList.remove('has-ico');
+    big.hop();
+    await say(['записал. и последнее: два согласия, без них мне нельзя работать с вашими данными']);
+    const k = document.createElement('div');
+    k.className = 'kard';
+    k.innerHTML = AP.CONSENTS + '<button class="btn btn--hot" id="submit" aria-disabled="true">отправить заявку <span class="arr">→</span></button>';
+    await say([k], 300);
+    $('dock').classList.add('closed');
+    $('dock').querySelector('.sent').textContent = 'отметьте согласия в последнем сообщении';
+    k.addEventListener('change', () => {
+      const all = [...k.querySelectorAll('input')].every((x) => x.checked);
+      $('submit').setAttribute('aria-disabled', all ? 'false' : 'true');
+    });
+    $('submit').addEventListener('click', finish);
+  }
+}
+function pickKind(v) {
+  kind = v; stage = 'contact';
+  const label = { tg: 'в Telegram', phone: 'по телефону', email: 'на почту' }[v];
+  add(label, 'u');
+  quick.innerHTML = '';
+  $('composer').classList.add('has-ico');
+  $('cIco').innerHTML = AP.ICON[v];
+  input.placeholder = { tg: '@ваш ник', phone: '+7 900 000-00-00', email: 'почта' }[v];
+  input.inputMode = { tg: 'text', phone: 'tel', email: 'email' }[v];
+  say([{ tg: 'какой у вас ник?', phone: 'какой номер? позвоним или напишем', email: 'на какой адрес?' }[v]], 200).then(() => input.focus());
+}
+async function finish(e) {
+  if (e.currentTarget.getAttribute('aria-disabled') === 'true') return;
+  const r = e.currentTarget.getBoundingClientRect();
+  AP.sparks(r.left + r.width / 2, r.top + r.height / 2, 22);
+  e.currentTarget.disabled = true; e.currentTarget.textContent = 'отправлено';
+  big.mood('happy'); big.hop(); mini.mood('happy'); mini.hop();
+  progress(3);
+  $('dock').querySelector('.sent').textContent = 'заявка отправлена';
+  $('dock').querySelector('.sent').classList.add('ok');
+  await say([`готово! Павел прочитает задачу и ответит вам ${contact.label} <b>${contact.value}</b> в течение дня`]);
+  const t = document.createElement('div');
+  t.className = 'kard';
+  t.innerHTML = `<div class="kard__k">что дальше</div><ol class="next"><li><i>1</i><div><b>сегодня</b><span>Павел отвечает, берёмся ли и что уточнить</span></div></li><li><i>2</i><div><b>договорились</b><span>оплата первой недели, 25 000 ₽. не подошёл, вернём деньги в первые 3 дня</span></div></li><li><i>3</i><div><b>на следующий день</b><span>выхожу в ваш рабочий чат и начинаю с этой задачи</span></div></li></ol>`;
+  await say([t], 300);
+}
+
+(async () => {
+  await wait(500);
+  await say(['привет! я паша. работаю удалённо: код, тексты, таблицы, переписка с клиентами', 'с чего мне начать у вас? напишите как в рабочий чат или выберите пример'], 350);
+  setQuick(EX.map((id) => ({ v: id, html: `<small>${AP.ROLES[id].name}</small>${AP.ROLES[id].chip}` })));
+})();
+</script>
+</body>
+</html>

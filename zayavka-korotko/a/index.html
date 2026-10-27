@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Вариант А · одна строка — макет заявки АвтоПаши</title>
+<link rel="stylesheet" href="../assets/base.css">
+<style>
+.wrap{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);gap:clamp(32px,6vw,88px);max-width:1200px;margin:0 auto;padding:clamp(18px,4vw,40px) clamp(18px,4vw,48px) 80px}
+.form{max-width:640px;min-width:0}
+.side{min-width:0}
+.form .h1{font-size:clamp(36px,4.6vw,60px)}
+.task textarea{min-height:104px;font-size:17px}
+.task__foot{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 14px 12px 18px;min-height:40px}
+.understood{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--dim);opacity:0;transform:translateY(4px);transition:opacity .35s,transform .35s var(--ease)}
+.understood.on{opacity:1;transform:none}
+.understood b{color:var(--hot-soft);font-weight:500}
+.understood .dot{width:6px;height:6px;border-radius:50%;background:var(--hot);box-shadow:0 0 0 4px oklch(0.705 0.195 45/.18)}
+.count{font-size:12px;color:var(--dim-2)}
+.chips__label{font-size:13px;color:var(--dim-2);margin-top:14px}
+.reach{display:flex;align-items:center}
+.reach__ico{flex:none;width:52px;display:grid;place-items:center;color:var(--dim-2);transition:color .3s}
+.reach__ico svg{transition:transform .35s var(--spring)}
+.reach.is-tg .reach__ico{color:var(--tg)}
+.reach.is-phone .reach__ico,.reach.is-email .reach__ico{color:var(--hot-soft)}
+.reach.pop .reach__ico svg{transform:scale(1.25)}
+.reach input{padding-left:0}
+.reach__ok{flex:none;margin-right:14px;display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--ok);opacity:0;transition:opacity .3s}
+.reach.is-tg .reach__ok,.reach.is-phone .reach__ok,.reach.is-email .reach__ok{opacity:1}
+.reach__hint{font-size:13px;color:var(--dim-2);margin-top:8px;min-height:20px}
+.reach__hint.bad{color:var(--bad)}
+.send{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;margin-top:26px}
+.send__left{font-size:13px;color:var(--dim)}
+.send__left b{color:var(--white);font-weight:500}
+.calm{font-size:13.5px;color:var(--dim);margin-top:16px;display:flex;gap:8px;align-items:center}
+.calm::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok)}
+
+/* карточка сотрудника справа — собирается, пока человек печатает */
+.side{position:relative}
+.card{position:sticky;top:28px;margin-top:56px;background:linear-gradient(180deg,var(--coal-2),var(--coal));border:1px solid var(--line);border-radius:24px;padding:72px 26px 22px;box-shadow:0 30px 80px -30px oklch(0 0 0/.6)}
+.card .pasha{--s:118px;position:absolute;left:50%;top:-62px;margin-left:-59px}
+.card__head{text-align:center}
+.card__k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim-2)}
+.card__name{font:800 30px/1 var(--display);letter-spacing:-.03em;margin-top:8px}
+.card__role{display:inline-block;margin-top:10px;padding:5px 12px;border-radius:999px;font-size:13px;font-weight:500;background:var(--hot-deep);color:var(--hot-soft);transition:background .3s,color .3s}
+.card__role.empty{background:var(--coal-3);color:var(--dim-2)}
+.rows{margin:22px 0 0;display:grid;gap:0}
+.row{display:grid;grid-template-columns:118px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:14px}
+.row dt{color:var(--dim-2)}
+.row dd{margin:0;color:var(--cream);min-height:21px;transition:color .3s}
+.row dd.empty{color:var(--dim-2);font-style:italic}
+.row dd.flash{animation:flash .9s var(--ease)}
+@keyframes flash{0%{color:var(--hot-soft);transform:translateX(-4px)}100%{color:var(--cream);transform:none}}
+.price{font:700 20px/1 var(--sans)}
+.price s{color:var(--dim-2);font-weight:400;font-size:14px;margin-left:10px}
+.card__foot{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--dim);margin-top:14px}
+.card__foot::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--hot)}
+
+/* финал */
+.done{display:none;max-width:600px}
+.is-sent .form{display:none}
+.is-sent .done{display:block;animation:rise .9s var(--ease-page) both}
+.done__mark{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;background:var(--hot);color:var(--on-hot);box-shadow:0 0 0 10px oklch(0.705 0.195 45/.14)}
+.done__mark svg{width:30px;height:30px}
+.done .h1{font-size:clamp(34px,4.6vw,56px);margin-top:24px}
+.done__btns{display:flex;flex-wrap:wrap;gap:12px;margin-top:10px}
+
+@media (max-width:900px){
+  .wrap{grid-template-columns:1fr;gap:0}
+  .side{order:-1}
+  .card{position:relative;top:0;margin:0 0 26px;padding:14px 16px 14px 84px;border-radius:18px;display:block}
+  .card .pasha{--s:64px;left:12px;top:50%;margin:-34px 0 0}
+  .card__head{text-align:left;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .card__k{display:none}
+  .card__name{font-size:20px;margin:0}
+  .card__role{margin:0}
+  .rows,.card__foot{display:none}
+  .card .mini{display:block}
+  .is-sent .card{display:none}
+}
+.mini{display:none;font-size:13px;color:var(--dim);margin-top:6px}
+.mini b{color:var(--cream);font-weight:500}
+@media (max-width:900px){.relief{height:420px}}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://design.autopasha.ru/zayavka-korotko/a/index.html">
+<meta property="og:title" content="Вариант А · одна строка — макет заявки АвтоПаши">
+<meta property="og:image" content="https://design.autopasha.ru/zayavka-korotko/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://design.autopasha.ru/zayavka-korotko/og.jpg">
+</head>
+<body>
+<div class="proto">макет · <b>вариант А «одна строка»</b> · заявка никуда не уходит · <a href="../">все три варианта</a></div>
+<div class="relief" id="relief"></div>
+<div class="fx"><div class="glow" style="width:520px;height:520px;right:-120px;top:40px"></div></div>
+<header class="top"><a class="logo" href="https://autopasha.ru/">авто<i>паша</i></a><a class="top__back" href="https://autopasha.ru/">← на главную</a></header>
+
+<main class="wrap" id="app">
+  <section class="form">
+    <div class="kicker rise" style="--i:0">заявка · <b>два поля</b> · полминуты</div>
+    <h1 class="h1 rise" style="--i:1">что поручить<br><em>паше</em>?</h1>
+    <p class="lead rise" style="--i:2">Напишите, как написали бы в рабочий чат. Кого нанять, поймём из задачи сами, остальное спросим в переписке.</p>
+
+    <label class="field rise" style="--i:3">
+      <div class="field__label"><span>задача</span><span>можно в двух словах</span></div>
+      <div class="box task">
+        <textarea id="task" rows="4" maxlength="2000"></textarea>
+        <div class="task__foot"><span class="understood" id="und"><i class="dot"></i>понял: <b id="undRole">поддержка</b></span><span class="count" id="count"></span></div>
+      </div>
+    </label>
+    <div class="chips__label rise" style="--i:4">или возьмите пример и поправьте</div>
+    <div class="chips rise" style="--i:4" id="chips"></div>
+
+    <label class="field rise" style="--i:5">
+      <div class="field__label"><span>куда вам ответить</span><span>что удобнее</span></div>
+      <div class="box reach" id="reach">
+        <span class="reach__ico" id="reachIco"></span>
+        <input id="contact" autocomplete="off" inputmode="text" placeholder="@ник в Telegram, телефон или почта">
+        <span class="reach__ok" id="reachOk"></span>
+      </div>
+      <div class="reach__hint" id="reachHint">узнаем сами, что это: ник, телефон или почта</div>
+    </label>
+
+    <div class="rise" style="--i:6" id="consents"></div>
+
+    <div class="send rise" style="--i:7">
+      <button class="btn btn--hot" id="send" aria-disabled="true">отправить заявку <span class="arr">→</span></button>
+      <span class="send__left" id="left">осталось: <b>задача</b>, <b>контакт</b>, <b>две галочки</b></span>
+    </div>
+    <div class="calm rise" style="--i:8">Платить ничего не нужно, пока не договоримся. Ответим в течение дня.</div>
+  </section>
+
+  <section class="done" id="done">
+    <div class="done__mark">__CHECK__</div>
+    <h1 class="h1">заявка<br><em>у нас</em></h1>
+    <p class="lead" id="doneLead"></p>
+    <ol class="next">
+      <li><i>1</i><div><b>сегодня</b><span>Павел читает задачу и отвечает, берёмся ли и что уточнить</span></div></li>
+      <li><i>2</i><div><b>договорились</b><span>оплата первой недели, 25 000 ₽. не подошёл, вернём деньги в первые 3 дня</span></div></li>
+      <li><i>3</i><div><b>на следующий день</b><span>паша выходит в ваш рабочий чат и начинает с этой задачи</span></div></li>
+    </ol>
+    <div class="done__btns"><a class="btn btn--ghost" href="https://autopasha.ru/">как паша работает →</a><button class="btn btn--ghost" id="again">заполнить заново</button></div>
+  </section>
+
+  <aside class="side">
+    <div class="card" id="card">
+      <div id="pasha"></div>
+      <div class="card__head"><div class="card__k">ваш сотрудник</div><div class="card__name">паша</div><span class="card__role empty" id="cRole">роль поймём из задачи</span></div>
+      <div class="mini" id="mini">напишет вам <b id="miniCh">где скажете</b></div>
+      <dl class="rows">
+        <div class="row"><dt>делает</dt><dd class="empty" id="cDoes">код, тексты, таблицы, переписку</dd></div>
+        <div class="row"><dt>первая задача</dt><dd class="empty" id="cTask">ещё не написали</dd></div>
+        <div class="row"><dt>ответим</dt><dd class="empty" id="cCh">где скажете</dd></div>
+        <div class="row"><dt>неделя</dt><dd><span class="price">25 000 ₽</span> <s>50 000 ₽</s></dd></div>
+      </dl>
+      <div class="card__foot">не подошёл, вернём деньги в первые 3 дня</div>
+    </div>
+  </aside>
+</main>
+
+<script src="../assets/kit.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+AP.relief($('relief'), 2);
+const P = AP.pasha($('pasha'));
+$('consents').innerHTML = AP.CONSENTS;
+document.querySelector('.done__mark').innerHTML = AP.ICON.check;
+$('reachIco').innerHTML = AP.ICON.tg;
+$('reachOk').innerHTML = AP.ICON.check;
+
+const examples = [['sup', 0], ['dev', 0], ['mkt', 0], ['an', 1], ['des', 0], ['sal', 0]];
+// на чипе коротко, в поле — пример целиком
+$('chips').innerHTML = examples.map(([r, i]) => `<button type="button" class="chip" data-r="${r}" data-i="${i}"><small>${AP.ROLES[r].name}</small>${AP.ROLES[r].chip}</button>`).join('');
+AP.livePlaceholder($('task'), examples.map(([r, i]) => AP.ROLES[r].ex[i]), 'Например: ');
+
+const st = { task: '', role: null, c: null };
+function setText(el, val, empty) {
+  if (el.textContent === val) return;
+  el.textContent = val;
+  el.classList.toggle('empty', !!empty);
+  if (!empty) { el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+}
+function render() {
+  const r = st.role && AP.ROLES[st.role];
+  $('und').classList.toggle('on', !!r);
+  if (r) $('undRole').textContent = r.name;
+  const cr = $('cRole');
+  cr.textContent = r ? r.name : 'роль поймём из задачи';
+  cr.classList.toggle('empty', !r);
+  setText($('cDoes'), r ? r.does : 'код, тексты, таблицы, переписку', !r);
+  const t = st.task.trim();
+  setText($('cTask'), t ? '«' + (t.length > 90 ? t.slice(0, 88) + '…' : t) + '»' : 'ещё не написали', !t);
+  const ok = st.c && st.c.kind !== 'bad';
+  setText($('cCh'), ok ? st.c.label + ' · ' + st.c.value : 'где скажете', !ok);
+  $('miniCh').textContent = ok ? st.c.label : 'где скажете';
+  $('count').textContent = t.length > 0 && t.length < 8 ? 'ещё пару слов' : '';
+  const miss = [];
+  if (t.length < 8) miss.push('задача');
+  if (!ok) miss.push('контакт');
+  const boxes = [...document.querySelectorAll('.consent input')].filter((x) => !x.checked).length;
+  if (boxes) miss.push(boxes === 2 ? 'две галочки' : 'галочка');
+  $('left').innerHTML = miss.length ? 'осталось: ' + miss.map((m) => '<b>' + m + '</b>').join(', ') : 'всё готово';
+  $('send').setAttribute('aria-disabled', miss.length ? 'true' : 'false');
+}
+$('task').addEventListener('input', (e) => {
+  st.task = e.target.value;
+  const g = AP.guess(st.task);
+  if (g && g !== st.role) P.hop();
+  st.role = g;
+  P.mood(st.task ? 'think' : null);
+  render();
+});
+$('task').addEventListener('blur', () => P.mood(null));
+$('chips').addEventListener('click', (e) => {
+  const b = e.target.closest('.chip'); if (!b) return;
+  document.querySelectorAll('.chip').forEach((c) => c.classList.toggle('is-used', c === b));
+  AP.fly(b, $('task'));
+  AP.typeInto($('task'), AP.ROLES[b.dataset.r].ex[+b.dataset.i], () => $('contact').focus());
+});
+$('contact').addEventListener('input', (e) => {
+  const c = AP.contact(e.target.value);
+  const prev = st.c && st.c.kind;
+  st.c = c;
+  const reach = $('reach');
+  reach.classList.remove('is-tg', 'is-phone', 'is-email');
+  const kind = c && c.kind !== 'bad' ? c.kind : null;
+  if (kind) reach.classList.add('is-' + kind);
+  $('reachIco').innerHTML = AP.ICON[kind || (/^\+?\d/.test(e.target.value) ? 'phone' : /@.*\./.test(e.target.value) ? 'email' : 'tg')];
+  if (kind && kind !== prev) { reach.classList.add('pop'); setTimeout(() => reach.classList.remove('pop'), 300); P.hop(); }
+  const h = $('reachHint');
+  h.classList.remove('bad');
+  if (!e.target.value.trim()) h.textContent = 'узнаем сами, что это: ник, телефон или почта';
+  else if (kind) h.textContent = 'ответим ' + c.label;
+  else { h.textContent = 'пока не похоже ни на ник, ни на телефон, ни на почту'; }
+  render();
+});
+$('contact').addEventListener('blur', () => { if (st.c && st.c.kind === 'bad') $('reachHint').classList.add('bad'); });
+document.addEventListener('change', (e) => { if (e.target.matches('.consent input')) render(); });
+$('send').addEventListener('click', (e) => {
+  if ($('send').getAttribute('aria-disabled') === 'true') {
+    const first = st.task.trim().length < 8 ? $('task') : !(st.c && st.c.kind !== 'bad') ? $('contact') : document.querySelector('.consent input:not(:checked)');
+    first && first.focus();
+    first && first.closest('.box,.consent')?.animate([{ transform: 'translateX(0)' }, { transform: 'translateX(-6px)' }, { transform: 'translateX(6px)' }, { transform: 'translateX(0)' }], { duration: 300 });
+    return;
+  }
+  const r = e.currentTarget.getBoundingClientRect();
+  AP.sparks(r.left + r.width / 2, r.top + r.height / 2, 22);
+  P.mood('happy'); P.hop();
+  $('doneLead').innerHTML = 'Павел прочитает задачу и ответит вам ' + st.c.label + ' <b>' + st.c.value + '</b> в течение дня. Если что-то поменялось, просто напишите туда же.';
+  setTimeout(() => { $('app').classList.add('is-sent'); scrollTo({ top: 0, behavior: 'smooth' }); }, 350);
+});
+$('again').addEventListener('click', () => location.reload());
+render();
+</script>
+</body>
+</html>

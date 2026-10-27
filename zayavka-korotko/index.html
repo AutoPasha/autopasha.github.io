@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Короткая заявка: три макета — АвтоПаша</title>
+<meta name="description" content="Почему из анкеты уходят и три способа сделать заявку короче: одна строка, сначала ответ, вход в один тап.">
+<link rel="stylesheet" href="assets/base.css">
+<style>
+.page{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:clamp(20px,4vw,48px) clamp(18px,4vw,48px) 100px}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px;align-items:end;padding-bottom:20px}
+.hero .pasha{--s:clamp(110px,12vw,170px)}
+.hero .h1{font-size:clamp(36px,5.6vw,76px)}
+.sec{margin-top:clamp(64px,9vw,120px)}
+.sec__k{font:500 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--hot)}
+.sec .h2{margin-top:12px;font-size:clamp(26px,3.4vw,42px);max-width:22ch}
+.sec__lead{color:var(--dim);max-width:44em;margin:14px 0 0;font-size:16px}
+
+/* воронка */
+.funnel{display:grid;gap:10px;margin-top:30px;max-width:760px}
+.fr{display:grid;grid-template-columns:150px minmax(0,1fr) 40px;gap:14px;align-items:center;font-size:14.5px}
+.fr span:first-child{color:var(--dim)}
+.fr .track{height:34px;border-radius:10px;background:var(--coal);overflow:hidden}
+.fr .fill{height:100%;border-radius:10px;background:var(--hot);width:0;transition:width 1.2s var(--ease-page)}
+.fr.zero .fill{background:var(--bad);width:4px!important}
+.fr b{font:700 18px/1 var(--sans);text-align:right}
+.fr.drop span:first-child{color:var(--white)}
+.callnote{display:flex;gap:12px;margin-top:22px;padding:16px 18px;border-radius:16px;background:var(--hot-deep);color:var(--cream);max-width:760px;font-size:15px}
+.callnote b{color:var(--white)}
+.src{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:14px;font-size:13px;color:var(--dim-2)}
+
+/* находки по живой анкете */
+.finds{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:30px}
+.find{background:var(--coal);border:1px solid var(--line);border-radius:var(--r-panel);overflow:hidden;display:flex;flex-direction:column}
+.find img{display:block;width:100%;aspect-ratio:390/560;object-fit:cover;object-position:top;border-bottom:1px solid var(--line)}
+.find img.wide{aspect-ratio:1440/900;object-position:bottom}
+.find div{padding:14px 16px 18px}
+.find b{display:block;font-size:15px;font-weight:600;line-height:1.35}
+.find span{display:block;color:var(--dim);font-size:13.5px;margin-top:6px}
+
+/* варианты */
+.vars{display:grid;gap:clamp(40px,6vw,72px);margin-top:36px}
+.var{display:grid;grid-template-columns:340px minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start}
+.phone{position:relative;width:340px;height:700px;border-radius:44px;padding:12px;background:linear-gradient(160deg,#3a322c,#1a1512);box-shadow:0 40px 90px -30px #000,inset 0 0 0 1px oklch(1 0 0/.08)}
+.phone__screen{width:316px;height:676px;border-radius:34px;overflow:hidden;position:relative;background:var(--bg)}
+.phone iframe{width:390px;height:834px;border:0;transform:scale(.8103);transform-origin:0 0}
+/* пока не нажали, телефон не ловит прокрутку страницы */
+.phone__cover{position:absolute;inset:12px;border-radius:34px;display:flex;align-items:flex-end;justify-content:center;padding:26px;cursor:pointer;border:0;background:linear-gradient(180deg,transparent 55%,oklch(0.15 0.01 60/.85));transition:opacity .3s}
+.phone__cover span{display:inline-flex;align-items:center;gap:8px;padding:13px 20px;border-radius:999px;background:var(--hot);color:var(--on-hot);font:700 15px/1 var(--sans);box-shadow:0 10px 30px -8px oklch(0.705 0.195 45/.8)}
+.phone.live .phone__cover{opacity:0;pointer-events:none}
+.phone__open{position:absolute;left:0;right:0;bottom:-40px;text-align:center;font-size:13.5px;color:var(--dim)}
+.phone__open a{color:var(--hot-soft)}
+.var__tag{display:inline-flex;align-items:center;gap:10px;font:800 15px/1 var(--display);letter-spacing:-.02em;color:var(--hot)}
+.var__tag i{font-style:normal;width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--hot);color:var(--on-hot)}
+.var .h2{margin-top:14px;max-width:18ch}
+.var p{color:var(--dim);margin:12px 0 0;max-width:40em}
+.var p b{color:var(--white);font-weight:500}
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.stat{min-width:120px;padding:14px 16px;border-radius:16px;background:var(--coal);border:1px solid var(--line)}
+.stat b{display:block;font:800 26px/1 var(--display);letter-spacing:-.03em}
+.stat b s{font:500 14px/1 var(--sans);color:var(--dim-2);margin-left:6px}
+.stat span{display:block;font-size:12.5px;color:var(--dim);margin-top:6px}
+.cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:24px}
+.col h4{margin:0 0 8px;font:500 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--dim-2)}
+.col ul{margin:0;padding-left:18px;color:var(--cream);font-size:14px;display:grid;gap:6px}
+.col a{color:var(--hot-soft)}
+.var__btn{margin-top:24px}
+
+/* сравнение */
+.tbl{width:100%;max-width:980px;border-collapse:collapse;margin-top:28px;font-size:14.5px}
+.tbl th,.tbl td{padding:13px 14px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{font:500 12px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--dim-2)}
+.tbl td:first-child{color:var(--dim)}
+.tbl .best{color:var(--hot-soft);font-weight:600}
+.tblwrap{overflow-x:auto}
+
+/* что говорят */
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:28px}
+.fact{padding:18px 20px;border-radius:var(--r-panel);background:var(--coal);border:1px solid var(--line)}
+.fact b{display:block;font-size:15.5px;font-weight:600;line-height:1.4}
+.fact span{display:block;color:var(--dim);font-size:14px;margin-top:6px}
+.fact a{display:inline-block;margin-top:10px;font-size:13px;color:var(--hot-soft)}
+
+/* совет */
+.advice{margin-top:30px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px}
+.adv{padding:26px 26px 24px;border-radius:24px;background:linear-gradient(160deg,var(--hot-deep),var(--coal));border:1px solid oklch(0.705 0.195 45/.45)}
+.adv .h2{font-size:clamp(24px,2.8vw,32px)}
+.adv p{color:var(--cream);margin:12px 0 0}
+.adv ol{margin:16px 0 0;padding-left:20px;display:grid;gap:8px;color:var(--cream)}
+.side{padding:22px 24px;border-radius:24px;background:var(--coal);border:1px solid var(--line)}
+.side h4{margin:0;font-size:15px}
+.side p,.side li{color:var(--dim);font-size:14px}
+.side ul{padding-left:18px;margin:10px 0 0;display:grid;gap:6px}
+
+@media (max-width:1000px){
+  .finds{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .var{grid-template-columns:1fr}
+  .phone{margin:0 auto}
+  .cols{grid-template-columns:1fr}
+  .advice{grid-template-columns:1fr}
+}
+@media (max-width:600px){
+  .tbl thead{display:none}
+  .tbl,.tbl tbody,.tbl tr{display:block}
+  .tbl tr{padding:14px 0;border-bottom:1px solid var(--line)}
+  .tbl td{display:grid;grid-template-columns:120px 1fr;gap:10px;border:0;padding:4px 0}
+  .tbl td:first-child{display:block;color:var(--white);font-weight:600;padding-bottom:6px}
+  .tbl td:not(:first-child)::before{content:attr(data-h);color:var(--dim-2);font-size:12.5px}
+  .hero{grid-template-columns:1fr}
+  .hero .pasha{order:-1}
+  .fr{grid-template-columns:110px minmax(0,1fr) 30px;font-size:13.5px}
+  .facts{grid-template-columns:1fr}
+  .phone{transform:scale(.9);transform-origin:top center;margin-bottom:-60px}
+}
+</style>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://design.autopasha.ru/zayavka-korotko/">
+<meta property="og:title" content="Короткая заявка: три макета — АвтоПаша">
+<meta property="og:description" content="Почему из анкеты уходят и три способа сделать заявку короче: одна строка, сначала ответ, вход в один тап.">
+<meta property="og:image" content="https://design.autopasha.ru/zayavka-korotko/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://design.autopasha.ru/zayavka-korotko/og.jpg">
+</head>
+<body>
+<div class="relief" id="relief"></div>
+<div class="fx"><div class="glow" style="width:600px;height:600px;right:-160px;top:-60px"></div></div>
+<header class="top"><a class="logo" href="https://autopasha.ru/">авто<i>паша</i></a><a class="top__back" href="https://autopasha.ru/apply">живая анкета →</a></header>
+
+<main class="page">
+  <section class="hero">
+    <div>
+      <div class="kicker rise" style="--i:0">заявка · <b>три макета</b> · 27 октября</div>
+      <h1 class="h1 rise" style="--i:1">заявка короче:<br><em>13 действий → 5</em></h1>
+      <p class="lead rise" style="--i:2">За неделю анкету открыли 13 раз, отправили ноль. Почти все ушли с первого экрана, ещё до первого вопроса. Ниже три способа сделать заявку короче. <b>Все три кликаются</b> прямо в телефонах на этой странице.</p>
+    </div>
+    <div id="heroPasha" class="rise" style="--i:3"></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec__k">где теряем людей</div>
+    <h2 class="h2">десять из тринадцати уходят, ничего не нажав</h2>
+    <div class="funnel" id="funnel">
+      <div class="fr drop"><span>открыли анкету</span><div class="track"><div class="fill" data-w="13"></div></div><b>13</b></div>
+      <div class="fr drop"><span>начали</span><div class="track"><div class="fill" data-w="3"></div></div><b>3</b></div>
+      <div class="fr"><span>выбрали, кто нужен</span><div class="track"><div class="fill" data-w="2"></div></div><b>2</b></div>
+      <div class="fr"><span>написали задачу</span><div class="track"><div class="fill" data-w="1"></div></div><b>1</b></div>
+      <div class="fr"><span>дошли до контактов</span><div class="track"><div class="fill" data-w="1"></div></div><b>1</b></div>
+      <div class="fr zero"><span>отправили</span><div class="track"><div class="fill" data-w="0"></div></div><b>0</b></div>
+    </div>
+    <div class="callnote"><div><b>С сайта на анкету пришли 5 человек, и никто не начал.</b> С рекламы в Директе 7, начали двое. То есть человек нажимает «нанять» на главной, видит второй первый экран с тем же вопросом «кто вам нужен» и закрывает.</div></div>
+    <div class="src"><span>счётчик анкеты на нашем сервере, с 23 по 27 октября</span><span>с 17 октября на сайт около 2 000 заходов, на анкету 58</span><span>13 человек мало для выводов: это направление, не приговор</span></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec__k">прошёл живую анкету сам</div>
+    <h2 class="h2">четыре места, где спотыкаешься</h2>
+    <div class="finds">
+      <div class="find"><img src="img/390-1-hello.png" alt="первый экран анкеты на телефоне" loading="lazy"><div><b>Первый экран как ещё одна главная</b><span>Большой заголовок, текст, цена, и только потом поле. Формы не видно, непонятно, сколько её заполнять.</span></div></div>
+      <div class="find"><img src="img/390-2-after-start.png" alt="вопрос «кого нанимаем»" loading="lazy"><div><b>«Кто нужен» спрашиваем дважды</b><span>Человек уже написал «менеджер» на первом экране, а следом снова «кого нанимаем?» с плитками.</span></div></div>
+      <div class="find"><img src="img/390-4.png" alt="экран контактов на телефоне" loading="lazy"><div><b>Последний экран самый тяжёлый</b><span>Пять кнопок мессенджеров, ник, имя, компания, почта и две галочки. Почта обязательна, хотя отвечаем в мессенджер.</span></div></div>
+      <div class="find"><img class="wide" src="img/1440-4.png" alt="плашка cookie поверх согласий" loading="lazy"><div><b>Плашка cookie закрывает галочки</b><span>На компьютере и телефоне она ложится ровно на согласия и кнопку отправки. Это починю при любом выборе.</span></div></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec__k">три макета</div>
+    <h2 class="h2">потыкайте сами: каждый ведёт до конца</h2>
+    <div class="vars">
+
+      <article class="var">
+        <div><div class="phone"><div class="phone__screen"><iframe src="a/" title="вариант А на телефоне" loading="lazy"></iframe></div><button class="phone__cover" type="button" aria-label="попробовать макет здесь"><span>попробовать здесь</span></button><div class="phone__open"><a href="a/" target="_blank">открыть на весь экран ↗</a></div></div></div>
+        <div>
+          <div class="var__tag"><i>А</i>одна строка</div>
+          <h3 class="h2">вся заявка на одном экране: задача и контакт</h3>
+          <p>Сразу форма, без вступления. <b>Пишете задачу или тапаете пример</b>, он сам печатается в поле. Рядом собирается карточка сотрудника: кого поняли из задачи, куда ответим. Контакт одним полем: ник, телефон или почта, что это, узнаём сами и меняем значок.</p>
+          <div class="stats"><div class="stat"><b>5<s>было 13</s></b><span>действий до отправки</span></div><div class="stat"><b>1</b><span>экран</span></div><div class="stat"><b>2</b><span>поля вместо 6</span></div></div>
+          <div class="cols">
+            <div class="col"><h4>подсмотрел у</h4><ul><li><a href="https://mobbin.com/flows/964e2ca5-51e6-4245-9dea-d8fe41226b50" target="_blank">Calendly</a>: два поля и кнопка</li><li><a href="https://mobbin.com/flows/1e66447d-bf3b-440f-ba9d-03bc0a55cb7e" target="_blank">Motion</a>: запись без регистрации</li><li><a href="https://mobbin.com/sites/sections/257fc80a-da71-491e-a981-205ffebd8576" target="_blank">Ramp</a>: одно поле прямо в герое</li></ul></div>
+            <div class="col"><h4>что поменяется</h4><ul><li>не спрашиваем имя, компанию и роль</li><li>почта не обязательна</li><li>письмо из кабинета уйдёт, только если оставили почту</li></ul></div>
+            <div class="col"><h4>риск</h4><ul><li>самый спокойный вариант, «вау» меньше всего</li><li>без почты вход в кабинет заводим при одобрении, а не сразу</li></ul></div>
+          </div>
+          <a class="btn btn--ghost var__btn" href="a/" target="_blank">открыть вариант А <span class="arr">→</span></a>
+        </div>
+      </article>
+
+      <article class="var">
+        <div><div class="phone"><div class="phone__screen"><iframe src="b/" title="вариант Б на телефоне" loading="lazy"></iframe></div><button class="phone__cover" type="button" aria-label="попробовать макет здесь"><span>попробовать здесь</span></button><div class="phone__open"><a href="b/" target="_blank">открыть на весь экран ↗</a></div></div></div>
+        <div>
+          <div class="var__tag"><i>Б</i>сначала ответ</div>
+          <h3 class="h2">разговор с пашей: сначала план, потом контакт</h3>
+          <p>Вместо анкеты чат. Паша здоровается и предлагает примеры. <b>Тапнули пример, и через секунду он отвечает планом</b> на первые дни и показывает, как будет выглядеть отчёт. Только после этого спрашивает, куда писать: кнопки Telegram, телефон, почта. Согласия приходят последним сообщением.</p>
+          <div class="stats"><div class="stat"><b>6<s>было 13</s></b><span>действий до отправки</span></div><div class="stat"><b>1</b><span>тап до первого ответа</span></div><div class="stat"><b>0</b><span>полей формы</span></div></div>
+          <div class="cols">
+            <div class="col"><h4>подсмотрел у</h4><ul><li><a href="https://mobbin.com/flows/335a4977-575c-4fe5-b69a-d157f22be5fa" target="_blank">Pi</a>: сначала разговор, аккаунт потом</li><li><a href="https://mobbin.com/flows/297acee3-9df2-4763-898e-285a4ec72f57" target="_blank">Dropbox Dash</a>: старт с одной строки</li><li><a href="https://mobbin.com/flows/15f93244-f4b2-4585-b0d1-b33e10b577f9" target="_blank">Obvious</a>: ассистент ведёт сам</li></ul></div>
+            <div class="col"><h4>что поменяется</h4><ul><li>план на первые дни собирается из наших заготовок по роли, без модели и мгновенно</li><li>те же поля в заявке, что в А</li></ul></div>
+            <div class="col"><h4>риск</h4><ul><li>чат похож на бота поддержки, кто-то закроет</li><li>живой ответ модели до галочки о передаче данных ставить нельзя, поэтому план из заготовок</li></ul></div>
+          </div>
+          <a class="btn btn--ghost var__btn" href="b/" target="_blank">открыть вариант Б <span class="arr">→</span></a>
+        </div>
+      </article>
+
+      <article class="var">
+        <div><div class="phone"><div class="phone__screen"><iframe src="c/" title="вариант В на телефоне" loading="lazy"></iframe></div><button class="phone__cover" type="button" aria-label="попробовать макет здесь"><span>попробовать здесь</span></button><div class="phone__open"><a href="c/" target="_blank">открыть на весь экран ↗</a></div></div></div>
+        <div>
+          <div class="var__tag"><i>В</i>в один тап</div>
+          <h3 class="h2">вход через Telegram или Яндекс ID, печатать только задачу</h3>
+          <p>Две большие кнопки. <b>Тап, «Принять» в окне Telegram, и имя с ником уже стоят</b>. Яндекс ID отдаёт имя, почту и телефон. Дальше один вопрос: что поручить первым. Почта остаётся мелкой строкой для тех, у кого нет ни того, ни другого.</p>
+          <div class="stats"><div class="stat"><b>6<s>было 13</s></b><span>действий до отправки</span></div><div class="stat"><b>0</b><span>контактов печатать</span></div><div class="stat"><b>2</b><span>экрана</span></div></div>
+          <div class="cols">
+            <div class="col"><h4>подсмотрел у</h4><ul><li><a href="https://mobbin.com/flows/335a4977-575c-4fe5-b69a-d157f22be5fa" target="_blank">Pi</a>: вход Google, Apple, телефон</li><li><a href="https://mobbin.com/flows/2400b4a4-33a7-4fed-b865-249983fda759" target="_blank">Clay</a>: вход в одну кнопку и один вопрос</li><li><a href="https://core.telegram.org/bots/telegram-login" target="_blank">Telegram Login</a>: штатный вход Telegram</li></ul></div>
+            <div class="col"><h4>что поменяется</h4><ul><li>Telegram даёт право нашему боту написать человеку: ответ на заявку уходит сам</li><li>это же и вход в кабинет без кода из письма</li></ul></div>
+            <div class="col"><h4>риск</h4><ul><li>самый большой объём: бот, привязка домена, приложение в Яндексе, проверка входа на сервере</li><li>часть людей не любит «войти через»</li></ul></div>
+          </div>
+          <a class="btn btn--ghost var__btn" href="c/" target="_blank">открыть вариант В <span class="arr">→</span></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec__k">рядом</div>
+    <h2 class="h2">короче любой из трёх, отличаются первым шагом</h2>
+    <div class="tblwrap"><table class="tbl">
+      <thead><tr><th></th><th>сейчас</th><th>А · одна строка</th><th>Б · сначала ответ</th><th>В · в один тап</th></tr></thead>
+      <tbody>
+        <tr><td data-h="">действий до отправки</td><td data-h="сейчас">13</td><td data-h="А · одна строка" class="best">5</td><td data-h="Б · сначала ответ">6</td><td data-h="В · в один тап">6</td></tr>
+        <tr><td data-h="">что печатать</td><td data-h="сейчас">задачу, ник, имя, компанию, почту</td><td data-h="А · одна строка">задачу или тап, контакт</td><td data-h="Б · сначала ответ">тап, контакт</td><td data-h="В · в один тап" class="best">только задачу или тап</td></tr>
+        <tr><td data-h="">первое, что видит человек</td><td data-h="сейчас">второй первый экран</td><td data-h="А · одна строка">форму из двух полей</td><td data-h="Б · сначала ответ" class="best">Пашу, который ему отвечает</td><td data-h="В · в один тап">две кнопки входа</td></tr>
+        <tr><td data-h="">как отвечаем на заявку</td><td data-h="сейчас">письмом</td><td data-h="А · одна строка">туда, где оставил контакт</td><td data-h="Б · сначала ответ">туда, где оставил контакт</td><td data-h="В · в один тап" class="best">бот пишет сам</td></tr>
+        <tr><td data-h="">объём работы</td><td data-h="сейчас"></td><td data-h="А · одна строка" class="best">одна страница</td><td data-h="Б · сначала ответ">одна страница и разговор</td><td data-h="В · в один тап">страница, бот, Яндекс, сервер</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="sec">
+    <div class="sec__k">что пишут те, кто мерил</div>
+    <h2 class="h2">решает не число полей, а что спрашиваешь первым</h2>
+    <div class="facts">
+      <div class="fact"><b>Короче не всегда лучше: убрали не те поля, и минус 14%</b><span>Marketo поднял конверсию, срезав поля. А в другом опыте из того же разбора форма с 9 до 6 полей дала минус 14%: ушли как раз те поля, которые людям было интересно заполнять. Те же 9 полей с понятными подписями дали плюс 19%.</span><a href="https://conversionxl.com/reduce-form-fields/" target="_blank">CXL ↗</a></div>
+      <div class="fact"><b>Лёгкий первый шаг тянет за собой остальные</b><span>Venture Harbour разбил форму заявки на шаги, начав с простого вопроса, и конверсия выросла в разы. Оговорка: они же продавали этот конструктор форм.</span><a href="https://ventureharbour.com/how-form-length-impacts-conversion-rates/" target="_blank">Venture Harbour ↗</a></div>
+      <div class="fact"><b>Теряют на «слишком много и слишком рано»</b><span>Zuko, которые меряют формы по полям, среди частых причин ухода с форм заявок называют много обязательных полей в самом начале. У нас наоборот: начало лёгкое, тяжёлое всё в конце, и там уходит последний.</span><a href="https://www.zuko.io/industries/lead-generation" target="_blank">Zuko ↗</a></div>
+      <div class="fact"><b>До четырёх полей хватает одного экрана</b><span>Общее правило из разборов: короткую форму не дробят, длинную дробят. У А и Б по два поля, поэтому оба на одном экране.</span><a href="https://witscode.com/blogs/multi-step-vs-single-step-form" target="_blank">WitsCode ↗</a> <a href="https://zuko.io/blog/single-page-or-multi-step-form" target="_blank">Zuko ↗</a></div>
+      <div class="fact"><b>Вход Telegram отдаёт имя, ник, телефон и право написать</b><span>Штатный вход Telegram по стандарту OpenID: имя, ник, фото, по согласию проверенный телефон и разрешение нашему боту писать человеку. Регистрация и канал для ответа в одной кнопке.</span><a href="https://core.telegram.org/bots/telegram-login" target="_blank">Telegram ↗</a></div>
+      <div class="fact"><b>Согласия оставляю двумя отдельными галочками</b><span>С 1 сентября 2025 согласие на обработку данных оформляется отдельно от других документов. Тексты согласий во всех трёх макетах те же, что сейчас, и пустые по умолчанию. Менять их не мне.</span><a href="https://ppt.ru/amp/question/personal-data/oformlenie-soglasiya-na-obrabotku-personalnykh-dannykh-na-sayte" target="_blank">ППТ.ру ↗</a></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec__k">что советую</div>
+    <div class="advice">
+      <div class="adv">
+        <h2 class="h2">брать <em>Б</em>, а кнопку Telegram из В добавить следом</h2>
+        <p>Люди уходят с первого экрана, ничего не нажав. В Б первое же касание даёт ответ: Паша показывает план и отчёт по их задаче. Это и «прикольно», и сразу видно, что за услуга. Контакт спрашиваем, когда человек уже вложился.</p>
+        <ol>
+          <li>Собираю Б на месте живой анкеты, плашку cookie убираю с кнопки.</li>
+          <li>Контакт одним полем: ник, телефон или почта, как в А.</li>
+          <li>Вторым шагом в «куда писать» встаёт кнопка «через Telegram»: ответ на заявку уходит ботом сам.</li>
+          <li>Через две недели сравниваю воронку с этой неделей.</li>
+        </ol>
+      </div>
+      <div class="side">
+        <h4>Если хочется спокойнее</h4>
+        <p>А делается быстрее всех и почти не может сломаться. Если чат кажется лишним, берите его.</p>
+        <h4 style="margin-top:18px">Чего не решат макеты</h4>
+        <ul><li>58 человек на анкету из 2 000 заходов: кнопка «нанять» на главной зовёт слабо.</li><li>Директ решает маркетинг 28 октября, анкета от этого не зависит.</li></ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="assets/kit.js"></script>
+<script>
+AP.relief(document.getElementById('relief'), 4);
+const hp = AP.pasha(document.getElementById('heroPasha'));
+const io = new IntersectionObserver((es) => es.forEach((e) => {
+  if (!e.isIntersecting) return;
+  e.target.querySelectorAll('.fill').forEach((f, i) => setTimeout(() => { f.style.width = (+f.dataset.w / 13 * 100) + '%'; }, i * 140));
+  io.disconnect();
+}), { threshold: .3 });
+io.observe(document.getElementById('funnel'));
+document.querySelectorAll('.phone__cover').forEach((c) => c.addEventListener('click', () => c.closest('.phone').classList.add('live')));
+</script>
+</body>
+</html>
