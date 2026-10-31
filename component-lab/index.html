@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="description" content="Три живых варианта компонентов АвтоПаши по образцам 21st.dev. Отдельный стенд, не действующий кабинет.">
+<title>компоненты с характером · автопаша</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23ff6b19'/%3E%3Cpath d='M9 23V10h14v13M16 10v13' fill='none' stroke='%2317110c' stroke-width='3'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="lab.css"><script src="lab.js" defer></script>
+</head>
+<body>
+<header class="mast"><a class="brand" href="https://autopasha.ru">авто<span>паша</span></a><span>мастерская компонентов</span><a href="https://autopasha.ru/docs/kit">текущая библиотека <span aria-hidden="true">↗</span></a></header>
+<main>
+<section class="intro">
+<h1>меньше оболочки.<br><em>больше характера.</em></h1>
+<p>Три замены из 21st.dev. Уже в наших цветах, с нашим текстом и живыми состояниями. Потрогайте: это отдельный стенд, кабинет не менялся.</p>
+</section>
+<section id="navigation" class="experiment">
+<div class="caption"><h2>вкладка, которую видно</h2><p>Вместо ряда одинаковых ссылок: цельная светлая полоса скользит за выбором. Счётчик остаётся рядом с названием.</p><a class="source" href="https://21st.dev/@ibelick/components/animated-tabs" target="_blank" rel="noopener">Animated Tabs · ibelick <span aria-hidden="true">↗</span></a></div>
+<div class="demo nav-demo">
+<div class="demo-top"><span>дела</span><span>пример данных</span></div>
+<div class="tabs" role="tablist" aria-label="Состояние дел"><span class="tab-indicator" aria-hidden="true"></span><button role="tab" id="tab-live" aria-selected="true" aria-controls="panel-live" tabindex="0">в работе <span>2</span></button><button role="tab" id="tab-wait" aria-selected="false" aria-controls="panel-wait" tabindex="-1">ждёт вас <span>1</span></button><button role="tab" id="tab-done" aria-selected="false" aria-controls="panel-done" tabindex="-1">готово <span>3</span></button></div>
+<div class="tab-panel" role="tabpanel" id="panel-live" aria-labelledby="tab-live" tabindex="0"><div class="work-row"><span class="work-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-3-13-2 16"/></svg></span><div><strong>заказы доходят до склада</strong><small>проверяю повторную отправку</small></div><span class="status">в работе</span></div><div class="work-row"><span class="work-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><div><strong>отчёт без ручной сверки</strong><small>собираю таблицу расхождений</small></div><span class="status">в работе</span></div></div>
+<div class="tab-panel" role="tabpanel" id="panel-wait" aria-labelledby="tab-wait" tabindex="0" hidden><div class="work-row"><span class="work-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v6m0 3v1"/></svg></span><div><strong>выбрать вид карточки</strong><small>два варианта готовы к просмотру</small></div><span class="status">ваш выбор</span></div><p class="panel-note">Один ответ, и можно продолжать.</p></div>
+<div class="tab-panel" role="tabpanel" id="panel-done" aria-labelledby="tab-done" tabindex="0" hidden><div class="work-row"><span class="work-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span><div><strong>форма заявки не теряет телефон</strong><small>проверено на телефоне и компьютере</small></div><span class="status">готово</span></div><p class="panel-note">Ещё два завершённых дела. Здесь показан пример одного.</p></div>
+<p class="interaction-hint">Нажмите вкладку. С клавиатуры: ← →, Home, End.</p>
+</div>
+</section>
+<section id="card" class="experiment card-section">
+<div class="caption"><h2>сначала суть.<br>детали по нажатию.</h2><p>Вместо стены отчёта: крупный результат и раскрытие прямо на месте. Без прыжка на другую страницу и лишнего окна.</p><a class="source" href="https://21st.dev/@kuratlielia/components/expandable-card" target="_blank" rel="noopener">Expandable Card · kuratlielia <span aria-hidden="true">↗</span></a></div>
+<div class="demo report-demo"><div class="demo-top"><span>результат работы</span><span>пример данных</span></div>
+<article class="result-card"><div class="result-summary"><span class="result-label">исправлено и проверено</span><h3>заказ больше<br>не теряется<span class="period">.</span></h3><p>Повторная отправка не создаёт дубликат. Менеджер видит один заказ.</p><button class="expand" aria-expanded="false" aria-controls="result-details"><span>посмотреть, что внутри</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg></button></div>
+<div id="result-details" class="details" inert aria-hidden="true"><div class="details-inner"><div class="detail-line"><span>было</span><p>При повторном нажатии появлялись два одинаковых заказа.</p></div><div class="detail-line"><span>стало</span><p>Повтор возвращает уже созданный заказ. Данные остаются на месте.</p></div><div class="proof"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>В примере: обычная отправка, повтор и обрыв сети.</span></div><p class="demo-disclaimer">Учебный отчёт для показа компонента, не результат настоящей задачи.</p></div></div></article>
+</div>
+</section>
+<section id="files" class="experiment">
+<div class="caption"><h2>файл как предмет,<br>а не скрепка</h2><p>Вместо безликой зоны загрузки: стопка документов откликается на перетаскивание. После выбора видно имя и размер каждого файла.</p><a class="source" href="https://21st.dev/@flower0wine/components/file-upload" target="_blank" rel="noopener">FileUpload · flower0wine <span aria-hidden="true">↗</span></a></div>
+<div class="demo upload-demo"><div class="demo-top"><span>материалы к задаче</span><span>только локальный просмотр</span></div>
+<div class="dropzone"><div class="paper-stack" aria-hidden="true"><div class="paper back"></div><div class="paper mid"></div><div class="paper front"><svg viewBox="0 0 24 24"><path d="M12 17V5m-5 5 5-5 5 5M5 16v4h14v-4"/></svg><i></i><i></i></div></div><h3>положите сюда файлы</h3><p>или выберите с устройства</p><button class="pick">выбрать файлы</button><input type="file" id="files-input" multiple hidden><small>До 10 МБ на файл, не больше пяти.<br>Файлы никуда не отправляются.</small></div>
+<div class="file-list" aria-live="polite" aria-label="Выбранные файлы"></div><p id="file-error" role="alert"></p>
+</div>
+</section>
+<footer><h2>я бы начал с карточки.</h2><p>Она меняет сам способ чтения результата. Вкладки и файлы поддержат тот же уровень деталей. Сначала выбираем направление здесь, затем переносим в библиотеку.</p><a href="#card">ещё раз раскрыть карточку <span aria-hidden="true">↑</span></a><small>Никаких новых библиотек, фонового движения и изменений действующего кабинета.</small></footer>
+</main>
+</body></html>
