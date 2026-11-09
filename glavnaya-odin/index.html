@@ -1796,6 +1796,62 @@ html.vr-top .pal{opacity:0!important;pointer-events:none;transition:opacity .4s 
   .js .vr__w>span,.js .vr__kick,.js .vr__roles,.js .vr__stage .vr__now,.js .vr__sub,.js .vr__cta{opacity:1;transform:none}
 }
 
+/* ═══ восьмой шаг: камера отъезжает. Мир живёт в рамке фигуры, края гаснут маской ═══ */
+.vr__box{position:relative}
+.vc{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .45s linear,visibility 0s .45s;pointer-events:none}
+.vc.is-on{opacity:1;visibility:visible;transition:opacity .45s linear}
+.vc__view{position:absolute;left:0;right:0;bottom:0;top:var(--band,0px);overflow:hidden;contain:strict;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(180deg,transparent,#000 6%,#000 94%,transparent);
+  -webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent),linear-gradient(180deg,transparent,#000 6%,#000 94%,transparent);mask-composite:intersect}
+.vc__world{position:absolute;left:0;top:0;transform-origin:0 0}
+.vc__n{position:absolute;left:0;top:0;margin:0;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;z-index:1}
+.vc__n b{font:800 clamp(52px,5.6vw,100px)/.86 var(--disp);letter-spacing:-.06em;color:var(--hot);font-variant-numeric:tabular-nums;text-shadow:0 0 50px oklch(0.705 0.195 45/.45)}
+.vc__n span{font:700 clamp(15px,1.3vw,21px)/1.1 var(--disp);letter-spacing:-.02em;color:var(--white);max-width:8em}
+
+.vc-cell{position:absolute;width:100px;height:100px;border-radius:14px;background:oklch(0.235 0.012 60);transition:background-color .55s}
+.vc-cell.is-empty{background:oklch(0.195 0.01 60)}
+.vc-cell.is-future{background:transparent;box-shadow:inset 0 0 0 2px oklch(1 0 0/.06)}
+.vc-mon{position:absolute;font:700 42px/1 var(--disp);color:var(--dim);letter-spacing:-.01em;text-transform:lowercase}
+.vc-wd{position:absolute;font:600 34px/1 var(--disp);color:oklch(0.72 0.012 60/.75)}
+.vc-day{position:absolute;inset:0;border-radius:14px;background:oklch(0.17 0.012 60);box-shadow:inset 0 0 0 .4px oklch(0.705 0.195 45/.6)}
+.vc-tile{position:absolute;overflow:hidden;border-radius:.35px}
+.vc-tile>div{position:absolute;left:0;top:0;width:640px;height:400px;transform-origin:0 0;border-radius:44px;padding:42px 46px;box-sizing:border-box;
+  background:oklch(0.235 0.013 60);color:var(--white);display:flex;flex-direction:column;justify-content:space-between;transition:background-color .5s}
+.vc-tile b{font:700 52px/1.08 var(--disp);letter-spacing:-.03em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.vc-tile i{font:500 34px/1 "Onest",sans-serif;font-style:normal;color:var(--dim);display:flex;gap:14px;align-items:center}
+.vc-tile i::before{content:"";width:30px;height:30px;border-radius:50%;background:oklch(0.4 0.01 60)}
+.vc-tile.is-done>div{background:oklch(0.27 0.06 45)}
+.vc-tile.is-done i{color:var(--hot-soft,oklch(0.82 0.12 55))}
+.vc-tile.is-done i::before{background:var(--hot);box-shadow:0 0 20px var(--hot)}
+.vc-tile.is-wait>div{opacity:.35}
+
+/* карточка одной задачи: настоящий разговор, крупно — читается и на телефоне */
+.vc-card>div{background:oklch(0.205 0.012 60);padding:22px 28px;justify-content:flex-start;gap:10px;box-shadow:inset 0 0 0 2px oklch(0.705 0.195 45/.55)}
+.vc-card.is-done>div{background:oklch(0.205 0.012 60)}
+.vc-card header{display:flex;align-items:center;gap:14px;font:600 24px/1 "Onest",sans-serif;color:var(--dim)}
+.vc-card header b{font:700 28px/1 var(--disp);color:var(--white);-webkit-line-clamp:none;display:block}
+.vc-card header em{margin-left:auto;font-style:normal;font-size:21px;color:oklch(0.72 0.17 150)}
+.vc-ava{width:42px;height:42px;border-radius:12px;background:var(--hot);position:relative;flex:none;box-shadow:0 0 22px oklch(0.705 0.195 45/.6)}
+.vc-ava::before,.vc-ava::after{content:"";position:absolute;top:13px;width:6px;height:12px;border-radius:3px;background:#2a1a14}
+.vc-ava::before{left:12px}.vc-ava::after{right:12px}
+.vc-b{margin:0;max-width:88%;padding:12px 18px;border-radius:24px;font:500 23px/1.25 "Onest",sans-serif;opacity:0;transform:translateY(14px);transition:opacity .5s,transform .6s var(--ease)}
+.vc-b small{display:block;font-size:15px;opacity:.65;margin-bottom:4px}
+.vc-b--in{background:oklch(0.30 0.012 60);color:var(--white);border-bottom-left-radius:8px}
+.vc-b--out{align-self:flex-end;background:var(--hot);color:var(--void);border-bottom-right-radius:8px}
+.vc-b.is-on{opacity:1;transform:none}
+.vc-ok{margin-top:auto;display:inline-flex;align-items:center;gap:10px;align-self:flex-start;font:700 23px/1 var(--disp);color:var(--hot);opacity:0;transition:opacity .5s}
+.vc-ok::before{content:"✓";width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--hot);color:var(--void);font-size:21px}
+.vc-ok.is-on{opacity:1}
+.vc-rec{position:absolute;transform:translate(-50%,-100%);white-space:nowrap;font:700 34px/1 var(--disp);color:var(--void);background:var(--hot);padding:11px 18px;border-radius:14px;opacity:0;transition:opacity .6s;box-shadow:0 0 30px oklch(0.705 0.195 45/.6)}
+.vc.is-end .vc-rec{opacity:1}
+.vc-day{transition:box-shadow .8s}
+.vc.is-end .vc-day{box-shadow:inset 0 0 0 5px var(--hot),0 0 40px 6px oklch(0.705 0.195 45/.7)}
+@media (max-width:899px){
+  .vc__n{gap:10px;top:4px}
+  .vc__n b{font-size:clamp(40px,12vw,56px)}
+  .vc__n span{font-size:14px}
+}
+
 /* Б. чек v2 — настоящий термочек. Приёмы Kokonut UI Receipt Printer (21st): печать по строке, зубчатый край маской, отрыв рывком */
 .rc{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(24px,5vw,80px);align-items:start;border-radius:var(--r);background:radial-gradient(60% 50% at 70% 100%,oklch(0.36 0.09 50/.55),transparent 70%),linear-gradient(180deg,var(--coal),oklch(0.17 0.012 55));padding:clamp(28px,5vw,78px);border:1px solid oklch(1 0 0/.06);overflow:hidden}
 .rc__txt{position:sticky;top:90px}
@@ -4821,7 +4877,6 @@ function start() {
     ['продажи', 'выставил счёт. оплачен'],
     ['всё вместе', ''],
   ];
-  const calTask = (n) => fmt(n) + ' работ с ' + sinceTxt + ', все автопаши';
   const CAL = 7, WORD = 8;
 
   let W = 0, H = 0, DPR = 1, N = 0, R = 1, CX = 0, CY = 0, mobile = false;
@@ -4986,35 +5041,153 @@ function start() {
   };
   const gen = SHAPES.map((s) => (typeof s === 'string' ? glyph(s.slice(6)) : s));
 
-  /* ── календарь: клетка — день, точек в клетке столько, сколько работ ── */
-  const cal = (() => {
+  /* ── восьмой шаг «всё вместе»: камера отъезжает. Мир — DOM внутри рамки фигуры:
+     карточка одной задачи → все работы рекордных суток → календарь всех работ
+     с августа. Камера — один transform, масштаб меняется по логарифму, чтобы
+     отъезд шёл для глаза равномерно. Рой влетает в карточку и гаснет под ней. ── */
+  const DAYM = Object.fromEntries(DAYS);
+  const keyOf = (d) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  const plural = (n, a, b, c) => { n = Math.abs(n) % 100; const m = n % 10; return n > 10 && n < 20 ? c : m > 1 && m < 5 ? b : m === 1 ? a : c; };
+  const cam = (() => {
+    const CELL = 100, GAP = 14, PT = CELL + GAP;
     const start = new Date(D0); start.setDate(start.getDate() - ((start.getDay() + 6) % 7));
-    const cell = (s) => { const d = dt(s), n = Math.round((d - start) / 864e5); return [Math.floor(n / 7), (d.getDay() + 6) % 7, d]; };
-    const cols = cell(DAYS[DAYS.length - 1][0])[0] + 1;
-    const pitch = 2.1 / cols, w = pitch * 0.8, x0 = -cols * pitch / 2, y0 = -7 * pitch / 2;
-    const days = DAYS.map(([s, n]) => { const [c, r, d] = cell(s); return { s, n, c, r, d, x: x0 + c * pitch, y: y0 + r * pitch }; });
-    const rec = days.find((d) => d.s === REC[0]);
-    const months = [];
-    for (const d of days) if (!months.length || months[months.length - 1].m !== d.d.getMonth()) months.push({ m: d.d.getMonth(), x: d.x });
-    return { days, rec, months, pitch, w, x0, y0, cols, bottom: y0 + 7 * pitch };
-  })();
-  const CAL_TILT = (p) => rotY(rotX(p, -0.28), 0.16);
-  const buildCal = () => {
-    const T = new Float32Array(N * 4);
-    const quota = cal.days.map((d) => (d.n / TOTAL) * N);
-    const base = quota.map(Math.floor);
-    let rest = N - base.reduce((a, b) => a + b, 0);
-    quota.map((v, i) => [v - base[i], i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (rest > 0) { base[i]++; rest--; } });
-    let i = 0;
-    cal.days.forEach((d, j) => {
-      for (let m = 0; m < base[j] && i < N; m++, i++) {
-        const p = CAL_TILT([d.x + (cal.pitch - cal.w) / 2 + Math.random() * cal.w, d.y + (cal.pitch - cal.w) / 2 + Math.random() * cal.w, rnd(-0.01, 0.01)]);
-        T[i * 4] = p[0]; T[i * 4 + 1] = p[1]; T[i * 4 + 2] = p[2]; T[i * 4 + 3] = d === cal.rec ? 1 : 0;
+    const last = dt(DAYS[DAYS.length - 1][0]);
+    const WEEKS = Math.round((last - start) / 864e5 / 7 - 0.5) + 1;
+    const MAXD = REC[1];
+    const el = document.createElement('div');
+    el.className = 'vc';
+    el.innerHTML = '<div class="vc__view"><div class="vc__world"></div></div><p class="vc__n"><b>1</b><span>задача</span></p>';
+    boxEl.append(el);
+    const world = el.querySelector('.vc__world'), nB = el.querySelector('.vc__n b'), nS = el.querySelector('.vc__n span');
+    const add = (cls, css, html) => { const e = document.createElement('div'); e.className = cls; if (css) e.style.cssText = css; if (html) e.innerHTML = html; world.append(e); return e; };
+
+    // календарь: недели столбцами, дни строками, клетка = сутки
+    const cells = [];
+    let rec = null, lastMon = -1;
+    for (let w = 0; w < WEEKS; w++) for (let r = 0; r < 7; r++) {
+      const d = new Date(start); d.setDate(start.getDate() + w * 7 + r);
+      const key = keyOf(d), c = DAYM[key] || 0, fut = d > last;
+      const e = add('vc-cell' + (fut ? ' is-future' : c ? '' : ' is-empty'), `left:${w * PT}px;top:${r * PT}px`);
+      cells.push({ el: e, c, w, r, key });
+      if (key === REC[0]) rec = { x: w * PT, y: r * PT, el: e, w, r };
+      if (d.getMonth() !== lastMon && !fut) {
+        lastMon = d.getMonth();
+        add('vc-mon', `left:${w * PT}px;top:-62px`).textContent = MONS[lastMon];
       }
-    });
-    return T;
-  };
-  const recPt = () => CAL_TILT([cal.rec.x + cal.pitch / 2, cal.rec.y + cal.pitch / 2, 0]);
+    }
+    ['пн', 'ср', 'пт', 'вс'].forEach((t, i) => { add('vc-wd', `left:-66px;top:${i * 2 * PT + 34}px`).textContent = t; });
+    const recTag = add('vc-rec', `left:${rec.x + CELL / 2}px;top:${rec.y - 14}px`);
+    recTag.textContent = RECD.getDate() + ' ' + MONS[RECD.getMonth()] + ' · рекорд ' + MAXD;
+    const CAL_W = WEEKS * PT - GAP, CAL_H = 7 * PT - GAP;
+
+    // рекордные сутки: плитки работ внутри клетки, горит ровно столько, сколько сдано
+    const COLS = 17, ROWS = Math.ceil((MAXD + 12) / COLS), PAD = 5;
+    const pitchX = (CELL - PAD * 2) / COLS, TW = pitchX * 0.88, TH = TW / 1.6, pitchY = (CELL - PAD * 2) / ROWS;
+    rec.el.innerHTML = '<div class="vc-day"></div>';
+    const TITLES = ['поменять цены по прайсу', 'выгрузка заказов в 1С', 'письмо поставщику', 'починить форму заявки', 'отчёт по продажам', 'карточки товаров на озон',
+      'сверка с банком', 'ответы в чате поддержки', 'лендинг под акцию', 'счёт клиенту', 'бэкап базы', 'скидка постоянным', 'перевод сайта', 'доставка без ручного ввода',
+      'интеграция с битрикс24', 'разбор почты', 'акт сверки', 'ошибка в корзине', 'рассылка по базе', 'документы для склада', 'тесты для оплаты', 'обновить остатки',
+      'бот для записи', 'отчёт для директора', 'правка договора', 'telegram-магазин', 'фото в каталог', 'чек-лист приёмки', 'ответ на отзыв', 'выкатить правку'];
+    const tiles = [];
+    const cardIdx = Math.floor(ROWS / 2) * COLS + (COLS >> 1);
+    for (let r = 0; r < ROWS; r++) for (let c = 0; c < COLS; c++) {
+      const i = r * COLS + c;
+      const x = rec.x + PAD + c * pitchX + (pitchX - TW) / 2, y = rec.y + PAD + r * pitchY + (pitchY - TH) / 2;
+      const inner = i === cardIdx
+        ? '<header><span class="vc-ava"></span><b>паша</b><em>в сети</em></header>'
+          + '<p class="vc-b vc-b--in"><small>лена, склад · 14:02</small>1С не выгружает накладные, склад стоит</p>'
+          + '<p class="vc-b vc-b--out"><small>паша · 14:16</small>нашёл пустую дату оплаты. починил, всё ушло</p>'
+          + '<span class="vc-ok">готово за 14 минут</span>'
+        : `<b>${TITLES[(i * 7 + (i >> 3)) % TITLES.length]}</b><i>${i >= MAXD ? 'в очереди' : 'готово · ' + (4 + (i * 13) % 50) + ' мин'}</i>`;
+      const t = add('vc-tile' + (i === cardIdx ? ' vc-card' : '') + (i >= MAXD ? ' is-wait' : ''),
+        `left:${x}px;top:${y}px;width:${TW}px;height:${TH}px`, `<div style="transform:scale(${TW / 640})">${inner}</div>`);
+      tiles.push({ el: t, i, d: Math.hypot(c - (COLS >> 1), (r - Math.floor(ROWS / 2)) * 0.64) });
+    }
+    const card = tiles[cardIdx];
+    const cardX = parseFloat(card.el.style.left), cardY = parseFloat(card.el.style.top);
+    const order = tiles.filter((t) => t.i < MAXD && t.i !== cardIdx).sort((a, b) => a.d - b.d);
+    const calOrder = cells.slice().sort((a, b) => Math.hypot(a.w - rec.w, (a.r - rec.r) * 1.4) - Math.hypot(b.w - rec.w, (b.r - rec.r) * 1.4));
+    const heat = (c) => { const q = Math.sqrt(c / MAXD); return `oklch(${(0.3 + 0.42 * q).toFixed(3)} ${(0.04 + 0.16 * q).toFixed(3)} 45)`; };
+    const bubbles = card.el.querySelectorAll('.vc-b'), ok = card.el.querySelector('.vc-ok');
+
+    // три кадра камеры в координатах рамки: полоса сверху — под большой счётчик
+    let bw = 0, bh = 0, V = null, S = 1, TX = 0, TY = 0, OFF = 0;
+    // полоса под счётчиком: мир начинается ниже неё и не лезет под цифру
+    const band = () => { const r = el.querySelector('.vc__n').getBoundingClientRect(); return Math.ceil(r.height + (mobile ? 12 : 22)); };
+    const views = () => {
+      bw = boxEl.clientWidth; bh = boxEl.clientHeight;
+      el.style.setProperty('--band', band() + 'px');
+      const top = band(); OFF = top; const aw = bw, ah = Math.max(80, bh - top), cy = ah / 2;
+      V = [
+        { s: Math.min(aw * 0.94, ah * 0.92 * 1.6, 600) / TW, x: cardX + TW / 2, y: cardY + TH / 2, sx: aw / 2, sy: cy },
+        { s: Math.min(aw * 0.9, ah * 0.94) / CELL, x: rec.x + CELL / 2, y: rec.y + CELL / 2, sx: aw / 2, sy: cy },
+        { s: Math.min((aw - 24) / (CAL_W + 100), (ah - 10) / (CAL_H + 70)), x: CAL_W / 2 - 40, y: CAL_H / 2 - 30, sx: aw / 2, sy: cy + 6 },
+      ];
+    };
+    const look = (a, b, k) => {
+      const A = V[a], B = V[b];
+      const ls = Math.log(A.s) + (Math.log(B.s) - Math.log(A.s)) * k, s = Math.exp(ls);
+      const u = a === b ? 0 : (Math.log(A.s) - ls) / (Math.log(A.s) - Math.log(B.s) || 1);
+      const x = A.x + (B.x - A.x) * u, y = A.y + (B.y - A.y) * u, sx = A.sx + (B.sx - A.sx) * u, sy = A.sy + (B.sy - A.sy) * u;
+      S = s; TX = sx - x * s; TY = sy - y * s;
+      world.style.transform = `translate(${TX.toFixed(2)}px,${TY.toFixed(2)}px) scale(${s.toFixed(5)})`;
+    };
+
+    // ход сцены, секунды от начала шага
+    const TM = { inn: 0.8, chat: 1.0, z1: 3.3, z1e: 6.7, z2: 7.5, z2e: 11.6 };
+    let lit = 0, calOn = 0, phase = -1, n = -1;
+    const setN = (v, unit) => { if (v !== n) { n = v; nB.textContent = fmt(v); } if (nS.textContent !== unit) nS.textContent = unit; };
+    const reset = () => {
+      tiles.forEach((t) => t.el.classList.remove('is-done'));
+      cells.forEach((c) => { if (c.c && c !== rec) c.el.style.background = ''; });
+      bubbles.forEach((b) => b.classList.remove('is-on')); ok.classList.remove('is-on');
+      lit = 0; calOn = 0; phase = -1; n = -1;
+      el.classList.remove('is-end');
+      setN(1, 'задача');
+    };
+    const CAPS = ['лена написала в чат склада, паша починил за 14 минут',
+      'одна из ' + MAXD + ' работ ' + RECD.getDate() + ' ' + MONG[RECD.getMonth()] + ', все автопаши',
+      'каждая клетка — сутки работы всех автопаш с ' + sinceTxt];
+    const at = (t, onCap) => {
+      if (!V) views();
+      if (t < TM.z1) {
+        look(0, 0, 0);
+        if (t > TM.chat) bubbles[0].classList.add('is-on');
+        if (t > TM.chat + 0.8) bubbles[1].classList.add('is-on');
+        if (t > TM.chat + 1.6) { ok.classList.add('is-on'); card.el.classList.add('is-done'); }
+        if (phase < 0) { phase = 0; onCap(CAPS[0]); }
+      } else if (t < TM.z1e) {
+        const k = ease((t - TM.z1) / (TM.z1e - TM.z1)), f = Math.min(1, k * 1.15);
+        look(0, 1, k);
+        const want = Math.floor(order.length * f);
+        while (lit < want) order[lit++].el.classList.add('is-done');
+        const v = Math.round(1 + (MAXD - 1) * f);
+        setN(v, plural(v, 'работа', 'работы', 'работ') + ' за сутки');
+        if (k > 0.22 && phase < 1) { phase = 1; onCap(CAPS[1]); }
+      } else if (t < TM.z2) {
+        look(1, 1, 0);
+        while (lit < order.length) order[lit++].el.classList.add('is-done');
+        setN(MAXD, 'работ за сутки');
+      } else {
+        const k = ease(clamp01((t - TM.z2) / (TM.z2e - TM.z2))), f = Math.min(1, k * 1.2);
+        look(1, 2, k);
+        while (lit < order.length) order[lit++].el.classList.add('is-done');
+        const want = Math.floor(calOrder.length * f);
+        while (calOn < want) { const c = calOrder[calOn++]; if (c.c && c !== rec) c.el.style.background = heat(c.c); }
+        setN(Math.round(MAXD + (TOTAL - MAXD) * f), 'работ с ' + sinceTxt);
+        if (k > 0.18 && phase < 2) { phase = 2; onCap(CAPS[2]); }
+        if (k >= 1) el.classList.add('is-end');
+      }
+    };
+    return {
+      el, views, reset, at, TM,
+      show: (on) => el.classList.toggle('is-on', on),
+      // карточка в кадре 0, координаты рамки: туда влетает рой
+      card: () => { if (!V) views(); const v = V[0]; return { x: v.sx - TW / 2 * v.s, y: OFF + v.sy - TH / 2 * v.s, w: TW * v.s, h: TH * v.s }; },
+      // клетки с работами на экране сейчас: отсюда рой вылетает обратно
+      spots: () => cells.filter((c) => c.c).map((c) => ({ x: TX + (c.w * PT + CELL / 2) * S, y: OFF + TY + (c.r * PT + CELL / 2) * S, half: CELL / 2 * S, n: c.c })),
+    };
+  })();
 
   /* ── логотип точками: «авто» светлым, плашка морковным, «паша» дырками ── */
   let WM = null, WU = null, wmBox = null;
@@ -5081,7 +5254,7 @@ function start() {
   };
 
   const build = (k) => {
-    if (k === CAL) return buildCal();
+    if (k === CAL) return new Float32Array(N * 4); // цели роя заполняет go(): карточка в рамке
     const T = new Float32Array(N * 4);
     for (let i = 0; i < N; i++) { const p = gen[k](); T[i * 4] = p[0]; T[i * 4 + 1] = p[1]; T[i * 4 + 2] = p[2]; T[i * 4 + 3] = p[3]; }
     return T;
@@ -5116,7 +5289,7 @@ function start() {
     size();
     N = mobile ? 4800 : 9000;
     shapes = gen.map((_, k) => build(k));
-    shapes[CAL] = buildCal();
+    shapes[CAL] = build(CAL);
     P = {
       x: new Float32Array(N), y: new Float32Array(N), z: new Float32Array(N),
       fx: new Float32Array(N), fy: new Float32Array(N), fz: new Float32Array(N),
@@ -5136,35 +5309,55 @@ function start() {
   };
 
   /* ── подпись под фигурой: текст меняем через короткое затухание, без скачков ── */
-  let swapT = 0, calShown = -1;
-  const setRole = (k) => {
-    btns.forEach((b, i) => b.classList.toggle('is-on', i === k));
+  let swapT = 0;
+  const setNow = (role, task) => {
     clearTimeout(swapT);
     nowEl.classList.add('is-swap');
     swapT = setTimeout(() => {
-      roleEl.textContent = ROLES[k][0];
-      taskEl.textContent = k === CAL ? calTask(cal.rec.n) : ROLES[k][1];
-      calShown = k === CAL ? cal.rec.n : -1;
+      if (role != null) roleEl.textContent = role;
+      taskEl.textContent = task;
       nowEl.classList.remove('is-swap');
     }, 170);
   };
+  const setRole = (k) => {
+    btns.forEach((b, i) => b.classList.toggle('is-on', i === k));
+    if (k !== CAL) setNow(ROLES[k][0], ROLES[k][1]);
+    else roleEl.textContent = ROLES[k][0];
+  };
+  const camCap = (t) => setNow(null, t);
 
   let cur = WORD, from = -1, t0 = 0, auto = true, pauseUntil = 0, rotAmt = 0, rotGoal = 1;
-  const HOLD = 2.7, MORPH = 1.7, CMORPH = 2.7, CHOLD = 4.4;
+  const HOLD = 2.7, MORPH = 1.7, CMORPH = 1.0, CHOLD = 14.6;
   const go = (k, now) => {
     for (let i = 0; i < N; i++) { P.fx[i] = P.x[i]; P.fy[i] = P.y[i]; P.fz[i] = P.z[i]; }
     from = cur; cur = k; t0 = now;
     const T = shapes[k];
     if (k === CAL) {
-      // камера отъезжает: фигура сжимается в день-рекорд, потом точки расходятся по своим дням
-      const rp = recPt();
+      // рой влетает в карточку одной задачи и гаснет под ней — дальше работает камера
+      cam.views(); cam.reset();
+      const c = cam.card();
       for (let i = 0; i < N; i++) {
-        P.del[i] = Math.random() * 0.08; P.du[i] = CMORPH;
-        const ddx = T[i * 4] - rp[0], ddy = T[i * 4 + 1] - rp[1];
-        P.d2[i] = Math.min(0.26, Math.sqrt(ddx * ddx + ddy * ddy) * 0.14) + Math.random() * 0.04;
+        T[i * 4] = (box.x + c.x + Math.random() * c.w - CX) / R; T[i * 4 + 1] = (box.y + c.y + Math.random() * c.h - CY) / R;
+        T[i * 4 + 2] = 0; T[i * 4 + 3] = Math.random() < 0.8 ? 0 : 1;
+        P.del[i] = Math.random() * 0.12; P.du[i] = CMORPH - 0.12;
       }
     } else {
-      for (let i = 0; i < N; i++) { P.del[i] = (T[i * 4] + 1.1) / 2.2 * 0.55 + Math.random() * 0.12; P.du[i] = MORPH; }
+      if (from === CAL) {
+        // обратно: рой поднимается из клеток календаря, сколько работ в сутках — столько точек
+        const sp = cam.spots(), tot = sp.reduce((a, q) => a + q.n, 0);
+        let i = 0;
+        for (const q of sp) {
+          const m = Math.round((q.n / tot) * N);
+          for (let j = 0; j < m && i < N; j++, i++) {
+            P.x[i] = P.fx[i] = (box.x + q.x + rnd(-q.half, q.half) - CX) / R;
+            P.y[i] = P.fy[i] = (box.y + q.y + rnd(-q.half, q.half) - CY) / R;
+            P.z[i] = P.fz[i] = 0; P.al[i] = 0.35; P.col[i] = 0;
+          }
+        }
+        for (; i < N; i++) { P.x[i] = P.fx[i] = rnd(-1, 1); P.y[i] = P.fy[i] = rnd(-0.5, 0.5); P.z[i] = P.fz[i] = 0; P.al[i] = 0; }
+        cam.show(false);
+      }
+      for (let i = 0; i < N; i++) { P.del[i] = (T[i * 4] + 1.1) / 2.2 * 0.55 + Math.random() * 0.12 + (from === CAL ? 0.25 : 0); P.du[i] = MORPH; }
     }
     setRole(k);
   };
@@ -5261,7 +5454,7 @@ function start() {
     requestAnimationFrame(frame);
     if (!booting && (!visible || document.hidden)) return;
     const now = ms / 1000;
-    if (!t0) { t0 = now; if (booting) startBoot(now); else go(dbg ? Math.min(7, +dbg[1]) : 0, now); }
+    if (!t0) { t0 = now; if (booting) startBoot(now); else { const j = location.hash.match(/j=(\d)/); go(dbg ? Math.min(7, +dbg[1]) : j ? Math.min(7, +j[1]) : 0, now); } }
     let since = now - t0;
 
     if (booting && cur === WORD) {
@@ -5286,13 +5479,13 @@ function start() {
     if (!booting && !still && auto && since > dur + hold && now > pauseUntil) { go((cur + 1) % 8, now); since = 0; }
     barEl.style.transform = `scaleX(${clamp01(since / (dur + hold)).toFixed(3)})`;
 
-    // счётчик календаря: от рекордного дня до всех работ
-    if (cur === CAL && calShown >= 0) {
-      const v = Math.round(cal.rec.n + (TOTAL - cal.rec.n) * ease(clamp01((since - 1.25) / 1.6)));
-      if (v !== lastTask) { lastTask = v; taskEl.textContent = calTask(v); }
-    } else lastTask = -1;
+    // восьмой шаг: камера, рой гаснет под карточкой
+    if (cur === CAL) {
+      if (since > cam.TM.inn - 0.25) cam.show(true);
+      cam.at(still ? 99 : since, camCap);
+    }
 
-    rotAmt += (rotGoal - rotAmt) * (booting ? 0 : 0.035);
+    rotAmt += ((cur === CAL ? 0 : rotGoal) - rotAmt) * (booting ? 0 : cur === CAL ? 0.12 : 0.035);
     rx += (trx - rx) * 0.05; ry += (try_ - ry) * 0.05;
     const calK = cur === CAL ? 0.45 : 1;
     const ay = (ry + Math.sin(now * 0.32) * 0.28) * rotAmt * calK, ax = (rx + 0.08) * rotAmt * calK;
@@ -5300,7 +5493,6 @@ function start() {
 
     const T = cur === WORD ? WM : shapes[cur];
     const isCal = cur === CAL;
-    const rp = isCal ? recPt() : null;
     const base = mobile ? 1.25 : 1.5;
     const RR = mobile ? 70 : 120;
     for (let i = 0; i < N; i++) {
@@ -5308,16 +5500,7 @@ function start() {
       let p = still ? 1 : (since - P.del[i]) / P.du[i];
       p = clamp01(p);
       let x, y, z;
-      if (isCal && !hd) {
-        // два хода: в точку дня-рекорда, потом в свою клетку
-        const a = clamp01(p / 0.28), b = clamp01((p - 0.26 - P.d2[i]) / 0.38);
-        const ea = ease(a), eb = ease(b);
-        const mxp = rp[0] + P.fx[i] * 0.05, myp = rp[1] + P.fy[i] * 0.05, mzp = rp[2] + P.fz[i] * 0.05;
-        x = P.fx[i] + (mxp - P.fx[i]) * ea; y = P.fy[i] + (myp - P.fy[i]) * ea; z = P.fz[i] + (mzp - P.fz[i]) * ea;
-        x += (T[i * 4] - mxp) * eb; y += (T[i * 4 + 1] - myp) * eb; z += (T[i * 4 + 2] - mzp) * eb;
-        if (b > 0.5) P.col[i] = T[i * 4 + 3];
-        else if (a > 0.5) P.col[i] = 0;
-      } else {
+      {
         const e = ease(p);
         const tx = hd ? HX[i] : T[i * 4], ty = hd ? HY[i] : T[i * 4 + 1], tz = hd ? 0 : T[i * 4 + 2];
         const sw = Math.sin(p * Math.PI) * (hd ? 0.12 : 0.3) * P.sw[i];
@@ -5332,13 +5515,13 @@ function start() {
       // прозрачность: в заставке пыль тусклая, долетевшие — ярче; точки шапки гаснут, когда проявился логотип
       let aT = 1;
       if (cur === WORD) aT = p >= 1 ? 1 : 0.22 + 0.78 * p;
+      else if (isCal && !hd) aT = p >= 1 ? 0 : 1;
       else if (hd) aT = (hdrFadeAt === 0 && p >= 1) ? 0 : 1;
       P.al[i] += (aT - P.al[i]) * (hd ? 0.12 : 0.2);
       if (hd && aT === 0 && P.al[i] < 0.02) {
         // погасла в шапке — тихо возвращается в фигуру и проявляется на месте
         P.hdr[i] = 0; P.al[i] = 0; P.del[i] = -99;
         const Tc = shapes[cur]; P.x[i] = P.fx[i] = Tc[i * 4]; P.y[i] = P.fy[i] = Tc[i * 4 + 1]; P.z[i] = P.fz[i] = Tc[i * 4 + 2];
-        if (cur === CAL) P.d2[i] = -99;
       }
 
       // поворот и перспектива; точки шапки и логотипа — без поворота
@@ -5381,34 +5564,6 @@ function start() {
       ctx.fill();
     }
 
-    // подписи календаря: месяцы и день-рекорд, проявляются, когда точки легли
-    if (isCal) {
-      const la = clamp01((since - 1.9) / 0.6) * (since > CMORPH + CHOLD - 0.4 ? 0 : 1);
-      if (la > 0) {
-        ctx.globalCompositeOperation = 'source-over';
-        const prj = (px, py) => {
-          const p = CAL_TILT([px, py, 0]);
-          const x1 = p[0] * cyA + p[2] * syA, z1 = -p[0] * syA + p[2] * cyA;
-          const y1 = p[1] * cxA - z1 * sxA, z2 = p[1] * sxA + z1 * cxA, k = F / (F - z2);
-          return [CX + x1 * R * k, CY + y1 * R * k];
-        };
-        const fs = mobile ? 10 : 12;
-        ctx.font = `500 ${fs}px "PT Mono", ui-monospace, monospace`;
-        ctx.textBaseline = 'top';
-        ctx.fillStyle = `rgba(255,222,190,${(0.55 * la).toFixed(3)})`;
-        for (const m of cal.months) { const [x, y] = prj(m.x, cal.bottom + 0.05); ctx.fillText(MONS[m.m], x, y); }
-        const [rx0, ry0] = prj(cal.rec.x + cal.pitch / 2, cal.rec.y);
-        const label = 'рекорд ' + cal.rec.n + ' работ, ' + RECD.getDate() + ' ' + MONS[RECD.getMonth()];
-        ctx.font = `600 ${fs + 1}px "PT Mono", ui-monospace, monospace`;
-        const tw = ctx.measureText(label).width;
-        const [, gy] = prj(cal.rec.x, cal.y0);
-        const lx = Math.max(8, Math.min(W - tw - 8, rx0 - tw / 2)), ly = gy - (mobile ? 24 : 30);
-        ctx.strokeStyle = `rgba(255,112,38,${(0.8 * la).toFixed(3)})`; ctx.lineWidth = 1;
-        ctx.beginPath(); ctx.moveTo(rx0, ry0 - 3); ctx.lineTo(rx0, ly + fs + 6); ctx.stroke();
-        ctx.fillStyle = `rgba(255,112,38,${la.toFixed(3)})`;
-        ctx.fillText(label, lx, ly);
-      }
-    }
   };
 
   let started = false;
@@ -5423,11 +5578,12 @@ function start() {
       const T = shapes[k];
       for (let i = 0; i < N; i++) { P.x[i] = P.fx[i] = T[i * 4]; P.y[i] = P.fy[i] = T[i * 4 + 1]; P.z[i] = P.fz[i] = T[i * 4 + 2]; P.col[i] = T[i * 4 + 3]; }
       setRole(k); rotAmt = 1;
+      if (k === CAL) { for (let i = 0; i < N; i++) P.al[i] = 0; cam.views(); cam.reset(); cam.show(true); cam.at(99, camCap); }
     }
     requestAnimationFrame(frame);
   };
   let rt = 0;
-  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (P) size(); }, 150); });
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { if (P) { size(); cam.views(); } }, 150); });
   const fontsReady = document.fonts ? Promise.race([
     Promise.all([document.fonts.load('800 160px Unbounded'), document.fonts.load('500 12px "PT Mono"')]),
     new Promise((r) => setTimeout(r, 2500)),
@@ -5539,5 +5695,6 @@ new IntersectionObserver(([e])=>{if(e.isIntersecting&&!printedOnce)printReceipt(
 
 })();
 </script>
+<script src="/ap/badge.js" defer data-ap="glavnaya-odin"></script>
 </body>
 </html>
