@@ -101,7 +101,55 @@ void main(){
   if (ticket) {
     const days = ticket.querySelectorAll('.ticket__days span');
     const count = ticket.querySelector('[data-day]');
-    if (calm) { days.forEach(d => d.classList.add('is-on')); count.textContent = String(days.length); ticket.classList.add('is-done'); }
+    const win = ticket.querySelector('[data-win]');
+    if (win) {
+      // окно будущего сайта: пн каркас, вт тексты, ср фото, потом запуск на домене и оплата
+      const shot = win.querySelector('[data-shot]'), url = win.querySelector('[data-url]'), tag = win.querySelector('[data-tag]');
+      const chips = [...ticket.querySelectorAll('[data-niche]')];
+      let pick = chips.find(c => c.getAttribute('aria-pressed') === 'true') || chips[0];
+      let timers = [], touched = false, seen = true;
+      const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+      const phase = n => {
+        win.dataset.phase = String(n);
+        days.forEach((d, k) => d.classList.toggle('is-on', k < Math.min(n, 3)));
+        if (count) count.textContent = String(Math.min(n, 3));
+        ticket.classList.toggle('is-done', n >= 4);
+        const draft = 'design.autopasha.ru/' + pick.dataset.niche;
+        url.textContent = n >= 4 ? pick.dataset.domain : draft;
+        tag.textContent = n >= 4 ? 'ваш домен' : 'черновик';
+      };
+      const build = () => {
+        timers.forEach(clearTimeout); timers = [];
+        win.href = 'https://design.autopasha.ru/' + pick.dataset.niche + '/';
+        shot.src = 'img/' + pick.dataset.niche + '.jpg';
+        if (calm) { phase(4); return; }
+        phase(0);
+        later(() => phase(1), 500);
+        later(() => phase(2), 1500);
+        later(() => phase(3), 2500);
+        later(() => phase(4), 3600);
+        later(() => {
+          if (touched || !seen) return;
+          pick = chips[(chips.indexOf(pick) + 1) % chips.length];
+          chips.forEach(c => c.setAttribute('aria-pressed', String(c === pick)));
+          build();
+        }, 8600);
+      };
+      chips.forEach(c => c.addEventListener('click', () => {
+        touched = true; pick = c;
+        chips.forEach(x => x.setAttribute('aria-pressed', String(x === c)));
+        build();
+      }));
+      // картинки ниш заранее, чтобы окно не мигало пустым
+      chips.forEach(c => { const im = new Image(); im.src = 'img/' + c.dataset.niche + '.jpg'; });
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(es => es.forEach(e => {
+          const was = seen; seen = e.isIntersecting;
+          if (seen && !was && !touched) build();
+        })).observe(win);
+      }
+      build();
+    } else if (calm) { days.forEach(d => d.classList.add('is-on')); count.textContent = String(days.length); ticket.classList.add('is-done'); }
     else {
       let i = 0;
       const tick = () => {

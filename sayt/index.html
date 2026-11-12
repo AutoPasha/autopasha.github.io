@@ -60,11 +60,26 @@
           <span class="ticket__name">сайт вашего дела</span>
           <span class="ticket__price">10&nbsp;000&nbsp;₽</span>
         </div>
-        <p class="ticket__what">услуги, цены, фото, отзывы, заявки в Telegram или MAX, ваш домен</p>
-        <div class="ticket__days" aria-hidden="true">
-          <span>пн</span><span>вт</span><span>ср</span>
+        <div class="niche" role="group" aria-label="Пример: чей сайт собираем">
+          <button type="button" class="niche__b" data-niche="med-kofe" data-domain="med-kofe.ru" aria-pressed="true">кофейня</button>
+          <button type="button" class="niche__b" data-niche="emal-klinika" data-domain="emal-nsk.ru" aria-pressed="false">клиника</button>
+          <button type="button" class="niche__b" data-niche="stvor-okna" data-domain="stvor-okna.ru" aria-pressed="false">окна</button>
+          <button type="button" class="niche__b" data-niche="izrazec-gostinica" data-domain="izrazec-hotel.ru" aria-pressed="false">гостиница</button>
         </div>
-        <div class="ticket__count" aria-hidden="true"><b data-day>0</b> из 3 рабочих дней<span class="ticket__live">сайт готов</span></div>
+        <a class="win" data-win href="https://design.autopasha.ru/med-kofe/" aria-label="Открыть пример готового сайта">
+          <span class="win__bar">
+            <i class="win__dots" aria-hidden="true"></i>
+            <span class="win__url"><span class="win__lock" aria-hidden="true"></span><span data-url>design.autopasha.ru/med-kofe</span></span>
+            <span class="win__tag" data-tag>черновик</span>
+          </span>
+          <span class="win__view">
+            <img data-shot src="img/med-kofe.jpg" width="1200" height="630" decoding="async" alt="">
+            <span class="win__skel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+          </span>
+        </a>
+        <div class="ticket__days" aria-hidden="true">
+          <span><b>пн</b>собрали о вас</span><span><b>вт</b>тексты и цены</span><span><b>ср</b>фото и заявки</span>
+        </div>
         <div class="ticket__split">
           <div class="ticket__half ticket__half--now"><b>0&nbsp;₽</b><span>пока делаем</span></div>
           <div class="ticket__half ticket__half--after"><b>10&nbsp;000&nbsp;₽</b><span>после запуска</span></div>
