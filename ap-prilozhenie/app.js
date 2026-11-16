@@ -283,7 +283,7 @@
       const card = t.closest('.qcard');
       card.classList.add('answered');
       toast(scr, t.dataset.toast || 'Готово');
-      const dock = $('.qdock .n', scr); if (dock) { dock.textContent = '1'; $('.qdock b', scr).textContent = 'Ждёт вас: тема ролика'; }
+      const dock = $('.qdock .n', scr); if (dock) { dock.textContent = '1'; $('.qdock b', scr).textContent = 'Ждёт вас: 1 вопрос'; $('.qdock small', scr).textContent = 'тема ролика'; }
       return;
     }
     if (act === 'answer-back') { toast(scr, t.dataset.toast); setTimeout(back, 1000); return; }
@@ -308,6 +308,6 @@
   });
 
   const start = location.hash.slice(1);
+  /* без адреса экрана и на телефоне сначала страница с ответами, прототип — по кнопке */
   if (ALL.includes(start)) open(start);
-  else if (matchMedia('(max-width:700px)').matches) open('chat');
 })();
