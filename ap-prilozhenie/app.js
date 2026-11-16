@@ -57,8 +57,8 @@
     const t = (id, ico, name, extra = '') => `<a class="tab ${on === id ? 'on' : ''}" data-tab="${id}" href="#${id}">${ico}${name}${extra}</a>`;
     return `<nav><span class="lens" style="left:calc(5px + ${i} * (100% - 10px) / 4)"></span>
       ${t('chat', '<svg class="ico"><use href="#i-chat"/></svg>', 'Чат', '<span class="badge">2</span>')}
-      ${t('sessions', '<svg class="ico"><use href="#i-pulse"/></svg>', 'Сессии', '<span class="live-dot"></span>')}
-      ${t('deals', '<svg class="ico"><use href="#i-list"/></svg>', 'Дела')}
+      ${t('sessions', '<svg class="ico"><use href="#i-tab-live"/></svg>', 'Сессии', '<span class="live-dot"></span>')}
+      ${t('deals', '<svg class="ico"><use href="#i-tab-deals"/></svg>', 'Дела')}
       ${t('pasha', `<span class="face">${pasha(26, 'headset')}</span>`, 'Паша')}
     </nav>`;
   };
@@ -140,8 +140,8 @@
   if (desk) {
     desk.innerHTML = `<div class="rail"><div class="brand"><i class="pa" data-s="28" data-o="headset"></i>АвтоПаша</div>
       <a class="on"><svg class="ico"><use href="#i-chat"/></svg>Чат<span class="n">2</span></a>
-      <a><svg class="ico"><use href="#i-pulse"/></svg>Сессии<span class="n g">2</span></a>
-      <a><svg class="ico"><use href="#i-list"/></svg>Дела</a>
+      <a><svg class="ico"><use href="#i-tab-live"/></svg>Сессии<span class="n g">2</span></a>
+      <a><svg class="ico"><use href="#i-tab-deals"/></svg>Дела</a>
       <a><span style="width:22px;height:22px;display:grid;place-items:center"><i class="pa" data-s="22" data-o="headset"></i></span>Паша</a>
       <span class="sp"></span><a><svg class="ico"><use href="#i-gear"/></svg>Настройки</a></div>
       <div class="pane" data-pane="chat"></div><div class="pane" data-pane="session"></div>`;
