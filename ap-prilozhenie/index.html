@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#F6F4F1">
+<title>АвтоПаша: приложение. Макет</title>
+<link rel="preload" href="fonts/Onest-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="app.css">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://design.autopasha.ru/ap-prilozhenie/">
+<meta property="og:title" content="АвтоПаша: приложение. Макет">
+<meta property="og:image" content="https://design.autopasha.ru/ap-prilozhenie/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://design.autopasha.ru/ap-prilozhenie/og.jpg">
+</head>
+<body class="t-light">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3.5 10.5 12 4l8.5 6.5V20a1 1 0 0 1-1 1H15v-6H9v6H4.5a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><path d="M10 6h10M10 12h10M10 18h10"/><path d="m3.5 6 1.5 1.5L7.5 5M3.5 12l1.5 1.5L7.5 11M3.5 18l1.5 1.5L7.5 17"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 12a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.4-4.9A8.5 8.5 0 1 1 21 12z"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><path d="m20.5 11.5-8.4 8.4a5 5 0 0 1-7-7L13.6 4.4a3.4 3.4 0 0 1 4.8 4.8L9.9 17.7a1.8 1.8 0 0 1-2.6-2.6l7.8-7.8"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7.5 8 6 8-6"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M16 4.6a3.5 3.5 0 0 1 0 6.8M21.5 20a6.5 6.5 0 0 0-3.8-5.9"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-4.5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 21h4"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h4"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17.4v.1"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4 20h4L19.5 8.5l-4-4L4 16z"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-self" viewBox="0 0 24 24"><path d="M21 12a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.4-4.9A8.5 8.5 0 1 1 21 12z"/><path d="m8.5 12 2.4 2.4 4.6-4.6"/></symbol>
+  <symbol id="i-ask" viewBox="0 0 24 24"><path d="M21 12a8.5 8.5 0 0 1-12.3 7.6L3.5 21l1.4-4.9A8.5 8.5 0 1 1 21 12z"/><path d="M10 10a2 2 0 1 1 2.8 1.8c-.5.2-.8.7-.8 1.2M12 15.6v.1"/></symbol>
+  <symbol id="i-tg" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M20.7 4.3 2.9 11.2c-1.2.5-1.2 1.2-.2 1.5l4.6 1.4 1.8 5.4c.2.6.1.9.8.9.5 0 .7-.2 1-.5l2.2-2.1 4.6 3.4c.8.5 1.4.2 1.6-.8l3-14.2c.3-1.2-.5-1.8-1.6-1.3zM8.6 13.7l9.3-5.9c.5-.3.9-.1.5.2l-8 7.2-.3 3.3z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+  <symbol id="i-video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="m16 10 5-3v10l-5-3"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M5 4.5h11a3 3 0 0 1 3 3V20H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V5a2 2 0 0 0-3-1zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M14 4h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-4M10 16l-4-4 4-4M6 12h10"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 6 .4l3-3a4 4 0 0 0-5.7-5.7l-1.1 1.1M14 10a4 4 0 0 0-6-.4l-3 3a4 4 0 0 0 5.7 5.7l1.1-1.1"/></symbol>
+  <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3M14.5 8.5l2 2"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.1"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></symbol>
+  <symbol id="i-dots" viewBox="0 0 24 24"><path d="M5 12h.1M12 12h.1M19 12h.1" stroke-width="3.2"/></symbol>
+</svg>
+
+<div class="page">
+  <div class="top">
+    <div class="brand"><i class="pa" data-s="34"></i>АвтоПаша</div>
+    <div class="top-act">
+      <button class="chip-btn" data-act="theme"><svg class="ico s"><use href="#i-moon"/></svg><span data-themebtn>тёмная</span></button>
+    </div>
+  </div>
+
+  <section class="hero">
+    <div class="k">Приложение АвтоПаши</div>
+    <h1>Ваш сотрудник.<br>В кармане.</h1>
+    <p class="lead">Открыли и сразу видно: что Паша делает, когда закончит и нужно ли от вас решение. Ответить можно одним касанием, поручить голосом.</p>
+    <div class="cta"><button class="big" data-open="home">Попробовать <svg class="ico s"><use href="#i-chev"/></svg></button><a class="soft" href="#ekrany">Все экраны</a></div>
+  </section>
+  <div class="showcase" id="showcase"></div>
+
+  <div class="nums">
+    <div class="num"><b>3</b><span>вкладки вместо 13 пунктов меню</span></div>
+    <div class="num"><b>1</b><span>решение на экране за раз</span></div>
+    <div class="num"><b>0</b><span>внутренних слов: ни сессий, ни выкатов</span></div>
+  </div>
+
+  <div class="sec-h"><h2>Три правила</h2><p>По ним проверял каждый экран.</p></div>
+  <div class="rules">
+    <div class="rule"><span class="n">01</span><h3>Одна мысль на экран</h3><p>Главная отвечает «что сейчас и нужен ли я». Дело отвечает «когда будет». Паша отвечает «где работает и сколько сил». Остальное спрятано на шаг глубже.</p></div>
+    <div class="rule"><span class="n">02</span><h3>Всё важное под большим пальцем</h3><p>Кнопки решений, вкладки и «поручить» живут внизу экрана. Сверху только то, что читают.</p></div>
+    <div class="rule"><span class="n">03</span><h3>Слова человека</h3><p>Паша «спрашивает вас», «отвечает сам», «только читает». Под каждой кнопкой написано, что будет после нажатия.</p></div>
+  </div>
+
+  <div class="sec-h" id="ekrany"><h2>Экраны</h2><p>Нажмите на любой телефон, и он оживёт: вопросы отвечаются, Паша слушает голос, вкладки переключаются. С телефона прототип открывается сразу во весь экран.</p></div>
+  <div class="gallery" id="gallery"></div>
+
+  <div class="sec-h"><h2>Что сейчас не так</h2><p>Прошёл все 44 адреса нынешнего кабинета на телефоне под владельцем и под наблюдателем. Слева первые экраны всех разделов.</p></div>
+  <div class="audit">
+    <a href="sejchas.jpg" target="_blank" class="audit-img"><img src="sejchas.jpg" alt="Первые экраны всех разделов нынешнего кабинета на телефоне" loading="lazy"></a>
+    <div class="col">
+      <div class="fb-c"><p>Один и тот же вопрос живёт в пяти местах: на главной, в чате, в делах, в очереди и на доске. Пять разных карточек.</p></div>
+      <div class="fb-c"><p>22 разных экрана и ещё 13 адресов, которые молча перекидывают на них. «Свой claude» ведёт в профиль, «команда» и «чаты» в рабочее место.</p></div>
+      <div class="fb-c"><p>Внутренняя кухня наружу: «сессии», «заходы», «сорвались», PR, «выкат», «полномочия», «границы».</p></div>
+      <div class="fb-c"><p>Два разных Паши: фиолетовая клякса в профиле и на пустых экранах, персиковый кубик в шапке.</p></div>
+      <div class="fb-c"><p>Плашка аналитики и шапка «ждёт ответа на 7 вопросов» на каждом экране съедают верх и низ, а ответить из шапки нельзя.</p></div>
+    </div>
+  </div>
+
+  <div class="sec-h"><h2>Куда делись 44 страницы</h2><p>Ничего не потерялось. Нужное слилось в три вкладки и кнопку «+», внутренняя кухня ушла с глаз.</p></div>
+  <div class="map">
+    <div class="map-c"><h4><span class="tile c-peach" style="width:34px;height:34px;border-radius:11px"><svg class="ico s"><use href="#i-home"/></svg></span>Главная</h4><ul><li>сейчас</li><li>ждут вас</li><li>одобрения</li><li>ожидание</li><li>доска</li><li>лента</li><li>переписка</li></ul></div>
+    <div class="map-c"><h4><span class="tile c-sun" style="width:34px;height:34px;border-radius:11px"><svg class="ico s"><use href="#i-list"/></svg></span>Дела</h4><ul><li>дела</li><li>очередь</li><li>планы</li><li>отчёты</li><li>дело</li><li>задача</li><li>поиск</li><li class="gone">для ленты</li></ul></div>
+    <div class="map-c"><h4><span class="tile c-lilac" style="width:34px;height:34px;border-radius:11px"><i class="pa" data-s="24"></i></span>Паша</h4><ul><li>сотрудник</li><li>мой паша</li><li>имя и наряд</li><li>рабочее место</li><li>каналы</li><li>чаты</li><li>команда</li><li>правила</li><li>границы</li><li>что умеет</li><li>что помнит</li><li>проекты</li><li>свой claude</li><li>доступы</li><li>настройки</li><li>оплата</li><li>помощь</li><li>гайд</li><li class="gone">сессии</li><li class="gone">API</li></ul></div>
+    <div class="map-c"><h4><span class="tile" style="width:34px;height:34px;border-radius:50%;background:var(--hot);color:#fff"><svg class="ico s"><use href="#i-plus"/></svg></span>Поручить</h4><ul><li>новая задача</li><li>оценка задачи</li><li>знакомство</li></ul></div>
+  </div>
+
+  <div class="sec-h"><h2>Словарь</h2><p>Павел Ступин прав: формулировки кабинета понятны нам, а не клиенту. Эти замены идут во все экраны.</p></div>
+  <div class="words" id="words"></div>
+
+  <div class="sec-h"><h2>Замечания Павла Ступина</h2><p>Каждое закрыто в макете. Две поломки нынешнего кабинета уже чинятся отдельно.</p></div>
+  <div class="fb">
+    <div class="fb-c"><q>Не работает кнопка на разных страницах</q><p>В приложении одна кнопка «+» внизу, на любом экране одна и та же. В нынешнем кабинете кнопку уже починили.</p></div>
+    <div class="fb-c"><q>Классный только один блок. Обычный клиент тут не разберётся</q><p>Карта «мессенджеры, Паша, люди» осталась главной на экране. Под ней у каждого чата три режима картинками вместо «сам, черновик, молча, нет».</p></div>
+    <div class="fb-c"><q>Не удалось подключить</q><p>Два способа вместо четырёх, понятный первым. Если не вышло, Паша пишет причину словами прямо в шаге, а не зелёное «номер ушёл».</p></div>
+    <div class="fb-c"><q>Вывести оставшиеся лимиты, клиент может запороть свой акк</q><p>Экран «Силы»: сколько осталось, до скольки хватит, когда обновятся и куда ушли. И предупреждение, если подписка общая с вами.</p></div>
+    <div class="fb-c"><q>Очень много непонятных формулировок</q><p>Словарь выше: двадцать замен. Ни одного внутреннего слова на экранах.</p></div>
+  </div>
+
+  <div class="sec-h"><h2>Откуда приёмы</h2><p>Смотрел живые приложения в Mobbin и компоненты 21st. Брал приём, а не вид.</p></div>
+  <div class="refs" id="refs"></div>
+
+  <div class="next">
+    <div>
+      <h2>Что дальше</h2>
+      <ol>
+        <li>Вы смотрите прототип и говорите, что поменять.</li>
+        <li>Переношу в кабинет тремя пачками: главная и дела, потом решение и разговор, потом Паша и настройки.</li>
+        <li>Собираю приложение для Android на тех же экранах, с пушем, когда Паше нужны вы.</li>
+      </ol>
+    </div>
+    <i class="pa" data-s="150" data-o="headset"></i>
+  </div>
+</div>
+
+<div class="player" id="player">
+  <div class="player-nav" id="pnav"></div>
+  <div class="frame"><div class="scaler" id="stage"></div></div>
+  <button class="player-x" data-act="close"><svg class="ico s"><use href="#i-grid"/></svg><span>все экраны</span></button>
+</div>
+
+<!-- ═════════════════ ЭКРАНЫ ═════════════════ -->
+
+<template id="s-home" data-title="Главная" data-aura data-cap="Открыли и всё видно: что Паша делает и когда закончит. Ниже одно решение за раз с ответом прямо в карточке." data-src="bevel,future,sweetgreen,cleo">
+  <div class="sb"></div>
+  <div class="body">
+    <div class="hello-row"><span class="kick">Понедельник, 16 ноября</span><button class="myface" data-go="pasha">ПБ</button></div>
+    <div class="row" style="margin-top:20px;align-items:flex-end"><i class="pa" data-s="78" data-o="headset"></i><span class="live" style="margin-bottom:10px">Паша работает</span></div>
+    <p class="say">Доделываю сайт для «Виком». Покажу Анатолию <em>завтра в 10:00</em></p>
+    <a class="activity" data-go="deal">
+      <div class="row"><span class="tile c-peach" style="width:38px;height:38px;border-radius:12px"><svg class="ico s"><use href="#i-globe"/></svg></span><div class="grow"><b class="ell" style="font-size:16px">Сайт для «Виком»</b><span class="xs dim">переношу раздел «Доставка»</span></div><b style="font-size:20px;letter-spacing:-.03em">85%</b></div>
+      <div class="track" style="margin-bottom:0"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i></div>
+    </a>
+
+    <div class="h2">Нужно решение <span class="c" data-cnt>1 из 2</span></div>
+    <div class="decide">
+      <div class="dc">
+        <span class="lbl"><svg class="ico s" style="color:#2AABEE"><use href="#i-tg"/></svg>Письмо Анатолию</span>
+        <h3>Отправить ссылку на тестовый сайт?</h3>
+        <p class="snip">Анатолий, добрый день! Тестовый сайт готов: vikom.autopasha.ru. Вход в админку пришлю следующим сообщением.</p>
+        <div class="btns" style="margin-top:auto"><button class="btn soft" data-go="question">Показать</button><button class="btn hot" data-act="answer" data-toast="Отправил Анатолию">Отправить</button></div>
+        <p class="if">Если промолчите, отправлю сам в 12:00</p>
+      </div>
+      <div class="dc">
+        <span class="lbl"><svg class="ico s" style="color:var(--lilac-i)"><use href="#i-video"/></svg>Ролик на завтра</span>
+        <h3>Какую тему снимаем?</h3>
+        <div class="choice">
+          <button data-act="answer" data-toast="Снимаю первую"><span class="n">1</span>Сайт за два часа, пока вы пили кофе</button>
+          <button data-act="answer" data-toast="Снимаю вторую"><span class="n">2</span>Паша против спама в почте</button>
+        </div>
+      </div>
+      <div class="empty"><div><i class="pa" data-s="64" data-o="crown"></i><p style="margin-top:10px;font-weight:800;font-size:20px;letter-spacing:-.03em">Всё решено</p><p class="dim sm">Паша продолжает сам</p></div></div>
+    </div>
+
+    <div class="h2">Ещё в работе <span class="more" data-go="deals">Все дела</span></div>
+    <div class="group">
+      <div class="li" data-go="deal"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><div class="grow"><b class="ell">Ролик, день 9</b><div class="sub">записываю голос</div></div><div class="r">сегодня<br>в 19:00</div></div>
+      <div class="li" data-go="deal"><span class="tile c-sun"><svg class="ico"><use href="#i-mail"/></svg></span><div class="grow"><b class="ell">Письма гостиницам</b><div class="sub">14 из 40, двое ответили</div></div><div class="r">в среду</div></div>
+    </div>
+
+    <div class="h2">Готово сегодня <span class="c">3</span></div>
+    <div class="hs">
+      <div class="story" data-go="result"><div class="pic" style="background:linear-gradient(160deg,#1d3b5a,#2c5c8a 55%,#FF6A2B)"></div><div style="position:absolute;left:30px;top:20px;width:112px;height:150px;border-radius:14px;background:#F6F3EE;transform:rotate(-5deg);box-shadow:0 14px 26px -10px rgba(0,0,0,.5);overflow:hidden"><i style="display:block;height:38%;background:#1d3b5a"></i><i style="display:block;margin:10px;height:12px;width:50%;background:#FF6A2B;border-radius:6px"></i></div><b>Главная «Виком» на телефоне</b><span>проверил на 5 экранах</span></div>
+      <div class="story"><div class="pic" style="background:radial-gradient(80% 60% at 30% 20%,#C9B5FF,transparent),linear-gradient(160deg,#7A4DE0,#2A1660)"></div><div style="position:absolute;left:50%;top:22px;transform:translateX(-50%)"><i class="pa" data-s="90" data-o="glasses"></i></div><b>Ролик, день 8</b><span>1 240 просмотров за утро</span></div>
+      <div class="story"><div class="pic" style="background:radial-gradient(80% 60% at 70% 20%,#B9F2D2,transparent),linear-gradient(160deg,#22B864,#0E5A33)"></div><svg class="ico" style="position:absolute;left:50%;top:44px;transform:translateX(-50%);width:64px;height:64px;color:#fff;stroke-width:1.5"><use href="#i-mail"/></svg><b>Ответил двум людям на почте</b><span>сам, по вашим правилам</span></div>
+    </div>
+  </div>
+  <div class="dock" data-dock="home"></div>
+</template>
+
+<template id="s-ask" data-title="Поручить" data-sheet data-cap="Кнопка «+» открывает микрофон. Говорите как сотруднику, Паша сразу отвечает сроком и сколько это стоит сил, до того как вы нажали «Поручить»." data-src="orb,gemini,chatgpt">
+  <div class="sb"></div>
+  <div class="sheet">
+    <div class="grab"></div>
+    <div class="body nodock">
+      <div class="nav" style="justify-content:flex-end;min-height:48px;padding-bottom:0"><button class="round" data-back aria-label="Закрыть"><svg class="ico s"><use href="#i-x"/></svg></button></div>
+      <h1 class="ask-h" style="margin-top:0">Что поручить?</h1>
+      <p class="dim" style="text-align:center;margin-top:8px">Скажите голосом или выберите</p>
+      <div class="orb-wrap"><button class="orb" data-act="listen" aria-label="Сказать голосом"><svg class="lines" viewBox="0 0 196 196"></svg><span class="mic"><svg class="ico"><use href="#i-mic"/></svg></span></button></div>
+      <div class="typed" data-typed><span class="ph">Нажмите и говорите</span></div>
+      <div class="sug" data-sug>
+        <button data-act="fill" data-text="Сделай лендинг для кофейни на Садовой: меню, фото, карта">Сайт</button>
+        <button data-act="fill" data-text="Напиши тридцати гостиницам Москвы про витрину">Письма</button>
+        <button data-act="fill" data-text="Разбери почту за неделю и ответь тем, кто ждёт">Разобрать почту</button>
+        <button data-act="fill" data-text="Сними ролик про то, как мы сделали сайт «Виком»">Ролик</button>
+      </div>
+      <div class="att" data-att>
+        <button><i><svg class="ico"><use href="#i-cam"/></svg></i>Фото</button>
+        <button><i><svg class="ico"><use href="#i-clip"/></svg></i>Файл</button>
+        <button data-go="chat"><i><svg class="ico"><use href="#i-edit"/></svg></i>Текстом</button>
+      </div>
+      <div class="est card" data-est>
+        <div class="row"><i class="pa" data-s="42" data-o="glasses"></i><b class="grow" style="font-size:17px">Понял, сделаю так</b></div>
+        <div class="r3"><div><b>завтра, 14:00</b><span>будет готово</span></div><div><b>15% сил</b><span>одного дня</span></div><div><b>1 вопрос</b><span>про цены в меню</span></div></div>
+        <button class="btn hot" style="margin-top:14px" data-act="assign">Поручить</button>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template id="s-question" data-title="Решение" data-sheet data-cap="Решение целым листом: само письмо, кому и почему Паша спрашивает. Внизу две кнопки и что будет, если промолчать." data-src="instacart,remote,revolut">
+  <div class="sb"></div>
+  <div class="sheet">
+    <div class="grab"></div>
+    <div class="body nodock" style="padding-bottom:180px">
+      <div class="nav"><i class="pa" data-s="40" data-o="headset"></i><div class="grow"><b style="font-size:16px">Паша спрашивает</b><div class="xs dim">5 минут назад</div></div><button class="round" data-back aria-label="Закрыть"><svg class="ico s"><use href="#i-x"/></svg></button></div>
+      <h1 class="h1 m" style="margin:6px 0 18px">Отправить Анатолию ссылку на тестовый сайт?</h1>
+      <div class="msgprev">
+        <div class="hd"><span class="ava" style="background:#FFE3A3;color:#6b4a00">АК</span><div class="grow"><b style="font-size:16px">Анатолий</b><div class="xs dim">«Виком», в Telegram</div></div><svg class="ico" style="color:#2AABEE"><use href="#i-tg"/></svg></div>
+        <div class="tx">Анатолий, добрый день! Тестовый сайт готов: <b>vikom.autopasha.ru</b>. Вход в админку пришлю следующим сообщением.<br><br>Посмотрите, пожалуйста, главную и каталог: 28 страниц из 33 уже на месте, остальные доделаю до завтра.</div>
+      </div>
+      <div class="why"><svg class="ico s"><use href="#i-info"/></svg><span>Спрашиваю, потому что пишу Анатолию впервые. Разрешите, и дальше буду отвечать ему сам.</span></div>
+    </div>
+    <div class="bottom">
+      <div class="btns"><button class="btn soft" data-go="chat"><svg class="ico s"><use href="#i-edit"/></svg>Поправить</button><button class="btn hot" data-act="answer-back" data-toast="Отправил Анатолию">Отправить</button></div>
+      <p class="if">Если промолчите, отправлю сам в 12:00</p>
+    </div>
+  </div>
+</template>
+
+<template id="s-deals" data-title="Дела" data-cap="Все дела одним списком в три группы: ждут вас, в работе, готово. У каждого видно, когда будет и сколько пройдено." data-src="asana,walmart,boltfood">
+  <div class="sb"></div>
+  <div class="body">
+    <div class="nav"><h1 class="h1 grow">Дела</h1><button class="round" aria-label="Найти"><svg class="ico s"><use href="#i-search"/></svg></button></div>
+    <div class="h2" style="margin-top:6px">Ждут вас <span class="c">2</span></div>
+    <div class="group">
+      <div class="li" data-go="question"><span class="tile c-sky"><svg class="ico"><use href="#i-tg"/></svg></span><div class="grow"><b class="ell">Ссылка Анатолию</b><div class="sub">отправить тестовый сайт?</div></div><span class="ask-dot"></span></div>
+      <div class="li" data-go="home"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><div class="grow"><b class="ell">Тема ролика на завтра</b><div class="sub">выбрать из двух</div></div><span class="ask-dot"></span></div>
+    </div>
+    <div class="h2">В работе <span class="c">3</span></div>
+    <div class="group">
+      <div class="li" data-go="deal"><span class="tile c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><div class="grow"><b class="ell">Сайт для «Виком»</b><div class="track mini"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i></div></div><div class="r">завтра<br>10:00</div></div>
+      <div class="li" data-go="deal"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><div class="grow"><b class="ell">Ролик, день 9</b><div class="track mini"><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i><i></i></div></div><div class="r">сегодня<br>19:00</div></div>
+      <div class="li" data-go="deal"><span class="tile c-sun"><svg class="ico"><use href="#i-mail"/></svg></span><div class="grow"><b class="ell">Письма гостиницам</b><div class="track mini"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i></div></div><div class="r">в среду</div></div>
+    </div>
+    <div class="h2">Готово за неделю <span class="c">41</span></div>
+    <div class="group">
+      <div class="li" data-go="result"><span class="tile c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><div class="grow"><b class="ell">Главная «Виком» на телефоне</b><div class="sub">сегодня, принято вами</div></div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span></div>
+      <div class="li"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><div class="grow"><b class="ell">Ролик, день 8</b><div class="sub">сегодня, 1 240 просмотров</div></div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span></div>
+      <div class="li"><span class="tile c-mint"><svg class="ico"><use href="#i-mail"/></svg></span><div class="grow"><b class="ell">Ответил трём лидам</b><div class="sub">вчера, один просит созвон</div></div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span></div>
+      <div class="li"><span class="tile c-sky"><svg class="ico"><use href="#i-spark"/></svg></span><div class="grow"><b class="ell">Починил кнопку в кабинете</b><div class="sub">вчера, заметил Павел Ступин</div></div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span></div>
+    </div>
+  </div>
+  <div class="dock" data-dock="deals"></div>
+</template>
+
+<template id="s-deal" data-title="Дело" data-cap="Дело как заказ в доставке: крупно когда будет, шаги, что Паша делает прямо сейчас. Разговор про это дело тут же." data-src="boltfood,grab,ikea">
+  <div class="sb"></div>
+  <div class="body nodock" style="padding-bottom:120px">
+    <div class="nav"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="grow"></span><button class="round" aria-label="Ещё"><svg class="ico s"><use href="#i-dots"/></svg></button></div>
+    <div class="row"><span class="tile l c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><h1 class="h1 m grow">Сайт для «Виком»</h1></div>
+    <p class="eta-k">Будет готово</p>
+    <p class="eta">завтра в 10:00</p>
+    <div class="track" style="margin-top:18px;margin-bottom:8px"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i></div>
+    <div class="steps-l"><span class="ok">Принял</span><span class="ok">Разобрался</span><span class="ok">Собрал</span><span class="go">Доделываю</span><span>Покажу</span></div>
+    <div class="nowcard"><span class="pulse"></span><div><b>Сейчас переношу раздел «Доставка»</b><div class="sm dim" style="margin-top:2px">28 страниц из 33 уже на месте. Ещё около трёх часов.</div></div></div>
+    <div class="h2">Разговор по делу</div>
+    <div class="thread">
+      <span class="day">Вчера</span>
+      <div class="bub me">Цены в каталоге бери с их прайса, не со старого сайта<span class="t">18:02</span></div>
+      <div class="bub p">Понял, взял прайс от 10 ноября. 41 товар, все цены сошлись.<span class="t">18:05</span></div>
+      <span class="day">Сегодня</span>
+      <div class="bub p">Главная на телефоне готова, глянете? Остальное покажу Анатолию завтра.<span class="t">09:30</span></div>
+    </div>
+  </div>
+  <div class="composer"><div class="field"><span>Написать про это дело</span><svg class="ico s"><use href="#i-clip"/></svg></div><button class="mic" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div>
+</template>
+
+<template id="s-result" data-title="Результат" data-cap="Готовое показывает себя: картинка, три цифры и что сделано простыми словами. Две кнопки: «Принять» или «Доработать»." data-src="fabric,walmart">
+  <div class="sb" style="position:absolute;left:0;right:0;z-index:6;color:#3a1505"></div>
+  <div class="body nodock" style="padding-top:0;padding-bottom:150px">
+    <div class="res">
+      <div class="nav" style="top:56px"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="grow"></span><button class="round" aria-label="Поделиться"><svg class="ico s"><use href="#i-link"/></svg></button></div>
+      <div class="lap"><i style="position:absolute;inset:0 0 70%;background:#1d3b5a"></i><i style="position:absolute;left:8%;top:40%;width:60%;height:12%;background:#1a1a1a;border-radius:3px"></i><i style="position:absolute;left:8%;top:60%;width:40%;height:10%;background:#FF6A2B;border-radius:3px"></i></div>
+      <div class="ph" style="top:100px"><div class="in">
+        <div style="height:36%;background:linear-gradient(160deg,#1d3b5a,#2c5c8a);padding:30px 12px 12px;color:#fff"><div style="font-weight:800;font-size:10px;letter-spacing:.08em">ВИКОМ</div><div style="font-weight:800;font-size:16px;line-height:1.12;margin-top:14px;letter-spacing:-.02em">Окна и двери<br>под ключ</div><div style="margin-top:8px;width:72px;height:20px;border-radius:999px;background:#FF6A2B"></div></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:8px"><i style="height:66px;border-radius:9px;background:#ECE6DD"></i><i style="height:66px;border-radius:9px;background:#E3DBCF"></i><i style="height:66px;border-radius:9px;background:#E3DBCF"></i><i style="height:66px;border-radius:9px;background:#ECE6DD"></i></div>
+      </div></div>
+    </div>
+    <div style="margin-top:22px"><span class="pill-ok"><svg class="ico xs" style="stroke-width:3"><use href="#i-check"/></svg>Готово</span></div>
+    <h1 class="h1 m" style="margin-top:12px">Тестовый сайт «Виком» готов</h1>
+    <div class="stats"><div><b>33</b><span>страницы</span></div><div><b>41</b><span>товар с ценами</span></div><div><b>2</b><span>дня работы</span></div></div>
+    <div class="h2">Что сделал</div>
+    <div class="did">
+      <div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span>Перенёс каталог: 41 товар с ценами и фото</div>
+      <div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span>Сделал админку, Анатолий сам меняет цены</div>
+      <div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span>Проверил на телефоне и ноутбуке</div>
+    </div>
+    <button class="btn soft" style="margin-top:22px"><svg class="ico s"><use href="#i-globe"/></svg>Открыть сайт</button>
+  </div>
+  <div class="bottom"><div class="btns"><button class="btn soft" data-go="chat">Доработать</button><button class="btn green" data-act="accept">Принять</button></div></div>
+</template>
+
+<template id="s-chat" data-title="Разговор" data-cap="Разговор с Пашей как в мессенджере. Вопросы приходят карточкой с кнопками, отвечать можно прямо в ленте. Открывается из «+» и с главной." data-src="perplexity,chatgpt,bevel">
+  <div class="sb"></div>
+  <div class="body nodock" style="padding-bottom:120px">
+    <div class="nav"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><i class="pa" data-s="40" data-o="headset"></i><div class="grow"><b style="font-size:16px">Паша</b><div class="live" style="font-size:12.5px">делает сайт «Виком»</div></div></div>
+    <div class="thread" style="padding-top:6px">
+      <span class="day">Сегодня</span>
+      <div class="bub me">Паша, как там сайт для Виком?<span class="t">09:12</span></div>
+      <div class="bub p">Почти всё: 28 страниц из 33. Осталась доставка и пара статей. Завтра в 10 покажу Анатолию.<span class="t">09:12</span></div>
+      <div class="inline-q" data-go="deal" style="cursor:pointer"><div class="q"><div class="row"><span class="tile c-peach" style="width:38px;height:38px;border-radius:12px"><svg class="ico s"><use href="#i-globe"/></svg></span><div class="grow"><b style="font-size:15.5px">Сайт для «Виком»</b><div class="xs dim">шаг 4 из 5, завтра в 10:00</div></div></div><div class="track mini" style="margin-top:12px"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i></div></div></div>
+      <div class="bub me"><div class="row" style="gap:10px"><svg class="ico s"><use href="#i-mic"/></svg><span data-wave style="display:flex;gap:2.5px;align-items:center;height:24px"></span><span class="xs">0:14</span></div><span class="t">09:40</span></div>
+      <div class="bub p">Понял: гостиницам пишу только в Москве и Петербурге. Список стал 40 вместо 62.<span class="t">09:41</span></div>
+      <div class="inline-q"><div class="q"><small>НУЖНО РЕШЕНИЕ</small>Отправить Анатолию ссылку на тестовый сайт?</div><div class="b2"><button data-go="question">Показать</button><button data-act="toast" data-toast="Отправил Анатолию">Отправить</button></div></div>
+    </div>
+  </div>
+  <div class="composer"><div class="field"><span>Написать Паше</span><svg class="ico s"><use href="#i-clip"/></svg></div><button class="mic" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div>
+</template>
+
+<template id="s-pasha" data-title="Паша" data-aura data-cap="Всё о сотруднике на одном экране: силы, где работает, команда, оплата. Сверху он сам, наряд меняется одним касанием." data-src="manus,fabric,brainly">
+  <div class="sb"></div>
+  <div class="body">
+    <div class="pa-hero">
+      <i class="pa" data-s="140" data-o="headset" data-me></i>
+      <h1 class="h1" style="margin-top:4px">Паша</h1>
+      <p class="dim sm">ваш сотрудник, 23 дня с вами</p>
+      <div class="outfits" data-outfits></div>
+    </div>
+    <div class="card energy" data-go="power" style="margin-top:20px;cursor:pointer">
+      <div class="row"><svg class="ico" style="color:var(--green)"><use href="#i-bolt"/></svg><b class="grow">Силы на сегодня</b><b style="font-size:22px;letter-spacing:-.03em">64%</b></div>
+      <div class="bar"><i></i></div>
+      <div class="sm dim">Хватит примерно до 16:30, обновятся в 19:00</div>
+    </div>
+    <div class="set">
+      <div class="si" data-go="where"><span class="ib c-tg"><svg class="ico s"><use href="#i-tg"/></svg></span><b>Где работает</b><span class="v">4 чата, почта</span><svg class="ico s chev"><use href="#i-chev"/></svg></div>
+      <div class="si"><span class="ib" style="background:#FF6F9C"><svg class="ico s"><use href="#i-users"/></svg></span><b>Команда</b><span class="v">2 человека</span><svg class="ico s chev"><use href="#i-chev"/></svg></div>
+      <div class="si"><span class="ib" style="background:#8E6BFF"><svg class="ico s"><use href="#i-shield"/></svg></span><b>Что можно без вас</b><svg class="ico s chev"><use href="#i-chev"/></svg></div>
+      <div class="si"><span class="ib" style="background:#3B8BFF"><svg class="ico s"><use href="#i-brain"/></svg></span><b>Что Паша знает о вас</b><svg class="ico s chev"><use href="#i-chev"/></svg></div>
+    </div>
+    <div class="set">
+      <div class="si" data-go="pay"><span class="ib" style="background:#22B864"><svg class="ico s"><use href="#i-card"/></svg></span><b>Оплата</b><span class="v">3 120 ₽</span><svg class="ico s chev"><use href="#i-chev"/></svg></div>
+      <div class="si"><span class="ib" style="background:#FFA41B"><svg class="ico s"><use href="#i-bell"/></svg></span><b>Уведомления</b><span class="v">только важное</span><svg class="ico s chev"><use href="#i-chev"/></svg></div>
+      <div class="si" data-act="theme"><span class="ib" style="background:#2C2C2E"><svg class="ico s"><use href="#i-moon"/></svg></span><b>Тема</b><span class="v" data-themename>светлая</span><svg class="ico s chev"><use href="#i-chev"/></svg></div>
+      <div class="si" data-go="chat"><span class="ib" style="background:#14B8A6"><svg class="ico s"><use href="#i-help"/></svg></span><b>Помощь</b><span class="v">живой человек</span><svg class="ico s chev"><use href="#i-chev"/></svg></div>
+    </div>
+    <button class="btn ghost" style="margin-top:8px;color:#E5484D">Выйти</button>
+  </div>
+  <div class="dock" data-dock="pasha"></div>
+</template>
+
+<template id="s-where" data-title="Где работает" data-cap="Блок, который понравился Ступину, стал главным: откуда Паша слышит и кому отвечает. Под ним у каждого чата три режима картинками." data-src="manus,shop">
+  <div class="sb"></div>
+  <div class="body nodock">
+    <div class="nav"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button></div>
+    <h1 class="h1">Где работает</h1>
+    <p class="dim" style="margin:6px 0 18px">Паша читает и пишет там, где вы его подключили</p>
+    <div class="wmap">
+      <svg class="wires" viewBox="0 0 350 226" preserveAspectRatio="none"><path class="h" d="M112 50 C150 50 140 113 175 113"/><path class="h" d="M112 113 L175 113"/><path d="M112 176 C150 176 140 113 175 113"/><path class="h" d="M175 113 C212 113 205 66 240 66"/><path class="h" d="M175 113 C212 113 205 160 240 160"/></svg>
+      <div class="node" style="left:12px;top:30px"><span class="lg c-tg"><svg class="ico s"><use href="#i-tg"/></svg></span><span>Telegram<small>4 чата</small></span></div>
+      <div class="node" style="left:12px;top:93px"><span class="lg c-mail"><svg class="ico s"><use href="#i-mail"/></svg></span><span>Почта<small>1 ящик</small></span></div>
+      <div class="node add" style="left:12px;top:156px" data-go="connect"><span class="lg" style="background:var(--card-2)"><svg class="ico s"><use href="#i-plus"/></svg></span><span>Добавить</span></div>
+      <div class="center"><i class="pa" data-s="66" data-o="headset"></i></div>
+      <div class="node" style="right:12px;top:46px"><span class="ava" style="background:var(--peach);color:var(--peach-i);width:32px;height:32px;font-size:11.5px">ПБ</span><span>Павел<small>ставит задачи</small></span></div>
+      <div class="node" style="right:12px;top:140px"><span class="ava" style="background:var(--rose);color:var(--rose-i);width:32px;height:32px;font-size:11.5px">ПС</span><span>Павел С.<small>ставит задачи</small></span></div>
+    </div>
+    <div class="h2">Как Паша ведёт себя в чатах</div>
+    <div class="group">
+      <div class="chatset"><div class="row"><span class="tile c-tg" style="width:38px;height:38px;border-radius:12px"><svg class="ico s"><use href="#i-tg"/></svg></span><div class="grow"><b>Павел и Паша</b><div class="xs dim">личный чат</div></div></div>
+        <div class="seg3" data-seg3><span class="lens"></span><button class="on"><svg class="ico"><use href="#i-self"/></svg>Отвечает сам</button><button><svg class="ico"><use href="#i-ask"/></svg>Спросит вас</button><button><svg class="ico"><use href="#i-eye"/></svg>Только читает</button></div></div>
+      <div class="chatset"><div class="row"><span class="tile c-tg" style="width:38px;height:38px;border-radius:12px"><svg class="ico s"><use href="#i-users"/></svg></span><div class="grow"><b>Отдел продаж</b><div class="xs dim">группа, 6 человек</div></div></div>
+        <div class="seg3" data-seg3><span class="lens"></span><button><svg class="ico"><use href="#i-self"/></svg>Отвечает сам</button><button class="on"><svg class="ico"><use href="#i-ask"/></svg>Спросит вас</button><button><svg class="ico"><use href="#i-eye"/></svg>Только читает</button></div></div>
+      <div class="chatset"><div class="row"><span class="tile c-mail" style="width:38px;height:38px;border-radius:12px"><svg class="ico s"><use href="#i-mail"/></svg></span><div class="grow"><b>pavel@autopasha.ru</b><div class="xs dim">почта</div></div></div>
+        <div class="seg3" data-seg3><span class="lens"></span><button><svg class="ico"><use href="#i-self"/></svg>Отвечает сам</button><button class="on"><svg class="ico"><use href="#i-ask"/></svg>Спросит вас</button><button><svg class="ico"><use href="#i-eye"/></svg>Только читает</button></div></div>
+    </div>
+    <div class="why"><svg class="ico s"><use href="#i-info"/></svg><span>В новом чате Паша сначала спросит вас, как в нём себя вести.</span></div>
+    <button class="btn hot" style="margin-top:18px" data-go="connect"><svg class="ico s"><use href="#i-plus"/></svg>Подключить мессенджер</button>
+  </div>
+</template>
+
+<template id="s-connect" data-title="Подключить Telegram" data-cap="Два способа вместо четырёх, понятный первым. Плюсы и риски словами, дальше три шага с кнопкой «Открыть». Не вышло, Паша скажет почему." data-src="shop,manus,x">
+  <div class="sb"></div>
+  <div class="body nodock" style="padding-bottom:130px">
+    <div class="nav"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="grow"></span><span class="sm dim" style="font-weight:650">шаг 1 из 3</span></div>
+    <div class="prog"><i class="ok"></i><i></i><i></i></div>
+    <span class="tile l c-tg" style="border-radius:50%"><svg class="ico"><use href="#i-tg"/></svg></span>
+    <h1 class="h1 m" style="margin:16px 0 18px">Как Паше быть в Telegram?</h1>
+    <div class="ways" data-ways>
+      <button class="way on"><span class="rad"></span><div><b style="font-size:17px">Отдельным ботом</b><span class="badge-s">проще всего</span><div class="dim sm" style="margin-top:4px">Бот с вашим названием и фото. 3 минуты.</div><div class="pros"><span>ваш аккаунт в безопасности</span><span>люди видят, что пишет помощник</span></div></div></button>
+      <button class="way"><span class="rad"></span><div><b style="font-size:17px">От вашего имени</b><div class="dim sm" style="margin-top:4px">Паша пишет с вашего аккаунта, как вы сами. 5 минут.</div><div class="pros"><span>люди не заметят разницы</span><span class="no">Telegram не любит частые сообщения, Паша держит меру и покажет её вам</span></div></div></button>
+    </div>
+    <div class="h2">Что сделать</div>
+    <div class="stepper">
+      <div class="s"><span class="n">1</span><div class="grow">Откройте <b>@BotFather</b></div><button class="btn hot">Открыть</button></div>
+      <div class="s"><span class="n">2</span><div class="grow">Нажмите «Создать бота» и придумайте имя</div></div>
+      <div class="s"><span class="n">3</span><div class="grow">Скопируйте ключ и вставьте сюда</div><button class="btn soft">Вставить</button></div>
+    </div>
+    <p class="dim xs" style="margin-top:16px;text-align:center">Ещё два способа для особых случаев: <u>показать</u></p>
+  </div>
+  <div class="bottom"><button class="btn ink" data-act="toast" data-toast="Проверяю бота">Дальше</button></div>
+</template>
+
+<template id="s-power" data-title="Силы Паши" data-cap="Ответ на просьбу Ступина: сколько сил осталось, до скольки хватит, когда обновятся и куда ушли. И предупреждение, если подписка общая с вами." data-src="vivid,revolut,ahead,manus">
+  <div class="sb"></div>
+  <div class="body nodock">
+    <div class="nav"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button></div>
+    <h1 class="h1">Силы Паши</h1>
+    <p class="dim" style="margin-top:6px">Сколько он ещё успеет сегодня</p>
+    <div class="gauge">
+      <svg width="250" height="250" viewBox="0 0 250 250"><defs><linearGradient id="g1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2FCB7F"/><stop offset="1" stop-color="#A6E86A"/></linearGradient></defs><circle cx="125" cy="125" r="104" fill="none" stroke="var(--card-2)" stroke-width="22" stroke-dasharray="490 654" transform="rotate(135 125 125)" stroke-linecap="round"/><circle cx="125" cy="125" r="104" fill="none" stroke="url(#g1)" stroke-width="22" stroke-dasharray="314 654" transform="rotate(135 125 125)" stroke-linecap="round" data-arc/></svg>
+      <div class="mid"><b>64%</b><span>осталось</span></div>
+    </div>
+    <div class="two"><div><b>до 16:30</b><span>хватит примерно</span></div><div><b>в 19:00</b><span>силы обновятся</span></div></div>
+    <div class="warn"><svg class="ico"><use href="#i-info"/></svg><div><b>Вы тоже пользуетесь этой подпиской?</b><br><span class="dim">Каждый ваш разговор с Claude берёт из того же запаса. Сидите в нём с утра, Паша устанет раньше.</span></div></div>
+    <div class="h2">Куда ушли сегодня</div>
+    <div class="group spent">
+      <div class="li"><span class="tile c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><div class="grow"><b>Сайт для «Виком»</b><span class="bar"><i style="width:62%;background:var(--peach-i)"></i></span></div><b>22%</b></div>
+      <div class="li"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><div class="grow"><b>Ролик, день 9</b><span class="bar"><i style="width:26%;background:var(--lilac-i)"></i></span></div><b>9%</b></div>
+      <div class="li"><span class="tile c-sun"><svg class="ico"><use href="#i-mail"/></svg></span><div class="grow"><b>Письма гостиницам</b><span class="bar"><i style="width:14%;background:var(--sun-i)"></i></span></div><b>5%</b></div>
+    </div>
+    <div class="h2">Неделя</div>
+    <div class="card">
+      <div class="week"><div><i class="full" style="--h:100%"></i><span>пн</span></div><div><i style="--h:86%"></i><span>вт</span></div><div><i class="full" style="--h:100%"></i><span>ср</span></div><div><i style="--h:72%"></i><span>чт</span></div><div><i class="full" style="--h:100%"></i><span>пт</span></div><div><i style="--h:44%"></i><span>сб</span></div><div><i style="--h:36%"></i><span style="color:var(--hot)">сег</span></div></div>
+      <p class="dim sm" style="margin-top:14px">Три дня из семи силы кончались к 15:40. С подпиской Max хватало бы на весь день.</p>
+    </div>
+    <div class="set">
+      <div class="si"><span class="ib" style="background:#D97757"><svg class="ico s"><use href="#i-key"/></svg></span><b class="ell" style="font-size:15.5px">maketo.dialogo@gmail.com</b><span class="v">Pro</span></div>
+      <div class="si"><span class="ib" style="background:var(--card-2);color:var(--ink)"><svg class="ico s"><use href="#i-link"/></svg></span><b>Подключить другую подписку</b><svg class="ico s chev"><use href="#i-chev"/></svg></div>
+    </div>
+  </div>
+</template>
+
+<template id="s-pay" data-title="Оплата" data-cap="Сколько на счёте, на сколько хватит и за что списано: по делам, а не строчками выписки." data-src="vivid,fabric,rocketmoney">
+  <div class="sb"></div>
+  <div class="body nodock">
+    <div class="nav"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button></div>
+    <h1 class="h1" style="margin-bottom:18px">Оплата</h1>
+    <div class="wallet">
+      <span class="sm" style="opacity:.85;font-weight:650">На счёте</span>
+      <i class="pa" data-s="104" data-o="bow"></i>
+      <div class="big">3 120 ₽</div>
+      <span class="sm" style="opacity:.92;margin-top:6px">хватит примерно на 5 дней работы</span>
+    </div>
+    <div class="btns" style="grid-template-columns:1fr 1fr;margin-top:14px"><button class="btn ink">Пополнить</button><button class="btn soft">Автоплатёж</button></div>
+    <div class="set">
+      <div class="si"><span class="ib c-peach"><i class="pa" data-s="26"></i></span><b>Место Паши</b><span class="v">2 000 ₽ в месяц</span></div>
+    </div>
+    <div class="h2">За что списано</div>
+    <div class="group">
+      <div class="li"><span class="tile c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><div class="grow"><b>Сайт для «Виком»</b><div class="sub">3 дня работы</div></div><b>−1 840 ₽</b></div>
+      <div class="li"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><div class="grow"><b>Ролики, дни 7–9</b><div class="sub">3 ролика</div></div><b>−960 ₽</b></div>
+      <div class="li"><span class="tile c-mint"><svg class="ico"><use href="#i-card"/></svg></span><div class="grow"><b>Пополнение</b><div class="sub">карта •• 4417, 12 ноября</div></div><b style="color:var(--green)">+4 000 ₽</b></div>
+    </div>
+    <div class="set">
+      <div class="si"><span class="ib" style="background:var(--card-2);color:var(--ink)"><svg class="ico s"><use href="#i-book"/></svg></span><b>Чеки и документы</b><svg class="ico s chev"><use href="#i-chev"/></svg></div>
+    </div>
+  </div>
+</template>
+
+<template id="s-hello" data-title="Первый запуск" data-aura data-cap="Знакомство за три шага. Вместо пустого кабинета Паша и короткий список, что сделать, чтобы он заработал." data-src="bevel,future">
+  <div class="sb"></div>
+  <div class="first">
+    <div style="flex:1;display:grid;place-items:center"><i class="pa" data-s="170" data-o="none"></i></div>
+    <h1 class="h1">Привет! Я Паша, ваш сотрудник</h1>
+    <p class="dim" style="margin-top:12px;text-align:center">Делаю сайты, пишу письма, отвечаю клиентам. Три шага, и я в деле.</p>
+    <div class="check3">
+      <div class="c"><span class="n c-peach">1</span><div class="grow"><b>Расскажите о компании</b><div class="xs dim">2 минуты, можно голосом</div></div><svg class="ico s dim2"><use href="#i-chev"/></svg></div>
+      <div class="c" data-go="connect"><span class="n c-sky">2</span><div class="grow"><b>Подключите мессенджер</b><div class="xs dim">Telegram или почта, 3 минуты</div></div><svg class="ico s dim2"><use href="#i-chev"/></svg></div>
+      <div class="c" data-go="ask"><span class="n c-mint">3</span><div class="grow"><b>Дайте первое дело</b><div class="xs dim">любое, я скажу срок</div></div><svg class="ico s dim2"><use href="#i-chev"/></svg></div>
+    </div>
+    <button class="btn hot" style="margin-top:16px" data-go="home">Начать</button>
+  </div>
+</template>
+
+<script src="app.js"></script>
+<script src="/ap/badge.js" defer data-ap="ap-prilozhenie"></script>
+</body>
+</html>
