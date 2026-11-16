@@ -307,6 +307,13 @@
     }
   });
 
+  /* Esc закрывает прототип: иначе страница под ним остаётся запертой (overflow:hidden у .solo) */
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || !document.body.classList.contains('solo')) return;
+    if ($('#stage .sheet') && hist.length > 1) return back();
+    close();
+  });
+
   const start = location.hash.slice(1);
   /* без адреса экрана и на телефоне сначала страница с ответами, прототип — по кнопке */
   if (ALL.includes(start)) open(start);

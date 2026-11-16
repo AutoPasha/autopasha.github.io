@@ -621,3 +621,7 @@ svg{display:block}
 .bub.wait{opacity:1}
 .bub .st{opacity:1}
 .scr[data-id="push"]{background:#2a1b14}
+/* превью в галерее и на ноутбуке — картинки: колесо листает страницу, а не ленту внутри телефона */
+.page .frame .body,.page .frame .sh-b,.desk .body{overflow:hidden;overscroll-behavior:auto}
+/* вкладки ловят нажатия только самими пунктами: лента, обрезанная краем прокрутки над ними, не считается закрытой */
+.tabs,.tabs nav,.tabs .lens{pointer-events:none}.tab{pointer-events:auto}
