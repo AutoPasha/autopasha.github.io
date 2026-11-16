@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#F6F4F1">
-<title>АвтоПаша: приложение. Макет</title>
+<title>АвтоПаша: приложение. Макет, версия 3</title>
 <link rel="preload" href="fonts/Onest-cyr.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="app.css">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://design.autopasha.ru/ap-prilozhenie/">
-<meta property="og:title" content="АвтоПаша: приложение. Макет">
+<meta property="og:title" content="АвтоПаша: приложение. Макет, версия 3">
 <meta property="og:image" content="https://design.autopasha.ru/ap-prilozhenie/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -59,437 +59,935 @@
   <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="3"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2"/></symbol>
   <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="2"/><rect x="13.5" y="3.5" width="7" height="7" rx="2"/><rect x="3.5" y="13.5" width="7" height="7" rx="2"/><rect x="13.5" y="13.5" width="7" height="7" rx="2"/></symbol>
   <symbol id="i-dots" viewBox="0 0 24 24"><path d="M5 12h.1M12 12h.1M19 12h.1" stroke-width="3.2"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24"><path d="M3 12h4l2.5-6 5 12 2.5-6h4"/></symbol>
+  <symbol id="i-alarm" viewBox="0 0 24 24"><circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 2M4.5 4.5 2.5 6.5M19.5 4.5l2 2"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="m6 14 6-6 6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 10 6 6 6-6"/></symbol>
+  <symbol id="i-top" viewBox="0 0 24 24"><path d="M5 4.5h14M12 20V9M7 13.5 12 8.5l5 5"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l1 13h9l1-13"/></symbol>
+  <symbol id="i-wifioff" viewBox="0 0 24 24"><path d="M3 3l18 18M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 4-2.3M19 13a10 10 0 0 0-3-2M2 9.5a15 15 0 0 1 5-3M22 9.5A15 15 0 0 0 11 5.1"/><circle cx="12" cy="20" r=".8" fill="currentColor"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v4.5h-4.5"/></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5M12 17.3v.2"/></symbol>
+  <symbol id="i-photo" viewBox="0 0 24 24"><rect x="3" y="4.5" width="18" height="15" rx="3"/><circle cx="9" cy="10" r="2"/><path d="m21 16-5-5-9 8.5"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3.5" y="8.5" width="17" height="4" rx="1"/><path d="M5 12.5V20h14v-7.5M12 8.5V20M12 8.5C10 4 6.5 5 7.5 7.2 8.2 8.5 12 8.5 12 8.5zM12 8.5c2-4.5 5.5-3.5 4.5-1.3-.7 1.3-4.5 1.3-4.5 1.3z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M3.5 12a8.5 8.5 0 1 0 2.5-6L3.5 8.5"/><path d="M3.5 4v4.5H8M12 8v4.5l3 1.8"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11M11 10V4a1.5 1.5 0 0 1 3 0v6M14 10V5.5a1.5 1.5 0 0 1 3 0V14a7 7 0 0 1-7 7 6.5 6.5 0 0 1-5.6-3.2L2.8 15a1.5 1.5 0 0 1 2.4-1.8L8 16"/></symbol>
 </svg>
 
 <div class="page">
   <div class="top">
-    <div class="brand"><i class="pa" data-s="34"></i>АвтоПаша</div>
+    <div class="brand"><i class="pa" data-s="34" data-o="headset"></i>АвтоПаша<span class="v">макет, версия 3</span></div>
     <div class="top-act">
       <button class="chip-btn" data-act="theme"><svg class="ico s"><use href="#i-moon"/></svg><span data-themebtn>тёмная</span></button>
+      <button class="chip-btn" data-open="chat"><svg class="ico s"><use href="#i-play"/></svg>Открыть приложение</button>
     </div>
   </div>
 
   <section class="hero">
-    <div class="k">Приложение АвтоПаши</div>
-    <h1>Ваш сотрудник.<br>В кармане.</h1>
-    <p class="lead">Открыли и сразу видно: что Паша делает, когда закончит и нужно ли от вас решение. Ответить можно одним касанием, поручить голосом.</p>
-    <div class="cta"><button class="big" data-open="home">Попробовать <svg class="ico s"><use href="#i-chev"/></svg></button><a class="soft" href="#ekrany">Все экраны</a></div>
+    <div class="k">Приложение АвтоПаши · после вашего голосового</div>
+    <h1>Открыли и вы <em>в разговоре</em> с Пашей</h1>
+    <p class="lead">Чат первым экраном, сессии своей вкладкой: что идёт, что в очереди, к чему Паша вернётся сам и что уже было. В живую сессию можно дописать и смотреть, как он это подхватывает.</p>
+    <div class="cta">
+      <button class="big" data-open="chat"><svg class="ico"><use href="#i-play"/></svg>Попробовать</button>
+      <a class="soft" href="#gde"><svg class="ico"><use href="#i-grid"/></svg>Где теперь что</a>
+    </div>
   </section>
   <div class="showcase" id="showcase"></div>
 
-  <div class="nums">
-    <div class="num"><b>3</b><span>вкладки вместо 13 пунктов меню</span></div>
-    <div class="num"><b>1</b><span>решение на экране за раз</span></div>
-    <div class="num"><b>0</b><span>внутренних слов: ни сессий, ни выкатов</span></div>
-  </div>
-
-  <div class="sec-h"><h2>Три правила</h2><p>По ним проверял каждый экран.</p></div>
-  <div class="rules">
-    <div class="rule"><span class="n">01</span><h3>Одна мысль на экран</h3><p>Главная отвечает «что сейчас и нужен ли я». Дело отвечает «когда будет». Паша отвечает «где работает и сколько сил». Остальное спрятано на шаг глубже.</p></div>
-    <div class="rule"><span class="n">02</span><h3>Всё важное под большим пальцем</h3><p>Кнопки решений, вкладки и «поручить» живут внизу экрана. Сверху только то, что читают.</p></div>
-    <div class="rule"><span class="n">03</span><h3>Слова человека</h3><p>Паша «спрашивает вас», «отвечает сам», «только читает». Под каждой кнопкой написано, что будет после нажатия.</p></div>
-  </div>
-
-  <div class="sec-h" id="ekrany"><h2>Экраны</h2><p>Нажмите на любой телефон, и он оживёт: вопросы отвечаются, Паша слушает голос, вкладки переключаются. С телефона прототип открывается сразу во весь экран.</p></div>
-  <div class="gallery" id="gallery"></div>
-
-  <div class="sec-h"><h2>Что сейчас не так</h2><p>Прошёл все 44 адреса нынешнего кабинета на телефоне под владельцем и под наблюдателем. Слева первые экраны всех разделов.</p></div>
-  <div class="audit">
-    <a href="sejchas.jpg" target="_blank" class="audit-img"><img src="sejchas.jpg" alt="Первые экраны всех разделов нынешнего кабинета на телефоне" loading="lazy"></a>
-    <div class="col">
-      <div class="fb-c"><p>Один и тот же вопрос живёт в пяти местах: на главной, в чате, в делах, в очереди и на доске. Пять разных карточек.</p></div>
-      <div class="fb-c"><p>22 разных экрана и ещё 13 адресов, которые молча перекидывают на них. «Свой claude» ведёт в профиль, «команда» и «чаты» в рабочее место.</p></div>
-      <div class="fb-c"><p>Внутренняя кухня наружу: «сессии», «заходы», «сорвались», PR, «выкат», «полномочия», «границы».</p></div>
-      <div class="fb-c"><p>Два разных Паши: фиолетовая клякса в профиле и на пустых экранах, персиковый кубик в шапке.</p></div>
-      <div class="fb-c"><p>Плашка аналитики и шапка «ждёт ответа на 7 вопросов» на каждом экране съедают верх и низ, а ответить из шапки нельзя.</p></div>
+  <section class="answers">
+    <div class="ans">
+      <q>Я не знаю, где у меня будут сессии</q>
+      <h3>Сессии — <em>своя вкладка</em>, вторая снизу</h3>
+      <ul>
+        <li><svg class="ico s"><use href="#i-pulse"/></svg><span><b>Сейчас.</b> Каждая живая сессия карточкой: что делает в эту секунду, сколько идёт, откуда взялась. Открыл и смотришь по шагам.</span></li>
+        <li><svg class="ico s"><use href="#i-edit"/></svg><span><b>Дописка.</b> Поле внизу сессии и быстрые фразы. Видно «доставлено», «Паша прочитал», его ответ прямо в ленте шагов. Сессия кончилась раньше — дописка уходит в её дело, а не пропадает.</span></li>
+        <li><svg class="ico s"><use href="#i-list"/></svg><span><b>Очередь.</b> Порядок, «первой», выше-ниже, отложить, убрать, поиск. У каждой строки: откуда пришла и когда примерно начнёт.</span></li>
+        <li><svg class="ico s"><use href="#i-alarm"/></svg><span><b>Будильники.</b> К чему Паша вернётся сам: по часам и по событию («когда Анатолий ответит»). Разбудить сейчас, перенести, снять.</span></li>
+        <li><svg class="ico s"><use href="#i-history"/></svg><span><b>Было.</b> Все сессии по дням с итогом: готово, спросил вас, упёрся, прервалась.</span></li>
+      </ul>
     </div>
-  </div>
+    <div class="ans">
+      <q>Где чат просто с Пашей</q>
+      <h3>Чат — <em>первая вкладка</em>, приложение открывается в нём</h3>
+      <ul>
+        <li><svg class="ico s"><use href="#i-chat"/></svg><span>Один разговор, как с человеком в Телеграме. Пишете, говорите голосом, кидаете фото и файлы.</span></li>
+        <li><svg class="ico s"><use href="#i-pulse"/></svg><span>Сверху строка «Паша работает»: нажали и вы в живой сессии.</span></li>
+        <li><svg class="ico s"><use href="#i-ask"/></svg><span>Вопросы Паши приходят в разговор карточкой с кнопками. Над полем ввода счётчик «ждут вас»: ни один вопрос не уедет вверх незамеченным.</span></li>
+        <li><svg class="ico s"><use href="#i-link"/></svg><span>Сообщение можно привязать к делу. В деле видна только его часть разговора, а общий чат остаётся одним.</span></li>
+        <li><svg class="ico s"><use href="#i-search"/></svg><span>Поиск сразу по чату, делам и сессиям.</span></li>
+      </ul>
+    </div>
+  </section>
 
-  <div class="sec-h"><h2>Куда делись 44 страницы</h2><p>Ничего не потерялось. Нужное слилось в три вкладки и кнопку «+», внутренняя кухня ушла с глаз.</p></div>
-  <div class="map">
-    <div class="map-c"><h4><span class="tile c-peach" style="width:34px;height:34px;border-radius:11px"><svg class="ico s"><use href="#i-home"/></svg></span>Главная</h4><ul><li>сейчас</li><li>ждут вас</li><li>одобрения</li><li>ожидание</li><li>доска</li><li>лента</li><li>переписка</li></ul></div>
-    <div class="map-c"><h4><span class="tile c-sun" style="width:34px;height:34px;border-radius:11px"><svg class="ico s"><use href="#i-list"/></svg></span>Дела</h4><ul><li>дела</li><li>очередь</li><li>планы</li><li>отчёты</li><li>дело</li><li>задача</li><li>поиск</li><li class="gone">для ленты</li></ul></div>
-    <div class="map-c"><h4><span class="tile c-lilac" style="width:34px;height:34px;border-radius:11px"><i class="pa" data-s="24"></i></span>Паша</h4><ul><li>сотрудник</li><li>мой паша</li><li>имя и наряд</li><li>рабочее место</li><li>каналы</li><li>чаты</li><li>команда</li><li>правила</li><li>границы</li><li>что умеет</li><li>что помнит</li><li>проекты</li><li>свой claude</li><li>доступы</li><li>настройки</li><li>оплата</li><li>помощь</li><li>гайд</li><li class="gone">сессии</li><li class="gone">API</li></ul></div>
-    <div class="map-c"><h4><span class="tile" style="width:34px;height:34px;border-radius:50%;background:var(--hot);color:#fff"><svg class="ico s"><use href="#i-plus"/></svg></span>Поручить</h4><ul><li>новая задача</li><li>оценка задачи</li><li>знакомство</li></ul></div>
-  </div>
+  <section id="gde">
+    <div class="sec-h"><div class="k">Четыре вкладки</div><h2>У каждой вкладки свой вопрос</h2><p>Вкладка отвечает на один вопрос, остальное на шаг глубже. Плавающей кнопки больше нет: поручить можно из чата, он всегда рядом.</p></div>
+    <div class="tabs4">
+      <div class="t4"><div class="tile c-peach"><svg class="ico"><use href="#i-chat"/></svg></div><b>Чат</b><div class="q">«Поговорить и решить»</div><p>Разговор с Пашей, голос, файлы, вопросы с кнопками, утренняя сводка, готовые результаты.</p></div>
+      <div class="t4"><div class="tile c-mint"><svg class="ico"><use href="#i-pulse"/></svg></div><b>Сессии</b><div class="q">«Что он делает прямо сейчас»</div><p>Живые сессии с дописками, очередь, будильники, история. Зелёная точка на вкладке — Паша работает.</p></div>
+      <div class="t4"><div class="tile c-lilac"><svg class="ico"><use href="#i-list"/></svg></div><b>Дела</b><div class="q">«Что получится и когда»</div><p>Срок, шаги, результаты, сессии дела и его часть разговора. Принять или доработать.</p></div>
+      <div class="t4"><div class="tile c-sun"><svg class="ico"><use href="#i-bolt"/></svg></div><b>Паша</b><div class="q">«Как он устроен у вас»</div><p>Силы, где работает, команда, что можно без вас, что знает, доступы, оплата, уведомления.</p></div>
+    </div>
+  </section>
 
-  <div class="sec-h"><h2>Словарь</h2><p>Павел Ступин прав: формулировки кабинета понятны нам, а не клиенту. Эти замены идут во все экраны.</p></div>
-  <div class="words" id="words"></div>
+  <div id="chapters"></div>
 
-  <div class="sec-h"><h2>Замечания Павла Ступина</h2><p>Каждое закрыто в макете. Две поломки нынешнего кабинета уже чинятся отдельно.</p></div>
-  <div class="fb">
-    <div class="fb-c"><q>Не работает кнопка на разных страницах</q><p>В приложении одна кнопка «+» внизу, на любом экране одна и та же. В нынешнем кабинете кнопку уже починили.</p></div>
-    <div class="fb-c"><q>Классный только один блок. Обычный клиент тут не разберётся</q><p>Карта «мессенджеры, Паша, люди» осталась главной на экране. Под ней у каждого чата три режима картинками вместо «сам, черновик, молча, нет».</p></div>
-    <div class="fb-c"><q>Не удалось подключить</q><p>Два способа вместо четырёх, понятный первым. Если не вышло, Паша пишет причину словами прямо в шаге, а не зелёное «номер ушёл».</p></div>
-    <div class="fb-c"><q>Вывести оставшиеся лимиты, клиент может запороть свой акк</q><p>Экран «Силы»: сколько осталось, до скольки хватит, когда обновятся и куда ушли. И предупреждение, если подписка общая с вами.</p></div>
-    <div class="fb-c"><q>Очень много непонятных формулировок</q><p>Словарь выше: двадцать замен. Ни одного внутреннего слова на экранах.</p></div>
-  </div>
+  <section class="chapter desk-wrap">
+    <h3>На ноутбуке то же самое</h3>
+    <p>Те же четыре раздела слева. Чат посередине, живая сессия справа: пишете Паше и видите, как он это делает, без переключений.</p>
+    <div class="desk" id="desk"></div>
+  </section>
 
-  <div class="sec-h"><h2>Откуда приёмы</h2><p>Смотрел живые приложения в Mobbin и компоненты 21st. Брал приём, а не вид.</p></div>
-  <div class="refs" id="refs"></div>
+  <section>
+    <div class="sec-h"><div class="k">Ничего не потерялось</div><h2>Все 44 адреса кабинета на своих местах</h2><p>Таблица собирается из файла карты. Сторож в проверках сайта краснеет, если в кабинете появится раздел без места в приложении. В версии 2 так выпали сессии.</p></div>
+    <div class="mapt" id="mapt"><div class="r h"><span>адрес кабинета</span><span>экран</span><span>куда переехал</span></div></div>
+  </section>
 
-  <div class="next">
+  <section>
+    <div class="sec-h"><div class="k">Продумано</div><h2>Что проверено на каждом экране</h2></div>
+    <div class="checks">
+      <div class="ck"><b>Ничего не перекрыто</b><p>Вкладки и поле ввода стоят под лентой, а не поверх. Обход каждого экрана на 390 ищет текст под низом экрана и наезды кнопок.</p></div>
+      <div class="ck"><b>Пусто, загрузка, нет сети</b><p>Первый день без дел и сессий, серые заготовки при загрузке, сообщение без сети, «не ушло, повторить», кончились силы.</p></div>
+      <div class="ck"><b>Две роли</b><p>Владелец решает и платит. Наблюдатель видит чат и сессии, пишет Паше, а на вопросах у него «решает Павел».</p></div>
+      <div class="ck"><b>Палец</b><p>Каждая кнопка от 44 точек. Решения и поле ввода в нижней трети экрана.</p></div>
+      <div class="ck"><b>Вне приложения</b><p>Пуш с кнопками «Отправить» и «Показать», живое уведомление сессии с ответом прямо из шторки.</p></div>
+      <div class="ck"><b>Светлая и тёмная</b><p>Все экраны в обеих темах, переключатель вверху страницы.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-h"><div class="k">Словарь</div><h2>Слова человека, а не наши</h2><p>«Сессию» оставил: вы её так зовёте, и слово понятно без объяснений. Остальная кухня ушла.</p></div>
+    <div class="words" id="words"></div>
+  </section>
+
+  <section class="next">
     <div>
       <h2>Что дальше</h2>
       <ol>
-        <li>Вы смотрите прототип и говорите, что поменять.</li>
-        <li>Переношу в кабинет тремя пачками: главная и дела, потом решение и разговор, потом Паша и настройки.</li>
-        <li>Собираю приложение для Android на тех же экранах, с пушем, когда Паше нужны вы.</li>
+        <li>Вы листаете прототип и говорите, что поменять.</li>
+        <li>Переношу в кабинет пачками: чат и сессии, потом дела, потом Паша.</li>
+        <li>Собираю приложение для Android на тех же экранах, с пушами и живым уведомлением сессии.</li>
       </ol>
     </div>
     <i class="pa" data-s="150" data-o="headset"></i>
-  </div>
+  </section>
 </div>
 
 <div class="player" id="player">
   <div class="player-nav" id="pnav"></div>
   <div class="frame"><div class="scaler" id="stage"></div></div>
-  <button class="player-x" data-act="close"><svg class="ico s"><use href="#i-grid"/></svg><span>все экраны</span></button>
+  <button class="player-x" data-act="close"><svg class="ico s"><use href="#i-grid"/></svg>все экраны</button>
 </div>
 
 <!-- ═════════════════ ЭКРАНЫ ═════════════════ -->
 
-<template id="s-home" data-title="Главная" data-aura data-cap="Открыли и всё видно: что Паша делает и когда закончит. Ниже одно решение за раз с ответом прямо в карточке." data-src="bevel,future,sweetgreen,cleo">
+<!-- ЧАТ -->
+<template id="s-chat" data-ch="chat" data-title="Чат с Пашей" data-cap="Первый экран. Сверху кто и что сейчас делает, внизу два вопроса ждут вас. Нажмите строку «Паша работает» или «Ответить»." data-src="discord,whatsapp,slack">
   <div class="sb"></div>
+  <header class="hd">
+    <button class="who" data-go="pasha"><span class="ring on"><i class="pa" data-s="36" data-o="headset"></i></span><span class="grow"><b>Паша</b><small><span class="dot pulse"></span>работает · 2 сессии</small></span></button>
+    <button class="round" data-go="chat-search" aria-label="Поиск"><svg class="ico s"><use href="#i-search"/></svg></button>
+  </header>
+  <button class="live" data-tab="sessions"><span class="dot pulse"></span><span class="grow"><b class="ell">Сайт для «Виком»: раздел «Доставка»</b><span class="now ell shim">переносит страницу 29 из 33</span></span><span class="plus">+1</span><svg class="ico s dim2"><use href="#i-chev"/></svg></button>
   <div class="body">
-    <div class="hello-row"><span class="kick">Понедельник, 16 ноября</span><button class="myface" data-go="pasha">ПБ</button></div>
-    <div class="row" style="margin-top:12px;align-items:flex-end"><i class="pa" data-s="68" data-o="headset"></i><span class="live" style="margin-bottom:10px">Паша работает</span></div>
-    <p class="say">Доделываю сайт для «Виком». Покажу Анатолию <em>завтра в 10:00</em></p>
-    <a class="activity" data-go="deal">
-      <div class="row"><span class="tile c-peach" style="width:38px;height:38px;border-radius:12px"><svg class="ico s"><use href="#i-globe"/></svg></span><div class="grow"><b class="ell" style="font-size:16px">Сайт для «Виком»</b><span class="xs dim">переношу раздел «Доставка»</span></div><b style="font-size:20px;letter-spacing:-.03em">85%</b></div>
-      <div class="track" style="margin-bottom:0"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i></div>
-    </a>
-
-    <div class="h2">Нужно решение <span class="c" data-cnt>1 из 2</span></div>
-    <div class="decide">
-      <div class="dc">
-        <span class="lbl"><svg class="ico s" style="color:#2AABEE"><use href="#i-tg"/></svg>Письмо Анатолию</span>
-        <h3>Отправить ссылку на тестовый сайт?</h3>
-        <p class="snip">Анатолий, добрый день! Тестовый сайт готов: vikom.autopasha.ru. Вход в админку пришлю следующим сообщением.</p>
-        <div class="btns" style="margin-top:auto"><button class="btn soft" data-go="question">Показать</button><button class="btn hot" data-act="answer" data-toast="Отправил Анатолию">Отправить</button></div>
-        <p class="if">Если промолчите, отправлю сам в 12:00</p>
-      </div>
-      <div class="dc">
-        <span class="lbl"><svg class="ico s" style="color:var(--lilac-i)"><use href="#i-video"/></svg>Ролик на завтра</span>
-        <h3>Какую тему снимаем?</h3>
-        <div class="choice">
-          <button data-act="answer" data-toast="Снимаю первую"><span class="n">1</span>Сайт за два часа, пока вы пили кофе</button>
-          <button data-act="answer" data-toast="Снимаю вторую"><span class="n">2</span>Паша против спама в почте</button>
-        </div>
-      </div>
-      <div class="empty"><div><i class="pa" data-s="64" data-o="crown"></i><p style="margin-top:10px;font-weight:800;font-size:20px;letter-spacing:-.03em">Всё решено</p><p class="dim sm">Паша продолжает сам</p></div></div>
-    </div>
-
-    <div class="h2">Ещё в работе <span class="more" data-go="deals">Все дела</span></div>
-    <div class="group">
-      <div class="li" data-go="deal"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><div class="grow"><b class="ell">Ролик, день 9</b><div class="sub">записываю голос</div></div><div class="r">сегодня<br>в 19:00</div></div>
-      <div class="li" data-go="deal"><span class="tile c-sun"><svg class="ico"><use href="#i-mail"/></svg></span><div class="grow"><b class="ell">Письма гостиницам</b><div class="sub">14 из 40, двое ответили</div></div><div class="r">в среду</div></div>
-    </div>
-
-    <div class="h2">Готово сегодня <span class="c">3</span></div>
-    <div class="hs">
-      <div class="story" data-go="result"><div class="pic" style="background:linear-gradient(160deg,#1d3b5a,#2c5c8a 55%,#FF6A2B)"></div><div style="position:absolute;left:30px;top:20px;width:112px;height:150px;border-radius:14px;background:#F6F3EE;transform:rotate(-5deg);box-shadow:0 14px 26px -10px rgba(0,0,0,.5);overflow:hidden"><i style="display:block;height:38%;background:#1d3b5a"></i><i style="display:block;margin:10px;height:12px;width:50%;background:#FF6A2B;border-radius:6px"></i></div><b>Главная «Виком» на телефоне</b><span>проверил на 5 экранах</span></div>
-      <div class="story"><div class="pic" style="background:radial-gradient(80% 60% at 30% 20%,#C9B5FF,transparent),linear-gradient(160deg,#7A4DE0,#2A1660)"></div><div style="position:absolute;left:50%;top:22px;transform:translateX(-50%)"><i class="pa" data-s="90" data-o="glasses"></i></div><b>Ролик, день 8</b><span>1 240 просмотров за утро</span></div>
-      <div class="story"><div class="pic" style="background:radial-gradient(80% 60% at 70% 20%,#B9F2D2,transparent),linear-gradient(160deg,#22B864,#0E5A33)"></div><svg class="ico" style="position:absolute;left:50%;top:44px;transform:translateX(-50%);width:64px;height:64px;color:#fff;stroke-width:1.5"><use href="#i-mail"/></svg><b>Ответил двум людям на почте</b><span>сам, по вашим правилам</span></div>
-    </div>
-  </div>
-  <div class="dock" data-dock="home"></div>
-</template>
-
-<template id="s-ask" data-title="Поручить" data-sheet data-cap="Кнопка «+» открывает микрофон. Говорите как сотруднику, Паша сразу отвечает сроком и сколько это стоит сил, до того как вы нажали «Поручить»." data-src="orb,gemini,chatgpt">
-  <div class="sb"></div>
-  <div class="sheet">
-    <div class="grab"></div>
-    <div class="body nodock">
-      <div class="nav" style="justify-content:flex-end;min-height:48px;padding-bottom:0"><button class="round" data-back aria-label="Закрыть"><svg class="ico s"><use href="#i-x"/></svg></button></div>
-      <h1 class="ask-h" style="margin-top:0">Что поручить?</h1>
-      <p class="dim" style="text-align:center;margin-top:8px">Скажите голосом или выберите</p>
-      <div class="orb-wrap"><button class="orb" data-act="listen" aria-label="Сказать голосом"><svg class="lines" viewBox="0 0 196 196"></svg><span class="mic"><svg class="ico"><use href="#i-mic"/></svg></span></button></div>
-      <div class="typed" data-typed><span class="ph">Нажмите и говорите</span></div>
-      <div class="sug" data-sug>
-        <button data-act="fill" data-text="Сделай лендинг для кофейни на Садовой: меню, фото, карта">Сайт</button>
-        <button data-act="fill" data-text="Напиши тридцати гостиницам Москвы про витрину">Письма</button>
-        <button data-act="fill" data-text="Разбери почту за неделю и ответь тем, кто ждёт">Разобрать почту</button>
-        <button data-act="fill" data-text="Сними ролик про то, как мы сделали сайт «Виком»">Ролик</button>
-      </div>
-      <div class="att" data-att>
-        <button><i><svg class="ico"><use href="#i-cam"/></svg></i>Фото</button>
-        <button><i><svg class="ico"><use href="#i-clip"/></svg></i>Файл</button>
-        <button data-go="chat"><i><svg class="ico"><use href="#i-edit"/></svg></i>Текстом</button>
-      </div>
-      <div class="est card" data-est>
-        <div class="row"><i class="pa" data-s="42" data-o="glasses"></i><b class="grow" style="font-size:17px">Понял, сделаю так</b></div>
-        <div class="r3"><div><b>завтра, 14:00</b><span>будет готово</span></div><div><b>15% сил</b><span>одного дня</span></div><div><b>1 вопрос</b><span>про цены в меню</span></div></div>
-        <button class="btn hot" style="margin-top:14px" data-act="assign">Поручить</button>
-      </div>
-    </div>
-  </div>
-</template>
-
-<template id="s-question" data-title="Решение" data-sheet data-cap="Решение целым листом: само письмо, кому и почему Паша спрашивает. Внизу две кнопки и что будет, если промолчать." data-src="instacart,remote,revolut">
-  <div class="sb"></div>
-  <div class="sheet">
-    <div class="grab"></div>
-    <div class="body nodock" style="padding-bottom:180px">
-      <div class="nav"><i class="pa" data-s="40" data-o="headset"></i><div class="grow"><b style="font-size:16px">Паша спрашивает</b><div class="xs dim">5 минут назад</div></div><button class="round" data-back aria-label="Закрыть"><svg class="ico s"><use href="#i-x"/></svg></button></div>
-      <h1 class="h1 m" style="margin:6px 0 18px">Отправить Анатолию ссылку на тестовый сайт?</h1>
-      <div class="msgprev">
-        <div class="hd"><span class="ava" style="background:#FFE3A3;color:#6b4a00">АК</span><div class="grow"><b style="font-size:16px">Анатолий</b><div class="xs dim">«Виком», в Telegram</div></div><svg class="ico" style="color:#2AABEE"><use href="#i-tg"/></svg></div>
-        <div class="tx">Анатолий, добрый день! Тестовый сайт готов: <b>vikom.autopasha.ru</b>. Вход в админку пришлю следующим сообщением.<br><br>Посмотрите, пожалуйста, главную и каталог: 28 страниц из 33 уже на месте, остальные доделаю до завтра.</div>
-      </div>
-      <div class="why"><svg class="ico s"><use href="#i-info"/></svg><span>Спрашиваю, потому что пишу Анатолию впервые. Разрешите, и дальше буду отвечать ему сам.</span></div>
-    </div>
-    <div class="bottom">
-      <div class="btns"><button class="btn soft" data-go="chat"><svg class="ico s"><use href="#i-edit"/></svg>Поправить</button><button class="btn hot" data-act="answer-back" data-toast="Отправил Анатолию">Отправить</button></div>
-      <p class="if">Если промолчите, отправлю сам в 12:00</p>
-    </div>
-  </div>
-</template>
-
-<template id="s-deals" data-title="Дела" data-cap="Все дела одним списком в три группы: ждут вас, в работе, готово. У каждого видно, когда будет и сколько пройдено." data-src="asana,walmart,boltfood">
-  <div class="sb"></div>
-  <div class="body">
-    <div class="nav"><h1 class="h1 grow">Дела</h1><button class="round" aria-label="Найти"><svg class="ico s"><use href="#i-search"/></svg></button></div>
-    <div class="h2" style="margin-top:6px">Ждут вас <span class="c">2</span></div>
-    <div class="group">
-      <div class="li" data-go="question"><span class="tile c-sky"><svg class="ico"><use href="#i-tg"/></svg></span><div class="grow"><b class="ell">Ссылка Анатолию</b><div class="sub">отправить тестовый сайт?</div></div><span class="ask-dot"></span></div>
-      <div class="li" data-go="home"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><div class="grow"><b class="ell">Тема ролика на завтра</b><div class="sub">выбрать из двух</div></div><span class="ask-dot"></span></div>
-    </div>
-    <div class="h2">В работе <span class="c">3</span></div>
-    <div class="group">
-      <div class="li" data-go="deal"><span class="tile c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><div class="grow"><b class="ell">Сайт для «Виком»</b><div class="track mini"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i></div></div><div class="r">завтра<br>10:00</div></div>
-      <div class="li" data-go="deal"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><div class="grow"><b class="ell">Ролик, день 9</b><div class="track mini"><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i><i></i></div></div><div class="r">сегодня<br>19:00</div></div>
-      <div class="li" data-go="deal"><span class="tile c-sun"><svg class="ico"><use href="#i-mail"/></svg></span><div class="grow"><b class="ell">Письма гостиницам</b><div class="track mini"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i></div></div><div class="r">в среду</div></div>
-    </div>
-    <div class="h2">Готово за неделю <span class="c">41</span></div>
-    <div class="group">
-      <div class="li" data-go="result"><span class="tile c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><div class="grow"><b class="ell">Главная «Виком» на телефоне</b><div class="sub">сегодня, принято вами</div></div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span></div>
-      <div class="li"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><div class="grow"><b class="ell">Ролик, день 8</b><div class="sub">сегодня, 1 240 просмотров</div></div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span></div>
-      <div class="li"><span class="tile c-mint"><svg class="ico"><use href="#i-mail"/></svg></span><div class="grow"><b class="ell">Ответил трём лидам</b><div class="sub">вчера, один просит созвон</div></div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span></div>
-      <div class="li"><span class="tile c-sky"><svg class="ico"><use href="#i-spark"/></svg></span><div class="grow"><b class="ell">Починил кнопку в кабинете</b><div class="sub">вчера, заметил Павел Ступин</div></div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span></div>
-    </div>
-  </div>
-  <div class="dock" data-dock="deals"></div>
-</template>
-
-<template id="s-deal" data-title="Дело" data-cap="Дело как заказ в доставке: крупно когда будет, шаги, что Паша делает прямо сейчас. Разговор про это дело тут же." data-src="boltfood,grab,ikea">
-  <div class="sb"></div>
-  <div class="body nodock" style="padding-bottom:120px">
-    <div class="nav"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="grow"></span><button class="round" aria-label="Ещё"><svg class="ico s"><use href="#i-dots"/></svg></button></div>
-    <div class="row"><span class="tile l c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><h1 class="h1 m grow">Сайт для «Виком»</h1></div>
-    <p class="eta-k">Будет готово</p>
-    <p class="eta">завтра в 10:00</p>
-    <div class="track" style="margin-top:18px;margin-bottom:8px"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i></div>
-    <div class="steps-l"><span class="ok">Принял</span><span class="ok">Разобрался</span><span class="ok">Собрал</span><span class="go">Доделываю</span><span>Покажу</span></div>
-    <div class="nowcard"><span class="pulse"></span><div><b>Сейчас переношу раздел «Доставка»</b><div class="sm dim" style="margin-top:2px">28 страниц из 33 уже на месте. Ещё около трёх часов.</div></div></div>
-    <div class="h2">Разговор по делу</div>
     <div class="thread">
-      <span class="day">Вчера</span>
-      <div class="bub me">Цены в каталоге бери с их прайса, не со старого сайта<span class="t">18:02</span></div>
-      <div class="bub p">Понял, взял прайс от 10 ноября. 41 товар, все цены сошлись.<span class="t">18:05</span></div>
       <span class="day">Сегодня</span>
-      <div class="bub p">Главная на телефоне готова, глянете? Остальное покажу Анатолию завтра.<span class="t">09:30</span></div>
+      <div class="digest"><div class="k"><svg class="ico xs"><use href="#i-sun"/></svg>Утро, 09:00</div><h4>Вчера сдал два дела, сегодня сайт к завтра</h4><div class="three"><div><b>2</b><span>сдал вчера</span></div><div><b>3</b><span>в работе</span></div><div><b>2</b><span>ждут вас</span></div></div></div>
+      <div class="bub me">Паша, как там сайт для Виком?<span class="tm">09:12</span></div>
+      <div class="bub"><span class="tag"><svg class="ico xs"><use href="#i-globe"/></svg>Сайт для «Виком»</span><br>Почти всё: 28 страниц из 33. Осталась доставка и пара статей. Завтра в 10 покажу Анатолию.<span class="tm">09:12</span></div>
+      <div class="bub me voice"><div class="vrow"><span class="vplay"><svg class="ico s"><use href="#i-play"/></svg></span><span class="wave" data-wave></span><span class="xs">0:14</span></div><div class="vtx">«Гостиницам пиши только в Москве и Питере»</div><span class="tm">09:40</span></div>
+      <div class="bub"><span class="tag"><svg class="ico xs"><use href="#i-mail"/></svg>Письма гостиницам</span><br>Понял: только Москва и Петербург. Список стал 40 вместо 62.<span class="tm">09:41</span></div>
+      <button class="sesscard" data-go="session"><svg class="ico"><use href="#i-pulse"/></svg><span class="grow"><b>Взялся: раздел «Доставка»</b><small>сессия идёт 18 мин</small></span><span class="go">Смотреть</span></button>
+      <div class="qcard" data-q><div class="lbl"><svg class="ico xs"><use href="#i-ask"/></svg>Нужно решение · 13:47</div><h4>Отправить Анатолию ссылку на тестовый сайт?</h4><p>Пишу ему впервые. Разрешите, и дальше буду отвечать ему сам.</p><div class="btns"><button class="btn soft s" data-go="chat-q">Показать</button><button class="btn hot s" data-act="answer" data-toast="Отправил Анатолию">Отправить</button></div><div class="if">Если промолчите, отправлю сам в 12:00 завтра</div><div class="ok"><svg class="ico s"><use href="#i-check"/></svg>Вы разрешили · ушло Анатолию</div></div>
     </div>
   </div>
-  <div class="composer"><div class="field"><span>Написать про это дело</span><svg class="ico s"><use href="#i-clip"/></svg></div><button class="mic" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div>
-</template>
-
-<template id="s-result" data-title="Результат" data-cap="Готовое показывает себя: картинка, три цифры и что сделано простыми словами. Две кнопки: «Принять» или «Доработать»." data-src="fabric,walmart">
-  <div class="sb" style="position:absolute;left:0;right:0;z-index:6;color:#3a1505"></div>
-  <div class="body nodock" style="padding-top:0;padding-bottom:150px">
-    <div class="res">
-      <div class="nav" style="top:56px"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="grow"></span><button class="round" aria-label="Поделиться"><svg class="ico s"><use href="#i-link"/></svg></button></div>
-      <div class="lap"><i style="position:absolute;inset:0 0 70%;background:#1d3b5a"></i><i style="position:absolute;left:8%;top:40%;width:60%;height:12%;background:#1a1a1a;border-radius:3px"></i><i style="position:absolute;left:8%;top:60%;width:40%;height:10%;background:#FF6A2B;border-radius:3px"></i></div>
-      <div class="ph" style="top:100px"><div class="in">
-        <div style="height:36%;background:linear-gradient(160deg,#1d3b5a,#2c5c8a);padding:30px 12px 12px;color:#fff"><div style="font-weight:800;font-size:10px;letter-spacing:.08em">ВИКОМ</div><div style="font-weight:800;font-size:16px;line-height:1.12;margin-top:14px;letter-spacing:-.02em">Окна и двери<br>под ключ</div><div style="margin-top:8px;width:72px;height:20px;border-radius:999px;background:#FF6A2B"></div></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:8px"><i style="height:66px;border-radius:9px;background:#ECE6DD"></i><i style="height:66px;border-radius:9px;background:#E3DBCF"></i><i style="height:66px;border-radius:9px;background:#E3DBCF"></i><i style="height:66px;border-radius:9px;background:#ECE6DD"></i></div>
-      </div></div>
-    </div>
-    <div style="margin-top:22px"><span class="pill-ok"><svg class="ico xs" style="stroke-width:3"><use href="#i-check"/></svg>Готово</span></div>
-    <h1 class="h1 m" style="margin-top:12px">Тестовый сайт «Виком» готов</h1>
-    <div class="stats"><div><b>33</b><span>страницы</span></div><div><b>41</b><span>товар с ценами</span></div><div><b>2</b><span>дня работы</span></div></div>
-    <div class="h2">Что сделал</div>
-    <div class="did">
-      <div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span>Перенёс каталог: 41 товар с ценами и фото</div>
-      <div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span>Сделал админку, Анатолий сам меняет цены</div>
-      <div><span class="done-mark"><svg class="ico"><use href="#i-check"/></svg></span>Проверил на телефоне и ноутбуке</div>
-    </div>
-    <button class="btn soft" style="margin-top:22px"><svg class="ico s"><use href="#i-globe"/></svg>Открыть сайт</button>
+  <div class="foot">
+    <button class="qdock" data-go="chat-q"><span class="n">2</span><span class="grow"><b class="ell">Ждут вас: ссылка Анатолию, тема ролика</b><small>ответить можно здесь, по очереди</small></span><span class="open">Ответить</span></button>
+    <div class="composer"><button class="plus" data-go="chat-plus" aria-label="Прикрепить"><svg class="ico"><use href="#i-plus"/></svg></button><button class="field" data-go="chat-voice">Написать Паше</button><button class="mic" data-go="chat-voice" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div>
   </div>
-  <div class="bottom"><div class="btns"><button class="btn soft" data-go="chat">Доработать</button><button class="btn green" data-act="accept">Принять</button></div></div>
+  <div class="tabs" data-dock="chat"></div>
 </template>
 
-<template id="s-chat" data-title="Разговор" data-cap="Разговор с Пашей как в мессенджере. Вопросы приходят карточкой с кнопками, отвечать можно прямо в ленте. Открывается из «+» и с главной." data-src="perplexity,chatgpt,bevel">
+<template id="s-chat-q" data-ch="chat" data-title="Решения по одному" data-cap="Счётчик над полем открывает стопку: один вопрос за раз, что именно уйдёт, почему Паша спрашивает и что будет, если промолчать." data-src="cleo,revolut">
   <div class="sb"></div>
-  <div class="body nodock" style="padding-bottom:120px">
-    <div class="nav"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><i class="pa" data-s="40" data-o="headset"></i><div class="grow"><b style="font-size:16px">Паша</b><div class="live" style="font-size:12.5px">делает сайт «Виком»</div></div></div>
-    <div class="thread" style="padding-top:6px">
-      <span class="day">Сегодня</span>
-      <div class="bub me">Паша, как там сайт для Виком?<span class="t">09:12</span></div>
-      <div class="bub p">Почти всё: 28 страниц из 33. Осталась доставка и пара статей. Завтра в 10 покажу Анатолию.<span class="t">09:12</span></div>
-      <div class="inline-q" data-go="deal" style="cursor:pointer"><div class="q"><div class="row"><span class="tile c-peach" style="width:38px;height:38px;border-radius:12px"><svg class="ico s"><use href="#i-globe"/></svg></span><div class="grow"><b style="font-size:15.5px">Сайт для «Виком»</b><div class="xs dim">шаг 4 из 5, завтра в 10:00</div></div></div><div class="track mini" style="margin-top:12px"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i></div></div></div>
-      <div class="bub me"><div class="row" style="gap:10px"><svg class="ico s"><use href="#i-mic"/></svg><span data-wave style="display:flex;gap:2.5px;align-items:center;height:24px"></span><span class="xs">0:14</span></div><span class="t">09:40</span></div>
-      <div class="bub p">Понял: гостиницам пишу только в Москве и Петербурге. Список стал 40 вместо 62.<span class="t">09:41</span></div>
-      <div class="inline-q"><div class="q"><small>НУЖНО РЕШЕНИЕ</small>Отправить Анатолию ссылку на тестовый сайт?</div><div class="b2"><button data-go="question">Показать</button><button data-act="toast" data-toast="Отправил Анатолию">Отправить</button></div></div>
+  <header class="hd"><span class="who"><span class="ring on"><i class="pa" data-s="36" data-o="headset"></i></span><span class="grow"><b>Паша</b><small>работает · 2 сессии</small></span></span></header>
+  <div class="body"></div>
+  <div class="dimmer" data-back></div>
+  <div class="sheet">
+    <div class="grab"></div>
+    <div class="sh-h"><b>Нужно решение</b><span class="pill me" data-cnt>1 из 2</span><button class="round flat" data-back aria-label="Закрыть"><svg class="ico s"><use href="#i-x"/></svg></button></div>
+    <div class="sh-b">
+      <div class="stack"><div class="card">
+        <div class="row xs dim"><svg class="ico xs"><use href="#i-tg"/></svg>Письмо Анатолию · по делу «Сайт для «Виком»»</div>
+        <h3 class="h1" style="font-size:24px;margin-top:8px">Отправить Анатолию ссылку на тестовый сайт?</h3>
+        <div class="msgprev"><div class="hd2"><span class="ava c-sky" style="width:26px;height:26px;font-size:11px">АК</span>Анатолий, Telegram</div>Анатолий, добрый день! Тестовый сайт готов: vikom.autopasha.ru. Вход в админку пришлю следующим сообщением. Посмотрите главную и каталог: 28 страниц из 33 на месте, остальные доделаю до завтра.</div>
+        <div class="why"><svg class="ico s"><use href="#i-info"/></svg><span>Спрашиваю, потому что пишу Анатолию впервые. Разрешите, и дальше буду отвечать ему сам.</span></div>
+      </div><div class="card q2"></div></div>
     </div>
+    <div class="sh-f"><div class="btns"><button class="btn soft" data-go="redo"><svg class="ico s"><use href="#i-edit"/></svg>Поправить</button><button class="btn hot" data-act="answer-back" data-toast="Отправил Анатолию">Отправить</button></div><div class="foot-note xs dim" style="text-align:center;margin-top:10px">Если промолчите, отправлю сам завтра в 12:00</div></div>
   </div>
-  <div class="composer"><div class="field"><span>Написать Паше</span><svg class="ico s"><use href="#i-clip"/></svg></div><button class="mic" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div>
 </template>
 
-<template id="s-pasha" data-title="Паша" data-aura data-cap="Всё о сотруднике на одном экране: силы, где работает, команда, оплата. Сверху он сам, наряд меняется одним касанием." data-src="manus,fabric,brainly">
+<template id="s-chat-voice" data-ch="chat" data-title="Голосом" data-cap="Держите микрофон и говорите. Текст появляется сразу, чтобы видно было, что Паша понял. Отпустили — ушло, смахнули влево — отмена.">
   <div class="sb"></div>
+  <header class="hd"><span class="who"><span class="ring on"><i class="pa" data-s="36" data-o="headset"></i></span><span class="grow"><b>Паша</b><small>слушает</small></span></span></header>
   <div class="body">
-    <div class="pa-hero">
-      <i class="pa" data-s="140" data-o="headset" data-me></i>
-      <h1 class="h1" style="margin-top:4px">Паша</h1>
-      <p class="dim sm">ваш сотрудник, 23 дня с вами</p>
-      <div class="outfits" data-outfits></div>
+    <div class="thread">
+      <div class="bub"><span class="tag"><svg class="ico xs"><use href="#i-mail"/></svg>Письма гостиницам</span><br>Понял: только Москва и Петербург. Список стал 40 вместо 62.<span class="tm">09:41</span></div>
+      <div class="live-tx"><small>Паша слышит</small><span data-typed></span></div>
     </div>
-    <div class="card energy" data-go="power" style="margin-top:20px;cursor:pointer">
-      <div class="row"><svg class="ico" style="color:var(--green)"><use href="#i-bolt"/></svg><b class="grow">Силы на сегодня</b><b style="font-size:22px;letter-spacing:-.03em">64%</b></div>
-      <div class="bar"><i></i></div>
-      <div class="sm dim">Хватит примерно до 16:30, обновятся в 19:00</div>
-    </div>
-    <div class="set">
-      <div class="si" data-go="where"><span class="ib c-tg"><svg class="ico s"><use href="#i-tg"/></svg></span><b>Где работает</b><span class="v">4 чата, почта</span><svg class="ico s chev"><use href="#i-chev"/></svg></div>
-      <div class="si"><span class="ib" style="background:#FF6F9C"><svg class="ico s"><use href="#i-users"/></svg></span><b>Команда</b><span class="v">2 человека</span><svg class="ico s chev"><use href="#i-chev"/></svg></div>
-      <div class="si"><span class="ib" style="background:#8E6BFF"><svg class="ico s"><use href="#i-shield"/></svg></span><b>Что можно без вас</b><svg class="ico s chev"><use href="#i-chev"/></svg></div>
-      <div class="si"><span class="ib" style="background:#3B8BFF"><svg class="ico s"><use href="#i-brain"/></svg></span><b>Что Паша знает о вас</b><svg class="ico s chev"><use href="#i-chev"/></svg></div>
-    </div>
-    <div class="set">
-      <div class="si" data-go="pay"><span class="ib" style="background:#22B864"><svg class="ico s"><use href="#i-card"/></svg></span><b>Оплата</b><span class="v">3 120 ₽</span><svg class="ico s chev"><use href="#i-chev"/></svg></div>
-      <div class="si"><span class="ib" style="background:#FFA41B"><svg class="ico s"><use href="#i-bell"/></svg></span><b>Уведомления</b><span class="v">только важное</span><svg class="ico s chev"><use href="#i-chev"/></svg></div>
-      <div class="si" data-act="theme"><span class="ib" style="background:#2C2C2E"><svg class="ico s"><use href="#i-moon"/></svg></span><b>Тема</b><span class="v" data-themename>светлая</span><svg class="ico s chev"><use href="#i-chev"/></svg></div>
-      <div class="si" data-go="chat"><span class="ib" style="background:#14B8A6"><svg class="ico s"><use href="#i-help"/></svg></span><b>Помощь</b><span class="v">живой человек</span><svg class="ico s chev"><use href="#i-chev"/></svg></div>
-    </div>
-    <button class="btn ghost" style="margin-top:8px;color:#E5484D">Выйти</button>
   </div>
-  <div class="dock" data-dock="pasha"></div>
+  <div class="foot">
+    <div class="composer rec"><span class="field"><svg class="ico s"><use href="#i-back"/></svg>отмена<span class="recwave" data-recwave></span>0:06</span><button class="mic" data-act="voice-send" aria-label="Отправить"><svg class="ico"><use href="#i-send"/></svg></button></div>
+  </div>
+  <div class="homebar"></div>
 </template>
 
-<template id="s-where" data-title="Где работает" data-cap="Блок, который понравился Ступину, стал главным: откуда Паша слышит и кому отвечает. Под ним у каждого чата три режима картинками." data-src="manus,shop">
+<template id="s-chat-plus" data-ch="chat" data-title="Прикрепить и привязать" data-cap="Плюс у поля: фото, камера, файл и «к делу». Привязанное сообщение попадёт и в чат, и в разговор этого дела.">
   <div class="sb"></div>
-  <div class="body nodock">
-    <div class="nav"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button></div>
-    <h1 class="h1">Где работает</h1>
-    <p class="dim" style="margin:6px 0 18px">Паша читает и пишет там, где вы его подключили</p>
-    <div class="wmap">
-      <svg class="wires" viewBox="0 0 350 226" preserveAspectRatio="none"><path class="h" d="M112 50 C150 50 140 113 175 113"/><path class="h" d="M112 113 L175 113"/><path d="M112 176 C150 176 140 113 175 113"/><path class="h" d="M175 113 C212 113 205 66 240 66"/><path class="h" d="M175 113 C212 113 205 160 240 160"/></svg>
-      <div class="node" style="left:12px;top:30px"><span class="lg c-tg"><svg class="ico s"><use href="#i-tg"/></svg></span><span>Telegram<small>4 чата</small></span></div>
-      <div class="node" style="left:12px;top:93px"><span class="lg c-mail"><svg class="ico s"><use href="#i-mail"/></svg></span><span>Почта<small>1 ящик</small></span></div>
-      <div class="node add" style="left:12px;top:156px" data-go="connect"><span class="lg" style="background:var(--card-2)"><svg class="ico s"><use href="#i-plus"/></svg></span><span>Добавить</span></div>
-      <div class="center"><i class="pa" data-s="66" data-o="headset"></i></div>
-      <div class="node" style="right:12px;top:46px"><span class="ava" style="background:var(--peach);color:var(--peach-i);width:32px;height:32px;font-size:11.5px">ПБ</span><span>Павел<small>ставит задачи</small></span></div>
-      <div class="node" style="right:12px;top:140px"><span class="ava" style="background:var(--rose);color:var(--rose-i);width:32px;height:32px;font-size:11.5px">ПС</span><span>Павел С.<small>ставит задачи</small></span></div>
+  <header class="hd"><span class="who"><span class="ring on"><i class="pa" data-s="36" data-o="headset"></i></span><span class="grow"><b>Паша</b><small>работает · 2 сессии</small></span></span></header>
+  <div class="body"></div>
+  <div class="dimmer" data-back></div>
+  <div class="sheet">
+    <div class="grab"></div>
+    <div class="sh-h"><b>Добавить</b><button class="round flat" data-back aria-label="Закрыть"><svg class="ico s"><use href="#i-x"/></svg></button></div>
+    <div class="sh-b">
+      <div class="attach"><button><span class="tile s c-sky"><svg class="ico"><use href="#i-photo"/></svg></span>Фото</button><button><span class="tile s c-peach"><svg class="ico"><use href="#i-cam"/></svg></span>Камера</button><button><span class="tile s c-lilac"><svg class="ico"><use href="#i-file"/></svg></span>Файл</button><button><span class="tile s c-mint"><svg class="ico"><use href="#i-copy"/></svg></span>Вставить</button></div>
+      <div class="grp-h">Про какое дело</div>
+      <div class="grp">
+        <button class="li" data-act="tagdeal"><span class="tile s c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><span class="grow"><span class="t">Сайт для «Виком»</span><span class="s">завтра в 10:00</span></span><svg class="ico s dim2"><use href="#i-check"/></svg></button>
+        <button class="li" data-act="tagdeal"><span class="tile s c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><span class="grow"><span class="t">Ролик, день 9</span><span class="s">сегодня в 19:00</span></span></button>
+        <button class="li" data-act="tagdeal"><span class="tile s c-sun"><svg class="ico"><use href="#i-mail"/></svg></span><span class="grow"><span class="t">Письма гостиницам</span><span class="s">в среду</span></span></button>
+        <button class="li"><span class="tile s c-ink"><svg class="ico"><use href="#i-plus"/></svg></span><span class="grow"><span class="t">Новое дело</span><span class="s">Паша заведёт его из сообщения</span></span></button>
+      </div>
+      <p class="xs dim" style="margin-top:12px">Не выбрали — Паша сам поймёт, о каком деле речь, и подпишет сообщение.</p>
     </div>
-    <div class="h2">Как Паша ведёт себя в чатах</div>
-    <div class="group">
-      <div class="chatset"><div class="row"><span class="tile c-tg" style="width:38px;height:38px;border-radius:12px"><svg class="ico s"><use href="#i-tg"/></svg></span><div class="grow"><b>Павел и Паша</b><div class="xs dim">личный чат</div></div></div>
-        <div class="seg3" data-seg3><span class="lens"></span><button class="on"><svg class="ico"><use href="#i-self"/></svg>Отвечает сам</button><button><svg class="ico"><use href="#i-ask"/></svg>Спросит вас</button><button><svg class="ico"><use href="#i-eye"/></svg>Только читает</button></div></div>
-      <div class="chatset"><div class="row"><span class="tile c-tg" style="width:38px;height:38px;border-radius:12px"><svg class="ico s"><use href="#i-users"/></svg></span><div class="grow"><b>Отдел продаж</b><div class="xs dim">группа, 6 человек</div></div></div>
-        <div class="seg3" data-seg3><span class="lens"></span><button><svg class="ico"><use href="#i-self"/></svg>Отвечает сам</button><button class="on"><svg class="ico"><use href="#i-ask"/></svg>Спросит вас</button><button><svg class="ico"><use href="#i-eye"/></svg>Только читает</button></div></div>
-      <div class="chatset"><div class="row"><span class="tile c-mail" style="width:38px;height:38px;border-radius:12px"><svg class="ico s"><use href="#i-mail"/></svg></span><div class="grow"><b>pavel@autopasha.ru</b><div class="xs dim">почта</div></div></div>
-        <div class="seg3" data-seg3><span class="lens"></span><button><svg class="ico"><use href="#i-self"/></svg>Отвечает сам</button><button class="on"><svg class="ico"><use href="#i-ask"/></svg>Спросит вас</button><button><svg class="ico"><use href="#i-eye"/></svg>Только читает</button></div></div>
-    </div>
-    <div class="why"><svg class="ico s"><use href="#i-info"/></svg><span>В новом чате Паша сначала спросит вас, как в нём себя вести.</span></div>
-    <button class="btn hot" style="margin-top:18px" data-go="connect"><svg class="ico s"><use href="#i-plus"/></svg>Подключить мессенджер</button>
   </div>
 </template>
 
-<template id="s-connect" data-title="Подключить Telegram" data-cap="Два способа вместо четырёх, понятный первым. Плюсы и риски словами, дальше три шага с кнопкой «Открыть». Не вышло, Паша скажет почему." data-src="shop,manus,x">
+<template id="s-chat-search" data-ch="chat" data-title="Поиск" data-cap="Ищет сразу в переписке, делах и сессиях. Совпадение подсвечено, нажатие ведёт ровно в то место.">
   <div class="sb"></div>
-  <div class="body nodock" style="padding-bottom:130px">
-    <div class="nav"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="grow"></span><span class="sm dim" style="font-weight:650">шаг 1 из 3</span></div>
-    <div class="prog"><i class="ok"></i><i></i><i></i></div>
-    <span class="tile l c-tg" style="border-radius:50%"><svg class="ico"><use href="#i-tg"/></svg></span>
-    <h1 class="h1 m" style="margin:16px 0 18px">Как Паше быть в Telegram?</h1>
-    <div class="ways" data-ways>
-      <button class="way on"><span class="rad"></span><div><b style="font-size:17px">Отдельным ботом</b><span class="badge-s">проще всего</span><div class="dim sm" style="margin-top:4px">Бот с вашим названием и фото. 3 минуты.</div><div class="pros"><span>ваш аккаунт в безопасности</span><span>люди видят, что пишет помощник</span></div></div></button>
-      <button class="way"><span class="rad"></span><div><b style="font-size:17px">От вашего имени</b><div class="dim sm" style="margin-top:4px">Паша пишет с вашего аккаунта, как вы сами. 5 минут.</div><div class="pros"><span>люди не заметят разницы</span><span class="no">Telegram не любит частые сообщения, Паша держит меру и покажет её вам</span></div></div></button>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="composer grow"><span class="field" style="color:var(--ink)"><svg class="ico s dim"><use href="#i-search"/></svg>доставка<span class="caret"></span></span></span></header>
+  <div class="body">
+    <div class="chips"><button class="on">Всё 9</button><button>Чат 4</button><button>Дела 1</button><button>Сессии 3</button><button>Файлы 1</button></div>
+    <div class="grp-h">Чат</div>
+    <div class="grp">
+      <button class="li" data-back><span class="tile s c-peach"><svg class="ico"><use href="#i-chat"/></svg></span><span class="grow"><span class="t">Паша</span><span class="s">Осталась <b>доставка</b> и пара статей. Завтра в 10…</span></span><span class="r xs">09:12</span></button>
+      <button class="li" data-back><span class="tile s c-peach"><svg class="ico"><use href="#i-chat"/></svg></span><span class="grow"><span class="t">Вы</span><span class="s">Условия <b>доставки</b> бери из письма Анатолия</span></span><span class="r xs">вчера</span></button>
     </div>
-    <div class="h2">Что сделать</div>
-    <div class="stepper">
-      <div class="s"><span class="n">1</span><div class="grow">Откройте <b>@BotFather</b></div><button class="btn hot">Открыть</button></div>
-      <div class="s"><span class="n">2</span><div class="grow">Нажмите «Создать бота» и придумайте имя</div></div>
-      <div class="s"><span class="n">3</span><div class="grow">Скопируйте ключ и вставьте сюда</div><button class="btn soft">Вставить</button></div>
+    <div class="grp-h">Сессии</div>
+    <div class="grp">
+      <button class="li" data-go="session"><span class="outc o-ok"><svg class="ico"><use href="#i-pulse"/></svg></span><span class="grow"><span class="t">Раздел «<b>Доставка</b>»</span><span class="s">идёт сейчас · 18 мин</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+      <button class="li" data-go="session-done"><span class="outc o-ok"><svg class="ico"><use href="#i-check"/></svg></span><span class="grow"><span class="t">Цены и <b>доставка</b> из прайса</span><span class="s">готово вчера · 42 мин</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
     </div>
-    <p class="dim xs" style="margin-top:16px;text-align:center">Ещё два способа для особых случаев: <u>показать</u></p>
+    <div class="grp-h">Дела</div>
+    <div class="grp"><button class="li" data-go="deal"><span class="tile s c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><span class="grow"><span class="t">Сайт для «Виком»</span><span class="s">шаг «<b>Доставка</b> и статьи»</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
+    <div class="grp-h">Файлы</div>
+    <div class="grp"><button class="li"><span class="tile s c-lilac"><svg class="ico"><use href="#i-file"/></svg></span><span class="grow"><span class="t">Прайс_доставка_ноябрь.xlsx</span><span class="s">от Анатолия · 10 ноября</span></span></button></div>
   </div>
-  <div class="bottom"><button class="btn ink" data-act="toast" data-toast="Проверяю бота">Дальше</button></div>
+  <div class="homebar"></div>
 </template>
 
-<template id="s-power" data-title="Силы Паши" data-cap="Ответ на просьбу Ступина: сколько сил осталось, до скольки хватит, когда обновятся и куда ушли. И предупреждение, если подписка общая с вами." data-src="vivid,revolut,ahead,manus">
+<!-- СЕССИИ -->
+<template id="s-sessions" data-ch="sessions" data-title="Сессии: сейчас" data-cap="Каждая живая сессия карточкой: что делает в эту секунду, сколько идёт, откуда взялась, ваша последняя дописка. Нажмите «Дописать» или саму карточку." data-src="manus,githubcopilot,perplexity">
   <div class="sb"></div>
-  <div class="body nodock">
-    <div class="nav"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button></div>
-    <h1 class="h1">Силы Паши</h1>
-    <p class="dim" style="margin-top:6px">Сколько он ещё успеет сегодня</p>
-    <div class="gauge">
-      <svg width="250" height="250" viewBox="0 0 250 250"><defs><linearGradient id="g1" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2FCB7F"/><stop offset="1" stop-color="#A6E86A"/></linearGradient></defs><circle cx="125" cy="125" r="104" fill="none" stroke="var(--card-2)" stroke-width="22" stroke-dasharray="490 654" transform="rotate(135 125 125)" stroke-linecap="round"/><circle cx="125" cy="125" r="104" fill="none" stroke="url(#g1)" stroke-width="22" stroke-dasharray="314 654" transform="rotate(135 125 125)" stroke-linecap="round" data-arc/></svg>
-      <div class="mid"><b>64%</b><span>осталось</span></div>
+  <header class="hd big"><h1>Сессии</h1><button class="round" data-go="chat-search" aria-label="Поиск"><svg class="ico s"><use href="#i-search"/></svg></button></header>
+  <div class="body">
+    <div class="seg"><button class="on">Сейчас <i>2</i></button><button data-go="sessions-queue" data-fade>Очередь <i>3</i></button><button data-go="sessions-alarms" data-fade>Будильники <i>6</i></button><button data-go="sessions-history" data-fade>Было</button></div>
+    <div class="sumrow"><div><b>6</b><span>сессий сегодня</span></div><div><b>2 ч 40</b><span>работал</span></div><div><b>64%</b><span>сил осталось</span></div></div>
+    <div class="sp8"></div>
+    <div class="sess" data-go="session">
+      <div class="top2"><span class="dot pulse"></span>идёт<span class="tm" data-since="1084">18:04</span></div>
+      <h4>Сайт для «Виком»: раздел «Доставка»</h4>
+      <div class="from">по плану дела · начал сам в 13:36</div>
+      <div class="nowline"><span class="spin"></span><span class="grow ell shim">Переносит страницу 29 из 33</span></div>
+      <div class="trail"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i></div>
+      <div class="row" style="margin-top:12px;gap:8px"><span class="pill me"><svg class="ico xs"><use href="#i-edit"/></svg>ваша дописка прочитана</span><span class="grow"></span><button class="btn soft s" style="width:auto" data-go="session">Дописать</button></div>
     </div>
-    <div class="two"><div><b>до 16:30</b><span>хватит примерно</span></div><div><b>в 19:00</b><span>силы обновятся</span></div></div>
-    <div class="warn"><svg class="ico"><use href="#i-info"/></svg><div><b>Вы тоже пользуетесь этой подпиской?</b><br><span class="dim">Каждый ваш разговор с Claude берёт из того же запаса. Сидите в нём с утра, Паша устанет раньше.</span></div></div>
+    <div class="sess" data-go="session">
+      <div class="top2"><span class="dot pulse"></span>идёт<span class="tm" data-since="250">4:10</span></div>
+      <h4>Письма гостиницам: ответы</h4>
+      <div class="from">Анатолий из «Изразца» ответил на письмо · Почта</div>
+      <div class="nowline"><span class="spin"></span><span class="grow ell shim">Читает 3 новых письма</span></div>
+      <div class="trail"><i class="ok"></i><i class="go"></i><i></i><i></i></div>
+      <div class="row" style="margin-top:12px;gap:8px"><span class="xs dim">силы на сессию: 1%</span><span class="grow"></span><button class="btn soft s" style="width:auto" data-go="session">Дописать</button></div>
+    </div>
+    <div class="grp-h">Следующей начнёт</div>
+    <div class="grp"><button class="li" data-go="sessions-queue"><span class="qrow"><span class="num">1</span></span><span class="grow"><span class="t">Ролик, день 9: озвучка</span><span class="s">после сайта, примерно в 14:20</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
+  </div>
+  <div class="tabs" data-dock="sessions"></div>
+</template>
+
+<template id="s-session" data-ch="sessions" data-title="Живая сессия и дописки" data-cap="Шаги словами, мысли Паши, ошибка и как он её обошёл. Дописка встаёт в ленту с отметками «доставлено» и «прочитал», ответ приходит туда же. Напишите что-нибудь в поле." data-src="manus,perplexity">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl"><span class="pill go"><span class="dot pulse"></span>идёт <span data-since="1084">18:04</span></span></span><button class="round" data-go="deal" aria-label="Дело"><svg class="ico s"><use href="#i-list"/></svg></button></header>
+  <div class="body" data-feed>
+    <div class="shead"><h1>Сайт для «Виком»: раздел «Доставка»</h1><div class="from">Начал сам по плану дела в 13:36 · <a data-go="deal">Сайт для «Виком»</a></div></div>
+    <div class="taskq"><small>Задача сессии</small>Перенести «Доставку» и две статьи, сверить условия с письмом Анатолия.</div>
+    <div class="feed">
+      <div class="st ok"><span class="bd"><svg class="ico"><use href="#i-check"/></svg></span><span class="tx">Открыл план дела: осталось 5 страниц</span><span class="tm">13:36</span></div>
+      <div class="st ok"><span class="bd"><svg class="ico"><use href="#i-mail"/></svg></span><span class="tx">Прочитал письмо Анатолия<small>«доставка по области бесплатно от 30 000 ₽»</small></span><span class="tm">13:37</span></div>
+      <div class="thought"><small>Паша думает</small>Условия беру из письма Анатолия, а не со старого сайта: там цены 2023 года.</div>
+      <div class="st ok" data-act="expand"><span class="bd"><svg class="ico"><use href="#i-globe"/></svg></span><span class="tx"><span class="group">Перенёс страницы 25–28 <span class="dim xs">14 действий</span><svg class="ico xs chev2 dim"><use href="#i-chev"/></svg></span><span class="sub-steps"><span>открыл старую страницу «Оплата»</span><span>собрал текст и 4 фото</span><span>выложил на новый сайт, проверил на телефоне</span><span>…и так ещё три страницы</span></span></span><span class="tm">13:40</span></div>
+      <div class="st err"><span class="bd"><svg class="ico"><use href="#i-warn"/></svg></span><span class="tx">Старый сайт не открылся<small>подождал минуту, открылся со второго раза</small></span><span class="tm">13:49</span></div>
+      <div class="bub me" style="margin:8px 0 4px auto;display:block;width:fit-content">Фото склада возьми из папки, которую я скинул вчера<span class="st"><svg class="ico xs"><use href="#i-check"/></svg><svg class="ico xs" style="margin-left:-10px"><use href="#i-check"/></svg>прочитал 13:51</span></div>
+      <div class="thought"><small>Паша ответил</small>Взял из вашей папки, 6 фото. Старые со склада убрал.</div>
+      <div class="st go" data-now><span class="bd"><svg class="ico"><use href="#i-globe"/></svg></span><span class="tx shim">Переносит страницу 29 из 33: «Доставка по области»</span><span class="tm">13:52</span></div>
+      <div class="st later"><span class="bd"><svg class="ico"><use href="#i-file"/></svg></span><span class="tx">Дальше: статьи «Как выбрать дверь» и «Монтаж»</span></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="chips" style="margin:0 -14px 8px;padding:2px 14px 4px"><button data-act="poke" data-text="Как дела?">Как дела?</button><button data-act="poke" data-text="Покажи, что уже готово">Что готово?</button><button data-act="poke" data-text="Закончи этот шаг и остановись">Стоп после шага</button></div>
+    <div class="composer"><button class="stopb" data-go="session-stop" aria-label="Остановить"><i></i></button><button class="field" data-act="poke" data-text="Доставку по Москве сделай отдельной строкой">Дописать в эту сессию</button><button class="mic" data-act="poke" data-text="Доставку по Москве сделай отдельной строкой" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div>
+  </div>
+  <div class="homebar"></div>
+</template>
+
+<template id="s-session-stop" data-ch="sessions" data-title="Остановить сессию" data-cap="Стоп не рвёт работу на полуслове: можно дать Паше закончить шаг. И сразу видно, что будет с делом после остановки.">
+  <div class="sb"></div>
+  <header class="hd"><span class="ttl"><span class="pill go"><span class="dot pulse"></span>идёт 18:04</span></span></header>
+  <div class="body"></div>
+  <div class="dimmer" data-back></div>
+  <div class="sheet">
+    <div class="grab"></div>
+    <div class="sh-h"><b>Остановить сессию?</b><button class="round flat" data-back aria-label="Закрыть"><svg class="ico s"><use href="#i-x"/></svg></button></div>
+    <div class="sh-b">
+      <div class="modes">
+        <button class="mode on"><span class="rad"></span><span><b>Закончить шаг и остановиться</b><small>Допишет страницу 29, сохранит и скажет, где остановился. Минуты три.</small></span></button>
+        <button class="mode"><span class="rad"></span><span><b>Остановить сейчас</b><small>Бросит на месте. Недописанная страница не попадёт на сайт.</small></span></button>
+      </div>
+      <div class="why"><svg class="ico s"><use href="#i-info"/></svg><span>Дело «Сайт для «Виком»» останется в работе. Продолжит, когда напишете «давай дальше» или по будильнику завтра в 9:00.</span></div>
+    </div>
+    <div class="sh-f"><div class="btns"><button class="btn soft" data-back>Не надо</button><button class="btn ink" data-act="answer-back" data-toast="Паша закончит шаг и встанет">Остановить</button></div></div>
+  </div>
+</template>
+
+<template id="s-sessions-queue" data-ch="sessions" data-title="Очередь" data-cap="Что Паша возьмёт дальше и примерно когда. У строки видно, кто поставил и откуда. «Первой», выше-ниже, отложить, убрать — смахиванием или в меню строки." data-src="githubcopilot">
+  <div class="sb"></div>
+  <header class="hd big"><h1>Сессии</h1><button class="round" aria-label="Поиск в очереди"><svg class="ico s"><use href="#i-search"/></svg></button></header>
+  <div class="body">
+    <div class="seg"><button data-go="sessions" data-fade>Сейчас <i>2</i></button><button class="on">Очередь <i>3</i></button><button data-go="sessions-alarms" data-fade>Будильники <i>6</i></button><button data-go="sessions-history" data-fade>Было</button></div>
+    <p class="sm dim" style="margin:10px 4px 4px">Паша берёт по одной задаче на дело и до двух сессий сразу. Дальше по порядку.</p>
+    <div class="grp" style="margin-top:10px" data-queue>
+      <div class="li" data-qrow><span class="qrow"><span class="num">1</span></span><span class="grow"><span class="t">Ролик, день 9: озвучка</span><span class="s">вы в чате, 11:02 · начнёт ≈ 14:20</span></span><button class="more-btn" data-go="queue-row" aria-label="Что сделать"><svg class="ico s"><use href="#i-dots"/></svg></button></div>
+      <div class="li" data-qrow><span class="qrow"><span class="num">2</span></span><span class="grow"><span class="t">Ответить Анатолию про сроки монтажа</span><span class="s">Анатолий, Telegram · ≈ 14:50</span></span><button class="more-btn" data-go="queue-row" aria-label="Что сделать"><svg class="ico s"><use href="#i-dots"/></svg></button></div>
+      <div class="li" data-qrow><span class="qrow"><span class="num">3</span></span><span class="grow"><span class="t">Свериться с ценами конкурентов</span><span class="s">по плану дела «Сайт для «Виком»» · ≈ 15:30</span></span><button class="more-btn" data-go="queue-row" aria-label="Что сделать"><svg class="ico s"><use href="#i-dots"/></svg></button></div>
+    </div>
+    <div class="grp-h">Отложено вами</div>
+    <div class="grp">
+      <div class="li"><span class="qrow"><span class="num"><svg class="ico xs"><use href="#i-pause"/></svg></span></span><span class="grow"><span class="t dim">Статья про утят для блога</span><span class="s">отложили вчера в 22:10</span></span><button class="btn soft s" style="width:auto" data-act="toast" data-toast="Вернул в очередь четвёртой">Вернуть</button></div>
+    </div>
+    <p class="xs dim" style="margin:14px 4px">Смахните строку влево, чтобы отложить или убрать. Вправо — поставить первой.</p>
+  </div>
+  <div class="tabs" data-dock="sessions"></div>
+</template>
+
+<template id="s-queue-row" data-ch="sessions" data-title="Строка очереди" data-cap="Что это за задача целиком, откуда пришла и что ещё стоит по этому делу. Отсюда же поставить первой, отложить или убрать.">
+  <div class="sb"></div>
+  <header class="hd big"><h1>Сессии</h1></header>
+  <div class="body"></div>
+  <div class="dimmer" data-back></div>
+  <div class="sheet">
+    <div class="grab"></div>
+    <div class="sh-h"><b>Ролик, день 9: озвучка</b><button class="round flat" data-back aria-label="Закрыть"><svg class="ico s"><use href="#i-x"/></svg></button></div>
+    <div class="sh-b">
+      <div class="taskq" style="margin-top:0"><small>Вы в чате, 11:02</small>«Озвучь девятый день тем же голосом, музыку тише, финал как у утят»</div>
+      <div class="two"><div><b>1-я</b><span>в очереди</span></div><div><b>≈ 14:20</b><span>начнёт, после сайта</span></div></div>
+      <div class="grp-h">Ещё по делу «Ролик, день 9»</div>
+      <div class="grp"><div class="li"><span class="outc o-ok"><svg class="ico"><use href="#i-check"/></svg></span><span class="grow"><span class="t">Кадры и монтаж</span><span class="s">готово утром, 38 мин</span></span></div></div>
+    </div>
+    <div class="sh-f">
+      <div class="btns" style="grid-template-columns:1fr 1fr 1fr"><button class="btn soft v" data-act="answer-back" data-toast="Начнёт следующей"><svg class="ico s"><use href="#i-top"/></svg>Первой</button><button class="btn soft v" data-act="answer-back" data-toast="Отложил"><svg class="ico s"><use href="#i-pause"/></svg>Отложить</button><button class="btn soft v" style="color:var(--red)" data-act="answer-back" data-toast="Убрал из очереди"><svg class="ico s"><use href="#i-trash"/></svg>Убрать</button></div>
+    </div>
+  </div>
+</template>
+
+<template id="s-sessions-alarms" data-ch="sessions" data-title="Будильники" data-cap="К чему Паша вернётся сам. По часам и по событию: «когда Анатолий ответит», «когда правку примут». Разбудить сейчас, перенести, снять." data-src="tiimo">
+  <div class="sb"></div>
+  <header class="hd big"><h1>Сессии</h1><button class="round" aria-label="Поиск"><svg class="ico s"><use href="#i-search"/></svg></button></header>
+  <div class="body">
+    <div class="seg"><button data-go="sessions" data-fade>Сейчас <i>2</i></button><button data-go="sessions-queue" data-fade>Очередь <i>3</i></button><button class="on">Будильники <i>6</i></button><button data-go="sessions-history" data-fade>Было</button></div>
+    <div class="grp-h">Сегодня</div>
+    <div class="grp">
+      <button class="li" data-go="alarm-edit"><span class="outc o-ask"><svg class="ico"><use href="#i-alarm"/></svg></span><span class="grow"><span class="t">Проверить, открыл ли Анатолий сайт</span><span class="s">Сайт для «Виком»</span></span><span class="r"><b style="color:var(--ink)">17:00</b><br><span class="xs">через 3 ч</span></span></button>
+      <button class="li" data-go="alarm-edit"><span class="outc o-ask"><svg class="ico"><use href="#i-alarm"/></svg></span><span class="grow"><span class="t">Выложить ролик дня 9</span><span class="s">Ролик, день 9</span></span><span class="r"><b style="color:var(--ink)">19:00</b></span></button>
+    </div>
+    <div class="grp-h">Завтра и дальше</div>
+    <div class="grp">
+      <button class="li" data-go="alarm-edit"><span class="outc o-off"><svg class="ico"><use href="#i-alarm"/></svg></span><span class="grow"><span class="t">Показать Анатолию готовый сайт</span><span class="s">Сайт для «Виком»</span></span><span class="r">завтра<br>10:00</span></button>
+      <button class="li" data-go="alarm-edit"><span class="outc o-off"><svg class="ico"><use href="#i-alarm"/></svg></span><span class="grow"><span class="t">Второе письмо гостиницам без ответа</span><span class="s">Письма гостиницам</span></span><span class="r">ср<br>11:00</span></button>
+    </div>
+    <div class="grp-h">Ждут события · Паша проверяет сам</div>
+    <div class="grp">
+      <button class="li" data-go="alarm-edit"><span class="outc o-err"><svg class="ico"><use href="#i-hand"/></svg></span><span class="grow"><span class="t">Ответить, когда Анатолий пришлёт прайс</span><span class="s">проверяет почту раз в 30 мин · до 19 ноября</span></span></button>
+      <button class="li" data-go="alarm-edit"><span class="outc o-err"><svg class="ico"><use href="#i-hand"/></svg></span><span class="grow"><span class="t">Проверить сайт, когда правку примут</span><span class="s">без сессии, разбудит, когда случится</span></span></button>
+    </div>
+    <p class="xs dim" style="margin:14px 4px">Будильник поднимает Пашу только когда пора: ожидание событий не тратит силы.</p>
+  </div>
+  <div class="tabs" data-dock="sessions"></div>
+</template>
+
+<template id="s-alarm-edit" data-ch="sessions" data-title="Один будильник" data-cap="Что Паша сделает, когда сработает, и зачем он его поставил. Разбудить прямо сейчас, перенести на удобное время или снять.">
+  <div class="sb"></div>
+  <header class="hd big"><h1>Сессии</h1></header>
+  <div class="body"></div>
+  <div class="dimmer" data-back></div>
+  <div class="sheet">
+    <div class="grab"></div>
+    <div class="sh-h"><b>Проверить, открыл ли Анатолий сайт</b><button class="round flat" data-back aria-label="Закрыть"><svg class="ico s"><use href="#i-x"/></svg></button></div>
+    <div class="sh-b">
+      <div class="row"><span class="pill me"><svg class="ico xs"><use href="#i-alarm"/></svg>сегодня в 17:00</span><span class="pill off">Сайт для «Виком»</span></div>
+      <div class="taskq"><small>Что сделает</small>Посмотрит, заходил ли Анатолий на тестовый сайт. Не заходил — напишет ему коротко и скажет вам.</div>
+      <div class="taskq"><small>Почему поставил</small>Вы разрешили отправить ссылку в 13:47. Даю Анатолию три часа.</div>
+      <div class="grp-h">Перенести</div>
+      <div class="chips" style="margin:0 -20px"><button>через час</button><button class="on">17:00</button><button>вечером</button><button>завтра утром</button><button>выбрать…</button></div>
+    </div>
+    <div class="sh-f"><div class="btns" style="grid-template-columns:1fr 1.9fr"><button class="btn soft" style="color:var(--red)" data-act="answer-back" data-toast="Будильник снят">Снять</button><button class="btn hot" data-act="answer-back" data-toast="Паша взялся, смотрите в «Сейчас»"><svg class="ico s"><use href="#i-play"/></svg>Разбудить сейчас</button></div></div>
+  </div>
+</template>
+
+<template id="s-sessions-history" data-ch="sessions" data-title="Было" data-cap="Все сессии по дням. Итог значком: готово, спросил вас, упёрся и что дальше, прервалась и почему. Фильтр по итогу и по делу.">
+  <div class="sb"></div>
+  <header class="hd big"><h1>Сессии</h1><button class="round" aria-label="Фильтр"><svg class="ico s"><use href="#i-search"/></svg></button></header>
+  <div class="body">
+    <div class="seg"><button data-go="sessions" data-fade>Сейчас <i>2</i></button><button data-go="sessions-queue" data-fade>Очередь <i>3</i></button><button data-go="sessions-alarms" data-fade>Будильники <i>6</i></button><button class="on">Было</button></div>
+    <div class="chips"><button class="on">Все</button><button>Готово</button><button>Спросил вас</button><button>Упёрся</button><button>По делу ▾</button></div>
+    <div class="grp-h">Сегодня · 4 сессии, 2 ч 40 мин</div>
+    <div class="grp">
+      <button class="li" data-go="session-done"><span class="outc o-ok"><svg class="ico"><use href="#i-check"/></svg></span><span class="grow"><span class="t">Каталог: цены из прайса</span><span class="s">готово · 41 товар · 42 мин</span></span><span class="r xs">09:12</span></button>
+      <button class="li" data-go="session-done"><span class="outc o-ask"><svg class="ico"><use href="#i-ask"/></svg></span><span class="grow"><span class="t">Письма гостиницам: список</span><span class="s">спросил вас · ждёт ответа</span></span><span class="r xs">08:30</span></button>
+      <button class="li" data-go="session-done"><span class="outc o-ok"><svg class="ico"><use href="#i-check"/></svg></span><span class="grow"><span class="t">Ролик дня 9: кадры и монтаж</span><span class="s">готово · 38 мин</span></span><span class="r xs">07:40</span></button>
+      <button class="li" data-go="session-done"><span class="outc o-off"><svg class="ico"><use href="#i-mail"/></svg></span><span class="grow"><span class="t">Утренняя почта</span><span class="s">нового нет · 2 мин</span></span><span class="r xs">07:05</span></button>
+    </div>
+    <div class="grp-h">Вчера · 5 сессий</div>
+    <div class="grp">
+      <button class="li" data-go="session-done"><span class="outc o-err"><svg class="ico"><use href="#i-warn"/></svg></span><span class="grow"><span class="t">Ролик дня 8: выкладка</span><span class="s">кончились силы · повторил в 08:00, вышел</span></span><span class="r xs">23:40</span></button>
+      <button class="li" data-go="session-done"><span class="outc o-err"><svg class="ico"><use href="#i-key"/></svg></span><span class="grow"><span class="t">Почта Директа</span><span class="s">упёрся: пароль не подходит · ждёт вас</span></span><span class="r xs">18:10</span></button>
+    </div>
+  </div>
+  <div class="tabs" data-dock="sessions"></div>
+</template>
+
+<template id="s-session-done" data-ch="sessions" data-title="Сессия закончилась" data-cap="Итог сверху, шаги свёрнуты. Можно открыть результат или спросить Пашу про эту сессию: вопрос уйдёт в чат с цитатой.">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl"><span class="pill off">закончилась</span></span><button class="round" data-go="deal" aria-label="Дело"><svg class="ico s"><use href="#i-list"/></svg></button></header>
+  <div class="body">
+    <div class="shead"><h1>Каталог: цены из прайса</h1><div class="from">Вы попросили в чате в 09:12 · <a data-go="deal">Сайт для «Виком»</a></div></div>
+    <div class="outcome"><b>Готово за 42 минуты</b><p>41 товар с ценами из прайса от 10 ноября. Три товара без фото: спросил Анатолия.</p><button class="btn ink s" style="margin-top:12px" data-go="result">Открыть результат</button></div>
+    <div class="two"><div><b>27</b><span>шагов</span></div><div><b>6%</b><span>сил ушло</span></div></div>
+    <div class="feed">
+      <div class="st ok"><span class="bd"><svg class="ico"><use href="#i-file"/></svg></span><span class="tx">Прочитал прайс от 10 ноября</span><span class="tm">09:13</span></div>
+      <div class="st ok" data-act="expand"><span class="bd"><svg class="ico"><use href="#i-globe"/></svg></span><span class="tx"><span class="group">Перенёс 41 товар <span class="dim xs">22 действия</span><svg class="ico xs chev2 dim"><use href="#i-chev"/></svg></span><span class="sub-steps"><span>двери входные, 14 шт.</span><span>двери межкомнатные, 19 шт.</span><span>фурнитура, 8 шт.</span></span></span><span class="tm">09:20</span></div>
+      <div class="st ok"><span class="bd"><svg class="ico"><use href="#i-tg"/></svg></span><span class="tx">Спросил Анатолия про фото трёх товаров</span><span class="tm">09:51</span></div>
+      <div class="st ok"><span class="bd"><svg class="ico"><use href="#i-check"/></svg></span><span class="tx">Сдал результат</span><span class="tm">09:54</span></div>
+    </div>
+  </div>
+  <div class="foot acts"><button class="btn soft" data-tab="chat"><svg class="ico s"><use href="#i-chat"/></svg>Спросить Пашу про эту сессию</button></div>
+  <div class="homebar"></div>
+</template>
+
+<!-- ДЕЛА -->
+<template id="s-deals" data-ch="deals" data-title="Дела" data-cap="Что получится и когда. У каждого дела срок, полоска хода и одна строка: идёт сессия, ждёт вас или ждёт кого-то другого." data-src="asana,instacart">
+  <div class="sb"></div>
+  <header class="hd big"><h1>Дела</h1><button class="round" data-go="chat-search" aria-label="Поиск"><svg class="ico s"><use href="#i-search"/></svg></button><button class="round" data-tab="chat" aria-label="Новое дело"><svg class="ico s"><use href="#i-plus"/></svg></button></header>
+  <div class="body">
+    <div class="seg"><button class="on">В работе <i>3</i></button><button>Ждут <i>2</i></button><button>Готово <i>41</i></button></div>
+    <div class="sp8"></div>
+    <button class="deal" data-go="deal"><span class="row"><span class="tile c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><span class="grow"><h4>Сайт для «Виком»</h4><span class="when">завтра в 10:00 · шаг 4 из 5</span></span></span><span class="bar"><i style="width:85%"></i></span><span class="stline"><span class="dot pulse"></span><span class="ell">идёт сессия: раздел «Доставка»</span></span></button>
+    <button class="deal" data-go="deal"><span class="row"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><span class="grow"><h4>Ролик, день 9</h4><span class="when">сегодня в 19:00 · шаг 2 из 3</span></span></span><span class="bar"><i style="width:60%"></i></span><span class="stline"><span class="dot o"></span><span class="ell">ждёт вас: тему выбрать из двух</span></span></button>
+    <button class="deal" data-go="deal"><span class="row"><span class="tile c-sun"><svg class="ico"><use href="#i-mail"/></svg></span><span class="grow"><h4>Письма гостиницам</h4><span class="when">в среду · 12 из 40 писем</span></span></span><span class="bar"><i style="width:30%"></i></span><span class="stline"><span class="dot y"></span><span class="ell">ждёт ответов гостиниц · будильник ср 11:00</span></span></button>
+    <div class="grp-h">Готово на этой неделе</div>
+    <div class="hs">
+      <button class="story" data-go="result"><div class="pic" style="background:linear-gradient(135deg,#FFB98F,#FF6A2B)"></div><b>Отчёт недели</b><span>пятница</span></button>
+      <button class="story" data-go="result"><div class="pic" style="background:linear-gradient(135deg,#1d3b5a,#5d8ab8)"></div><b>Каталог «Виком»</b><span>сегодня</span></button>
+      <button class="story" data-go="result"><div class="pic" style="background:linear-gradient(135deg,#B89CFF,#7A4DE0)"></div><b>Ролик, день 8</b><span>вчера</span></button>
+    </div>
+  </div>
+  <div class="tabs" data-dock="deals"></div>
+</template>
+
+<template id="s-deal" data-ch="deals" data-title="Дело" data-cap="Когда будет, где сейчас, кого ждёт. Ниже шаги, результаты, все сессии этого дела, будильники и его часть разговора." data-src="instacart,boltfood">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl"></span><button class="round" aria-label="Ещё"><svg class="ico s"><use href="#i-dots"/></svg></button></header>
+  <div class="body">
+    <div class="row"><span class="tile l c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><h1 class="h1" style="font-size:28px">Сайт для «Виком»</h1></div>
+    <div class="eta-k">Будет готово</div>
+    <div class="eta">завтра в 10:00</div>
+    <div class="track"><i class="ok"></i><i class="ok"></i><i class="ok"></i><i class="go"></i><i></i></div>
+    <div class="track-l"><span>принял</span><span>разобрал</span><span>собрал</span><span class="on">доделываю</span><span>покажу</span></div>
+    <button class="sesscard" style="margin-top:16px" data-go="session"><svg class="ico"><use href="#i-pulse"/></svg><span class="grow"><b>Идёт сессия: «Доставка»</b><small class="shim">переносит страницу 29 из 33 · 18 мин</small></span><span class="go">Смотреть</span></button>
+    <div class="h2">Шаги <span class="c">3 из 5</span></div>
+    <div class="card" style="padding:6px 16px">
+      <div class="chk ok"><span class="bx"><svg class="ico"><use href="#i-check"/></svg></span><span class="tx">Разобрать старый сайт<small>33 страницы, 41 товар</small></span></div>
+      <div class="chk ok"><span class="bx"><svg class="ico"><use href="#i-check"/></svg></span><span class="tx">Собрать новый с админкой<small>vikom.autopasha.ru</small></span></div>
+      <div class="chk ok"><span class="bx"><svg class="ico"><use href="#i-check"/></svg></span><span class="tx">Каталог с ценами из прайса</span></div>
+      <div class="chk go"><span class="bx"><svg class="ico"><use href="#i-pulse"/></svg></span><span class="tx">Доставка и статьи<small>идёт сейчас</small></span></div>
+      <div class="chk wt"><span class="bx"><svg class="ico"><use href="#i-hand"/></svg></span><span class="tx">Показать Анатолию<small>ждёт вас: можно ли отправить ссылку</small></span></div>
+    </div>
+    <div class="h2">Готово по делу</div>
+    <div class="hs"><button class="story" data-go="result"><div class="pic" style="background:linear-gradient(135deg,#1d3b5a,#5d8ab8)"></div><b>Каталог, 41 товар</b><span>сегодня</span></button><button class="story" data-go="result"><div class="pic" style="background:linear-gradient(135deg,#FFB98F,#FF6A2B)"></div><b>Главная на телефоне</b><span>в пятницу</span></button></div>
+    <div class="h2">Сессии дела <span class="c">7</span><a class="more" data-tab="sessions">все</a></div>
+    <div class="grp">
+      <button class="li" data-go="session"><span class="outc o-ok"><svg class="ico"><use href="#i-pulse"/></svg></span><span class="grow"><span class="t">Раздел «Доставка»</span><span class="s">идёт · 18 мин</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+      <button class="li" data-go="session-done"><span class="outc o-ok"><svg class="ico"><use href="#i-check"/></svg></span><span class="grow"><span class="t">Каталог: цены из прайса</span><span class="s">готово · 42 мин</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+    </div>
+    <div class="h2">Будильники дела</div>
+    <div class="grp"><button class="li" data-go="alarm-edit"><span class="outc o-ask"><svg class="ico"><use href="#i-alarm"/></svg></span><span class="grow"><span class="t">Показать Анатолию готовый сайт</span><span class="s">завтра в 10:00</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
+    <div class="h2">Разговор по делу <span class="c">14</span></div>
+    <div class="thread">
+      <div class="bub me">Цены бери из прайса, не со старого сайта<span class="tm">вчера 18:02</span></div>
+      <div class="bub">Понял, взял прайс от 10 ноября. 41 товар, все цены сошлись.<span class="tm">вчера 18:05</span></div>
+    </div>
+  </div>
+  <div class="foot"><div class="composer"><button class="plus" aria-label="Прикрепить"><svg class="ico"><use href="#i-plus"/></svg></button><button class="field" data-tab="chat"><span class="tagin">Сайт для «Виком»</span>Написать</button><button class="mic" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div></div>
+  <div class="homebar"></div>
+</template>
+
+<template id="s-result" data-ch="deals" data-title="Результат" data-cap="Что получилось, цифрами и картинкой. Принять одной кнопкой, доработать голосом. Ссылки и доказательства под раскрывашкой." data-src="fabric">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl"></span><button class="round" aria-label="Поделиться"><svg class="ico s"><use href="#i-link"/></svg></button></header>
+  <div class="body">
+    <div class="res-hero"><div class="lap"></div><div class="ph"><div class="in"></div></div></div>
+    <div style="margin-top:16px"><span class="pill go"><svg class="ico xs"><use href="#i-check"/></svg>Готово</span></div>
+    <h1 class="h1" style="font-size:28px;margin-top:10px">Каталог «Виком» с ценами из прайса</h1>
+    <div class="stats"><div><b>41</b><span>товар с ценой</span></div><div><b>38</b><span>с фото</span></div><div><b>42</b><span>минуты работы</span></div></div>
+    <div class="h2">Что сделал</div>
+    <div class="did"><div><svg class="ico"><use href="#i-check"/></svg>Перенёс 41 товар, цены из прайса от 10 ноября</div><div><svg class="ico"><use href="#i-check"/></svg>Анатолий сам меняет цены в админке</div><div><svg class="ico"><use href="#i-check"/></svg>Три товара без фото, спросил Анатолия</div></div>
+    <div class="grp" style="margin-top:18px"><button class="li"><span class="tile s c-sky"><svg class="ico"><use href="#i-link"/></svg></span><span class="grow"><span class="t">vikom.autopasha.ru/catalog</span><span class="s">открыть каталог</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button><button class="li" data-go="session-done"><span class="tile s c-mint"><svg class="ico"><use href="#i-pulse"/></svg></span><span class="grow"><span class="t">Как делал</span><span class="s">сессия 42 мин, 27 шагов</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
+  </div>
+  <div class="foot acts"><button class="btn soft" data-go="redo">Доработать</button><button class="btn green" data-act="accept">Принять</button></div>
+  <div class="homebar"></div>
+</template>
+
+<template id="s-redo" data-ch="deals" data-title="Доработать" data-cap="Скажите голосом или выберите частое. Паша повторит, как понял, и поставит доработку первой в очередь.">
+  <div class="sb"></div>
+  <header class="hd"><span class="ttl"></span></header>
+  <div class="body"></div>
+  <div class="dimmer" data-back></div>
+  <div class="sheet">
+    <div class="grab"></div>
+    <div class="sh-h"><b>Что доработать?</b><button class="round flat" data-back aria-label="Закрыть"><svg class="ico s"><use href="#i-x"/></svg></button></div>
+    <div class="sh-b">
+      <div class="chips" style="margin:0 -20px;flex-wrap:wrap"><button>Цены не те</button><button>Добавь фото</button><button>Поменяй порядок</button><button>Короче текст</button></div>
+      <div class="live-tx" style="margin-top:14px"><small>Вы говорите</small>Фурнитуру убери в самый конец, её почти не берут<span class="caret"></span></div>
+      <div class="why"><svg class="ico s"><use href="#i-info"/></svg><span>Понял так: фурнитура последним разделом каталога. Сделаю первой задачей, минут 10.</span></div>
+    </div>
+    <div class="sh-f"><div class="composer"><span class="field">Или напишите</span><button class="mic" data-act="answer-back" data-toast="Поставил первой в очередь" aria-label="Отправить"><svg class="ico"><use href="#i-send"/></svg></button></div></div>
+  </div>
+</template>
+
+<!-- ПАША -->
+<template id="s-pasha" data-ch="pasha" data-title="Паша" data-cap="Кто он у вас: имя и наряд, силы на сегодня, месяц работы. Ниже всё, что раньше было в тринадцати пунктах меню, сгруппировано по смыслу." data-src="bevel,future" data-aura>
+  <div class="sb"></div>
+  <header class="hd"><span class="ttl"></span><button class="round" data-go="settings" aria-label="Настройки"><svg class="ico s"><use href="#i-gear"/></svg></button></header>
+  <div class="body">
+    <div class="pa-head"><i class="pa" data-s="96" data-o="headset" data-me></i><b>Паша</b><small>ваш сотрудник 23 дня · работает 9–21</small><div class="outfits" data-outfits></div></div>
+    <button class="card" style="margin-top:18px;display:block;width:100%" data-go="power"><span class="row"><svg class="ico" style="color:var(--green)"><use href="#i-bolt"/></svg><b class="grow">Силы на сегодня</b><b>64%</b></span><span class="energy" style="margin-top:12px"><span class="bar"><i style="width:64%"></i></span></span><span class="sm dim" style="display:block;margin-top:8px">Хватит до 16:30, обновятся в 19:00</span></button>
+    <div class="month"><div><b>12</b><span>дел сдал в ноябре</span></div><div><b>2</b><span>упёрся, ждёт вас</span></div></div>
+    <div class="grp-h">Работа</div>
+    <div class="grp">
+      <button class="li" data-go="where"><span class="tile s c-sky"><svg class="ico"><use href="#i-tg"/></svg></span><span class="grow"><span class="t">Где работает</span></span><span class="r">4 чата, почта</span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+      <button class="li" data-go="team"><span class="tile s c-rose"><svg class="ico"><use href="#i-users"/></svg></span><span class="grow"><span class="t">Команда</span></span><span class="r">3 человека</span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+      <button class="li" data-go="rules"><span class="tile s c-lilac"><svg class="ico"><use href="#i-shield"/></svg></span><span class="grow"><span class="t">Что можно без вас</span></span><span class="r">11 правил</span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+      <button class="li" data-go="memory"><span class="tile s c-sky"><svg class="ico"><use href="#i-brain"/></svg></span><span class="grow"><span class="t">Что Паша знает</span></span><span class="r">27 фактов</span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+      <button class="li" data-go="access"><span class="tile s c-mint"><svg class="ico"><use href="#i-key"/></svg></span><span class="grow"><span class="t">Доступы и проекты</span></span><span class="r">1 не подходит</span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+      <button class="li" data-go="skills"><span class="tile s c-peach"><svg class="ico"><use href="#i-spark"/></svg></span><span class="grow"><span class="t">Что умеет</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+    </div>
+    <div class="grp-h">Деньги</div>
+    <div class="grp"><button class="li" data-go="pay"><span class="tile s c-sun"><svg class="ico"><use href="#i-card"/></svg></span><span class="grow"><span class="t">Оплата</span><span class="s">хватит примерно на 5 дней</span></span><span class="r">3 120 ₽</span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
+    <div class="grp-h">Приложение</div>
+    <div class="grp">
+      <button class="li" data-go="notify"><span class="tile s c-rose"><svg class="ico"><use href="#i-bell"/></svg></span><span class="grow"><span class="t">Уведомления</span></span><span class="r">важное сразу</span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+      <button class="li" data-go="support"><span class="tile s c-ink"><svg class="ico"><use href="#i-help"/></svg></span><span class="grow"><span class="t">Помощь</span><span class="s">люди сервиса, не Паша</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+    </div>
+  </div>
+  <div class="tabs" data-dock="pasha"></div>
+</template>
+
+<template id="s-power" data-ch="pasha" data-title="Силы Паши" data-cap="Сколько он ещё успеет сегодня, когда обновятся, куда ушли и чья подписка. Что будет, когда кончатся, написано заранее." data-src="rocketmoney">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Силы</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="gauge"><svg viewBox="0 0 250 150" width="250" height="150"><path d="M20 135 A105 105 0 0 1 230 135" fill="none" stroke="var(--card-2)" stroke-width="18" stroke-linecap="round"/><path d="M20 135 A105 105 0 0 1 230 135" fill="none" stroke="var(--green)" stroke-width="18" stroke-linecap="round" stroke-dasharray="330" stroke-dashoffset="119"/></svg><div class="mid"><b>64%</b><span>осталось</span></div></div>
+    <div class="two"><div><b>до 16:30</b><span>хватит, если как сейчас</span></div><div><b>в 19:00</b><span>обновятся</span></div></div>
+    <div class="warn"><svg class="ico s"><use href="#i-info"/></svg><span><b>Кончатся раньше — ничего не потеряется</b>Паша доделает шаг, остальное встанет в очередь на 19:00, вам придёт одно сообщение.</span></div>
     <div class="h2">Куда ушли сегодня</div>
-    <div class="group spent">
-      <div class="li"><span class="tile c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><div class="grow"><b>Сайт для «Виком»</b><span class="bar"><i style="width:62%;background:var(--peach-i)"></i></span></div><b>22%</b></div>
-      <div class="li"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><div class="grow"><b>Ролик, день 9</b><span class="bar"><i style="width:26%;background:var(--lilac-i)"></i></span></div><b>9%</b></div>
-      <div class="li"><span class="tile c-sun"><svg class="ico"><use href="#i-mail"/></svg></span><div class="grow"><b>Письма гостиницам</b><span class="bar"><i style="width:14%;background:var(--sun-i)"></i></span></div><b>5%</b></div>
+    <div class="grp">
+      <div class="li"><span class="tile s c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><span class="grow"><span class="t">Сайт для «Виком»</span><span class="bar" style="margin-top:6px"><i style="width:62%"></i></span></span><span class="r">22%</span></div>
+      <div class="li"><span class="tile s c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><span class="grow"><span class="t">Ролик, день 9</span><span class="bar" style="margin-top:6px"><i style="width:28%"></i></span></span><span class="r">10%</span></div>
+      <div class="li"><span class="tile s c-sun"><svg class="ico"><use href="#i-mail"/></svg></span><span class="grow"><span class="t">Письма гостиницам</span><span class="bar" style="margin-top:6px"><i style="width:12%"></i></span></span><span class="r">4%</span></div>
     </div>
-    <div class="h2">Неделя</div>
-    <div class="card">
-      <div class="week"><div><i class="full" style="--h:100%"></i><span>пн</span></div><div><i style="--h:86%"></i><span>вт</span></div><div><i class="full" style="--h:100%"></i><span>ср</span></div><div><i style="--h:72%"></i><span>чт</span></div><div><i class="full" style="--h:100%"></i><span>пт</span></div><div><i style="--h:44%"></i><span>сб</span></div><div><i style="--h:36%"></i><span style="color:var(--hot)">сег</span></div></div>
-      <p class="dim sm" style="margin-top:14px">Три дня из семи силы кончались к 15:40. С подпиской Max хватало бы на весь день.</p>
-    </div>
-    <div class="set">
-      <div class="si"><span class="ib" style="background:#D97757"><svg class="ico s"><use href="#i-key"/></svg></span><b class="ell" style="font-size:15.5px">maketo.dialogo@gmail.com</b><span class="v">Pro</span></div>
-      <div class="si"><span class="ib" style="background:var(--card-2);color:var(--ink)"><svg class="ico s"><use href="#i-link"/></svg></span><b>Подключить другую подписку</b><svg class="ico s chev"><use href="#i-chev"/></svg></div>
-    </div>
+    <div class="h2">Чья подписка</div>
+    <div class="grp"><div class="li"><span class="tile s c-ink"><svg class="ico"><use href="#i-bolt"/></svg></span><span class="grow"><span class="t">Ваша Claude Max</span><span class="s">подключена 2 ноября</span></span><span class="pill go">работает</span></div></div>
+    <div class="warn"><svg class="ico s"><use href="#i-warn"/></svg><span><b>Вы тоже сидите в этой подписке?</b>Каждый ваш разговор с Claude берёт из того же запаса. Сидите с утра — Паша устанет раньше.</span></div>
   </div>
+  <div class="tabs" data-dock="pasha"></div>
 </template>
 
-<template id="s-pay" data-title="Оплата" data-cap="Сколько на счёте, на сколько хватит и за что списано: по делам, а не строчками выписки." data-src="vivid,fabric,rocketmoney">
+<template id="s-where" data-ch="pasha" data-title="Где работает" data-cap="Мессенджеры и почта, у каждого чата видно, как Паша себя там ведёт. Добавить новое место — одна кнопка.">
   <div class="sb"></div>
-  <div class="body nodock">
-    <div class="nav"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button></div>
-    <h1 class="h1" style="margin-bottom:18px">Оплата</h1>
-    <div class="wallet">
-      <span class="sm" style="opacity:.85;font-weight:650">На счёте</span>
-      <i class="pa" data-s="104" data-o="bow"></i>
-      <div class="big">3 120 ₽</div>
-      <span class="sm" style="opacity:.92;margin-top:6px">хватит примерно на 5 дней работы</span>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Где работает</span><button class="round" data-go="connect" aria-label="Добавить"><svg class="ico s"><use href="#i-plus"/></svg></button></header>
+  <div class="body">
+    <div class="grp-h">Telegram · от вашего имени</div>
+    <div class="grp">
+      <button class="li" data-go="chat-mode"><span class="ava c-sky">АК</span><span class="grow"><span class="t">Анатолий, «Виком»</span><span class="s">клиент · последнее сегодня 13:50</span></span><span class="pill go">отвечает сам</span></button>
+      <button class="li" data-go="chat-mode"><span class="ava c-rose">ОП</span><span class="grow"><span class="t">Отдел продаж</span><span class="s">группа, 6 человек</span></span><span class="pill me">спросит вас</span></button>
+      <button class="li" data-go="chat-mode"><span class="ava c-mint">ИЗ</span><span class="grow"><span class="t">«Изразец», гостиница</span><span class="s">ответили на письмо</span></span><span class="pill me">спросит вас</span></button>
+      <button class="li" data-go="chat-mode"><span class="ava c-ink">НВ</span><span class="grow"><span class="t">Новости рынка</span><span class="s">канал</span></span><span class="pill off">только читает</span></button>
     </div>
-    <div class="btns" style="grid-template-columns:1fr 1fr;margin-top:14px"><button class="btn ink">Пополнить</button><button class="btn soft">Автоплатёж</button></div>
-    <div class="set">
-      <div class="si"><span class="ib c-peach"><i class="pa" data-s="26"></i></span><b>Место Паши</b><span class="v">2 000 ₽ в месяц</span></div>
+    <div class="grp-h">Почта</div>
+    <div class="grp"><button class="li"><span class="tile s c-mail"><svg class="ico"><use href="#i-mail"/></svg></span><span class="grow"><span class="t">pavel@autopasha.ru</span><span class="s">читает и пишет · проверил 13:40</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
+    <div class="grp-h">Новые чаты</div>
+    <div class="card"><div class="row"><span class="ava c-sun">ВЛ</span><span class="grow"><b class="sm">Влад, «Створ»</b><span class="xs dim" style="display:block">написал вам впервые вчера</span></span></div><div class="btns" style="margin-top:12px;grid-template-columns:1fr 1fr"><button class="btn soft s" data-act="toast" data-toast="Паша не будет туда писать">Не трогать</button><button class="btn hot s" data-go="chat-mode">Настроить</button></div></div>
+  </div>
+  <div class="tabs" data-dock="pasha"></div>
+</template>
+
+<template id="s-chat-mode" data-ch="pasha" data-title="Один чат" data-cap="Как Паша ведёт себя в этом чате: отвечает сам, спрашивает вас или только читает. Под каждым вариантом — что будет на деле. Ниже его последние сообщения там.">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Анатолий, «Виком»</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="modes">
+      <button class="mode on"><span class="rad"></span><span><b>Отвечает сам</b><small>Пишет Анатолию без вас. Деньги, сроки и обещания всё равно спросит.</small></span></button>
+      <button class="mode"><span class="rad"></span><span><b>Спрашивает вас</b><small>Готовит ответ и присылает вам кнопкой «Отправить».</small></span></button>
+      <button class="mode"><span class="rad"></span><span><b>Только читает</b><small>Знает, о чём речь, но ничего не пишет.</small></span></button>
     </div>
+    <div class="h2">Что Паша там писал</div>
+    <div class="thread">
+      <div class="bub">Анатолий, добрый день! Тестовый сайт готов: vikom.autopasha.ru<span class="tm">13:48 · Паша</span></div>
+      <div class="bub me" style="background:var(--card-2);color:var(--ink)">Спасибо, вечером гляну<span class="tm">13:50 · Анатолий</span></div>
+    </div>
+    <div class="grp" style="margin-top:16px"><button class="li"><span class="tile s c-tg"><svg class="ico"><use href="#i-tg"/></svg></span><span class="grow"><span class="t">Открыть в Telegram</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button><button class="li" data-go="team"><span class="tile s c-rose"><svg class="ico"><use href="#i-users"/></svg></span><span class="grow"><span class="t">Анатолий в команде</span><span class="s">клиент, ставит задачи по своему сайту</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
+  </div>
+  <div class="tabs" data-dock="pasha"></div>
+</template>
+
+<template id="s-connect" data-ch="pasha" data-title="Подключить Telegram" data-cap="Два способа вместо четырёх, понятный первым. Если не вышло, причина словами прямо в шаге, а не зелёное «номер ушёл»." data-src="remote">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Telegram</span><span class="xs dim" style="width:44px;text-align:right">1 из 3</span></header>
+  <div class="body">
+    <h1 class="h1" style="font-size:28px">Как Паше быть в Telegram?</h1>
+    <div class="ways" style="margin-top:16px">
+      <button class="way on"><b>Отдельным ботом</b> <span class="pill go">проще всего</span><small>Бот с вашим названием и фото. Три минуты. Люди видят, что пишет помощник.</small><span class="ok">✓ ваш аккаунт в безопасности</span></button>
+      <button class="way"><b>От вашего имени</b><small>Паша пишет с вашего аккаунта, как вы сами. Пять минут, нужен код из Telegram.</small><span class="ok">✓ люди не заметят разницы</span></button>
+    </div>
+    <div class="stepper">
+      <div class="s go"><span class="n">1</span><span class="grow"><b class="sm">Откройте @BotFather</b><span class="xs dim" style="display:block">кнопка ниже откроет его в Telegram</span></span></div>
+      <div class="s"><span class="n">2</span><span class="grow"><b class="sm">Пришлите Паше ключ бота</b><span class="xs dim" style="display:block">длинная строка с двоеточием</span></span></div>
+      <div class="s"><span class="n">3</span><span class="grow"><b class="sm">Добавьте бота в чаты</b><span class="xs dim" style="display:block">Паша сам спросит, как там себя вести</span></span></div>
+    </div>
+  </div>
+  <div class="foot acts"><button class="btn hot">Открыть BotFather</button></div>
+  <div class="homebar"></div>
+</template>
+
+<template id="s-team" data-ch="pasha" data-title="Команда" data-cap="Кто ставит задачи, кто принимает работу, кто только смотрит. У каждой роли написано, что человек увидит и что сможет.">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Команда</span><button class="round" aria-label="Пригласить"><svg class="ico s"><use href="#i-plus"/></svg></button></header>
+  <div class="body">
+    <div class="grp">
+      <div class="li"><span class="myface">ПБ</span><span class="grow"><span class="t">Павел Б. (вы)</span><span class="s">владелец · решает и платит</span></span></div>
+      <div class="li"><span class="ava c-lilac">ПС</span><span class="grow"><span class="t">Павел Ступин</span><span class="s">ставит задачи · видит чат и сессии</span></span><svg class="ico chev"><use href="#i-chev"/></svg></div>
+      <div class="li"><span class="ava c-sky">АК</span><span class="grow"><span class="t">Анатолий, «Виком»</span><span class="s">клиент в Telegram · без входа в приложение</span></span><svg class="ico chev"><use href="#i-chev"/></svg></div>
+    </div>
+    <div class="h2">Кто что может</div>
+    <div class="grp">
+      <div class="li"><span class="tile s c-peach"><svg class="ico"><use href="#i-check"/></svg></span><span class="grow"><span class="t">Владелец</span><span class="s">всё: решения, оплата, доступы, команда</span></span></div>
+      <div class="li"><span class="tile s c-lilac"><svg class="ico"><use href="#i-chat"/></svg></span><span class="grow"><span class="t">Ставит задачи</span><span class="s">пишет Паше, дописывает в сессии, видит дела. Решения — нет</span></span></div>
+      <div class="li"><span class="tile s c-ink"><svg class="ico"><use href="#i-eye"/></svg></span><span class="grow"><span class="t">Только смотрит</span><span class="s">видит чат, сессии и дела, ничего не меняет</span></span></div>
+    </div>
+  </div>
+  <div class="tabs" data-dock="pasha"></div>
+</template>
+
+<template id="s-rules" data-ch="pasha" data-title="Что можно без вас" data-cap="Три корзины: делает сам, спросит вас, никогда. Правило можно перетащить в соседнюю корзину или выключить.">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Что можно без вас</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="grp-h">Делает сам</div>
+    <div class="grp">
+      <div class="li"><span class="grow"><span class="t">Отвечать клиентам, которым уже писал</span></span><span class="tog on"></span></div>
+      <div class="li"><span class="grow"><span class="t">Выкладывать правки сайта после проверки</span></span><span class="tog on"></span></div>
+      <div class="li"><span class="grow"><span class="t">Ставить себе будильники и переносить их</span></span><span class="tog on"></span></div>
+    </div>
+    <div class="grp-h">Спросит вас</div>
+    <div class="grp">
+      <div class="li"><span class="grow"><span class="t">Писать человеку впервые</span></span><span class="tog on"></span></div>
+      <div class="li"><span class="grow"><span class="t">Называть цену и срок</span></span><span class="tog on"></span></div>
+      <div class="li"><span class="grow"><span class="t">Тратить деньги</span><span class="s">любая сумма</span></span><span class="tog on"></span></div>
+    </div>
+    <div class="grp-h">Никогда</div>
+    <div class="grp">
+      <div class="li"><span class="tile s c-rose"><svg class="ico"><use href="#i-x"/></svg></span><span class="grow"><span class="t">Писать тем, кто отказался</span></span></div>
+      <div class="li"><span class="tile s c-rose"><svg class="ico"><use href="#i-x"/></svg></span><span class="grow"><span class="t">Менять цены и тарифы в оплате</span><span class="s">только вы</span></span></div>
+    </div>
+  </div>
+  <div class="tabs" data-dock="pasha"></div>
+</template>
+
+<template id="s-memory" data-ch="pasha" data-title="Что Паша знает" data-cap="Факты о вас, людях и делах, которые Паша держит в голове. Новое за сегодня помечено. Неверное можно поправить или стереть.">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Что знает</span><button class="round" aria-label="Поиск"><svg class="ico s"><use href="#i-search"/></svg></button></header>
+  <div class="body">
+    <div class="chips"><button class="on">Всё 27</button><button>О вас</button><button>Люди</button><button>Как любите</button></div>
+    <div class="grp-h">Узнал сегодня</div>
+    <div class="grp">
+      <div class="fact"><span class="tx">Гостиницам пишем только в Москве и Петербурге<span class="new">новое</span><small>из вашего голосового, 09:40</small></span><button class="more-btn" aria-label="Изменить"><svg class="ico s"><use href="#i-edit"/></svg></button></div>
+    </div>
+    <div class="grp-h">Как вы любите</div>
+    <div class="grp">
+      <div class="fact"><span class="tx">Готовый ролик сразу вам, без ожидания отчёта<small>с 16 октября</small></span><button class="more-btn" aria-label="Изменить"><svg class="ico s"><use href="#i-edit"/></svg></button></div>
+      <div class="fact"><span class="tx">Вопросы с вариантами — кнопками, а не текстом</span><button class="more-btn" aria-label="Изменить"><svg class="ico s"><use href="#i-edit"/></svg></button></div>
+    </div>
+    <div class="grp-h">Люди</div>
+    <div class="grp">
+      <div class="fact"><span class="tx">Анатолий — «Виком», двери и окна. Пишет коротко, вечером</span><button class="more-btn" aria-label="Изменить"><svg class="ico s"><use href="#i-edit"/></svg></button></div>
+    </div>
+  </div>
+  <div class="tabs" data-dock="pasha"></div>
+</template>
+
+<template id="s-access" data-ch="pasha" data-title="Доступы и проекты" data-cap="Какие пароли и ключи есть у Паши и работают ли они. Неподходящий наверху, с кнопкой «обновить». Ключи для разработчиков внизу.">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Доступы</span><button class="round" aria-label="Добавить"><svg class="ico s"><use href="#i-plus"/></svg></button></header>
+  <div class="body">
+    <div class="card" style="box-shadow:var(--sh),inset 0 0 0 1.5px var(--sun)"><div class="row"><span class="tile s c-sun"><svg class="ico"><use href="#i-warn"/></svg></span><span class="grow"><b class="sm">Яндекс Директ</b><span class="xs dim" style="display:block">пароль не подходит с 18:10 вчера</span></span></div><button class="btn hot s" style="margin-top:12px">Обновить пароль</button></div>
+    <div class="grp-h">Работают</div>
+    <div class="grp">
+      <div class="li"><span class="tile s c-mail"><svg class="ico"><use href="#i-mail"/></svg></span><span class="grow"><span class="t">Почта pavel@</span><span class="s">проверено 13:40</span></span><span class="pill go">ок</span></div>
+      <div class="li"><span class="tile s c-sky"><svg class="ico"><use href="#i-globe"/></svg></span><span class="grow"><span class="t">Хостинг reg.ru</span><span class="s">проверено вчера</span></span><span class="pill go">ок</span></div>
+      <div class="li"><span class="tile s c-ink"><svg class="ico"><use href="#i-key"/></svg></span><span class="grow"><span class="t">GitHub</span><span class="s">2 репозитория</span></span><span class="pill go">ок</span></div>
+    </div>
+    <div class="grp-h">Проекты</div>
+    <div class="grp">
+      <div class="li"><span class="tile s c-peach"><svg class="ico"><use href="#i-folder"/></svg></span><span class="grow"><span class="t">Сайт «Виком»</span><span class="s">vikom-site</span></span><svg class="ico chev"><use href="#i-chev"/></svg></div>
+      <div class="li"><span class="tile s c-peach"><svg class="ico"><use href="#i-folder"/></svg></span><span class="grow"><span class="t">АвтоПаша</span><span class="s">autopasha</span></span><svg class="ico chev"><use href="#i-chev"/></svg></div>
+    </div>
+    <div class="grp" style="margin-top:12px"><div class="li"><span class="tile s c-ink"><svg class="ico"><use href="#i-lock"/></svg></span><span class="grow"><span class="t">Для разработчиков</span><span class="s">ключи API</span></span><svg class="ico chev"><use href="#i-chev"/></svg></div></div>
+  </div>
+  <div class="tabs" data-dock="pasha"></div>
+</template>
+
+<template id="s-pay" data-ch="pasha" data-title="Оплата" data-cap="Сколько на счёте и на сколько хватит. За что списано, по делам. Премия Паше и чеки там же." data-src="revolut">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Оплата</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="wallet"><small>На счёте</small><div class="big">3 120 ₽</div><small>хватит примерно на 5 дней работы</small></div>
+    <div class="btns" style="margin-top:12px;grid-template-columns:1fr 1fr"><button class="btn ink s">Пополнить</button><button class="btn soft s">Автоплатёж</button></div>
     <div class="h2">За что списано</div>
-    <div class="group">
-      <div class="li"><span class="tile c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><div class="grow"><b>Сайт для «Виком»</b><div class="sub">3 дня работы</div></div><b>−1 840 ₽</b></div>
-      <div class="li"><span class="tile c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><div class="grow"><b>Ролики, дни 7–9</b><div class="sub">3 ролика</div></div><b>−960 ₽</b></div>
-      <div class="li"><span class="tile c-mint"><svg class="ico"><use href="#i-card"/></svg></span><div class="grow"><b>Пополнение</b><div class="sub">карта •• 4417, 12 ноября</div></div><b style="color:var(--green)">+4 000 ₽</b></div>
+    <div class="grp">
+      <div class="li"><span class="tile s c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><span class="grow"><span class="t">Сайт для «Виком»</span><span class="s">3 дня работы</span></span><span class="r" style="color:var(--ink)">−1 840 ₽</span></div>
+      <div class="li"><span class="tile s c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><span class="grow"><span class="t">Ролики, дни 7–9</span></span><span class="r" style="color:var(--ink)">−960 ₽</span></div>
+      <div class="li"><span class="tile s c-mint"><svg class="ico"><use href="#i-card"/></svg></span><span class="grow"><span class="t">Пополнение</span><span class="s">карта •• 4417, 12 ноября</span></span><span class="r" style="color:var(--mint-i)">+4 000 ₽</span></div>
     </div>
-    <div class="set">
-      <div class="si"><span class="ib" style="background:var(--card-2);color:var(--ink)"><svg class="ico s"><use href="#i-book"/></svg></span><b>Чеки и документы</b><svg class="ico s chev"><use href="#i-chev"/></svg></div>
+    <div class="grp" style="margin-top:12px">
+      <div class="li"><span class="tile s c-sun"><svg class="ico"><use href="#i-gift"/></svg></span><span class="grow"><span class="t">Премия Паше</span><span class="s">если доволен работой</span></span><svg class="ico chev"><use href="#i-chev"/></svg></div>
+      <div class="li"><span class="tile s c-ink"><svg class="ico"><use href="#i-file"/></svg></span><span class="grow"><span class="t">Чеки и документы</span></span><svg class="ico chev"><use href="#i-chev"/></svg></div>
     </div>
   </div>
+  <div class="tabs" data-dock="pasha"></div>
 </template>
 
-<template id="s-hello" data-title="Первый запуск" data-aura data-cap="Знакомство за три шага. Вместо пустого кабинета Паша и короткий список, что сделать, чтобы он заработал." data-src="bevel,future">
+<template id="s-notify" data-ch="pasha" data-title="Уведомления" data-cap="Что приходит пушем и когда. Нужное решение — сразу и со звуком, начало сессии — тихо. Ночью только срочное.">
   <div class="sb"></div>
-  <div class="first">
-    <div style="flex:1;display:grid;place-items:center"><i class="pa" data-s="170" data-o="none"></i></div>
-    <h1 class="h1">Привет! Я Паша, ваш сотрудник</h1>
-    <p class="dim" style="margin-top:12px;text-align:center">Делаю сайты, пишу письма, отвечаю клиентам. Три шага, и я в деле.</p>
-    <div class="check3">
-      <div class="c"><span class="n c-peach">1</span><div class="grow"><b>Расскажите о компании</b><div class="xs dim">2 минуты, можно голосом</div></div><svg class="ico s dim2"><use href="#i-chev"/></svg></div>
-      <div class="c" data-go="connect"><span class="n c-sky">2</span><div class="grow"><b>Подключите мессенджер</b><div class="xs dim">Telegram или почта, 3 минуты</div></div><svg class="ico s dim2"><use href="#i-chev"/></svg></div>
-      <div class="c" data-go="ask"><span class="n c-mint">3</span><div class="grow"><b>Дайте первое дело</b><div class="xs dim">любое, я скажу срок</div></div><svg class="ico s dim2"><use href="#i-chev"/></svg></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Уведомления</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="grp">
+      <div class="li"><span class="grow"><span class="t">Нужно решение</span><span class="s">сразу, со звуком, с кнопками</span></span><span class="tog on"></span></div>
+      <div class="li"><span class="grow"><span class="t">Готово</span><span class="s">сразу</span></span><span class="tog on"></span></div>
+      <div class="li"><span class="grow"><span class="t">Паша упёрся</span><span class="s">сразу, с причиной</span></span><span class="tog on"></span></div>
+      <div class="li"><span class="grow"><span class="t">Ответ на дописку</span><span class="s">тихо</span></span><span class="tog on"></span></div>
+      <div class="li"><span class="grow"><span class="t">Начал сессию</span><span class="s">живым уведомлением, без звука</span></span><span class="tog on"></span></div>
+      <div class="li"><span class="grow"><span class="t">Сработал будильник</span></span><span class="tog"></span></div>
     </div>
-    <button class="btn hot" style="margin-top:16px" data-go="home">Начать</button>
+    <div class="grp" style="margin-top:12px">
+      <div class="li"><span class="grow"><span class="t">Утренняя сводка</span></span><span class="r">в 9:00</span></div>
+      <div class="li"><span class="grow"><span class="t">Тихие часы</span><span class="s">кроме «нужно решение»</span></span><span class="r">23:00–8:00</span></div>
+    </div>
   </div>
+  <div class="tabs" data-dock="pasha"></div>
 </template>
 
+<template id="s-skills" data-ch="pasha" data-title="Что умеет" data-cap="Короткий список дел, которые Паша берёт, с примером фразы. Нажали — фраза уходит в чат.">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Что умеет</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="starter" style="margin-top:4px">
+      <button data-tab="chat"><span class="tile s c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><span class="grow">Сайты и лендинги<span class="xs dim" style="display:block;font-weight:500">«Сделай лендинг кофейни за два дня»</span></span></button>
+      <button data-tab="chat"><span class="tile s c-sun"><svg class="ico"><use href="#i-mail"/></svg></span><span class="grow">Письма и почта<span class="xs dim" style="display:block;font-weight:500">«Разбери почту и ответь клиентам»</span></span></button>
+      <button data-tab="chat"><span class="tile s c-sky"><svg class="ico"><use href="#i-tg"/></svg></span><span class="grow">Переписка в мессенджерах<span class="xs dim" style="display:block;font-weight:500">«Отвечай Анатолию по сайту сам»</span></span></button>
+      <button data-tab="chat"><span class="tile s c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><span class="grow">Ролики и картинки<span class="xs dim" style="display:block;font-weight:500">«Сними шортс на завтра»</span></span></button>
+      <button data-tab="chat"><span class="tile s c-mint"><svg class="ico"><use href="#i-search"/></svg></span><span class="grow">Разбор и поиск<span class="xs dim" style="display:block;font-weight:500">«Найди гостиницы в Москве и Питере»</span></span></button>
+    </div>
+  </div>
+  <div class="tabs" data-dock="pasha"></div>
+</template>
+
+<template id="s-settings" data-ch="pasha" data-title="Настройки" data-cap="Компания, вход по коду, тема, выход. Если компаний несколько, переключатель здесь.">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Настройки</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="grp">
+      <div class="li"><span class="myface">ПБ</span><span class="grow"><span class="t">Павел Б.</span><span class="s">pavel@autopasha.ru</span></span></div>
+      <div class="li"><span class="tile s c-peach"><svg class="ico"><use href="#i-folder"/></svg></span><span class="grow"><span class="t">Компания</span><span class="s">АвтоПаша · ещё 1</span></span><span class="r">сменить</span></div>
+    </div>
+    <div class="grp" style="margin-top:12px">
+      <div class="li"><span class="tile s c-mint"><svg class="ico"><use href="#i-lock"/></svg></span><span class="grow"><span class="t">Вход по коду</span><span class="s">из приложения-генератора</span></span><span class="tog on"></span></div>
+      <button class="li" data-act="theme"><span class="tile s c-ink"><svg class="ico"><use href="#i-moon"/></svg></span><span class="grow"><span class="t">Тема</span></span><span class="r" data-themename>светлая</span></button>
+      <div class="li"><span class="tile s c-sky"><svg class="ico"><use href="#i-file"/></svg></span><span class="grow"><span class="t">Документы</span><span class="s">оферта и согласия</span></span><svg class="ico chev"><use href="#i-chev"/></svg></div>
+    </div>
+    <div class="grp" style="margin-top:12px"><div class="li"><span class="tile s c-rose"><svg class="ico"><use href="#i-out"/></svg></span><span class="grow"><span class="t" style="color:var(--red)">Выйти</span></span></div></div>
+  </div>
+  <div class="tabs" data-dock="pasha"></div>
+</template>
+
+<template id="s-support" data-ch="pasha" data-title="Помощь" data-cap="Поддержка сервиса — это люди, а не Паша. Свои обращения с ответами, новое обращение, как пользоваться и что нового.">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">Помощь</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="why" style="margin-top:0"><svg class="ico s"><use href="#i-info"/></svg><span>Здесь пишут люди АвтоПаши. Отвечаем в течение дня. Задачи Паше — в чат.</span></div>
+    <div class="grp-h">Ваши обращения</div>
+    <div class="grp"><div class="li"><span class="tile s c-sky"><svg class="ico"><use href="#i-help"/></svg></span><span class="grow"><span class="t">Не приходит код входа</span><span class="s">ответили сегодня в 12:40</span></span><span class="pill me">новый ответ</span></div></div>
+    <button class="btn ink s" style="margin-top:12px">Новое обращение</button>
+    <div class="grp-h">Как пользоваться</div>
+    <div class="grp">
+      <div class="li"><span class="grow"><span class="t">Как поручить задачу голосом</span></span><svg class="ico chev"><use href="#i-chev"/></svg></div>
+      <div class="li"><span class="grow"><span class="t">Что такое сессия и дописка</span></span><svg class="ico chev"><use href="#i-chev"/></svg></div>
+      <div class="li"><span class="grow"><span class="t">Как Паша тратит силы</span></span><svg class="ico chev"><use href="#i-chev"/></svg></div>
+      <div class="li"><span class="grow"><span class="t">Что нового</span><span class="s">16 ноября: сессии в приложении</span></span><svg class="ico chev"><use href="#i-chev"/></svg></div>
+    </div>
+  </div>
+  <div class="tabs" data-dock="pasha"></div>
+</template>
+
+<!-- СОСТОЯНИЯ И РОЛИ -->
+<template id="s-chat-first" data-ch="states" data-title="Первый день" data-cap="Ни дел, ни сессий. Паша здоровается и предлагает три первых задачи, которые закончатся за день. Поле ввода сразу под пальцем." data-aura>
+  <div class="sb"></div>
+  <header class="hd"><span class="who"><span class="ring"><i class="pa" data-s="36" data-o="headset"></i></span><span class="grow"><b>Паша</b><small>свободен</small></span></span></header>
+  <div class="body">
+    <div class="empty"><i class="pa" data-s="110" data-o="headset"></i><h3>Привет! Я Паша, ваш сотрудник</h3><p>Пишите как человеку, голосом или текстом. Начнём с чего-нибудь, что закончу сегодня.</p></div>
+    <div class="starter">
+      <button data-act="toast" data-toast="Ушло Паше"><span class="tile s c-sun"><svg class="ico"><use href="#i-mail"/></svg></span>Разбери мою почту и скажи, что важное</button>
+      <button data-act="toast" data-toast="Ушло Паше"><span class="tile s c-peach"><svg class="ico"><use href="#i-globe"/></svg></span>Посмотри мой сайт глазами клиента</button>
+      <button data-act="toast" data-toast="Ушло Паше"><span class="tile s c-sky"><svg class="ico"><use href="#i-tg"/></svg></span>Подключись к моему Telegram</button>
+    </div>
+  </div>
+  <div class="foot"><div class="composer"><button class="plus" aria-label="Прикрепить"><svg class="ico"><use href="#i-plus"/></svg></button><span class="field">Написать Паше</span><button class="mic" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div></div>
+  <div class="tabs" data-dock="chat" data-quiet></div>
+</template>
+
+<template id="s-chat-load" data-ch="states" data-title="Загрузка" data-cap="Пока грузится — серые заготовки в форме настоящих сообщений, а не крутилка на весь экран. Поле ввода работает сразу.">
+  <div class="sb"></div>
+  <header class="hd"><span class="who"><span class="ring"><i class="pa" data-s="36" data-o="headset"></i></span><span class="grow"><b>Паша</b><small><span class="sk" style="width:110px;height:12px;display:inline-block"></span></small></span></span></header>
+  <div class="body">
+    <div class="thread">
+      <div class="sk" style="width:120px;height:22px;align-self:center;border-radius:999px"></div>
+      <div class="sk" style="height:120px;border-radius:22px"></div>
+      <div class="sk" style="width:60%;height:44px;align-self:flex-end;border-radius:20px"></div>
+      <div class="sk" style="width:78%;height:70px;border-radius:20px"></div>
+      <div class="sk" style="width:52%;height:44px;align-self:flex-end;border-radius:20px"></div>
+      <div class="sk" style="width:70%;height:58px;border-radius:20px"></div>
+    </div>
+  </div>
+  <div class="foot"><div class="composer"><button class="plus" aria-label="Прикрепить"><svg class="ico"><use href="#i-plus"/></svg></button><span class="field">Написать Паше</span><button class="mic" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div></div>
+  <div class="tabs" data-dock="chat" data-quiet></div>
+</template>
+
+<template id="s-chat-offline" data-ch="states" data-title="Нет сети, не ушло, нет сил" data-cap="Без сети пишите как обычно — уйдёт само. Не ушло — красная рамка и «повторить». Кончились силы — Паша всё равно принимает задачу и говорит, когда начнёт.">
+  <div class="sb"></div>
+  <header class="hd"><span class="who"><span class="ring"><i class="pa" data-s="36" data-o="headset"></i></span><span class="grow"><b>Паша</b><small>отдыхает до 19:00</small></span></span></header>
+  <div class="netbar"><svg class="ico s"><use href="#i-wifioff"/></svg>Нет сети. Пишите, отправлю, когда появится</div>
+  <div class="body">
+    <div class="thread">
+      <div class="bub">Силы на сегодня кончились. Сайт доделал до страницы 31, остальное начну в 19:00.<span class="tm">16:28</span></div>
+      <div class="bub me fail">Посмотри ещё цены у «Створа»<span class="tm">16:40</span></div>
+      <button class="retry" data-act="toast" data-toast="Ушло"><svg class="ico s"><use href="#i-refresh"/></svg>Не ушло · повторить</button>
+      <div class="bub me wait">И напомни мне про ролик в 18<span class="st"><svg class="ico xs"><use href="#i-clock"/></svg>ждёт сети</span></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="banner lim"><svg class="ico s"><use href="#i-bolt"/></svg><span><b>Силы до 19:00</b>Задачи принимаю, начну вечером</span><button class="act" data-go="power">Подробнее</button></div>
+    <div class="composer"><button class="plus" aria-label="Прикрепить"><svg class="ico"><use href="#i-plus"/></svg></button><span class="field">Написать Паше</span><button class="mic" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div>
+  </div>
+  <div class="tabs" data-dock="chat" data-quiet></div>
+</template>
+
+<template id="s-watcher" data-ch="states" data-title="Чат под другой ролью" data-cap="Так видит Павел Ступин: ставит задачи, видит сессии и пишет Паше, но вопросы решает владелец. Вместо кнопок — «решает Павел Б.».">
+  <div class="sb"></div>
+  <header class="hd"><span class="who"><span class="ring on"><i class="pa" data-s="36" data-o="headset"></i></span><span class="grow"><b>Паша</b><small><span class="dot pulse"></span>работает · 2 сессии</small></span></span><span class="ava c-lilac" style="width:36px;height:36px;font-size:12px">ПС</span></header>
+  <button class="live" data-tab="sessions"><span class="dot pulse"></span><span class="grow"><b class="ell">Сайт для «Виком»: раздел «Доставка»</b><span class="now ell shim">переносит страницу 29 из 33</span></span><span class="plus">+1</span></button>
+  <div class="body">
+    <div class="thread">
+      <span class="day">Сегодня</span>
+      <div class="bub me">Паша, добавь на сайт Виком страницу с отзывами<span class="tm">12:30 · вы</span></div>
+      <div class="bub">Поставил в очередь третьей, после доставки и цен конкурентов.<span class="tm">12:31</span></div>
+      <div class="qcard"><div class="lbl"><svg class="ico xs"><use href="#i-ask"/></svg>Нужно решение · 13:47</div><h4>Отправить Анатолию ссылку на тестовый сайт?</h4><p>Пишу ему впервые.</p><div class="who"><span class="myface" style="width:28px;height:28px;font-size:11px">ПБ</span>Решает Павел Б. Ему уже пришло.</div></div>
+    </div>
+  </div>
+  <div class="foot">
+    <div class="qdock watch"><span class="n">2</span><span class="grow"><b class="ell">Ждут Павла Б.: 2 вопроса</b><small>вы видите, но решает владелец</small></span></div>
+    <div class="composer"><button class="plus" aria-label="Прикрепить"><svg class="ico"><use href="#i-plus"/></svg></button><span class="field">Написать Паше</span><button class="mic" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div>
+  </div>
+  <div class="tabs" data-dock="chat"></div>
+</template>
+
+<template id="s-sessions-empty" data-ch="states" data-title="Сессий нет" data-cap="Паша сейчас ничего не делает. Видно, когда закончил последнюю, что поднимет его следующим и как поручить новое.">
+  <div class="sb"></div>
+  <header class="hd big"><h1>Сессии</h1></header>
+  <div class="body">
+    <div class="seg"><button class="on">Сейчас</button><button>Очередь</button><button>Будильники <i>1</i></button><button>Было</button></div>
+    <div class="empty"><i class="pa" data-s="96" data-o="none"></i><h3>Паша сейчас отдыхает</h3><p>Последняя сессия закончилась в 09:54: каталог «Виком», готово.</p></div>
+    <div class="grp" style="margin-top:14px"><div class="li"><span class="outc o-ask"><svg class="ico"><use href="#i-alarm"/></svg></span><span class="grow"><span class="t">Следующим поднимет будильник</span><span class="s">в 17:00 · проверить, открыл ли Анатолий сайт</span></span></div></div>
+    <button class="btn hot" style="margin-top:16px" data-tab="chat"><svg class="ico s"><use href="#i-chat"/></svg>Поручить в чате</button>
+  </div>
+  <div class="tabs" data-dock="sessions" data-quiet></div>
+</template>
+
+<template id="s-deals-empty" data-ch="states" data-title="Дел пока нет" data-cap="Дело заводится само из разговора. Здесь три примера, нажатие уносит фразу в чат." data-aura>
+  <div class="sb"></div>
+  <header class="hd big"><h1>Дела</h1></header>
+  <div class="body">
+    <div class="empty"><div class="tile l c-lilac" style="margin:0 auto"><svg class="ico"><use href="#i-list"/></svg></div><h3>Дел пока нет</h3><p>Напишите Паше задачу в чат. Если она дольше часа, он заведёт дело со сроком и шагами.</p></div>
+    <div class="starter">
+      <button data-tab="chat"><span class="tile s c-peach"><svg class="ico"><use href="#i-globe"/></svg></span>Лендинг для кофейни за два дня</button>
+      <button data-tab="chat"><span class="tile s c-sun"><svg class="ico"><use href="#i-mail"/></svg></span>Письма 40 гостиницам с предложением</button>
+      <button data-tab="chat"><span class="tile s c-lilac"><svg class="ico"><use href="#i-video"/></svg></span>Шортс на каждый день недели</button>
+    </div>
+  </div>
+  <div class="tabs" data-dock="deals" data-quiet></div>
+</template>
+
+<template id="s-hello" data-ch="states" data-title="Знакомство" data-cap="Пока готовится место Паши, человек уже отвечает на три вопроса. Каждый шаг пропускается, ход виден." data-aura>
+  <div class="sb"></div>
+  <div class="body" style="padding-top:20px">
+    <div class="empty"><i class="pa" data-s="120" data-o="headset"></i><h3 style="font-size:30px">Привет! Я Паша, ваш сотрудник</h3><p>Делаю сайты, пишу письма, отвечаю клиентам. Три шага, и я в деле.</p></div>
+    <div class="stepper">
+      <div class="s ok"><span class="n"><svg class="ico s"><use href="#i-check"/></svg></span><span class="grow"><b class="sm">Готовлю ваше место</b><span class="xs dim" style="display:block">готово за 1 мин 40 с</span></span></div>
+      <div class="s go"><span class="n">2</span><span class="grow"><b class="sm">Расскажите о компании</b><span class="xs dim" style="display:block">2 минуты, можно голосом</span></span><svg class="ico s dim2"><use href="#i-chev"/></svg></div>
+      <div class="s"><span class="n">3</span><span class="grow"><b class="sm">Подключите мессенджер или почту</b><span class="xs dim" style="display:block">можно позже</span></span></div>
+    </div>
+  </div>
+  <div class="foot acts"><button class="btn hot" data-go="chat-first">Рассказать о компании</button></div>
+  <div class="homebar"></div>
+</template>
+
+<!-- ВНЕ ПРИЛОЖЕНИЯ -->
+<template id="s-push" data-ch="out" data-title="Пуши и живая сессия" data-cap="Сессия висит живым уведомлением: шаг меняется сам, дописать можно прямо из шторки. Вопрос приходит с кнопками и решается не открывая приложение.">
+  <div class="sb" style="color:#fff"></div>
+  <div class="body lock" style="padding:0">
+    <div class="clock"><b>13:54</b><span>понедельник, 16 ноября</span></div>
+    <div style="height:28px"></div>
+    <div class="notif"><div class="ap"><i><i class="pa" data-s="16"></i></i>АвтоПаша · идёт сессия<span class="tm">18 мин</span></div><b>Сайт для «Виком»: «Доставка»</b><p>Переносит страницу 29 из 33</p><div class="acts"><button>Дописать</button><button>Открыть</button></div></div>
+    <div class="notif"><div class="ap"><i><i class="pa" data-s="16"></i></i>АвтоПаша · нужно решение<span class="tm">13:47</span></div><b>Отправить Анатолию ссылку на тестовый сайт?</b><p>Пишу ему впервые. Промолчите — отправлю завтра в 12:00.</p><div class="acts"><button>Показать</button><button class="hot">Отправить</button></div></div>
+    <div class="notif"><div class="ap"><i><i class="pa" data-s="16"></i></i>АвтоПаша · ответ на дописку<span class="tm">13:51</span></div><b>Взял из вашей папки, 6 фото</b><p>Старые со склада убрал.</p></div>
+  </div>
+  <div class="homebar" style="background:#ff7a3c"></div>
+</template>
 <script src="app.js"></script>
 <script src="/ap/badge.js" defer data-ap="ap-prilozhenie"></script>
 </body>
