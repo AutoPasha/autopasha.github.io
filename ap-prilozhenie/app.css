@@ -187,7 +187,7 @@ svg{display:block}
 
 /* главная */
 .hello-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0 0}
-.say{font-weight:800;font-size:31px;letter-spacing:-.045em;line-height:1.06;margin-top:14px}
+.say{font-weight:800;font-size:28px;letter-spacing:-.045em;line-height:1.07;margin-top:10px}
 .say em{font-style:normal;color:var(--hot)}
 .live{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:650;color:var(--green)}
 .live::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;animation:pulse 1.8s infinite}
@@ -209,7 +209,7 @@ svg{display:block}
 .dc+.dc{transform:translateY(12px) scale(.94);opacity:.55;z-index:1}
 .dc .lbl{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:650;color:var(--dim)}
 .dc h3{font-size:23px;font-weight:800;letter-spacing:-.035em;line-height:1.12;margin:12px 0 10px}
-.dc .snip{background:var(--card-2);border-radius:16px;padding:11px 13px;font-size:14.5px;color:var(--dim);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.dc .snip{background:var(--card-2);border-radius:16px;padding:0;border:11px solid var(--card-2);border-left-width:13px;border-right-width:13px;font-size:14.5px;color:var(--dim);line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .dc .btns{margin-top:auto}
 .dc .if{font-size:13px;color:var(--dim);text-align:center;margin-top:10px}
 .dc.gone{transform:translateX(115%) rotate(10deg)!important;opacity:0!important}
