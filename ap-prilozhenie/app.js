@@ -1,8 +1,9 @@
-/* Макет «АвтоПаша: приложение», версия 3: галерея экранов по главам, живой прототип, ноутбук и карта переезда. */
+/* Макет «АвтоПаша: приложение», версия 5 (фирменный стиль, brand.css); каркас с версии 3: галерея экранов по главам, живой прототип, ноутбук и карта переезда. */
 (() => {
   const $ = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-  if (/(^|[?&])dark/.test(location.search.slice(1))) document.body.classList.replace('t-light', 't-dark');
+  /* с версии 5 по умолчанию тёмная, как главная; ?light — светлая, ?dark оставлен для старых ссылок */
+  if (/(^|[?&])light/.test(location.search.slice(1))) document.body.classList.replace('t-dark', 't-light');
   const TABS = ['chat', 'sessions', 'deals', 'pasha'];
   const CHAPTERS = [
     ['chat', 'Чат', 'Один разговор с Пашей. Сверху что он делает, внизу что ждёт вас.'],
@@ -30,19 +31,27 @@
   function pasha(size = 64, outfit = 'none') {
     const id = 'pg' + uid++;
     const ant = outfit === 'crown' ? '' :
-      `<g class="ant"><path d="M50 18 L50 6" stroke="#2A211B" stroke-width="3" stroke-linecap="round"/><circle cx="50" cy="5" r="5" fill="#FF6A2B"/><circle cx="48.5" cy="3.6" r="1.6" fill="#fff" opacity=".7"/></g>`;
+      `<g class="ant"><path d="M47 21 C46 15 47.5 10 49.5 6" stroke="#FFC5AC" stroke-width="3.2" stroke-linecap="round" fill="none"/><circle cx="50" cy="4.5" r="9" fill="#FF6B1A" opacity=".28"/><circle cx="50" cy="4.5" r="5.6" fill="#FF6B1A"/><circle cx="48.4" cy="3" r="1.7" fill="#fff" opacity=".75"/></g>`;
     return `<svg class="pasha" width="${size}" height="${size}" viewBox="0 -4 100 108" aria-label="Паша">
-      <defs><linearGradient id="${id}" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#FDE4D0"/><stop offset="1" stop-color="#F3B28A"/></linearGradient>
+      <defs><linearGradient id="${id}" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#FFD9C4"/><stop offset="1" stop-color="#F7A27C"/></linearGradient>
       <radialGradient id="${id}s" cx=".3" cy=".25" r=".8"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
       <ellipse cx="50" cy="100" rx="28" ry="3.5" fill="#000" opacity=".16"/>
       <g class="bob">${ant}
-        <g transform="rotate(-4 50 53)"><rect x="14" y="17" width="72" height="72" rx="25" fill="url(#${id})"/><rect x="14" y="17" width="72" height="72" rx="25" fill="url(#${id}s)"/><rect x="14.5" y="17.5" width="71" height="71" rx="24.5" fill="none" stroke="#C7754A" stroke-opacity=".25"/></g>
-        <g class="look"><g class="eyes"><rect x="36" y="42" width="7" height="15" rx="3.5" fill="#1E1712"/><rect x="57" y="42" width="7" height="15" rx="3.5" fill="#1E1712"/><circle cx="38.6" cy="45.5" r="1.5" fill="#fff"/><circle cx="59.6" cy="45.5" r="1.5" fill="#fff"/></g></g>
+        <g transform="rotate(-6 50 53)"><rect x="15" y="20" width="70" height="68" rx="15" fill="url(#${id})"/><rect x="15" y="20" width="70" height="68" rx="15" fill="url(#${id}s)"/><path d="M22 80 Q50 88 78 80" stroke="#C25A2A" stroke-opacity=".18" stroke-width="5" fill="none" stroke-linecap="round"/></g>
+        <g class="look"><g class="eyes"><rect x="37" y="45" width="6.5" height="12" rx="3.25" fill="#1E1712"/><rect x="56.5" y="45" width="6.5" height="12" rx="3.25" fill="#1E1712"/><circle cx="39.4" cy="47.8" r="1.4" fill="#fff"/><circle cx="58.9" cy="47.8" r="1.4" fill="#fff"/></g></g>
         <ellipse cx="29" cy="64" rx="6.5" ry="3.6" fill="#FF7E6E" opacity=".45"/><ellipse cx="71" cy="64" rx="6.5" ry="3.6" fill="#FF7E6E" opacity=".45"/>
         <path d="M45 66 Q50 70 55 66" fill="none" stroke="#1E1712" stroke-width="2.4" stroke-linecap="round"/>
         ${OUTFITS[outfit] || ''}
       </g></svg>`;
   }
+  const MINI = {
+    cat: `<div class="m-top">ВИКОМ<i></i></div><div class="m-hero"><b>Мебельная фурнитура оптом</b><span>каталог · 41 товар</span></div>
+      <div class="m-grid">${[['#C9A27E', 'Петля накладная', '86 ₽'], ['#5E6B78', 'Ручка-скоба', '240 ₽'], ['#A8B4BF', 'Направляющие', '410 ₽'], ['#D9C3A5', 'Опора 100 мм', '65 ₽']]
+        .map(([c, n, pr]) => `<div class="m-it"><i style="background:linear-gradient(135deg,${c},#fff)"></i><b>${n}</b><em>${pr}</em></div>`).join('')}</div>`,
+    rep: '<div class="m-k">отчёт недели</div><div class="m-t">сдал 4 дела, сайт завтра</div><div class="m-n"><div><b>4</b><span>сдано</span></div><div><b>38</b><span>часов</span></div></div>',
+    reel: '<span class="m-play"></span><div class="m-cap">день 8 из 30</div>',
+  };
+  const fillMini = (root) => $$('[data-mini]', root).forEach((m) => { if (!m.childElementCount) { m.innerHTML = MINI[m.dataset.mini] || ''; m.setAttribute('aria-hidden', 'true'); } });
   const dressAll = (root) => $$('i.pa', root).forEach((el) => {
     el.innerHTML = pasha(+el.dataset.s || 64, el.dataset.o || 'none');
     el.style.display = 'inline-block'; el.style.lineHeight = 0; el.style.flex = 'none';
@@ -59,7 +68,7 @@
       ${t('chat', '<svg class="ico"><use href="#i-chat"/></svg>', 'Чат', '<span class="badge">2</span>')}
       ${t('sessions', '<svg class="ico"><use href="#i-tab-live"/></svg>', 'Сессии', '<span class="live-dot"></span>')}
       ${t('deals', '<svg class="ico"><use href="#i-tab-deals"/></svg>', 'Дела')}
-      ${t('pasha', `<span class="face">${pasha(26, 'headset')}</span>`, 'Паша')}
+      ${t('pasha', `<span class="face">${pasha(26)}</span>`, 'Паша')}
     </nav>`;
   };
   const fmt = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
@@ -72,7 +81,7 @@
     scr.append(tpl.content.cloneNode(true));
     $$('.sb', scr).forEach((n) => (n.innerHTML = SB));
     $$('[data-dock]', scr).forEach((n) => (n.innerHTML = DOCK(n.dataset.dock, n.hasAttribute('data-quiet'))));
-    dressAll(scr);
+    dressAll(scr); fillMini(scr);
     $$('[data-wave]', scr).forEach((w) => {
       w.innerHTML = Array.from({ length: 22 }, (_, i) => `<i style="height:${5 + Math.round(Math.abs(Math.sin(i * 1.7)) * 17)}px"></i>`).join('');
     });
@@ -80,7 +89,7 @@
       w.innerHTML = Array.from({ length: 18 }, (_, i) => `<i style="height:${6 + Math.round(Math.abs(Math.sin(i * 2.1)) * 14)}px;animation-delay:${i * 55}ms"></i>`).join('');
     });
     $$('[data-outfits]', scr).forEach((box) => {
-      box.innerHTML = Object.keys(OUTFITS).map((k) => `<button data-act="outfit" data-o="${k}" class="${k === 'headset' ? 'on' : ''}" title="${OUTFIT_NAMES[k]}" aria-label="${OUTFIT_NAMES[k]}">${pasha(34, k)}</button>`).join('');
+      box.innerHTML = Object.keys(OUTFITS).map((k) => `<button data-act="outfit" data-o="${k}" class="${k === 'none' ? 'on' : ''}" title="${OUTFIT_NAMES[k]}" aria-label="${OUTFIT_NAMES[k]}">${pasha(34, k)}</button>`).join('');
     });
     $$('[data-since]', scr).forEach((n) => (n.textContent = fmt(+n.dataset.since)));
     $$('.tog', scr).forEach((g) => { const li = g.closest('.li'); if (li) { li.dataset.act = 'togrow'; li.setAttribute('role', 'switch'); } });
@@ -138,14 +147,14 @@
   /* ── ноутбук ── */
   const desk = $('#desk');
   if (desk) {
-    desk.innerHTML = `<div class="rail"><div class="brand"><i class="pa" data-s="28" data-o="headset"></i>АвтоПаша</div>
+    desk.innerHTML = `<div class="rail"><div class="brand"><i class="pa" data-s="28" data-o="none"></i>АвтоПаша</div>
       <a class="on"><svg class="ico"><use href="#i-chat"/></svg>Чат<span class="n">2</span></a>
       <a><svg class="ico"><use href="#i-tab-live"/></svg>Сессии<span class="n g">2</span></a>
       <a><svg class="ico"><use href="#i-tab-deals"/></svg>Дела</a>
-      <a><span style="width:22px;height:22px;display:grid;place-items:center"><i class="pa" data-s="22" data-o="headset"></i></span>Паша</a>
+      <a><span style="width:22px;height:22px;display:grid;place-items:center"><i class="pa" data-s="22" data-o="none"></i></span>Паша</a>
       <span class="sp"></span><a><svg class="ico"><use href="#i-gear"/></svg>Настройки</a></div>
       <div class="pane" data-pane="chat"></div><div class="pane" data-pane="session"></div>`;
-    dressAll(desk);
+    dressAll(desk); fillMini(desk);
     $$('[data-pane]', desk).forEach((p) => p.append(build(p.dataset.pane)));
   }
 
@@ -163,7 +172,7 @@
     ['второй фактор', 'вход по коду'], ['кто имеет доступ', 'команда'], ['наблюдатель', 'только смотрит'], ['пульт, доска, планы', 'дела'],
   ];
   $('#words').innerHTML = WORDS.map(([a, b]) => `<div class="word"><s>${a}</s><svg class="ico s" style="color:var(--hot)"><use href="#i-chev"/></svg><b>${b}</b></div>`).join('');
-  dressAll($('.page'));
+  dressAll($(".page")); fillMini($(".page"));
   requestAnimationFrame(() => settle(document));
 
   /* ── живой прототип ── */
@@ -209,7 +218,7 @@
   function confetti(scr) {
     const c = document.createElement('div');
     c.className = 'confetti';
-    const colors = ['#FF6A2B', '#FFCF4D', '#22B864', '#3B8BFF', '#FF6F9C', '#8E6BFF'];
+    const colors = ['#FF6A2B', '#FFCF4D', '#22B864', '#FBF4EC', '#E24E06', '#FFC08F'];
     c.innerHTML = Array.from({ length: 70 }, () => `<i style="left:${Math.random() * 100}%;background:${colors[(Math.random() * 6) | 0]};--dx:${(Math.random() - .5) * 160}px;--r:${(Math.random() - .5) * 900}deg;animation-delay:${Math.random() * 250}ms;animation-duration:${1200 + Math.random() * 900}ms"></i>`).join('');
     scr.append(c);
     setTimeout(() => c.remove(), 2600);
@@ -253,7 +262,7 @@
     document.body.classList.toggle('t-dark', !light);
     $$('[data-themebtn]').forEach((s) => (s.textContent = light ? 'тёмная' : 'светлая'));
     $$('[data-themename]').forEach((n) => (n.textContent = light ? 'светлая' : 'тёмная'));
-    $('meta[name=theme-color]').content = light ? '#F6F4F1' : '#0B0B0C';
+    $('meta[name=theme-color]').content = light ? '#F3EBE2' : '#130E0B';
   }
   setTheme(document.body.classList.contains('t-light'));
 

@@ -1,0 +1,226 @@
+/* ═════════ Макет приложения, версия 5, 16.11.2026: фирменный стиль ═════════
+   Подключается после app.css и перекрывает его. Павел про v4: «доработай дизайн, возьми
+   брендбук наш, сейчас просто как макет выглядит».
+   Брендбук — landing/design/DESIGN.md и живая главная autopasha.ru: тёмная тёплая основа,
+   морковный заливает панели целиком, на оранжевом текст тёмный (белый по оранжевому 2.5:1 —
+   запрещён), заголовки Unbounded строчными, рельеф-изолинии и свечение только над шапкой
+   (под текстом сплошной фон), кубик Паши с антенной как на главной. Сиреневый и синий из
+   палитры ушли: в брендбуке они запрещены, семья плиток стала тёплой.
+   Образцы Mobbin: pillowtalk (залитая карточка со строчным заголовком), Copilot (крупное
+   приветствие), pliability (тёмная основа и одна яркая кнопка). */
+@font-face{font-family:Unbounded;src:url(fonts/Unbounded-cyr.woff2) format('woff2');font-weight:200 900;unicode-range:U+0400-04FF,U+2116}
+@font-face{font-family:Unbounded;src:url(fonts/Unbounded.woff2) format('woff2');font-weight:200 900}
+:root{
+  --hot:#FF6B1A; --hot-deep:#E0540A; --hot-soft:#FFA36E; --on-hot:#1C0D04; --on-hot-2:rgba(28,13,4,.7);
+  --disp:Unbounded,Onest,system-ui,sans-serif;
+  --glow:0 0 0 1px rgba(255,140,70,.35),0 18px 50px -14px rgba(255,107,26,.75),0 0 90px -20px rgba(255,107,26,.55);
+}
+.t-dark{
+  --bg:#130E0B; --card:#211A16; --card-2:#2E2520; --ink:#FBF4EC; --dim:#B1A69C; --dim-2:#8F847A;
+  --line:rgba(255,220,190,.08); --hair:rgba(255,220,190,.07); --hot-ink:#FF9257; --hot-tint:#3B1D0E;
+  --glass:rgba(33,26,22,.84); --glass-line:rgba(255,220,190,.08);
+  --sh:0 18px 38px -20px rgba(0,0,0,.95); --sh-up:0 20px 44px -14px rgba(0,0,0,.9);
+  --cream:#F6ECE1; --on-cream:#1C130D;
+  --peach:#3B2217; --peach-i:#FFA06A; --sun:#3A2A10; --sun-i:#FFC65A; --mint:#3B1D0E; --mint-i:#FF9257; --rose:#3D1A14; --rose-i:#FF8A6E;
+  --lilac:#3B2217; --lilac-i:#FFA06A; --sky:#2E2520; --sky-i:#F6ECE1;
+  --green:#FF6B1A;
+}
+.t-light{
+  --bg:#F3EBE2; --card:#FFFBF6; --card-2:#EADFD3; --ink:#1A120D; --dim:#6B5E53; --dim-2:#85786D;
+  --line:rgba(60,30,10,.09); --hair:rgba(60,30,10,.07); --hot-ink:#B03E08; --hot-tint:#FFE2CF;
+  --glass:rgba(255,251,246,.86); --glass-line:rgba(255,255,255,.9);
+  --sh:0 1px 1px rgba(60,30,0,.04),0 18px 36px -20px rgba(110,55,15,.28); --sh-up:0 18px 40px -14px rgba(110,55,15,.32);
+  --cream:#1C130D; --on-cream:#FBF4EC;
+  --peach:#FFE0CC; --peach-i:#B03E08; --sun:#FFEDC4; --sun-i:#7A4F00; --mint:#FFE2CF; --mint-i:#B03E08; --rose:#FFDCD2; --rose-i:#A8321A;
+  --lilac:#FFE0CC; --lilac-i:#B03E08; --sky:#EADFD3; --sky-i:#1A120D;
+  --green:#EA5A0C;
+}
+
+/* фон экрана: тёплое свечение и рельеф только над шапкой, ниже сплошной */
+.scr,.scr.aura{background:var(--bg)}
+.scr::before{content:"";position:absolute;left:0;right:0;top:0;height:330px;pointer-events:none;z-index:0;
+  background:url(art/relief-phone.svg) center top/390px auto no-repeat;opacity:.5;
+  -webkit-mask-image:linear-gradient(#000 30%,transparent 100%);mask-image:linear-gradient(#000 30%,transparent 100%)}
+.scr::after{content:"";position:absolute;left:-30%;right:-30%;top:-180px;height:420px;pointer-events:none;z-index:0;
+  background:radial-gradient(50% 50% at 70% 50%,rgba(255,107,26,.30),transparent 70%)}
+.t-light .scr::before{opacity:.42}
+.t-light .scr::after{background:radial-gradient(50% 50% at 70% 50%,rgba(255,120,40,.2),transparent 70%)}
+
+/* заголовки — Unbounded строчными, как на главной */
+.hd.big h1,.h1,.h2,.shead h1,.pa-head b,.qcard h4,.empty h3,.eta,.wallet>b,.stats b,.month b,.two b,.sumrow b,.digest .three b,.power4 .gauge b{font-family:var(--disp)}
+.hd.big h1{font-size:30px;font-weight:800;letter-spacing:-.055em;text-transform:lowercase}
+.h2{font-size:17px;font-weight:700;letter-spacing:-.04em;text-transform:lowercase}
+.h2 .c,.h2 .more{font-family:Onest,system-ui,sans-serif;text-transform:none}
+.h1{font-weight:800;letter-spacing:-.05em;line-height:1.1}
+.shead h1{font-size:22px;font-weight:700;letter-spacing:-.045em;line-height:1.2}
+.empty h3{font-weight:700;letter-spacing:-.045em;text-transform:lowercase}
+.pa-head b{font-size:30px;font-weight:800;letter-spacing:-.06em;text-transform:lowercase}
+.stats b,.month b,.two b,.sumrow b,.digest .three b{font-weight:700;letter-spacing:-.05em}
+.eta{font-weight:800;letter-spacing:-.06em;font-size:30px;line-height:1.1}
+
+/* логотип: «авто» текстом, «паша» в оранжевой плашке */
+.logo{font-family:var(--disp);font-weight:800;letter-spacing:-.05em;display:inline-flex;align-items:baseline;gap:.06em;line-height:1;white-space:nowrap}
+.logo em{font-style:normal;background:var(--hot);color:var(--on-hot);padding:.04em .22em .1em;border-radius:.16em}
+
+/* кнопки: на оранжевом тёмный текст, оранжевое светится */
+.btn.hot,.composer .mic,.cta .big{background:linear-gradient(180deg,#FF8034,#F55E0E);color:var(--on-hot);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 12px 28px -12px rgba(255,107,26,.9)}
+.tab .badge,.qdock .n{background:var(--hot);color:var(--on-hot)}
+.toast{background:var(--cream);color:var(--on-cream)}
+.toast .ico{color:var(--hot)}
+
+/* реплики: ваша — морковная с тёмным текстом, Пашина — плитка */
+.bub.me{background:linear-gradient(160deg,#FF8436,#F25C0C);color:var(--on-hot);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 10px 24px -14px rgba(255,107,26,.9)}
+.bub.me .tm{color:var(--on-hot-2)}
+.bub.me .tag{background:rgba(28,13,4,.12);color:var(--on-hot)}
+.bub.me .vplay{background:var(--on-hot);color:var(--hot)}
+.bub.me .wave i{background:var(--on-hot)}
+.bub.me .vtx,.bub.me .xs{color:var(--on-hot)}
+
+/* решение от вас — главная панель экрана: залита целиком, как карточка демо на главной */
+.qcard{background:radial-gradient(120% 80% at 100% 0%,#FFB07A 0%,transparent 55%),linear-gradient(160deg,#FF7A2A,#EE5308);color:var(--on-hot);box-shadow:var(--glow);border:0}
+.qcard .lbl{color:var(--on-hot-2);text-transform:uppercase;letter-spacing:.12em;font-size:11.5px;font-weight:800}
+.qcard .lbl .ico{color:var(--on-hot)}
+.qcard h4{font-size:19px;font-weight:700;letter-spacing:-.045em;line-height:1.2;text-transform:lowercase}
+.qcard p,.qcard .if,.qcard .who{color:var(--on-hot-2)}
+.qcard .btn.soft{background:rgba(28,13,4,.12);color:var(--on-hot);box-shadow:inset 0 0 0 1.5px rgba(28,13,4,.22)}
+.qcard .btn.hot{background:var(--on-hot);color:#FFE9DA;box-shadow:0 10px 22px -10px rgba(28,13,4,.8)}
+.qcard .ok{color:var(--on-hot)}
+
+/* «ждут вас» над полем — светлая панель на тёмном, как кремовые панели главной */
+.qdock,.t-dark .qdock{background:var(--cream);color:var(--on-cream);box-shadow:0 14px 30px -14px rgba(0,0,0,.6)}
+.qdock small{color:color-mix(in srgb,var(--on-cream) 66%,transparent)}
+.qdock .open{background:var(--hot);color:var(--on-hot)}
+
+/* вкладки: тёмная капсула, активная залита морковным */
+.tabs nav{background:var(--glass);box-shadow:var(--sh-up),inset 0 0 0 1px var(--glass-line)}
+.tabs .lens,.t-light .tabs .lens{background:linear-gradient(180deg,#FF8034,#F55E0E);box-shadow:0 8px 20px -8px rgba(255,107,26,.85),inset 0 1px 0 rgba(255,255,255,.3)}
+.tab.on{color:var(--on-hot)}
+.tab.on .ico{--duo:.28;--in:var(--on-hot)}
+.tab .live-dot{background:var(--hot);box-shadow:0 0 0 2px var(--card)}
+.tab.on .badge{background:var(--on-hot);color:var(--hot);box-shadow:0 0 0 2.5px var(--hot)}
+
+/* статус «идёт» — оранжевая искра вместо зелёной точки */
+.dot,.dot.pulse{background:var(--hot)}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,107,26,.55)}100%{box-shadow:0 0 0 8px rgba(255,107,26,0)}}
+.ring{background:radial-gradient(circle at 50% 40%,#3B2217,#211A16)}
+.t-light .ring{background:radial-gradient(circle at 50% 40%,#FFE7D6,#FFD2B6)}
+.ring.on::after{border-color:var(--hot);box-shadow:0 0 14px rgba(255,107,26,.6)}
+.ring.on::before{background:var(--hot)}
+.pill.go{background:var(--hot-tint);color:var(--hot-ink)}
+
+/* плитки значков — тёплая семья: морковь, янтарь, уголь, глина, крем */
+.c-peach{--g1:#FFA05E;--g2:#F25A0E;--gs:rgba(242,90,14,.65);--in:#FFF6EE}
+.c-lilac{--g1:#FF7E52;--g2:#C2340E;--gs:rgba(194,52,14,.6);--in:#FFF0E8}
+.c-rose{--g1:#E39478;--g2:#A3442C;--gs:rgba(163,68,44,.55);--in:#FFF0E8}
+.c-sun{--g1:#FFD27A;--g2:#E8930C;--gs:rgba(232,147,12,.55);--in:#3A2200}
+.c-sky,.c-ink{--g1:#4A3E37;--g2:#1E1814;--gs:rgba(0,0,0,.55);--in:#FF9257}
+.c-mint{--g1:#FFF3E6;--g2:#EBCFB4;--gs:rgba(120,70,30,.35);--in:#B03E08}
+.c-sun,.li .tile.s.c-sun,.grp .tile.s.c-sun{color:#3A2200}
+.c-sky,.c-ink,.li .tile.s.c-sky,.grp .tile.s.c-sky,.li .tile.s.c-ink,.grp .tile.s.c-ink{color:#FFB081}
+.c-mint,.li .tile.s.c-mint,.grp .tile.s.c-mint{color:#B03E08}
+
+/* карточки: сплошной фон плитки, тонкий тёплый волосок */
+.card,.sess,.deal,.grp,.digest,.sesscard,.live,.month div,.app,.power4,.chips button,.round{box-shadow:var(--sh),inset 0 0 0 1px var(--hair)}
+.seg button.on{background:var(--ink);color:var(--bg)}
+.seg button.on i{color:var(--hot)}
+.chips button.on{background:var(--hot);color:var(--on-hot)}
+
+/* силы: кольцо морковное, не зелёное */
+.power4 .gauge{background:conic-gradient(from 200deg,#FFC08F,#FF6B1A calc(var(--p)*1%),var(--card-2) 0)}
+
+/* кошелёк — морковная панель без фиолетового */
+.wallet{background:radial-gradient(110% 90% at 100% 0%,#FFC08F 0%,transparent 55%),radial-gradient(90% 90% at 0% 100%,#B83A08 0%,transparent 60%),linear-gradient(135deg,#FF7A2A,#E24E06);color:var(--on-hot);box-shadow:var(--glow)}
+.wallet .w-btn{background:var(--on-hot);color:#FFE9DA}
+.wallet .w-top .ico{--in:var(--on-hot)}
+
+/* экран «Паша»: кубик крупно, ореол морковный */
+.pa-head .halo{background:radial-gradient(closest-side,rgba(255,107,26,.38),transparent 75%)}
+.pa-head .halo::before,.pa-head .halo::after{border-color:rgba(255,107,26,.35)}
+.outfits button.on{box-shadow:0 0 0 2.5px var(--hot),0 0 18px rgba(255,107,26,.5)}
+
+/* живые превью вместо пустых прямоугольников: страница каталога, отчёт, ролик в миниатюре */
+.mini{position:absolute;left:0;top:0;width:200%;height:200%;transform:scale(.5);transform-origin:0 0;overflow:hidden;background:#FBF7F2;color:#1B1511;font-family:Onest,system-ui,sans-serif;text-align:left;font-size:16px;line-height:1.15}
+.mini .m-top{display:flex;align-items:center;justify-content:space-between;padding:9% 8% 0;font-weight:800;letter-spacing:.02em}
+.mini .m-top i{width:24px;height:4px;border-radius:4px;background:#1B1511;box-shadow:0 -6px 0 #1B1511,0 6px 0 #1B1511}
+.mini .m-hero{margin:6% 8% 0;padding:9% 8%;border-radius:16px;background:linear-gradient(135deg,#17324D,#2E5F8C);color:#fff}
+.mini .m-hero b{display:block;font-size:22px;font-weight:800;letter-spacing:-.02em}
+.mini .m-hero span{display:inline-block;margin-top:10px;font-weight:700;background:#FF6B1A;color:#1C0D04;padding:4px 12px;border-radius:12px}
+.mini .m-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:7% 8% 0}
+.mini .m-it{border-radius:12px;background:#fff;box-shadow:0 4px 12px rgba(0,0,0,.08);overflow:hidden}
+.mini .m-it i{display:block;height:60px}
+.mini .m-it b{display:block;font-weight:600;padding:6px 10px 0;font-size:14px}
+.mini .m-it em{display:block;font-style:normal;font-weight:800;padding:2px 10px 8px}
+.mini.rep{background:linear-gradient(160deg,#FF7A2A,#E24E06);color:#1C0D04;padding:12% 10%}
+.mini.rep .m-k{font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.72;font-size:14px}
+.mini.rep .m-t{font-family:var(--disp);font-size:26px;font-weight:800;letter-spacing:-.05em;line-height:1.08;margin-top:12px}
+.mini.rep .m-n{display:flex;gap:24px;margin-top:20px}
+.mini.rep .m-n b{font-family:var(--disp);font-size:34px;letter-spacing:-.05em;display:block}
+.mini.rep .m-n span{font-weight:700;opacity:.78;font-size:14px}
+.mini.reel{background:#130E0B;color:#FBF4EC;display:grid;place-items:center}
+.mini.reel::before{content:"";position:absolute;inset:0;background:url(art/relief-phone.svg) center/cover;opacity:.6}
+.mini.reel .m-play{position:relative;width:68px;height:68px;border-radius:50%;background:#FF6B1A;display:grid;place-items:center;box-shadow:0 0 60px rgba(255,107,26,.7)}
+.mini.reel .m-play::after{content:"";border-left:22px solid #1C0D04;border-top:14px solid transparent;border-bottom:14px solid transparent;margin-left:6px}
+.mini.reel .m-cap{position:absolute;left:10%;right:10%;bottom:10%;font-family:var(--disp);font-size:20px;font-weight:800;letter-spacing:-.04em}
+.story .pic{position:relative;overflow:hidden}
+.res-hero{background:radial-gradient(70% 90% at 75% 10%,rgba(255,107,26,.55),transparent 70%),#130E0B}
+.res-hero::before{content:"";position:absolute;inset:0;background:url(art/relief-phone.svg) center/cover;opacity:.6}
+.res-hero .lap{background:#FBF7F2;border-top:0;overflow:hidden;box-shadow:0 30px 50px -14px rgba(0,0,0,.6),0 0 0 4px #2A221D}
+.res-hero .ph{background:#0E0A08;box-shadow:0 30px 60px -12px rgba(0,0,0,.7),0 0 0 1.5px #3A302A,0 0 60px -10px rgba(255,107,26,.5)}
+.res-hero .ph .in{background:none;overflow:hidden}
+.res-hero .ph .in::after{display:none}
+.rescard .pic{background:radial-gradient(70% 90% at 80% 0%,rgba(255,107,26,.55),transparent 70%),#1C1511}
+.rescard .pic .sheet1,.rescard .pic .sheet2{overflow:hidden;background:none}
+.rescard .pic .sheet2::before,.rescard .pic .sheet2::after{display:none}
+
+/* ═════════ обзорная страница в фирменном виде ═════════ */
+.page{position:relative;isolation:isolate}
+.page::before{content:"";position:absolute;left:50%;top:0;width:1440px;max-width:100vw;height:900px;transform:translateX(-50%);pointer-events:none;z-index:-1;
+  background:url(art/relief-page.svg) center top/cover no-repeat;opacity:.5;-webkit-mask-image:linear-gradient(#000 40%,transparent);mask-image:linear-gradient(#000 40%,transparent)}
+.page::after{content:"";position:absolute;left:50%;top:-200px;width:1200px;max-width:100vw;height:800px;transform:translateX(-50%);pointer-events:none;z-index:-1;
+  background:radial-gradient(45% 45% at 50% 50%,rgba(255,107,26,.26),transparent 70%)}
+.t-light .page::before{opacity:.38}
+.brand{font-family:var(--disp);font-weight:800;font-size:22px;letter-spacing:-.05em}
+.brand .v{font-family:Onest,system-ui,sans-serif;letter-spacing:0}
+.hero .k{display:inline-flex;align-items:center;gap:10px;padding:8px 16px;border-radius:999px;background:rgba(255,107,26,.1);box-shadow:inset 0 0 0 1px rgba(255,107,26,.35);color:var(--hot-ink);font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:800}
+.hero .k::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--hot);box-shadow:0 0 12px var(--hot)}
+.hero h1,.sec-h h2,.chapter>h3,.ans h3,.t4 b,.shot .cap b{font-family:var(--disp);text-transform:lowercase}
+.hero h1{font-size:clamp(32px,5.2vw,76px);letter-spacing:-.06em;line-height:1.04}
+.hero h1 em{color:var(--hot)}
+.sec-h h2{font-size:clamp(26px,3.6vw,48px);letter-spacing:-.055em}
+.chapter>h3{font-size:clamp(22px,2.6vw,34px);letter-spacing:-.05em}
+.ans h3{font-size:23px;letter-spacing:-.05em;line-height:1.14}
+.t4 b{font-size:19px;letter-spacing:-.05em}
+.shot .cap b{font-size:16px;letter-spacing:-.045em}
+.sec-h .k,.ans q{color:var(--hot-ink)}
+.ans,.t4,.chip-btn,.cta .soft{background:var(--card);box-shadow:var(--sh),inset 0 0 0 1px var(--hair)}
+.ans:first-child{background:radial-gradient(120% 80% at 100% 0%,#FFB07A 0%,transparent 55%),linear-gradient(160deg,#FF7A2A,#EE5308);color:var(--on-hot);box-shadow:var(--glow)}
+.ans:first-child q,.ans:first-child p,.ans:first-child h3 em{color:var(--on-hot-2)}
+.ans:first-child li .ico{color:var(--on-hot)}
+.frame{background:#0C0807;box-shadow:0 50px 90px -40px rgba(0,0,0,.8),0 0 0 1.5px #3A302A,inset 0 0 0 1px rgba(255,220,190,.1),0 40px 120px -60px rgba(255,107,26,.55)}
+.t-light .frame{box-shadow:0 50px 90px -40px rgba(110,55,15,.45),0 0 0 1.5px #3A302A,inset 0 0 0 1px rgba(255,255,255,.1)}
+.desk{box-shadow:0 60px 120px -50px rgba(0,0,0,.7),0 0 0 1px var(--line),0 40px 160px -80px rgba(255,107,26,.5)}
+@media (prefers-reduced-motion:reduce){.dot.pulse{animation:none}}
+
+/* зелёный «готово» стал фирменным: один тёплый акцент на всё приложение, текст на нём тёмный */
+.btn.green{background:linear-gradient(180deg,#FF8034,#F55E0E);color:var(--on-hot);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 12px 28px -12px rgba(255,107,26,.9)}
+.chk.ok .bx,.stepper .s.ok .n{color:var(--on-hot)}
+.energy .bar i{background:linear-gradient(90deg,#FFC08F,var(--hot))}
+.t-light .did .ico{color:var(--hot-ink)}
+.brand .v{white-space:nowrap}
+@media (max-width:479px){.brand .v{display:none}}
+
+/* крупный шрифт телефона (×1.3): число сил узким Onest, поле с привязкой к делу не выталкивает микрофон */
+.power4 .gauge b{font-family:Onest,system-ui,sans-serif;font-weight:800;letter-spacing:-.04em}
+.composer .field{min-width:0;overflow:hidden;white-space:nowrap}
+.composer .field .tagin{color:var(--hot-ink);min-width:0;overflow:hidden;text-overflow:ellipsis;max-width:62%}
+/* чужая реплика в ленте сессии (Анатолий) окрашена плиткой: время на ней обычным серым */
+.bub.me[style] .tm{color:var(--dim)}
+
+/* заливки крупных панелей — псевдоэлементом под содержимым, а не фоном самого блока: проверка движения
+   считает блок с background-image картинкой, и прокрученная под ним реплика выглядела «закрытой фото» */
+.qcard,.ans:first-child,.wallet,.bub.me{position:relative;isolation:isolate;background:#F4600F}
+.bub.me[style]{background:var(--card-2)}
+.qcard::before,.ans:first-child::before,.wallet::before,.bub.me:not([style])::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none}
+.qcard::before,.ans:first-child::before{background:radial-gradient(120% 80% at 100% 0%,#FFB07A 0%,transparent 55%),linear-gradient(160deg,#FF7A2A,#EE5308)}
+.wallet::before{background:radial-gradient(110% 90% at 100% 0%,#FFC08F 0%,transparent 55%),radial-gradient(90% 90% at 0% 100%,#B83A08 0%,transparent 60%),linear-gradient(135deg,#FF7A2A,#E24E06)}
+.bub.me:not([style])::before{background:linear-gradient(160deg,#FF8436,#F25C0C)}
