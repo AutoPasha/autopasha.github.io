@@ -56,3 +56,7 @@ button.hint{width:100%;text-align:left;min-height:56px;margin:4px 0 6px}
 .composer .field{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 /* имя файла и длинное слово в строке переносятся, а не вылезают под соседа */
 .li .t{overflow-wrap:anywhere;hyphens:auto;-webkit-hyphens:auto}
+/* «Решает Павел Б.» на морковной карточке: светлая подложка тёмной темы давала контраст 1.4 */
+.qcard .who{background:rgba(28,13,4,.14);color:var(--on-hot)}
+/* лента подсказок: Chrome не держит правое поле у прокрутки, последняя кнопка липла к краю */
+.chips::after{content:"";flex:0 0 6px}
