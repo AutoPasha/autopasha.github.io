@@ -1,0 +1,158 @@
+/* Собрано themes.py из web/lib/theme.ts и web/app/globals.css. Руками не править. */
+.th-sumerki{color-scheme:dark;
+  --bg:oklch(0.185 0.005 65); --card:oklch(0.262 0.006 65); --card-2:oklch(0.320 0.007 65); --ink:oklch(0.895 0.006 75); --dim:oklch(0.700 0.008 75); --dim-2:oklch(0.520 0.008 75);
+  --line:color-mix(in oklab,oklch(0.385 0.007 65) 70%,transparent); --hair:color-mix(in oklab,oklch(0.385 0.007 65) 55%,transparent);
+  --hot:oklch(0.720 0.150 50); --hot-ink:oklch(0.800 0.095 58); --hot-tint:color-mix(in oklab,oklch(0.720 0.150 50) 22%,oklch(0.262 0.006 65));
+  --cream:oklch(0.865 0.024 78); --on-cream:oklch(0.235 0.012 60);
+  --ok:oklch(0.750 0.125 150); --warn:oklch(0.800 0.120 85); --bad:oklch(0.690 0.155 25);
+  --glass:color-mix(in oklab,oklch(0.262 0.006 65) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.385 0.007 65) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.720 0.150 50) 18%,oklch(0.262 0.006 65)); --tile-b:oklch(0.320 0.007 65);
+  --sh:0 18px 38px -20px rgba(0,0,0,.9);
+  --sh-up:0 20px 44px -14px rgba(0,0,0,.85);
+}
+.th-grafit{color-scheme:dark;
+  --bg:oklch(0.150 0.006 250); --card:oklch(0.235 0.007 250); --card-2:oklch(0.293 0.008 250); --ink:oklch(0.975 0.003 250); --dim:oklch(0.700 0.006 250); --dim-2:oklch(0.450 0.010 250);
+  --line:color-mix(in oklab,oklch(0.355 0.008 250) 70%,transparent); --hair:color-mix(in oklab,oklch(0.355 0.008 250) 55%,transparent);
+  --hot:oklch(0.705 0.195 45); --hot-ink:oklch(0.8 0.13 45); --hot-tint:color-mix(in oklab,oklch(0.705 0.195 45) 22%,oklch(0.235 0.007 250));
+  --cream:oklch(0.945 0.008 250); --on-cream:oklch(0.220 0.015 60);
+  --ok:oklch(0.72 0.15 150); --warn:oklch(0.78 0.15 85); --bad:oklch(0.63 0.19 25);
+  --glass:color-mix(in oklab,oklch(0.235 0.007 250) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.355 0.008 250) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.705 0.195 45) 18%,oklch(0.235 0.007 250)); --tile-b:oklch(0.293 0.008 250);
+  --sh:0 18px 38px -20px rgba(0,0,0,.9);
+  --sh-up:0 20px 44px -14px rgba(0,0,0,.85);
+}
+.th-ugol{color-scheme:dark;
+  --bg:oklch(0.150 0.010 60); --card:oklch(0.245 0.012 60); --card-2:oklch(0.303 0.013 60); --ink:oklch(0.975 0.004 60); --dim:oklch(0.680 0.012 60); --dim-2:oklch(0.440 0.020 60);
+  --line:color-mix(in oklab,oklch(0.365 0.013 60) 70%,transparent); --hair:color-mix(in oklab,oklch(0.365 0.013 60) 55%,transparent);
+  --hot:oklch(0.705 0.195 45); --hot-ink:oklch(0.8 0.13 45); --hot-tint:color-mix(in oklab,oklch(0.705 0.195 45) 22%,oklch(0.245 0.012 60));
+  --cream:oklch(0.945 0.020 60); --on-cream:oklch(0.220 0.015 60);
+  --ok:oklch(0.72 0.15 150); --warn:oklch(0.78 0.15 85); --bad:oklch(0.63 0.19 25);
+  --glass:color-mix(in oklab,oklch(0.245 0.012 60) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.365 0.013 60) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.705 0.195 45) 18%,oklch(0.245 0.012 60)); --tile-b:oklch(0.303 0.013 60);
+  --sh:0 18px 38px -20px rgba(0,0,0,.9);
+  --sh-up:0 20px 44px -14px rgba(0,0,0,.85);
+}
+.th-tush{color-scheme:dark;
+  --bg:oklch(0.090 0.004 60); --card:oklch(0.170 0.006 60); --card-2:oklch(0.235 0.008 60); --ink:oklch(1 0 0); --dim:oklch(0.750 0.008 60); --dim-2:oklch(0.480 0.010 60);
+  --line:color-mix(in oklab,oklch(0.340 0.008 60) 70%,transparent); --hair:color-mix(in oklab,oklch(0.340 0.008 60) 55%,transparent);
+  --hot:oklch(0.745 0.200 45); --hot-ink:oklch(0.840 0.130 45); --hot-tint:color-mix(in oklab,oklch(0.745 0.200 45) 22%,oklch(0.170 0.006 60));
+  --cream:oklch(0.960 0.010 60); --on-cream:oklch(0.220 0.015 60);
+  --ok:oklch(0.72 0.15 150); --warn:oklch(0.78 0.15 85); --bad:oklch(0.63 0.19 25);
+  --glass:color-mix(in oklab,oklch(0.170 0.006 60) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.340 0.008 60) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.745 0.200 45) 18%,oklch(0.170 0.006 60)); --tile-b:oklch(0.235 0.008 60);
+  --sh:0 18px 38px -20px rgba(0,0,0,.9);
+  --sh-up:0 20px 44px -14px rgba(0,0,0,.85);
+}
+.th-dym{color-scheme:dark;
+  --bg:oklch(0.215 0.006 250); --card:oklch(0.292 0.007 250); --card-2:oklch(0.350 0.008 250); --ink:oklch(0.980 0.003 250); --dim:oklch(0.790 0.006 250); --dim-2:oklch(0.545 0.008 250);
+  --line:color-mix(in oklab,oklch(0.412 0.008 250) 70%,transparent); --hair:color-mix(in oklab,oklch(0.412 0.008 250) 55%,transparent);
+  --hot:oklch(0.705 0.195 45); --hot-ink:oklch(0.8 0.13 45); --hot-tint:color-mix(in oklab,oklch(0.705 0.195 45) 22%,oklch(0.292 0.007 250));
+  --cream:oklch(0.950 0.008 250); --on-cream:oklch(0.220 0.015 60);
+  --ok:oklch(0.72 0.15 150); --warn:oklch(0.78 0.15 85); --bad:oklch(0.63 0.19 25);
+  --glass:color-mix(in oklab,oklch(0.292 0.007 250) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.412 0.008 250) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.705 0.195 45) 18%,oklch(0.292 0.007 250)); --tile-b:oklch(0.350 0.008 250);
+  --sh:0 18px 38px -20px rgba(0,0,0,.9);
+  --sh-up:0 20px 44px -14px rgba(0,0,0,.85);
+}
+.th-polnoch{color-scheme:dark;
+  --bg:oklch(0.150 0.030 258); --card:oklch(0.238 0.036 258); --card-2:oklch(0.296 0.038 258); --ink:oklch(0.975 0.006 258); --dim:oklch(0.705 0.020 258); --dim-2:oklch(0.455 0.028 258);
+  --line:color-mix(in oklab,oklch(0.358 0.036 258) 70%,transparent); --hair:color-mix(in oklab,oklch(0.358 0.036 258) 55%,transparent);
+  --hot:oklch(0.705 0.195 45); --hot-ink:oklch(0.8 0.13 45); --hot-tint:color-mix(in oklab,oklch(0.705 0.195 45) 22%,oklch(0.238 0.036 258));
+  --cream:oklch(0.945 0.016 258); --on-cream:oklch(0.220 0.015 60);
+  --ok:oklch(0.72 0.15 150); --warn:oklch(0.78 0.15 85); --bad:oklch(0.63 0.19 25);
+  --glass:color-mix(in oklab,oklch(0.238 0.036 258) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.358 0.036 258) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.705 0.195 45) 18%,oklch(0.238 0.036 258)); --tile-b:oklch(0.296 0.038 258);
+  --sh:0 18px 38px -20px rgba(0,0,0,.9);
+  --sh-up:0 20px 44px -14px rgba(0,0,0,.85);
+}
+.th-omut{color-scheme:dark;
+  --bg:oklch(0.148 0.024 205); --card:oklch(0.232 0.028 205); --card-2:oklch(0.290 0.030 205); --ink:oklch(0.975 0.006 205); --dim:oklch(0.702 0.018 205); --dim-2:oklch(0.452 0.024 205);
+  --line:color-mix(in oklab,oklch(0.352 0.028 205) 70%,transparent); --hair:color-mix(in oklab,oklch(0.352 0.028 205) 55%,transparent);
+  --hot:oklch(0.705 0.195 45); --hot-ink:oklch(0.8 0.13 45); --hot-tint:color-mix(in oklab,oklch(0.705 0.195 45) 22%,oklch(0.232 0.028 205));
+  --cream:oklch(0.945 0.014 205); --on-cream:oklch(0.220 0.015 60);
+  --ok:oklch(0.72 0.15 150); --warn:oklch(0.78 0.15 85); --bad:oklch(0.63 0.19 25);
+  --glass:color-mix(in oklab,oklch(0.232 0.028 205) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.352 0.028 205) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.705 0.195 45) 18%,oklch(0.232 0.028 205)); --tile-b:oklch(0.290 0.030 205);
+  --sh:0 18px 38px -20px rgba(0,0,0,.9);
+  --sh-up:0 20px 44px -14px rgba(0,0,0,.85);
+}
+.th-hvoya{color-scheme:dark;
+  --bg:oklch(0.145 0.022 165); --card:oklch(0.228 0.026 165); --card-2:oklch(0.286 0.028 165); --ink:oklch(0.975 0.006 165); --dim:oklch(0.700 0.016 165); --dim-2:oklch(0.450 0.022 165);
+  --line:color-mix(in oklab,oklch(0.348 0.026 165) 70%,transparent); --hair:color-mix(in oklab,oklch(0.348 0.026 165) 55%,transparent);
+  --hot:oklch(0.705 0.195 45); --hot-ink:oklch(0.8 0.13 45); --hot-tint:color-mix(in oklab,oklch(0.705 0.195 45) 22%,oklch(0.228 0.026 165));
+  --cream:oklch(0.945 0.014 165); --on-cream:oklch(0.220 0.015 60);
+  --ok:oklch(0.72 0.15 150); --warn:oklch(0.78 0.15 85); --bad:oklch(0.63 0.19 25);
+  --glass:color-mix(in oklab,oklch(0.228 0.026 165) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.348 0.026 165) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.705 0.195 45) 18%,oklch(0.228 0.026 165)); --tile-b:oklch(0.286 0.028 165);
+  --sh:0 18px 38px -20px rgba(0,0,0,.9);
+  --sh-up:0 20px 44px -14px rgba(0,0,0,.85);
+}
+.th-sepia{color-scheme:dark;
+  --bg:oklch(0.155 0.030 55); --card:oklch(0.242 0.036 55); --card-2:oklch(0.300 0.040 55); --ink:oklch(0.975 0.012 55); --dim:oklch(0.695 0.026 55); --dim-2:oklch(0.450 0.032 55);
+  --line:color-mix(in oklab,oklch(0.365 0.036 55) 70%,transparent); --hair:color-mix(in oklab,oklch(0.365 0.036 55) 55%,transparent);
+  --hot:oklch(0.705 0.195 45); --hot-ink:oklch(0.8 0.13 45); --hot-tint:color-mix(in oklab,oklch(0.705 0.195 45) 22%,oklch(0.242 0.036 55));
+  --cream:oklch(0.945 0.026 55); --on-cream:oklch(0.220 0.015 60);
+  --ok:oklch(0.72 0.15 150); --warn:oklch(0.78 0.15 85); --bad:oklch(0.63 0.19 25);
+  --glass:color-mix(in oklab,oklch(0.242 0.036 55) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.365 0.036 55) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.705 0.195 45) 18%,oklch(0.242 0.036 55)); --tile-b:oklch(0.300 0.040 55);
+  --sh:0 18px 38px -20px rgba(0,0,0,.9);
+  --sh-up:0 20px 44px -14px rgba(0,0,0,.85);
+}
+.th-bumaga{color-scheme:light;
+  --bg:oklch(0.955 0.010 70); --card:oklch(0.988 0.005 70); --card-2:oklch(0.925 0.012 70); --ink:oklch(0.225 0.015 60); --dim:oklch(0.480 0.020 60); --dim-2:oklch(0.620 0.015 60);
+  --line:color-mix(in oklab,oklch(0.855 0.010 60) 70%,transparent); --hair:color-mix(in oklab,oklch(0.855 0.010 60) 55%,transparent);
+  --hot:oklch(0.705 0.195 45); --hot-ink:oklch(0.464 0.170 42); --hot-tint:color-mix(in oklab,oklch(0.705 0.195 45) 16%,oklch(0.988 0.005 70));
+  --cream:oklch(0.255 0.018 60); --on-cream:oklch(0.965 0.008 60);
+  --ok:oklch(0.520 0.140 150); --warn:oklch(0.560 0.130 75); --bad:oklch(0.520 0.180 25);
+  --glass:color-mix(in oklab,oklch(0.988 0.005 70) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.855 0.010 60) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.705 0.195 45) 12%,oklch(0.988 0.005 70)); --tile-b:oklch(0.925 0.012 70);
+  --sh:0 1px 1px rgba(60,30,0,.05),0 18px 36px -20px rgba(110,55,15,.28);
+  --sh-up:0 18px 40px -14px rgba(110,55,15,.32);
+}
+.th-tuman{color-scheme:light;
+  --bg:oklch(0.950 0.006 250); --card:oklch(0.988 0.003 250); --card-2:oklch(0.920 0.008 250); --ink:oklch(0.225 0.014 250); --dim:oklch(0.478 0.014 250); --dim-2:oklch(0.618 0.012 250);
+  --line:color-mix(in oklab,oklch(0.850 0.008 250) 70%,transparent); --hair:color-mix(in oklab,oklch(0.850 0.008 250) 55%,transparent);
+  --hot:oklch(0.705 0.195 45); --hot-ink:oklch(0.460 0.170 42); --hot-tint:color-mix(in oklab,oklch(0.705 0.195 45) 16%,oklch(0.988 0.003 250));
+  --cream:oklch(0.255 0.016 250); --on-cream:oklch(0.965 0.005 250);
+  --ok:oklch(0.520 0.140 150); --warn:oklch(0.560 0.130 75); --bad:oklch(0.520 0.180 25);
+  --glass:color-mix(in oklab,oklch(0.988 0.003 250) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.850 0.008 250) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.705 0.195 45) 12%,oklch(0.988 0.003 250)); --tile-b:oklch(0.920 0.008 250);
+  --sh:0 1px 1px rgba(60,30,0,.05),0 18px 36px -20px rgba(110,55,15,.28);
+  --sh-up:0 18px 40px -14px rgba(110,55,15,.32);
+}
+.th-pergament{color-scheme:light;
+  --bg:oklch(0.935 0.024 80); --card:oklch(0.975 0.016 80); --card-2:oklch(0.898 0.028 80); --ink:oklch(0.240 0.022 60); --dim:oklch(0.470 0.026 60); --dim-2:oklch(0.610 0.020 60);
+  --line:color-mix(in oklab,oklch(0.830 0.022 75) 70%,transparent); --hair:color-mix(in oklab,oklch(0.830 0.022 75) 55%,transparent);
+  --hot:oklch(0.705 0.195 45); --hot-ink:oklch(0.448 0.165 40); --hot-tint:color-mix(in oklab,oklch(0.705 0.195 45) 16%,oklch(0.975 0.016 80));
+  --cream:oklch(0.270 0.024 55); --on-cream:oklch(0.955 0.014 70);
+  --ok:oklch(0.510 0.135 150); --warn:oklch(0.545 0.125 70); --bad:oklch(0.515 0.175 25);
+  --glass:color-mix(in oklab,oklch(0.975 0.016 80) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.830 0.022 75) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.705 0.195 45) 12%,oklch(0.975 0.016 80)); --tile-b:oklch(0.898 0.028 80);
+  --sh:0 1px 1px rgba(60,30,0,.05),0 18px 36px -20px rgba(110,55,15,.28);
+  --sh-up:0 18px 40px -14px rgba(110,55,15,.32);
+}
+.th-mel{color-scheme:light;
+  --bg:oklch(1 0 0); --card:oklch(0.975 0.002 250); --card-2:oklch(0.930 0.004 250); --ink:oklch(0.150 0.008 250); --dim:oklch(0.430 0.010 250); --dim-2:oklch(0.580 0.008 250);
+  --line:color-mix(in oklab,oklch(0.820 0.005 250) 70%,transparent); --hair:color-mix(in oklab,oklch(0.820 0.005 250) 55%,transparent);
+  --hot:oklch(0.705 0.195 45); --hot-ink:oklch(0.468 0.175 40); --hot-tint:color-mix(in oklab,oklch(0.705 0.195 45) 16%,oklch(0.975 0.002 250));
+  --cream:oklch(0.190 0.010 250); --on-cream:oklch(0.985 0.002 250);
+  --ok:oklch(0.470 0.140 150); --warn:oklch(0.520 0.130 75); --bad:oklch(0.490 0.185 25);
+  --glass:color-mix(in oklab,oklch(0.975 0.002 250) 86%,transparent); --glass-line:color-mix(in oklab,oklch(0.820 0.005 250) 60%,transparent);
+  --tile-a:color-mix(in oklab,oklch(0.705 0.195 45) 12%,oklch(0.975 0.002 250)); --tile-b:oklch(0.930 0.004 250);
+  --sh:0 1px 1px rgba(60,30,0,.05),0 18px 36px -20px rgba(110,55,15,.28);
+  --sh-up:0 18px 40px -14px rgba(110,55,15,.32);
+}
+/* список для переключателя: id|название|схема|заметка */
+/* @theme sumerki|сумерки|dark|Мягкий тёплый графит, стоит по умолчанию. Белого нет, вечером с телефона не слепит. */
+/* @theme grafit|графит|dark|Холодная нейтраль. Морковный на сером звучит громче, чем на тёплом. */
+/* @theme ugol|уголь|dark|Тёплый почти-чёрный. Тот самый кабинет, только слои наконец видно. */
+/* @theme tush|тушь|dark|Максимальный контраст. Для солнца, дешёвого экрана и OLED — чёрный там не светится. */
+/* @theme dym|дым|dark|Тот же серый, но светлее: ночью в тёмной комнате белое на почти-чёрном режет глаз. */
+/* @theme polnoch|полночь|dark|Синева, а не серое с уклоном. Тёплый акцент на холодном фоне — самая старая пара. */
+/* @theme omut|омут|dark|Тёмная вода, между хвоей и графитом. Спокойнее зелёной, характернее серой. */
+/* @theme hvoya|хвоя|dark|Тёмно-зелёная. Дополнительный к морковному цвет: «ждут вас» видно боковым зрением. */
+/* @theme sepia|сепия|dark|Ещё теплее угля, как старая фотография. Мягче ночью, зато акцент тише. */
+/* @theme bumaga|бумага|light|Светлая. Днём у окна и на улице читается лучше всех. */
+/* @theme tuman|туман|light|Светлая пара к графиту: тот же холодный тон, только сверху. */
+/* @theme pergament|пергамент|light|Тёплая светлая, контраст ниже. Для долгого чтения — отчётов и справки. */
+/* @theme mel|мел|light|Белый лист и почти чёрный текст. На солнце выигрывает не глубина, а перепад. */

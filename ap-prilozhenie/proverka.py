@@ -7,7 +7,7 @@
 
 Что ловит (код выхода 1 и список, иначе 0):
   - ошибки страницы и консоли;
-  - вылет за правый край (кроме лент, которые листаются вбок нарочно: .hs, .chips);
+  - вылет за правый край (кроме лент, которые листаются вбок нарочно: .hs, .chips, с v6 .st-row, .fchips, .board);
   - перекрытие: видимый текст или кнопка, поверх которых лежит чужой элемент
     (проверка elementFromPoint по центру и углам), в том числе после прокрутки
     ленты до самого низа — так ловится «последняя строка под панелью»;
@@ -60,7 +60,7 @@ PROBE = r"""
     if (cs.visibility === 'hidden' || cs.display === 'none' || +cs.opacity === 0) return false;
     return true;
   };
-  const inScroller = (e) => !!e.closest('.hs,.chips');
+  const inScroller = (e) => !!e.closest('.hs,.chips,.st-row,.fchips,.board,.mode2,.outfits');
   // клип: часть элемента, видимая внутри прокручиваемых предков
   const clipRect = (e) => {
     let r = e.getBoundingClientRect();
@@ -91,7 +91,7 @@ PROBE = r"""
       bad.push([`мелкая цель ${Math.round(r.width)}×${Math.round(r.height)}`, name(e), label(e)]);
     // обрезано: предок с overflow:hidden, который не прокручивается, отрезал больше десятой части
     for (let p = e.parentElement; p && !p.matches('.scr'); p = p.parentElement) {
-      if (p.matches('.body,.sh-b,.hs,.chips')) break;
+      if (p.matches('.body,.sh-b,.hs,.chips,.st-row,.fchips,.board,.outfits')) break;
       const cs = getComputedStyle(p);
       if (!/(hidden|clip)/.test(cs.overflowX + cs.overflowY)) continue;
       const q = p.getBoundingClientRect();
