@@ -298,11 +298,11 @@
     const b = document.createElement('div');
     b.className = 'bub me';
     b.style.cssText = 'margin:8px 0 4px auto;display:block;width:fit-content';
-    b.innerHTML = `${text}<span class="st"><svg class="ico xs"><use href="#i-clock"/></svg>отправляю</span>`;
+    b.innerHTML = `${text}<span class="dlv"><svg class="ico xs"><use href="#i-clock"/></svg>отправляю</span>`;
     feed.insertBefore(b, now);
     $('[data-feed]', scr).scrollTo({ top: 1e5, behavior: 'smooth' });
-    setTimeout(() => { $('.st', b).innerHTML = '<svg class="ico xs"><use href="#i-check"/></svg>доставлено'; }, 600);
-    setTimeout(() => { $('.st', b).innerHTML = '<svg class="ico xs"><use href="#i-check"/></svg><svg class="ico xs" style="margin-left:-10px"><use href="#i-check"/></svg>прочитал 13:55'; }, 1700);
+    setTimeout(() => { $('.dlv', b).innerHTML = '<svg class="ico xs"><use href="#i-check"/></svg>доставлено'; }, 600);
+    setTimeout(() => { $('.dlv', b).innerHTML = '<svg class="ico xs"><use href="#i-check"/></svg><svg class="ico xs" style="margin-left:-10px"><use href="#i-check"/></svg>прочитал 13:55'; }, 1700);
     setTimeout(() => {
       const t = document.createElement('div');
       t.className = 'thought';
@@ -367,7 +367,7 @@
       const card = t.closest('.qcard,.dq');
       card.classList.add('answered');
       toast(scr, t.dataset.toast || 'Готово');
-      const st = $('.st.ask .n', scr); if (st) st.textContent = '1';
+      const st = $('.sty.ask .n', scr); if (st) st.textContent = '1';
       return;
     }
     if (act === 'answer-back') { toast(scr, t.dataset.toast); setTimeout(back, 1000); return; }

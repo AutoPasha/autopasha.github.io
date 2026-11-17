@@ -276,7 +276,7 @@ svg{display:block}
 .wave i{display:block;width:3px;border-radius:3px;background:currentColor;opacity:.85}
 .vtx{font-size:14px;opacity:.88;line-height:1.35}
 .bub.wait{opacity:.75}
-.bub .st{display:flex;align-items:center;justify-content:flex-end;gap:4px;font-size:11.5px;margin-top:2px;opacity:.85}
+.bub .dlv{display:flex;align-items:center;justify-content:flex-end;gap:4px;font-size:11.5px;margin-top:2px;opacity:.85}
 .bub.fail{background:var(--card-2);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--red)}
 .retry{align-self:flex-end;font-size:13.5px;font-weight:700;color:var(--red);display:flex;align-items:center;gap:6px;min-height:40px}
 /* сессия в ленте, как идущий звонок в Discord */
@@ -619,7 +619,7 @@ svg{display:block}
 .btn.green{background:#178A50}
 .bub.me .tm{opacity:.92}
 .bub.wait{opacity:1}
-.bub .st{opacity:1}
+.bub .dlv{opacity:1}
 .scr[data-id="push"]{background:#2a1b14}
 /* превью в галерее и на ноутбуке — картинки: колесо листает страницу, а не ленту внутри телефона */
 .page .frame .body,.page .frame .sh-b,.desk .body{overflow:hidden;overscroll-behavior:auto}

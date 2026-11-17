@@ -27,18 +27,18 @@ img.a{display:block;object-fit:contain;pointer-events:none;user-select:none;-web
 /* ── «сейчас»: истории над чатом ── */
 .st-row{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;margin:0 -20px;padding:4px 20px 10px;flex:none}
 .st-row::-webkit-scrollbar{display:none}
-.st{flex:none;width:68px;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:12px;line-height:1.15;text-align:center;color:var(--ink)}
-.st .rg{width:64px;height:64px;border-radius:50%;padding:3px;background:var(--line);position:relative}
-.st.new .rg{background:conic-gradient(from 200deg,var(--hot),#FFC36B,var(--hot))}
-.st.live .rg{background:conic-gradient(from 0deg,var(--ok),color-mix(in oklab,var(--ok) 30%,transparent),var(--ok));animation:spin 3s linear infinite}
-.st.live .rg>span:first-child{animation:spin 3s linear infinite reverse}
-.st .rg>span:first-child{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:var(--card);border:2.5px solid var(--bg);overflow:hidden}
-.st .rg img.a{width:46px;height:46px;filter:none}
-.st.ask .rg{background:var(--hot)}
-.st.ask .rg>span:first-child{background:var(--cream)}
-.st .n{position:absolute;right:-2px;top:-2px;min-width:22px;height:22px;border-radius:11px;background:var(--hot);color:var(--on-hot);font-weight:800;font-size:12.5px;display:grid;place-items:center;border:2.5px solid var(--bg);padding:0 5px}
-.st.ask .n{background:var(--ink);color:var(--bg)}
-.st b{font-weight:600;max-width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+.sty{flex:none;width:68px;display:flex;flex-direction:column;align-items:center;gap:5px;font-size:12px;line-height:1.15;text-align:center;color:var(--ink)}
+.sty .rg{width:64px;height:64px;border-radius:50%;padding:3px;background:var(--line);position:relative}
+.sty.new .rg{background:conic-gradient(from 200deg,var(--hot),#FFC36B,var(--hot))}
+.sty.live .rg{background:conic-gradient(from 0deg,var(--ok),color-mix(in oklab,var(--ok) 30%,transparent),var(--ok));animation:spin 3s linear infinite}
+.sty.live .rg>span:first-child{animation:spin 3s linear infinite reverse}
+.sty .rg>span:first-child{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:var(--card);border:2.5px solid var(--bg);overflow:hidden}
+.sty .rg img.a{width:46px;height:46px;filter:none}
+.sty.ask .rg{background:var(--hot)}
+.sty.ask .rg>span:first-child{background:var(--cream)}
+.sty .n{position:absolute;right:-2px;top:-2px;min-width:22px;height:22px;border-radius:11px;background:var(--hot);color:var(--on-hot);font-weight:800;font-size:12.5px;display:grid;place-items:center;border:2.5px solid var(--bg);padding:0 5px}
+.sty.ask .n{background:var(--ink);color:var(--bg)}
+.sty b{font-weight:600;max-width:68px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
 @keyframes spin{to{transform:rotate(360deg)}}
 
 /* ── обложки дел: плитка-картинка, как в нынешнем кабинете ── */

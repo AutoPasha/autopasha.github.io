@@ -1,0 +1,123 @@
+{
+ "situacii": [
+  {
+   "a": "gotovo",
+   "kogda": "сессия сдала результат",
+   "ekran": "session-done"
+  },
+  {
+   "a": "otpravleno",
+   "kogda": "письмо или сообщение ушло",
+   "ekran": "chat"
+  },
+  {
+   "a": "zhdem-drugih",
+   "kogda": "ждём коллегу или клиента",
+   "ekran": "chat"
+  },
+  {
+   "a": "obhod",
+   "kogda": "сбой, Паша обошёл сам",
+   "ekran": "session"
+  },
+  {
+   "a": "pochinil",
+   "kogda": "починил то, что сломалось",
+   "ekran": "sessions-history"
+  },
+  {
+   "a": "pauza",
+   "kogda": "остановить сессию",
+   "ekran": "session-stop"
+  },
+  {
+   "a": "otlozheno",
+   "kogda": "будильник отложен",
+   "ekran": "sessions-alarms"
+  },
+  {
+   "a": "vstrecha",
+   "kogda": "показ, созвон, срок",
+   "ekran": "sessions-alarms"
+  },
+  {
+   "a": "odobreno",
+   "kogda": "вы разрешили",
+   "ekran": "queue-all"
+  },
+  {
+   "a": "lajk",
+   "kogda": "результат принят",
+   "ekran": "result"
+  },
+  {
+   "a": "vse-razobrano",
+   "kogda": "вопросов не осталось",
+   "ekran": "queue-empty"
+  },
+  {
+   "a": "nichego",
+   "kogda": "поиск ничего не нашёл",
+   "ekran": "search-empty"
+  },
+  {
+   "a": "novoe-delo",
+   "kogda": "дел ещё нет",
+   "ekran": "deals-empty"
+  },
+  {
+   "a": "podklyucheno",
+   "kogda": "мессенджер подключён",
+   "ekran": "connect-done"
+  },
+  {
+   "a": "vklyucheno",
+   "kogda": "правило включено",
+   "ekran": "rules"
+  },
+  {
+   "a": "priglashenie",
+   "kogda": "позвать человека",
+   "ekran": "team"
+  },
+  {
+   "a": "oplata-ok",
+   "kogda": "оплата прошла",
+   "ekran": "pay-done"
+  },
+  {
+   "a": "oplata-net",
+   "kogda": "оплата не прошла",
+   "ekran": "pay-fail"
+  }
+ ],
+ "dela": {
+  "statya": "статьи",
+  "dogovor": "договоры",
+  "tablica": "таблицы",
+  "magazin": "магазин",
+  "socseti": "соцсети",
+  "muzyka": "песни",
+  "analitika": "отчёты продаж",
+  "sklad": "склад",
+  "megafon": "объявления",
+  "poiskoviki": "поиск Яндекса",
+  "buhgalteriya": "бухгалтерия",
+  "vesy": "юристы",
+  "obuchenie": "обучение",
+  "gostinica": "гостиницы",
+  "restoran": "рестораны",
+  "klinika": "клиники",
+  "mebel": "мебель",
+  "okna": "окна",
+  "vakansiya": "вакансии",
+  "birzha": "биржи заказов",
+  "klienty": "поиск клиентов",
+  "avtootvet": "автоответ",
+  "dizayn": "дизайн",
+  "kopilka": "деньги и копилка",
+  "kod": "код",
+  "uchet": "учёт",
+  "zvonok": "звонки"
+ }
+}

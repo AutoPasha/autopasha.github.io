@@ -5,16 +5,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#130E0B">
-<title>АвтоПаша: приложение. Макет, версия 6</title>
+<title>АвтоПаша: приложение. Макет, версия 7</title>
 <link rel="preload" href="fonts/Onest-cyr.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/Unbounded-cyr.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="app.css">
 <link rel="stylesheet" href="brand.css">
 <link rel="stylesheet" href="themes.css">
 <link rel="stylesheet" href="v6.css">
+<link rel="stylesheet" href="v7.css">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://design.autopasha.ru/ap-prilozhenie/">
-<meta property="og:title" content="АвтоПаша: приложение. Макет, версия 6">
+<meta property="og:title" content="АвтоПаша: приложение. Макет, версия 7">
 <meta property="og:image" content="https://design.autopasha.ru/ap-prilozhenie/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -87,7 +88,7 @@
 </svg>
 <div class="page">
   <div class="top">
-    <div class="brand"><i class="pa" data-s="34" data-o="none"></i>авто<b>паша</b><span class="v">приложение · версия 6</span></div>
+    <div class="brand"><i class="pa" data-s="34" data-o="none"></i>авто<b>паша</b><span class="v">приложение · версия 7</span></div>
     <div class="top-act">
       <button class="chip-btn" data-open="themes"><svg class="ico s"><use href="#i-moon"/></svg><span data-themename>сумерки</span></button>
       <button class="chip-btn" data-open="chat"><svg class="ico s"><use href="#i-play"/></svg>Открыть приложение</button>
@@ -95,7 +96,7 @@
   </div>
 
   <section class="hero">
-    <div class="k">версия 6 · картинки, все функции, 13 тем</div>
+    <div class="k">версия 7 · картинка на каждый случай, вёрстка вычищена</div>
     <h1>понятно <em>с картинки</em>, а не со слов</h1>
     <p class="lead">Каждый раздел, дело и пустой экран узнаётся по объёмной картинке раньше, чем по надписи. Вернул всё, что умеет нынешний кабинет, и все его темы. Ниже их можно переключить и посмотреть каждую.</p>
     <div class="themebar" id="themebar"></div>
@@ -146,6 +147,70 @@
         <li><svg class="ico"><use href="#i-check"/></svg>Что это (картинка), сколько (цифра крупно), что нажать (одна кнопка). Серого текста не больше строки.</li>
         <li><svg class="ico"><use href="#i-check"/></svg>Пустые экраны не пустые: картинка, что тут будет, и одна кнопка.</li>
         <li><svg class="ico"><use href="#i-check"/></svg>Четыре вкладки те же: чат, сессии, дела, Паша. Каждая картинкой.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="sluchai">
+    <div class="sec-h"><div class="k">Версия 7</div><h2>Картинка на каждый случай</h2><p>Что случилось, видно раньше, чем прочитано. Нажмите — откроется экран, где она живёт.</p></div>
+    <div class="sit">
+      <button data-open="session-done"><i data-a="gotovo"></i><span><b>сессия сдала результат</b></span></button>
+      <button data-open="chat"><i data-a="otpravleno"></i><span><b>письмо или сообщение ушло</b></span></button>
+      <button data-open="chat"><i data-a="zhdem-drugih"></i><span><b>ждём коллегу или клиента</b></span></button>
+      <button data-open="session"><i data-a="obhod"></i><span><b>сбой, Паша обошёл сам</b></span></button>
+      <button data-open="sessions-history"><i data-a="pochinil"></i><span><b>починил то, что сломалось</b></span></button>
+      <button data-open="session-stop"><i data-a="pauza"></i><span><b>остановить сессию</b></span></button>
+      <button data-open="sessions-alarms"><i data-a="otlozheno"></i><span><b>будильник отложен</b></span></button>
+      <button data-open="sessions-alarms"><i data-a="vstrecha"></i><span><b>показ, созвон, срок</b></span></button>
+      <button data-open="queue-all"><i data-a="odobreno"></i><span><b>вы разрешили</b></span></button>
+      <button data-open="result"><i data-a="lajk"></i><span><b>результат принят</b></span></button>
+      <button data-open="queue-empty"><i data-a="vse-razobrano"></i><span><b>вопросов не осталось</b></span></button>
+      <button data-open="search-empty"><i data-a="nichego"></i><span><b>поиск ничего не нашёл</b></span></button>
+      <button data-open="deals-empty"><i data-a="novoe-delo"></i><span><b>дел ещё нет</b></span></button>
+      <button data-open="connect-done"><i data-a="podklyucheno"></i><span><b>мессенджер подключён</b></span></button>
+      <button data-open="rules"><i data-a="vklyucheno"></i><span><b>правило включено</b></span></button>
+      <button data-open="team"><i data-a="priglashenie"></i><span><b>позвать человека</b></span></button>
+      <button data-open="pay-done"><i data-a="oplata-ok"></i><span><b>оплата прошла</b></span></button>
+      <button data-open="pay-fail"><i data-a="oplata-net"></i><span><b>оплата не прошла</b></span></button>
+    </div>
+    <h3 class="sit-h">У каждого дела своя обложка</h3>
+    <div class="sit-d">
+      <div><i data-a="statya"></i><span>статьи</span></div>
+      <div><i data-a="dogovor"></i><span>договоры</span></div>
+      <div><i data-a="tablica"></i><span>таблицы</span></div>
+      <div><i data-a="magazin"></i><span>магазин</span></div>
+      <div><i data-a="socseti"></i><span>соцсети</span></div>
+      <div><i data-a="muzyka"></i><span>песни</span></div>
+      <div><i data-a="analitika"></i><span>отчёты продаж</span></div>
+      <div><i data-a="sklad"></i><span>склад</span></div>
+      <div><i data-a="megafon"></i><span>объявления</span></div>
+      <div><i data-a="poiskoviki"></i><span>поиск Яндекса</span></div>
+      <div><i data-a="buhgalteriya"></i><span>бухгалтерия</span></div>
+      <div><i data-a="vesy"></i><span>юристы</span></div>
+      <div><i data-a="obuchenie"></i><span>обучение</span></div>
+      <div><i data-a="gostinica"></i><span>гостиницы</span></div>
+      <div><i data-a="restoran"></i><span>рестораны</span></div>
+      <div><i data-a="klinika"></i><span>клиники</span></div>
+      <div><i data-a="mebel"></i><span>мебель</span></div>
+      <div><i data-a="okna"></i><span>окна</span></div>
+      <div><i data-a="vakansiya"></i><span>вакансии</span></div>
+      <div><i data-a="birzha"></i><span>биржи заказов</span></div>
+      <div><i data-a="klienty"></i><span>поиск клиентов</span></div>
+      <div><i data-a="avtootvet"></i><span>автоответ</span></div>
+      <div><i data-a="dizayn"></i><span>дизайн</span></div>
+      <div><i data-a="kopilka"></i><span>деньги и копилка</span></div>
+      <div><i data-a="kod"></i><span>код</span></div>
+      <div><i data-a="uchet"></i><span>учёт</span></div>
+      <div><i data-a="zvonok"></i><span>звонки</span></div>
+    </div>
+    <div class="fixed">
+      <h3>Что поправил в вёрстке</h3>
+      <ul>
+        <li><svg class="ico"><use href="#i-check"/></svg>Шаги сессии стояли столбиком по слову в строке: имя класса кружков «сейчас» совпало с именем шага. Развёл, обход теперь ловит такие столбики сам.</li>
+        <li><svg class="ico"><use href="#i-check"/></svg>Ваша дописка в ленте сессии на тёмной теме была тёмным текстом на тёмном. Теперь читается.</li>
+        <li><svg class="ico"><use href="#i-check"/></svg>В «Неделе» второй кадр выглядывал из-под первого. Теперь кадры по одному.</li>
+        <li><svg class="ico"><use href="#i-check"/></svg>С крупным шрифтом телефона, как у вас: «Должность» наезжала на «менеджер проектов», вкладка «Было» уезжала за край, «гостиницам» вылезало из обложки. Каждый экран теперь проверен и так.</li>
+        <li><svg class="ico"><use href="#i-check"/></svg>Суммы не рвутся: «30&nbsp;000&nbsp;₽» не уезжает рублём на новую строку.</li>
       </ul>
     </div>
   </section>
@@ -222,24 +287,26 @@
     <button class="round" data-go="chat-search" aria-label="Поиск"><svg class="ico s"><use href="#i-search"/></svg></button>
   </header>
   <div class="st-wrap"><div class="st-row">
-    <button class="st ask" data-go="chat-q"><span class="rg"><span><i data-a="vopros"></i></span><span class="n">2</span></span><b>ждут вас</b></button>
-    <button class="st live" data-go="session"><span class="rg"><span><i data-a="sayt"></i></span></span><b>доставка</b></button>
-    <button class="st live" data-go="session"><span class="rg"><span><i data-a="pismo"></i></span></span><b>письма</b></button>
-    <button class="st new" data-go="week"><span class="rg"><span><i data-a="nedelya"></i></span></span><b>неделя</b></button>
-    <button class="st new" data-go="result"><span class="rg"><span><i data-a="katalog"></i></span></span><b>каталог</b></button>
-    <button class="st" data-tab="deals"><span class="rg"><span><i data-a="dela"></i></span></span><b>все дела</b></button>
+    <button class="sty ask" data-go="chat-q"><span class="rg"><span><i data-a="vopros"></i></span><span class="n">2</span></span><b>ждут вас</b></button>
+    <button class="sty live" data-go="session"><span class="rg"><span><i data-a="sayt"></i></span></span><b>доставка</b></button>
+    <button class="sty live" data-go="session"><span class="rg"><span><i data-a="pismo"></i></span></span><b>письма</b></button>
+    <button class="sty new" data-go="week"><span class="rg"><span><i data-a="nedelya"></i></span></span><b>неделя</b></button>
+    <button class="sty new" data-go="result"><span class="rg"><span><i data-a="katalog"></i></span></span><b>каталог</b></button>
+    <button class="sty" data-tab="deals"><span class="rg"><span><i data-a="dela"></i></span></span><b>все дела</b></button>
   </div></div>
   <div class="body">
     <div class="thread">
       <span class="day">Сегодня</span>
       <button class="rcard" data-go="week"><span class="th"><i data-a="nedelya"></i></span><span class="grow"><b>Утро: вчера сдал два дела</b><small>3 в работе · 2 ждут вас · сайт к завтра</small></span></button>
       <div class="bub me">Паша, как там сайт для Виком?<span class="tm">09:12<span class="tk">✓✓</span></span></div>
-      <div class="bub"><span class="tag"><svg class="ico xs"><use href="#i-globe"/></svg>Сайт для «Виком»</span><br>Почти всё: 28 страниц из 33. Осталась доставка и пара статей. Завтра в 10 покажу Анатолию.<span class="tm">09:12</span></div>
+      <div class="bub"><span class="tag"><i data-a="sayt" class="xs"></i>Сайт для «Виком»</span><br>Почти всё: 28 страниц из 33. Осталась доставка и пара статей. Завтра в 10 покажу Анатолию.<span class="tm">09:12</span></div>
       <button class="rcard" data-go="deal"><span class="ring2" style="--p:85" data-t="28/33"></span><span class="grow"><b>Сайт для «Виком»</b><small>шаг 4 из 5 · завтра в 10:00</small></span></button>
       <div class="bub me voice"><div class="vrow"><span class="vplay"><svg class="ico s"><use href="#i-play"/></svg></span><span class="wave" data-wave></span><span class="xs">0:14</span></div><div class="vtx">«Гостиницам пиши только в Москве и Питере»</div><span class="tm">09:40<span class="tk">✓✓</span></span></div>
       <div class="bub"><span class="rq">Гостиницам пиши только в Москве и Питере</span>Понял: только Москва и Петербург. Список стал 40 вместо 62.<span class="tm">09:41<span class="ed">изменено</span></span></div>
       <button class="rcard" data-go="result"><span class="th"><span class="mini" data-mini="cat"></span></span><span class="grow"><b>Готово: каталог «Виком»</b><small>41 товар с фото и ценами · принять</small></span></button>
-      <button class="sesscard" data-go="session"><svg class="ico"><use href="#i-pulse"/></svg><span class="grow"><b>Взялся: раздел «Доставка»</b><small>сессия идёт 18 мин</small></span><span class="go">Смотреть</span></button>
+      <button class="sesscard" data-go="session"><i data-a="sessiya"></i><span class="grow"><b>Взялся: раздел «Доставка»</b><small>сессия идёт 18 мин</small></span><span class="go">Смотреть</span></button>
+      <div class="evt"><i data-a="otpravleno"></i><span class="grow"><b>Отправил 12 писем гостиницам</b><small>ответы придут сюда · 2 уже открыли</small></span></div>
+      <div class="evt"><i data-a="zhdem-drugih"></i><span class="grow"><b>Ждём Катю: текст для курьерки</b><small>напомню ей завтра в 10:00</small></span><button class="act" data-act="toast" data-toast="Напомнил Кате">напомнить</button></div>
       <div class="qcard" data-q><div class="lbl"><svg class="ico xs"><use href="#i-ask"/></svg>Нужно решение · 13:47</div><h4>Отправить Анатолию ссылку на тестовый сайт?</h4><p>Пишу ему впервые. Разрешите, и дальше буду отвечать ему сам.</p><div class="btns"><button class="btn soft s" data-go="chat-q">Показать</button><button class="btn hot s" data-act="answer" data-toast="Отправил Анатолию">Отправить</button></div><div class="if">Если промолчите, отправлю сам в 12:00 завтра</div><div class="ok"><svg class="ico s"><use href="#i-check"/></svg>Вы разрешили · ушло Анатолию</div></div>
     </div>
   </div>
@@ -327,7 +394,7 @@
     <div class="sec-k">ждём коллег · 1</div>
     <div class="grp"><div class="li"><i data-a="komanda"></i><span class="grow"><span class="t">Катя: текст письма</span><span class="s">ждём второй день</span></span><button class="btn soft s" style="width:auto" data-act="toast" data-toast="Напомнил Кате">напомнить</button></div></div>
     <div class="sec-k">решено · 18</div>
-    <div class="grp"><div class="li"><i data-a="kubok"></i><span class="grow"><span class="t">Включить автоподстановку индекса</span><span class="s">вы: «включить» · вчера</span></span></div></div>
+    <div class="grp"><div class="li"><i data-a="odobreno"></i><span class="grow"><span class="t">Включить автоподстановку индекса</span><span class="s">вы: «включить» · вчера</span></span></div></div>
   </div>
 </template>
 
@@ -336,7 +403,7 @@
   <header class="hd"><span class="who"><span class="ring on"><i class="pa" data-s="36" data-o="none"></i></span><span class="grow"><b>Паша</b><small>слушает</small></span></span></header>
   <div class="body">
     <div class="thread">
-      <div class="bub"><span class="tag"><svg class="ico xs"><use href="#i-mail"/></svg>Письма гостиницам</span><br>Понял: только Москва и Петербург. Список стал 40 вместо 62.<span class="tm">09:41</span></div>
+      <div class="bub"><span class="tag"><i data-a="pismo" class="xs"></i>Письма гостиницам</span><br>Понял: только Москва и Петербург. Список стал 40 вместо 62.<span class="tm">09:41</span></div>
       <div class="live-tx"><small>Паша слышит</small><span data-typed></span></div>
     </div>
   </div>
@@ -357,9 +424,9 @@
       <div class="attach"><button><span class="tile s c-sky"><svg class="ico"><use href="#i-photo"/></svg></span>Фото</button><button><span class="tile s c-peach"><svg class="ico"><use href="#i-cam"/></svg></span>Камера</button><button><span class="tile s c-lilac"><svg class="ico"><use href="#i-file"/></svg></span>Файл</button><button><span class="tile s c-mint"><svg class="ico"><use href="#i-copy"/></svg></span>Вставить</button></div>
       <div class="grp-h">Про какое дело</div>
       <div class="grp">
-        <button class="li" data-act="tagdeal"><span class="tile s c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><span class="grow"><span class="t">Сайт для «Виком»</span><span class="s">завтра в 10:00</span></span><svg class="ico s dim2"><use href="#i-check"/></svg></button>
-        <button class="li" data-act="tagdeal"><span class="tile s c-lilac"><svg class="ico"><use href="#i-video"/></svg></span><span class="grow"><span class="t">Ролик, день 9</span><span class="s">сегодня в 19:00</span></span></button>
-        <button class="li" data-act="tagdeal"><span class="tile s c-sun"><svg class="ico"><use href="#i-mail"/></svg></span><span class="grow"><span class="t">Письма гостиницам</span><span class="s">в среду</span></span></button>
+        <button class="li" data-act="tagdeal"><i data-a="sayt"></i><span class="grow"><span class="t">Сайт для «Виком»</span><span class="s">завтра в 10:00</span></span><svg class="ico s dim2"><use href="#i-check"/></svg></button>
+        <button class="li" data-act="tagdeal"><i data-a="rolik"></i><span class="grow"><span class="t">Ролик, день 9</span><span class="s">сегодня в 19:00</span></span></button>
+        <button class="li" data-act="tagdeal"><i data-a="pismo"></i><span class="grow"><span class="t">Письма гостиницам</span><span class="s">в среду</span></span></button>
         <button class="li"><span class="tile s c-ink"><svg class="ico"><use href="#i-plus"/></svg></span><span class="grow"><span class="t">Новое дело</span><span class="s">Паша заведёт его из сообщения</span></span></button>
       </div>
       <p class="xs dim" style="margin-top:12px">Не выбрали — Паша сам поймёт, о каком деле речь, и подпишет сообщение.</p>
@@ -404,18 +471,19 @@
     <div class="chips"><button class="on">Всё 9</button><button>Чат 4</button><button>Дела 1</button><button>Сессии 3</button><button>Файлы 1</button></div>
     <div class="grp-h">Чат</div>
     <div class="grp">
-      <button class="li" data-back><span class="tile s c-peach"><svg class="ico"><use href="#i-chat"/></svg></span><span class="grow"><span class="t">Паша</span><span class="s">Осталась <b>доставка</b> и пара статей. Завтра в 10…</span></span><span class="r xs">09:12</span></button>
-      <button class="li" data-back><span class="tile s c-peach"><svg class="ico"><use href="#i-chat"/></svg></span><span class="grow"><span class="t">Вы</span><span class="s">Условия <b>доставки</b> бери из письма Анатолия</span></span><span class="r xs">вчера</span></button>
+      <button class="li" data-back><i data-a="chat"></i><span class="grow"><span class="t">Паша</span><span class="s">Осталась <b>доставка</b> и пара статей. Завтра в 10…</span></span><span class="r xs">09:12</span></button>
+      <button class="li" data-back><i data-a="chat"></i><span class="grow"><span class="t">Вы</span><span class="s">Условия <b>доставки</b> бери из письма Анатолия</span></span><span class="r xs">вчера</span></button>
     </div>
     <div class="grp-h">Сессии</div>
     <div class="grp">
-      <button class="li" data-go="session"><span class="outc o-ok"><svg class="ico"><use href="#i-pulse"/></svg></span><span class="grow"><span class="t">Раздел «<b>Доставка</b>»</span><span class="s">идёт сейчас · 18 мин</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
-      <button class="li" data-go="session-done"><span class="outc o-ok"><svg class="ico"><use href="#i-check"/></svg></span><span class="grow"><span class="t">Цены и <b>доставка</b> из прайса</span><span class="s">готово вчера · 42 мин</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+      <button class="li" data-go="session"><i data-a="sessiya"></i><span class="grow"><span class="t">Раздел «<b>Доставка</b>»</span><span class="s">идёт сейчас · 18 мин</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+      <button class="li" data-go="session-done"><i data-a="gotovo"></i><span class="grow"><span class="t">Цены и <b>доставка</b> из прайса</span><span class="s">готово вчера · 42 мин</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
     </div>
     <div class="grp-h">Дела</div>
-    <div class="grp"><button class="li" data-go="deal"><span class="tile s c-peach"><svg class="ico"><use href="#i-globe"/></svg></span><span class="grow"><span class="t">Сайт для «Виком»</span><span class="s">шаг «<b>Доставка</b> и статьи»</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
+    <div class="grp"><button class="li" data-go="deal"><i data-a="sayt"></i><span class="grow"><span class="t">Сайт для «Виком»</span><span class="s">шаг «<b>Доставка</b> и статьи»</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
     <div class="grp-h">Файлы</div>
-    <div class="grp"><button class="li"><span class="tile s c-lilac"><svg class="ico"><use href="#i-file"/></svg></span><span class="grow"><span class="t">Прайс_доставка_ноябрь.xlsx</span><span class="s">от Анатолия · 10 ноября</span></span></button></div>
+    <div class="grp"><button class="li"><i data-a="tablica"></i><span class="grow"><span class="t">Прайс_доставка_ноябрь.xlsx</span><span class="s">от Анатолия · 10 ноября</span></span></button></div>
+    <div class="hint" style="margin-top:12px"><i data-a="poisk"></i><span>Ищу и по смыслу: «где цены на доставку» найдёт письмо Анатолия, даже если слова там другие.</span></div>
   </div>
   <div class="homebar"></div>
 </template>
@@ -460,15 +528,15 @@
     <div class="shead"><h1>Сайт для «Виком»: раздел «Доставка»</h1><div class="from">Начал сам по плану дела в 13:36 · <a data-go="deal">Сайт для «Виком»</a></div></div>
     <div class="taskq"><small>Задача сессии</small>Перенести «Доставку» и две статьи, сверить условия с письмом Анатолия.</div>
     <div class="feed">
-      <div class="st ok"><span class="bd"><svg class="ico"><use href="#i-check"/></svg></span><span class="tx">Открыл план дела: осталось 5 страниц</span><span class="tm">13:36</span></div>
-      <div class="st ok"><span class="bd"><svg class="ico"><use href="#i-mail"/></svg></span><span class="tx">Прочитал письмо Анатолия<small>«доставка по области бесплатно от 30 000 ₽»</small></span><span class="tm">13:37</span></div>
+      <div class="st ok"><span class="bd"><i data-a="shagi"></i></span><span class="tx">Открыл план дела: осталось 5 страниц</span><span class="tm">13:36</span></div>
+      <div class="st ok"><span class="bd"><i data-a="pismo"></i></span><span class="tx">Прочитал письмо Анатолия<small>«доставка по области бесплатно от 30 000 ₽»</small></span><span class="tm">13:37</span></div>
       <div class="thought"><small>Паша думает</small>Условия беру из письма Анатолия, а не со старого сайта: там цены 2023 года.</div>
-      <div class="st ok" data-act="expand"><span class="bd"><svg class="ico"><use href="#i-globe"/></svg></span><span class="tx"><span class="group">Перенёс страницы 25–28 <span class="dim xs">14 действий</span><svg class="ico xs chev2 dim"><use href="#i-chev"/></svg></span><span class="sub-steps"><span>открыл старую страницу «Оплата»</span><span>собрал текст и 4 фото</span><span>выложил на новый сайт, проверил на телефоне</span><span>…и так ещё три страницы</span></span></span><span class="tm">13:40</span></div>
-      <div class="st err"><span class="bd"><svg class="ico"><use href="#i-warn"/></svg></span><span class="tx">Старый сайт не открылся<small>подождал минуту, открылся со второго раза</small></span><span class="tm">13:49</span></div>
-      <div class="bub me" style="margin:8px 0 4px auto;display:block;width:fit-content">Фото склада возьми из папки, которую я скинул вчера<span class="st"><svg class="ico xs"><use href="#i-check"/></svg><svg class="ico xs" style="margin-left:-10px"><use href="#i-check"/></svg>прочитал 13:51</span></div>
+      <div class="st ok" data-act="expand"><span class="bd"><i data-a="sayt"></i></span><span class="tx"><span class="group">Перенёс страницы 25–28 <span class="dim xs">14 действий</span><svg class="ico xs chev2 dim"><use href="#i-chev"/></svg></span><span class="sub-steps"><span>открыл старую страницу «Оплата»</span><span>собрал текст и 4 фото</span><span>выложил на новый сайт, проверил на телефоне</span><span>…и так ещё три страницы</span></span></span><span class="tm">13:40</span></div>
+      <div class="st err"><span class="bd"><i data-a="obhod"></i></span><span class="tx">Старый сайт не открылся<small>подождал минуту, открылся со второго раза</small></span><span class="tm">13:49</span></div>
+      <div class="bub me feedme">Фото склада возьми из папки, которую я скинул вчера<span class="dlv"><svg class="ico xs"><use href="#i-check"/></svg><svg class="ico xs" style="margin-left:-10px"><use href="#i-check"/></svg>прочитал 13:51</span></div>
       <div class="thought"><small>Паша ответил</small>Взял из вашей папки, 6 фото. Старые со склада убрал.</div>
-      <div class="st go" data-now><span class="bd"><svg class="ico"><use href="#i-globe"/></svg></span><span class="tx shim">Переносит страницу 29 из 33: «Доставка по области»</span><span class="tm">13:52</span></div>
-      <div class="st later"><span class="bd"><svg class="ico"><use href="#i-file"/></svg></span><span class="tx">Дальше: статьи «Как выбрать дверь» и «Монтаж»</span></div>
+      <div class="st go" data-now><span class="bd"><i data-a="sayt"></i></span><span class="tx shim">Переносит страницу 29 из 33: «Доставка по области»</span><span class="tm">13:52</span></div>
+      <div class="st later"><span class="bd"><i data-a="statya"></i></span><span class="tx">Дальше: статьи «Как выбрать дверь» и «Монтаж»</span></div>
     </div>
   </div>
   <div class="foot">
@@ -484,7 +552,7 @@
   <div class="dimmer" data-back></div>
   <div class="sheet">
     <div class="grab"></div>
-    <div class="sh-h"><b>Остановить сессию?</b><button class="round flat" data-back aria-label="Закрыть"><svg class="ico s"><use href="#i-x"/></svg></button></div>
+    <div class="sh-pic"><i data-a="pauza"></i></div><div class="sh-h"><b>Остановить сессию?</b><button class="round flat" data-back aria-label="Закрыть"><svg class="ico s"><use href="#i-x"/></svg></button></div>
     <div class="sh-b">
       <div class="modes">
         <button class="mode on"><span class="rad"></span><span><b>Закончить шаг и остановиться</b><small>Допишет страницу 29, сохранит и скажет, где остановился. Минуты три.</small></span></button>
@@ -524,7 +592,7 @@
       <div class="taskq" style="margin-top:0"><small>Вы в чате, 11:02</small>«Озвучь девятый день тем же голосом, музыку тише, финал как у утят»</div>
       <div class="two"><div><b>1-я</b><span>в очереди</span></div><div><b>≈ 14:20</b><span>начнёт, после сайта</span></div></div>
       <div class="grp-h">Ещё по делу «Ролик, день 9»</div>
-      <div class="grp"><div class="li"><span class="outc o-ok"><svg class="ico"><use href="#i-check"/></svg></span><span class="grow"><span class="t">Кадры и монтаж</span><span class="s">готово утром, 38 мин</span></span></div></div>
+      <div class="grp"><div class="li"><i data-a="rolik"></i><span class="grow"><span class="t">Кадры и монтаж</span><span class="s">готово утром, 38 мин</span></span></div></div>
     </div>
     <div class="sh-f">
       <div class="btns" style="grid-template-columns:1fr 1fr 1fr"><button class="btn soft v" data-act="answer-back" data-toast="Начнёт следующей"><svg class="ico s"><use href="#i-top"/></svg>Первой</button><button class="btn soft v" data-act="answer-back" data-toast="Отложил"><svg class="ico s"><use href="#i-pause"/></svg>Отложить</button><button class="btn soft v" style="color:var(--red)" data-act="answer-back" data-toast="Убрал из очереди"><svg class="ico s"><use href="#i-trash"/></svg>Убрать</button></div>
@@ -553,18 +621,18 @@
     <div class="seg"><button data-go="sessions" data-fade>Сейчас <i>2</i></button><button data-go="sessions-queue" data-fade>Очередь <i>3</i></button><button class="on">Будильники <i>6</i></button><button data-go="sessions-history" data-fade>Было</button></div>
     <div class="grp-h">Сегодня</div>
     <div class="grp">
-      <button class="li" data-go="alarm-edit"><span class="outc o-ask"><svg class="ico"><use href="#i-alarm"/></svg></span><span class="grow"><span class="t">Проверить, открыл ли Анатолий сайт</span><span class="s">Сайт для «Виком»</span></span><span class="r"><b style="color:var(--ink)">17:00</b><br><span class="xs">через 3 ч</span></span></button>
-      <button class="li" data-go="alarm-edit"><span class="outc o-ask"><svg class="ico"><use href="#i-alarm"/></svg></span><span class="grow"><span class="t">Выложить ролик дня 9</span><span class="s">Ролик, день 9</span></span><span class="r"><b style="color:var(--ink)">19:00</b></span></button>
+      <button class="li" data-go="alarm-edit"><i data-a="glaz"></i><span class="grow"><span class="t">Проверить, открыл ли Анатолий сайт</span><span class="s">Сайт для «Виком»</span></span><span class="r"><b style="color:var(--ink)">17:00</b><br><span class="xs">через 3 ч</span></span></button>
+      <button class="li" data-go="alarm-edit"><i data-a="rolik"></i><span class="grow"><span class="t">Выложить ролик дня 9</span><span class="s">Ролик, день 9</span></span><span class="r"><b style="color:var(--ink)">19:00</b></span></button>
     </div>
     <div class="grp-h">Завтра и дальше</div>
     <div class="grp">
-      <button class="li" data-go="alarm-edit"><span class="outc o-off"><svg class="ico"><use href="#i-alarm"/></svg></span><span class="grow"><span class="t">Показать Анатолию готовый сайт</span><span class="s">Сайт для «Виком»</span></span><span class="r">завтра<br>10:00</span></button>
-      <button class="li" data-go="alarm-edit"><span class="outc o-off"><svg class="ico"><use href="#i-alarm"/></svg></span><span class="grow"><span class="t">Второе письмо гостиницам без ответа</span><span class="s">Письма гостиницам</span></span><span class="r">ср<br>11:00</span></button>
+      <button class="li" data-go="alarm-edit"><i data-a="vstrecha"></i><span class="grow"><span class="t">Показать Анатолию готовый сайт</span><span class="s">Сайт для «Виком»</span></span><span class="r">завтра<br>10:00</span></button>
+      <button class="li" data-go="alarm-edit"><i data-a="otlozheno"></i><span class="grow"><span class="t">Второе письмо гостиницам без ответа</span><span class="s">Письма гостиницам</span></span><span class="r">ср<br>11:00</span></button>
     </div>
     <div class="grp-h">Ждут события · Паша проверяет сам</div>
     <div class="grp">
-      <button class="li" data-go="alarm-edit"><span class="outc o-err"><svg class="ico"><use href="#i-hand"/></svg></span><span class="grow"><span class="t">Ответить, когда Анатолий пришлёт прайс</span><span class="s">проверяет почту раз в 30 мин · до 19 ноября</span></span></button>
-      <button class="li" data-go="alarm-edit"><span class="outc o-err"><svg class="ico"><use href="#i-hand"/></svg></span><span class="grow"><span class="t">Проверить сайт, когда правку примут</span><span class="s">без сессии, разбудит, когда случится</span></span></button>
+      <button class="li" data-go="alarm-edit"><i data-a="pochtovyy-yashchik"></i><span class="grow"><span class="t">Ответить, когда Анатолий пришлёт прайс</span><span class="s">проверяет почту раз в 30 мин · до 19 ноября</span></span></button>
+      <button class="li" data-go="alarm-edit"><i data-a="zhdem-drugih"></i><span class="grow"><span class="t">Проверить сайт, когда правку примут</span><span class="s">без сессии, разбудит, когда случится</span></span></button>
     </div>
     <p class="xs dim" style="margin:14px 4px">Будильник поднимает Пашу только когда пора: ожидание событий не тратит силы.</p>
   </div>
@@ -600,6 +668,7 @@
     <div class="fchips"><button class="fc on"><i data-a="sessiya"></i>все</button><button class="fc"><i data-a="kubok"></i>выложил</button><button class="fc"><i data-a="stop"></i>сбои <b>1</b></button><button class="fc"><i data-a="sayt"></i>сайт</button><button class="fc"><i data-a="rolik"></i>ролики</button></div>
     <div class="sec-k">вт 17.11 · 5</div>
     <div class="grp">
+      <button class="li" data-go="session-done"><i data-a="pochinil"></i><span class="grow"><span class="t">Починил форму заявки</span><span class="s">письма с сайта снова доходят · 11 мин</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
       <button class="li" data-go="session-done"><i data-a="katalog"></i><span class="grow"><span class="t">Каталог «Виком» с ценами</span><span class="s">готово · 42 мин</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
       <button class="li" data-go="session-done"><i data-a="vopros"></i><span class="grow"><span class="t">Ссылка Анатолию</span><span class="s">спросил вас · 6 мин</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
     </div>
@@ -616,13 +685,13 @@
   <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl"><span class="pill off">закончилась</span></span><button class="round" data-go="deal" aria-label="Дело"><svg class="ico s"><use href="#i-list"/></svg></button></header>
   <div class="body">
     <div class="shead"><h1>Каталог: цены из прайса</h1><div class="from">Вы попросили в чате в 09:12 · <a data-go="deal">Сайт для «Виком»</a></div></div>
-    <div class="outcome"><b>Готово за 42 минуты</b><p>41 товар с ценами из прайса от 10 ноября. Три товара без фото: спросил Анатолия.</p><button class="btn ink s" style="margin-top:12px" data-go="result">Открыть результат</button></div>
+    <div class="outcome"><i data-a="gotovo"></i><b>Готово за 42 минуты</b><p>41 товар с ценами из прайса от 10 ноября. Три товара без фото: спросил Анатолия.</p><button class="btn ink s" style="margin-top:12px" data-go="result">Открыть результат</button></div>
     <div class="two"><div><b>27</b><span>шагов</span></div><div><b>6%</b><span>сил ушло</span></div></div>
     <div class="feed">
-      <div class="st ok"><span class="bd"><svg class="ico"><use href="#i-file"/></svg></span><span class="tx">Прочитал прайс от 10 ноября</span><span class="tm">09:13</span></div>
-      <div class="st ok" data-act="expand"><span class="bd"><svg class="ico"><use href="#i-globe"/></svg></span><span class="tx"><span class="group">Перенёс 41 товар <span class="dim xs">22 действия</span><svg class="ico xs chev2 dim"><use href="#i-chev"/></svg></span><span class="sub-steps"><span>двери входные, 14 шт.</span><span>двери межкомнатные, 19 шт.</span><span>фурнитура, 8 шт.</span></span></span><span class="tm">09:20</span></div>
-      <div class="st ok"><span class="bd"><svg class="ico"><use href="#i-tg"/></svg></span><span class="tx">Спросил Анатолия про фото трёх товаров</span><span class="tm">09:51</span></div>
-      <div class="st ok"><span class="bd"><svg class="ico"><use href="#i-check"/></svg></span><span class="tx">Сдал результат</span><span class="tm">09:54</span></div>
+      <div class="st ok"><span class="bd"><i data-a="tablica"></i></span><span class="tx">Прочитал прайс от 10 ноября</span><span class="tm">09:13</span></div>
+      <div class="st ok" data-act="expand"><span class="bd"><i data-a="katalog"></i></span><span class="tx"><span class="group">Перенёс 41 товар <span class="dim xs">22 действия</span><svg class="ico xs chev2 dim"><use href="#i-chev"/></svg></span><span class="sub-steps"><span>двери входные, 14 шт.</span><span>двери межкомнатные, 19 шт.</span><span>фурнитура, 8 шт.</span></span></span><span class="tm">09:20</span></div>
+      <div class="st ok"><span class="bd"><i data-a="zhdem-drugih"></i></span><span class="tx">Спросил Анатолия про фото трёх товаров</span><span class="tm">09:51</span></div>
+      <div class="st ok"><span class="bd"><i data-a="gotovo"></i></span><span class="tx">Сдал результат</span><span class="tm">09:54</span></div>
     </div>
   </div>
   <div class="foot acts"><button class="btn soft" data-tab="chat"><svg class="ico s"><use href="#i-chat"/></svg>Спросить Пашу про эту сессию</button></div>
@@ -640,7 +709,9 @@
       <button class="cov" data-go="deal"><i data-a="rolik"></i><span class="pg"><i class="d"></i><i class="d"></i><i></i></span><h4>ролик, день 9</h4><small><b>дальше:</b> монтаж к 19:00</small></button>
       <button class="cov" data-go="deal"><i data-a="pismo"></i><span class="pg"><i class="d"></i><i></i><i></i><i></i><i></i></span><h4>письма гостиницам</h4><small><b>идёт:</b> 12 из 40</small></button>
       <button class="cov cream" data-go="deal"><i data-a="odin-c"></i><span class="pg"><i class="d"></i><i class="d"></i><i></i><i></i><i></i></span><h4>доставка без ручного ввода</h4><small><b>ждём Катю:</b> текст для курьерки</small></button>
-      <button class="cov done" data-go="result"><i data-a="kubok"></i><span class="grow"><h4>готово: 41 дело</h4><small>последнее — каталог «Виком», сегодня</small></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
+      <button class="cov" data-go="deal"><i data-a="socseti"></i><span class="pg"><i class="d"></i><i class="d"></i><i class="d"></i><i></i></span><h4>посты на неделю</h4><small><b>идёт:</b> 4 из 7</small></button>
+      <button class="cov cream" data-go="deal"><i data-a="dogovor"></i><span class="pg"><i class="d"></i><i></i><i></i></span><h4>договор со «створом»</h4><small><b>ждём юриста:</b> правки к пятнице</small></button>
+      <button class="cov done" data-go="result"><i data-a="konfetti"></i><span class="grow"><h4>готово: 41 дело</h4><small>последнее — каталог «Виком», сегодня</small></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
       <button class="cov done" data-go="sessions-alarms"><i data-a="budilnik"></i><span class="grow"><h4>вернётся сам: 6</h4><small>ближайшее в 16:00</small></span><svg class="ico chev"><use href="#i-chev"/></svg></button>
     </div>
   </div>
@@ -696,7 +767,7 @@
   <div class="sb"></div>
   <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">результат</span><button class="round" data-act="toast" data-toast="Ссылка скопирована" aria-label="Поделиться"><svg class="ico s"><use href="#i-link"/></svg></button></header>
   <div class="body">
-    <div class="kh"><div class="cover"><span class="mini" data-mini="cat"></span><i data-a="kubok"></i></div><div class="in"><h2>каталог «виком» <em>на сайте</em></h2><p>41 товар с фото и ценами из прайса Анатолия. Покупатель видит наличие.</p></div></div>
+    <div class="kh"><div class="cover"><span class="mini" data-mini="cat"></span><i data-a="lajk"></i></div><div class="in"><h2>каталог «виком» <em>на сайте</em></h2><p>41 товар с фото и ценами из прайса Анатолия. Покупатель видит наличие.</p></div></div>
     <div class="sp10"></div>
     <div class="knums"><div class="hot"><b>41</b><span>товар на месте</span></div><div><b>12</b><span>фото снял с сайта поставщика</span></div><div><b>42</b><span>минуты на всё</span><i>быстрее на 30%</i></div></div>
     <div class="kh-h">было и стало<small>тяните</small></div>
@@ -793,7 +864,7 @@
     <div class="pa-head"><span class="halo"><i class="pa" data-s="104" data-o="headset" data-me></i></span><b>паша</b><small><span class="dot pulse"></span>работает · с вами 23 дня</small><div class="outfits" data-outfits></div></div>
     <div class="pts">
       <button class="pt hot" data-go="power"><i data-a="sily"></i><b>силы 64%</b><small>хватит до 16:30</small></button>
-      <button class="pt" data-go="pay"><i data-a="oplata"></i><b>3 120 ₽</b><small>баланс · пополнить</small></button>
+      <button class="pt" data-go="pay"><i data-a="oplata"></i><b>3 120 ₽</b><small>баланс · пополнить</small></button>
       <button class="pt" data-go="where"><i data-a="gde"></i><b>где работает</b><small>4 чата и почта</small></button>
       <button class="pt" data-go="team"><i data-a="komanda"></i><b>команда</b><small>3 человека</small></button>
       <button class="pt" data-go="rules"><i data-a="pravila"></i><b>можно без вас</b><small>11 правил</small></button>
@@ -856,9 +927,9 @@
     <div class="h2">Что Паша там писал</div>
     <div class="thread">
       <div class="bub">Анатолий, добрый день! Тестовый сайт готов: vikom.autopasha.ru<span class="tm">13:48 · Паша</span></div>
-      <div class="bub me" style="background:var(--card-2);color:var(--ink)">Спасибо, вечером гляну<span class="tm">13:50 · Анатолий</span></div>
+      <div class="bub me feedme">Спасибо, вечером гляну<span class="tm">13:50 · Анатолий</span></div>
     </div>
-    <div class="grp" style="margin-top:16px"><button class="li"><span class="tile s c-tg"><svg class="ico"><use href="#i-tg"/></svg></span><span class="grow"><span class="t">Открыть в Telegram</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button><button class="li" data-go="team"><span class="tile s c-rose"><svg class="ico"><use href="#i-users"/></svg></span><span class="grow"><span class="t">Анатолий в команде</span><span class="s">клиент, ставит задачи по своему сайту</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
+    <div class="grp" style="margin-top:16px"><button class="li"><span class="tile s c-tg"><svg class="ico"><use href="#i-tg"/></svg></span><span class="grow"><span class="t">Открыть в Telegram</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button><button class="li" data-go="team"><i data-a="komanda"></i><span class="grow"><span class="t">Анатолий в команде</span><span class="s">клиент, ставит задачи по своему сайту</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
   </div>
   <div class="tabs" data-dock="pasha"></div>
 </template>
@@ -891,6 +962,7 @@
   <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">команда</span><button class="round" data-act="toast" data-toast="Пригласить по ссылке" aria-label="Добавить"><svg class="ico s"><use href="#i-plus"/></svg></button></header>
   <div class="body">
     <div class="em" style="padding-top:0"><i data-a="komanda"></i></div>
+    <button class="hint" data-act="toast" data-toast="Ссылка скопирована"><i data-a="priglashenie"></i><span><b>Позвать человека</b> — ссылкой, он выберет, как писать Паше</span></button>
     <div class="grp">
       <div class="li"><span class="ava" style="background:#FFB37A">П</span><span class="grow"><span class="t">Павел</span><span class="s">владелец · ставит и принимает</span></span></div>
       <div class="li"><span class="ava" style="background:#9ED9B8">К</span><span class="grow"><span class="t">Катя</span><span class="s">ставит задачи · @katya_s</span></span><button class="round flat" data-act="toast" data-toast="Роль, ник, убрать" aria-label="Ещё"><svg class="ico s"><use href="#i-dots"/></svg></button></div>
@@ -908,6 +980,8 @@
   <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">можно без вас</span><button class="round" data-act="toast" data-toast="Новое правило" aria-label="Добавить"><svg class="ico s"><use href="#i-plus"/></svg></button></header>
   <div class="body">
     <div class="em" style="padding-top:0"><i data-a="pravila"></i></div>
+    <div class="hint"><i data-a="vklyucheno"></i><span>Включено 4 правила. Новое Паша предложит сам, если трижды спросит одно и то же.</span></div>
+    <div class="sp10"></div>
     <div class="sec-k" style="color:var(--ok)">● делает сам · 6</div>
     <div class="grp"><div class="li"><i data-a="pismo"></i><span class="grow"><span class="t">Отвечать Анатолию</span><span class="s">после первого письма</span></span></div><div class="li"><i data-a="sayt"></i><span class="grow"><span class="t">Выкладывать сайт</span><span class="s">если проверки зелёные</span></span></div></div>
     <div class="sec-k" style="color:var(--warn)">● спросит вас · 3</div>
@@ -984,7 +1058,7 @@
       <div class="li"><i data-a="kubok"></i><span class="grow"><span class="t">Принимать свои правки</span></span><span class="tog on"></span></div>
       <div class="li"><i data-a="raketa"></i><span class="grow"><span class="t">Выкладывать на сайт</span></span><span class="tog on"></span></div>
       <div class="li"><i data-a="pismo"></i><span class="grow"><span class="t">Писать клиенту</span></span><span class="tog"></span></div>
-      <div class="li"><i data-a="oplata"></i><span class="grow"><span class="t">Тратить до 1 000 ₽</span></span><span class="tog"></span></div>
+      <div class="li"><i data-a="oplata"></i><span class="grow"><span class="t">Тратить до 1 000 ₽</span></span><span class="tog"></span></div>
     </div>
     <div class="sp10"></div>
     <div class="grp"><button class="li"><i data-a="umeet"></i><span class="grow"><span class="t">Умения проекта</span><span class="s">вёрстка, 1С, письма</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button><button class="li"><i data-a="maska"></i><span class="grow"><span class="t">Лицо в чате</span><span class="s">Паша в гарнитуре</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
@@ -995,28 +1069,28 @@
   <div class="sb"></div>
   <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">деньги</span><span style="width:44px"></span></header>
   <div class="body">
-    <div class="th-big" style="background:var(--hot);color:var(--on-hot)"><i data-a="oplata"></i><span><b style="font-family:var(--disp);font-size:28px;letter-spacing:-.06em">3 120 ₽</b><small style="color:var(--on-hot-2)">хватит примерно на 5 дней</small></span></div>
+    <div class="th-big" style="background:var(--hot);color:var(--on-hot)"><i data-a="oplata"></i><span><b style="font-family:var(--disp);font-size:28px;letter-spacing:-.06em">3 120 ₽</b><small style="color:var(--on-hot-2)">хватит примерно на 5 дней</small></span></div>
     <div class="sp10"></div>
-    <div class="mode2"><button>1 000</button><button class="on">5 000</button><button>25 000</button><button>своя</button></div>
+    <div class="mode2"><button>1 000</button><button class="on">5 000</button><button>25 000</button><button>своя</button></div>
     <div class="sp10"></div>
-    <button class="btn hot" data-act="accept" data-toast="Пополнено на 5 000 ₽">пополнить на 5 000 ₽</button>
+    <button class="btn hot" data-act="accept" data-toast="Пополнено на 5 000 ₽">пополнить на 5 000 ₽</button>
     <div class="sp16"></div>
     <div class="pts">
       <button class="pt" data-act="toast" data-toast="Введите код"><i data-a="promokod"></i><b>промокод</b><small>скидка или бонус</small></button>
       <button class="pt" data-act="toast" data-toast="Премия за что?"><i data-a="premiya"></i><b>премия</b><small>за срочное, за неделю</small></button>
     </div>
     <div class="kh-h">тариф и ступень</div>
-    <div class="steps3"><button><i data-a="stul"></i><b>стул</b><small>9 900 ₽/нед</small></button><button class="on"><i data-a="kabinety"></i><b>кабинет</b><small>25 000 ₽/нед</small></button><button><i data-a="raketa"></i><b>этаж</b><small>по счёту</small></button></div>
+    <div class="steps3"><button><i data-a="stul"></i><b>стул</b><small>9 900 ₽/нед</small></button><button class="on"><i data-a="kabinety"></i><b>кабинет</b><small>25 000 ₽/нед</small></button><button><i data-a="raketa"></i><b>этаж</b><small>по счёту</small></button></div>
     <div class="sp10"></div>
     <div class="card" style="padding:14px 16px"><div class="row"><span class="grow sm dim">шагов в неделю</span><b>40</b></div><div class="slider"><span class="tr"></span><span class="fl" style="width:55%"></span><span class="th" style="left:55%"></span></div></div>
     <div class="sp10"></div>
     <div class="grp">
       <div class="li"><i data-a="budilnik"></i><span class="grow"><span class="t">Автоплатёж</span><span class="s">21 ноября · карта …4417</span></span><span class="tog on"></span></div>
       <div class="li"><i data-a="oplata"></i><span class="grow"><span class="t">Продлевать с баланса</span><span class="s">если хватает</span></span><span class="tog on"></span></div>
-      <div class="li"><i data-a="pravila"></i><span class="grow"><span class="t">Потолок в день</span><span class="s">выше — спросит вас</span></span><span class="v">2 000 ₽</span></div>
+      <div class="li"><i data-a="pravila"></i><span class="grow"><span class="t">Потолок в день</span><span class="s">выше — спросит вас</span></span><span class="v">2 000 ₽</span></div>
     </div>
     <div class="kh-h">счета и чеки</div>
-    <div class="kfiles"><button><i data-a="chek"></i><span class="grow"><b>Неделя 14–21 ноября</b><small>25 000 ₽ · чек «Мой налог»</small></span><span class="dl"><svg class="ico s"><use href="#i-down"/></svg></span></button></div>
+    <div class="kfiles"><button><i data-a="chek"></i><span class="grow"><b>Неделя 14–21 ноября</b><small>25 000 ₽ · чек «Мой налог»</small></span><span class="dl"><svg class="ico s"><use href="#i-down"/></svg></span></button></div>
     <div class="sp10"></div>
     <div class="grp"><button class="li" data-act="toast" data-toast="Расскажите, что не так"><i data-a="razvilka"></i><span class="grow"><span class="t">Вернуть деньги</span><span class="s">первый платёж в течение 7 дней</span></span><svg class="ico chev"><use href="#i-chev"/></svg></button></div>
   </div>
@@ -1052,7 +1126,13 @@
       <button class="pt" data-tab="chat"><i data-a="rolik"></i><b>ролики</b><small>«сними про переезд»</small></button>
       <button class="pt" data-tab="chat"><i data-a="odin-c"></i><b>1С и склад</b><small>«сверь остатки»</small></button>
       <button class="pt" data-tab="chat"><i data-a="katalog"></i><b>каталоги</b><small>«фото и цены из прайса»</small></button>
-      <button class="pt" data-tab="chat"><i data-a="otchet"></i><b>отчёты</b><small>«что с продажами»</small></button>
+      <button class="pt" data-tab="chat"><i data-a="analitika"></i><b>отчёты</b><small>«что с продажами»</small></button>
+      <button class="pt" data-tab="chat"><i data-a="statya"></i><b>статьи</b><small>«напиши про монтаж дверей»</small></button>
+      <button class="pt" data-tab="chat"><i data-a="socseti"></i><b>соцсети</b><small>«посты на неделю»</small></button>
+      <button class="pt" data-tab="chat"><i data-a="tablica"></i><b>таблицы</b><small>«сведи заказы за месяц»</small></button>
+      <button class="pt" data-tab="chat"><i data-a="dogovor"></i><b>договоры</b><small>«проверь договор поставки»</small></button>
+      <button class="pt" data-tab="chat"><i data-a="dizayn"></i><b>дизайн</b><small>«обложка для каталога»</small></button>
+      <button class="pt" data-tab="chat"><i data-a="kod"></i><b>код</b><small>«почини форму заявки»</small></button>
     </div>
   </div>
 </template>
@@ -1153,9 +1233,10 @@
       <button class="li" data-act="toast" data-toast="Взялся, покажу к вечеру"><i data-a="sayt"></i><span class="grow"><span class="t">Посмотри мой сайт</span><span class="s">что мешает покупать</span></span></button>
       <button class="li" data-act="toast" data-toast="Взялся"><i data-a="pismo"></i><span class="grow"><span class="t">Разбери почту</span><span class="s">кому ответить сегодня</span></span></button>
       <button class="li" data-act="toast" data-toast="Взялся"><i data-a="katalog"></i><span class="grow"><span class="t">Проверь цены</span><span class="s">у трёх конкурентов</span></span></button>
+      <button class="li" data-act="toast" data-toast="Взялся"><i data-a="socseti"></i><span class="grow"><span class="t">Сделай пост</span><span class="s">про то, что нового</span></span></button>
     </div>
   </div>
-  <div class="foot"><div class="composer"><button class="plus" data-go="chat-plus" aria-label="Прикрепить"><svg class="ico"><use href="#i-plus"/></svg></button><button class="field" data-go="chat-voice">Или напишите своими словами</button><button class="mic" data-go="chat-voice" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div></div>
+  <div class="foot"><div class="composer"><button class="plus" data-go="chat-plus" aria-label="Прикрепить"><svg class="ico"><use href="#i-plus"/></svg></button><button class="field" data-go="chat-voice">Или скажите словами</button><button class="mic" data-go="chat-voice" aria-label="Голосом"><svg class="ico"><use href="#i-mic"/></svg></button></div></div>
   <div class="tabs" data-dock="chat" data-quiet></div>
 </template>
 
@@ -1184,7 +1265,7 @@
       <div class="bub">Силы на сегодня кончились. Сайт доделал до страницы 31, остальное начну в 19:00.<span class="tm">16:28</span></div>
       <div class="bub me fail">Посмотри ещё цены у «Створа»<span class="tm">16:40</span></div>
       <button class="retry" data-act="toast" data-toast="Ушло"><svg class="ico s"><use href="#i-refresh"/></svg>Не ушло · повторить</button>
-      <div class="bub me wait">И напомни мне про ролик в 18<span class="st"><svg class="ico xs"><use href="#i-clock"/></svg>ждёт сети</span></div>
+      <div class="bub me wait">И напомни мне про ролик в 18<span class="dlv"><svg class="ico xs"><use href="#i-clock"/></svg>ждёт сети</span></div>
     </div>
   </div>
   <div class="foot">
@@ -1235,17 +1316,57 @@
   <div class="sb"></div>
   <header class="hd big"><h1>дела</h1></header>
   <div class="body">
-    <div class="em"><i data-a="pusto"></i><h3>здесь будут дела</h3><p>Дело — большая задача на несколько дней: сайт, рассылка, каталог. Паша разложит её на шаги сам.</p><button class="btn hot" data-tab="chat">поручить первое</button></div>
+    <div class="em"><i data-a="novoe-delo"></i><h3>здесь будут дела</h3><p>Дело — большая задача на несколько дней: сайт, рассылка, каталог. Паша разложит её на шаги сам.</p><button class="btn hot" data-tab="chat">поручить первое</button></div>
   </div>
   <div class="tabs" data-dock="deals" data-quiet></div>
 </template>
 
+<template id="s-queue-empty" data-ch="states" data-title="Вопросов нет" data-cap="Всё решено. Картинка и когда, скорее всего, будет следующий вопрос, чтобы не заглядывать зря." data-src="">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">вопросы</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="em"><i data-a="vse-razobrano"></i><h3>всё решено</h3><p>Следующий вопрос, скорее всего, завтра утром: Анатолий посмотрит сайт.</p><button class="btn soft" data-go="queue-all">решённые · 18</button></div>
+  </div>
+  <div class="tabs" data-dock="chat" data-quiet></div>
+</template>
+<template id="s-search-empty" data-ch="states" data-title="Ничего не нашлось" data-cap="Пустой поиск подсказывает, где ещё искать, и даёт спросить Пашу словами." data-src="">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">поиск</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="em"><i data-a="nichego"></i><h3>про «склад» ничего</h3><p>Искал в чате, сессиях и делах. Спросите Пашу словами, он помнит больше, чем видно в поиске.</p><button class="btn hot" data-tab="chat">спросить Пашу</button></div>
+  </div>
+  <div class="tabs" data-dock="chat" data-quiet></div>
+</template>
+<template id="s-connect-done" data-ch="states" data-title="Подключено" data-cap="После подключения сразу видно, что заработало и что Паша сделает первым." data-src="">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">подключение</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="em"><i data-a="podklyucheno"></i><h3>телеграм подключён</h3><p>Паша уже видит 3 чата. Первым делом спросит, в каких отвечать самому.</p><button class="btn hot" data-go="chat-mode">выбрать чаты</button></div>
+  </div>
+  <div class="tabs" data-dock="pasha" data-quiet></div>
+</template>
+<template id="s-pay-done" data-ch="states" data-title="Оплата прошла" data-cap="Деньги пришли: на сколько хватит словами, а не только суммой." data-src="">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">оплата</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="em"><i data-a="oplata-ok"></i><h3>пополнено на 5&nbsp;000&nbsp;₽</h3><p>Хватит примерно на 3 недели в нынешнем темпе. Чек ушёл на почту.</p><button class="btn soft" data-go="pay">к оплате</button></div>
+  </div>
+  <div class="tabs" data-dock="pasha" data-quiet></div>
+</template>
+<template id="s-pay-fail" data-ch="states" data-title="Оплата не прошла" data-cap="Карта не прошла: почему простыми словами и что сделать, без кода ошибки банка." data-src="">
+  <div class="sb"></div>
+  <header class="hd"><button class="round" data-back aria-label="Назад"><svg class="ico s"><use href="#i-back"/></svg></button><span class="ttl">оплата</span><span style="width:44px"></span></header>
+  <div class="body">
+    <div class="em"><i data-a="oplata-net"></i><h3>банк не пропустил платёж</h3><p>Так бывает с новыми картами. Попробуйте ещё раз или другую карту. Паша работает дальше: силы ещё есть до пятницы.</p><button class="btn hot" data-act="toast" data-toast="Открываю оплату">попробовать ещё раз</button></div>
+  </div>
+  <div class="tabs" data-dock="pasha" data-quiet></div>
+</template>
 <template id="s-stul" data-ch="states" data-title="Стул" data-cap="Человек пришёл с сайта и ещё не платил. Стул картинкой, ползунок ступени с ценой, оценка своей задачи с файлом и «купить стул и начать»." data-src="vocab">
   <div class="sb"></div>
   <header class="hd"><span class="ttl"></span></header>
   <div class="body">
     <div class="em" style="padding-top:0"><i data-a="stul"></i><h3>посадите пашу на стул</h3><p>Неделя работы. Не понравится в первые 7 дней — вернём деньги.</p></div>
-    <div class="steps3"><button class="on"><i data-a="stul"></i><b>стул</b><small>9 900 ₽</small></button><button><i data-a="kabinety"></i><b>кабинет</b><small>25 000 ₽</small></button><button><i data-a="raketa"></i><b>этаж</b><small>по счёту</small></button></div>
+    <div class="steps3"><button class="on"><i data-a="stul"></i><b>стул</b><small>9 900 ₽</small></button><button><i data-a="kabinety"></i><b>кабинет</b><small>25 000 ₽</small></button><button><i data-a="raketa"></i><b>этаж</b><small>по счёту</small></button></div>
     <div class="sp10"></div>
     <div class="card" style="padding:14px 16px"><div class="row"><span class="grow sm dim">шагов в неделю</span><b>20</b></div><div class="slider"><span class="tr"></span><span class="fl" style="width:30%"></span><span class="th" style="left:30%"></span></div></div>
     <div class="sp10"></div>
@@ -1263,9 +1384,9 @@
     <div class="pg" style="display:flex;gap:4px;margin:0 0 16px"><i style="flex:1;height:6px;border-radius:3px;background:var(--hot)"></i><i style="flex:1;height:6px;border-radius:3px;background:var(--hot)"></i><i style="flex:1;height:6px;border-radius:3px;background:var(--card-2)"></i></div>
     <div class="sec-k">чем вы занимаетесь?</div>
     <div class="pts">
-      <button class="pt" data-act="toast" data-toast="Понял: магазин"><i data-a="katalog"></i><b>магазин</b></button>
-      <button class="pt" data-act="toast" data-toast="Понял: услуги"><i data-a="umeet"></i><b>услуги</b></button>
-      <button class="pt" data-act="toast" data-toast="Понял: производство"><i data-a="odin-c"></i><b>производство</b></button>
+      <button class="pt" data-act="toast" data-toast="Понял: магазин"><i data-a="magazin"></i><b>магазин</b></button>
+      <button class="pt" data-act="toast" data-toast="Понял: услуги"><i data-a="klienty"></i><b>услуги</b></button>
+      <button class="pt" data-act="toast" data-toast="Понял: производство"><i data-a="sklad"></i><b>производство</b></button>
       <button class="pt" data-act="toast" data-toast="Расскажите словами"><i data-a="chat"></i><b>другое</b></button>
     </div>
   </div>

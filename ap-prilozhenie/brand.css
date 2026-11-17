@@ -214,13 +214,13 @@
 .composer .field{min-width:0;overflow:hidden;white-space:nowrap}
 .composer .field .tagin{color:var(--hot-ink);min-width:0;overflow:hidden;text-overflow:ellipsis;max-width:62%}
 /* чужая реплика в ленте сессии (Анатолий) окрашена плиткой: время на ней обычным серым */
-.bub.me[style] .tm{color:var(--dim)}
+.bub.me.feedme .tm{color:var(--dim)}
 
 /* заливки крупных панелей — псевдоэлементом под содержимым, а не фоном самого блока: проверка движения
    считает блок с background-image картинкой, и прокрученная под ним реплика выглядела «закрытой фото» */
 .qcard,.ans:first-child,.wallet,.bub.me{position:relative;isolation:isolate;background:#F4600F}
-.bub.me[style]{background:var(--card-2)}
-.qcard::before,.ans:first-child::before,.wallet::before,.bub.me:not([style])::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none}
+.bub.me.feedme{background:var(--card-2)}
+.qcard::before,.ans:first-child::before,.wallet::before,.bub.me:not(.feedme)::before{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none}
 .qcard::before,.ans:first-child::before{background:radial-gradient(120% 80% at 100% 0%,#FFB07A 0%,transparent 55%),linear-gradient(160deg,#FF7A2A,#EE5308)}
 .wallet::before{background:radial-gradient(110% 90% at 100% 0%,#FFC08F 0%,transparent 55%),radial-gradient(90% 90% at 0% 100%,#B83A08 0%,transparent 60%),linear-gradient(135deg,#FF7A2A,#E24E06)}
-.bub.me:not([style])::before{background:linear-gradient(160deg,#FF8436,#F25C0C)}
+.bub.me:not(.feedme)::before{background:linear-gradient(160deg,#FF8436,#F25C0C)}
